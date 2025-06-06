@@ -1,0 +1,254 @@
+.page {
+  padding-top: 80px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+  position: relative;
+}
+
+.backgroundCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.section {
+  margin-bottom: 4rem;
+  padding: 2rem 0;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sectionHeader h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+.subtext {
+  font-size: 1rem;
+  color: #999;
+  margin-bottom: 2rem;
+}
+
+/* Skills Section */
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skillCard {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skillCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.skillCard h4 {
+  color: #4ecdc4;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.skillCard p {
+  color: #ddd;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+/* Experience Section */
+.experienceContainer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.experienceSection {
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  color: #4ecdc4;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.experienceCard {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.experienceCard:hover {
+  transform: translateY(-3px);
+}
+
+.experienceCard h4 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.experienceDate {
+  color: #4ecdc4;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.experienceDescription {
+  color: #ddd;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Certifications Section */
+.certificationsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 0 auto;
+}
+
+.certCard {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.certCard:hover {
+  transform: translateY(-5px);
+}
+
+.certCard a {
+  color: #4ecdc4;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.certCard a:hover {
+  text-decoration: underline;
+}
+
+.certCard span {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.certCard p {
+  color: #ccc;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* Portfolio Section */
+.divider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4ecdc4, transparent);
+  margin: 2rem 0;
+}
+
+.portfolioProject {
+  margin-bottom: 3rem;
+}
+
+.portfolioProject h3 {
+  color: #4ecdc4;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.portfolioFrame {
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main {
+    padding: 1rem;
+  }
+
+  .section {
+    margin-bottom: 3rem;
+    padding: 1.5rem 0;
+  }
+
+  .sectionHeader h2 {
+    font-size: 2rem;
+  }
+
+  .skillsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .skillCard {
+    padding: 1rem;
+  }
+
+  .certificationsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .portfolioFrame {
+    height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionHeader h2 {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .portfolioFrame {
+    height: 300px;
+  }
+}

@@ -1,0 +1,175 @@
+.card {
+  min-width: 300px;
+  max-width: 400px;
+  background-color: #333;
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  text-align: center;
+  color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.header h3 {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+.habiticaIcon {
+  font-size: 1.5rem;
+  background: #6c5ce7;
+  color: white;
+  padding: 8px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.level {
+  font-weight: bold;
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+.progressContainer {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.statLabel {
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.healthLabel {
+  color: #ff6b6b;
+  font-weight: 500;
+}
+
+.expLabel {
+  color: #4ecdc4;
+  font-weight: 500;
+}
+
+.manaLabel {
+  color: #45b7d1;
+  font-weight: 500;
+}
+
+.progressBar {
+  height: 25px;
+  width: 100%;
+  border-radius: 12px;
+  border: none;
+  overflow: hidden;
+}
+
+.healthProgress::-webkit-progress-bar {
+  background-color: #444;
+  border-radius: 12px;
+}
+
+.healthProgress::-webkit-progress-value {
+  background-color: #ff6b6b;
+  border-radius: 12px;
+}
+
+.expProgress::-webkit-progress-bar {
+  background-color: #444;
+  border-radius: 12px;
+}
+
+.expProgress::-webkit-progress-value {
+  background-color: #4ecdc4;
+  border-radius: 12px;
+}
+
+.manaProgress::-webkit-progress-bar {
+  background-color: #444;
+  border-radius: 12px;
+}
+
+.manaProgress::-webkit-progress-value {
+  background-color: #45b7d1;
+  border-radius: 12px;
+}
+
+/* Firefox progress bar styling */
+.healthProgress::-moz-progress-bar {
+  background-color: #ff6b6b;
+  border-radius: 12px;
+}
+
+.expProgress::-moz-progress-bar {
+  background-color: #4ecdc4;
+  border-radius: 12px;
+}
+
+.manaProgress::-moz-progress-bar {
+  background-color: #45b7d1;
+  border-radius: 12px;
+}
+
+.lastUpdate {
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: 1rem;
+}
+
+.viewProfile {
+  background: #6c5ce7;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.viewProfile:hover {
+  background: #5a4fcf;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .card {
+    margin: 1rem 0;
+    min-width: 280px;
+    padding: 1.5rem;
+  }
+
+  .progressContainer {
+    gap: 0.3rem;
+  }
+
+  .progressBar {
+    height: 20px;
+  }
+}
