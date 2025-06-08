@@ -1,12 +1,30 @@
 /* Global styles */
 .page {
   font-family: var(--font-geist-sans);
+  background: #1a1a1a;
+  min-height: 100vh;
+  color: #fff;
 }
 
 .heroSection {
-  color: black;
-  margin: 7rem 0 2rem 0;
-  text-align: center;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(255, 217, 61, 0.1) 0%, transparent 70%);
+  z-index: 0;
 }
 
 .container {
@@ -27,8 +45,12 @@
 .textBox {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.8s ease;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .textBox.loaded {
@@ -37,39 +59,51 @@
 }
 
 .name {
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #fff 0%, #ffd93d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
 }
 
 .title {
-  font-size: 1.5rem;
-  font-weight: 300;
-  margin-bottom: 1rem;
-  color: rgba(0, 0, 0, 0.9);
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.02em;
 }
 
 .intro {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin-bottom: 2rem;
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
 }
 
 .caveat {
   font-style: italic;
-  margin-bottom: 1rem;
-  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.1rem;
 }
 
 .introText {
-  margin: 2rem 0;
-  line-height: 1.6;
+  margin: 2.5rem 0;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+}
+
+.introText p {
+  margin-bottom: 1rem;
 }
 
 .buttonGroup {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  display: flex;
+  gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
   padding: 0 1rem;
@@ -79,23 +113,40 @@
 
 .ctaButton {
   background: #ffd93d;
-  color: white;
+  color: #1a1a1a;
   border: none;
-  padding: 1rem;
+  padding: 1rem 2rem;
   border-radius: 50px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-transform: uppercase;
-  min-width: 180px;
-  max-width: 200px;
-  margin: 0 auto;
+  letter-spacing: 0.05em;
+  min-width: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
 }
 
 .ctaButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px rgba(255, 217, 61, 0.2);
+}
+
+.ctaButton:hover::before {
+  transform: translateX(100%);
 }
 
 /* Responsive Design */
@@ -105,25 +156,41 @@
   }
 
   .title {
+    font-size: 1.4rem;
+  }
+
+  .intro {
     font-size: 1.2rem;
   }
 
   .buttonGroup {
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
+  }
+
+  .ctaButton {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .scrollContent {
+    padding: 1rem;
   }
 }
 
 /* Infinite Scrolling Cards Section */
 .cardsSection {
-  padding: 2rem 0;
+  padding: 4rem 0;
   position: relative;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .scrollContainer {
   width: 100%;
   overflow-x: hidden;
   cursor: grab;
+  padding: 2rem 0;
 }
 
 .scrollContainer:active {
@@ -133,13 +200,18 @@
 .scrollContent {
   display: flex;
   gap: 2rem;
-  padding: 1rem 0;
+  padding: 1rem 2rem;
   width: fit-content;
 }
 
 .scrollContent > * {
   flex-shrink: 0;
-  width: 300px; /* Fixed width for consistent spacing */
+  width: 300px;
+  transition: transform 0.3s ease;
+}
+
+.scrollContent > *:hover {
+  transform: translateY(-5px);
 }
 
 .spotifyWrapper {
@@ -149,6 +221,8 @@
   border-radius: 12px;
   padding: 1rem;
   min-height: 152px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
 }
 
 /* Optional: Add some visual indicators */

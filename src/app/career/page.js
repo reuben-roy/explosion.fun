@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from 'react';
 import Navbar from '../../components/Navbar';
-import styles from './profession.module.css';
+import styles from './career.module.css';
 
-export default function Profession() {
+export default function Career() {
     const canvasRef = useRef(null);
 
     useEffect(() => {
@@ -38,7 +38,7 @@ export default function Profession() {
             description: "Data Visualization (D3.js, Matplotlib), Data Mining, Data Modeling, Machine Learning, NumPy, Pandas"
         },
         {
-            title: "Project Management",
+            title: "`Pro`ject Management",
             description: "Agile, Jira/Kanban, Confluence, Postman"
         },
         {

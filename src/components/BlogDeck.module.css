@@ -1,0 +1,72 @@
+.deckContainer {
+    margin: 2rem 0;
+    padding: 0 1rem;
+}
+
+.deckTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.scrollContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cardsContainer {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding: 0.5rem 0;
+    gap: 1rem;
+}
+
+.cardsContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+    z-index: 2;
+}
+
+.scrollButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.leftButton {
+    left: -20px;
+}
+
+.rightButton {
+    right: -20px;
+}
+
+@media (max-width: 768px) {
+    .scrollButton {
+        display: none;
+    }
+    
+    .deckContainer {
+        padding: 0;
+    }
+} 

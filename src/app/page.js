@@ -111,13 +111,13 @@ export default function Home() {
               <div className={styles.buttonGroup}>
                 <button
                   className={styles.ctaButton}
-                  onClick={() => scrollToSection('portfolio')}
+                  onClick={() => window.location.href ="/profession"}
                 >
                   Skills and Work
                 </button>
                 <button
-                  className={`${styles.ctaButton} ${styles.secondaryButton}`}
-                  onClick={() => scrollToSection('contact')}
+                  className={styles.ctaButton}
+                  onClick={() => window.location.href ="/blog"}
                 >
                   Blog
                 </button>
