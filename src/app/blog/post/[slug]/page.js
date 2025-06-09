@@ -4,61 +4,116 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Navbar from '../../../../components/Navbar';
 import styles from './post.module.css';
+import { GRAPHQL_ENDPOINT } from '../../../../config/graphql';
 
 // Helper function to calculate average score
 const calculateAverageScore = (scores) => {
     if (!scores) return null;
     
     const { storytelling, characters, writing, direction, sound, other } = scores;
-    const sum = storytelling + characters + writing + direction + sound + other; // Adjust other to be 0-10
+    const sum = storytelling + characters + writing + direction + sound + other;
     return sum / 6;
 };
+
+// GraphQL query for a single post
+const POST_QUERY = `
+    query GetPost($slug: String!) {
+        postBy(slug: $slug) {
+            title
+            date
+            content
+            author {
+                node {
+                    name
+                }
+            }
+            categories {
+                nodes {
+                    name
+                }
+            }
+            featuredImage {
+                node {
+                    sourceUrl
+                    altText
+                }
+            }
+            scores {
+                storyTelling
+                characterDevelopment
+                script
+                direction
+                sound
+                other
+            }
+        }
+    }
+`;
 
 export default function BlogPost() {
     const { slug } = useParams();
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        // TODO: Replace with actual GraphQL query
         const fetchPost = async () => {
             try {
-                // Example structure - replace with actual GraphQL query
-                const mockPost = {
-                    title: "Akira",
-                    date: "March 10, 2024",
-                    author: "John Doe",
-                    categories: ["Movie Reviews", "Anime Reviews"],
-                    scores: {
-                        storytelling: 9.0,
-                        characters: 8.5,
-                        writing: 9.0,
-                        direction: 10,
-                        sound: 10,
-                        other: 3
+                const response = await fetch(GRAPHQL_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
                     },
-                    content: `
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        
-                        <h2>Visual Masterpiece</h2>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        
-                        <h2>Story and Themes</h2>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                        
-                        <h2>Legacy and Impact</h2>
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    `,
-                    image: "/images/blog/akira.jpg"
+                    body: JSON.stringify({
+                        query: POST_QUERY,
+                        variables: { slug }
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                if (result.errors) {
+                    throw new Error(result.errors[0].message);
+                }
+
+                const { data } = result;
+                
+                if (!data || !data.postBy) {
+                    throw new Error('Post not found');
+                }
+
+                // Transform WordPress data to match our structure
+                const transformedPost = {
+                    title: data.postBy.title,
+                    date: data.postBy.date,
+                    author: data.postBy.author?.node?.name || 'Anonymous',
+                    categories: data.postBy.categories.nodes.map(cat => cat.name),
+                    content: data.postBy.content,
+                    image: data.postBy.featuredImage?.node?.sourceUrl || '/images/blog/akira.jpg',
+                    imageAlt: data.postBy.featuredImage?.node?.altText || data.postBy.title,
+                    scores: data.postBy.scores ? {
+                        storytelling: parseFloat(data.postBy.scores.storyTelling) || 0,
+                        characters: parseFloat(data.postBy.scores.characterDevelopment) || 0,
+                        writing: parseFloat(data.postBy.scores.script) || 0,
+                        direction: parseFloat(data.postBy.scores.direction) || 0,
+                        sound: parseFloat(data.postBy.scores.sound) || 0,
+                        other: parseFloat(data.postBy.scores.other) || 0
+                    } : null
                 };
 
                 // Calculate average score
-                mockPost.averageScore = calculateAverageScore(mockPost.scores);
+                transformedPost.averageScore = transformedPost.scores ? 
+                    calculateAverageScore(transformedPost.scores) : null;
 
-                setPost(mockPost);
+                setPost(transformedPost);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching post:', error);
+                setError(error.message);
                 setLoading(false);
             }
         };
@@ -71,6 +126,15 @@ export default function BlogPost() {
             <>
                 <Navbar />
                 <div className={styles.loading}>Loading...</div>
+            </>
+        );
+    }
+
+    if (error) {
+        return (
+            <>
+                <Navbar />
+                <div className={styles.error}>{error}</div>
             </>
         );
     }
@@ -98,7 +162,7 @@ export default function BlogPost() {
                             ))}
                         </div>
                         <div className={styles.metaInfo}>
-                            <span className={styles.date}>{post.date}</span>
+                            <span className={styles.date}>{new Date(post.date).toLocaleDateString()}</span>
                             {post.averageScore && (
                                 <span className={styles.score}>
                                     Average Score: {post.averageScore.toFixed(1)}/10
@@ -112,7 +176,11 @@ export default function BlogPost() {
 
                 {post.image && (
                     <div className={styles.imageContainer}>
-                        <img src={post.image} alt={post.title} className={styles.image} />
+                        <img 
+                            src={post.image} 
+                            alt={post.imageAlt} 
+                            className={styles.image} 
+                        />
                     </div>
                 )}
 

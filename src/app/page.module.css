@@ -77,17 +77,11 @@
 }
 
 .intro {
-  font-size: 1.4rem;
-  margin-bottom: 2rem;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
-}
-
-.caveat {
   font-style: italic;
+  font-size: 1.1rem;
   margin-bottom: 2rem;
   color: rgba(255, 255, 255, 0.6);
-  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 .introText {
@@ -95,10 +89,6 @@
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.7);
   font-size: 1.1rem;
-}
-
-.introText p {
-  margin-bottom: 1rem;
 }
 
 .buttonGroup {
@@ -217,12 +207,7 @@
 .spotifyWrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
   border-radius: 12px;
-  padding: 1rem;
-  min-height: 152px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
 }
 
 /* Optional: Add some visual indicators */
@@ -243,4 +228,34 @@
 
 .cardsSection::after {
   right: 0;
+}
+
+.animatedText {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.typingText {
+    display: inline-block;
+}
+
+.cursor {
+    display: inline-block;
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    from, to {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }

@@ -7,16 +7,69 @@ import LinkedInCard from '@/components/LinkedInCard';
 import GitHubCard from '@/components/GitHubCard';
 import HabiticaCard from '@/components/HabiticaCard';
 
+const AnimatedText = ({ phrases }) => {
+    const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+    const [displayText, setDisplayText] = useState('');
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [typingSpeed, setTypingSpeed] = useState(100);
+
+    useEffect(() => {
+        const currentPhrase = phrases[currentPhraseIndex];
+        
+        if (!isDeleting && displayText === currentPhrase) {
+            // Pause at the end of typing
+            setTimeout(() => setIsDeleting(true), 1000);
+            return;
+        }
+
+        if (isDeleting && displayText === '') {
+            // Move to next phrase after deleting
+            setIsDeleting(false);
+            setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
+            return;
+        }
+
+        const timer = setTimeout(() => {
+            if (!isDeleting) {
+                setDisplayText(currentPhrase.slice(0, displayText.length + 1));
+                setTypingSpeed(50);
+            } else {
+                setDisplayText(currentPhrase.slice(0, displayText.length - 1));
+                setTypingSpeed(30);
+            }
+        }, typingSpeed);
+
+        return () => clearTimeout(timer);
+    }, [displayText, isDeleting, currentPhraseIndex, phrases]);
+
+    return (
+        <div className={styles.animatedText}>
+            <span className={styles.typingText}>{displayText}</span>
+            <span className={styles.cursor}>|</span>
+        </div>
+    );
+};
+
 export default function Home() {
   const [profileData, setProfileData] = useState({
     name: "Reuben Roy",
-    title: "Full Stack Developer",
     intro: "Passionate developer creating innovative web solutions",
     designation: "Software Engineer",
     caveat: "Always learning, always building",
     intro1: "Welcome to my digital portfolio showcasing my journey in technology.",
     intro2: "Explore my projects, skills, and professional experience below."
   });
+
+  const phrases = [
+    "Full Stack Developer",
+    "Software Engineer",
+    "An Awakener of God",
+    "Problem Solver",
+    "Tech Enthusiast",
+    "Unordained Apostle of Griffith",
+    "Always Learning",
+    "Always Building"
+  ];
 
   const [isLoaded, setIsLoaded] = useState(false);
   const scrollRef = useRef(null);
@@ -101,7 +154,7 @@ export default function Home() {
           <section id="hero" className={`${styles.section} ${styles.heroSection}`}>
             <div className={`${styles.textBox} ${isLoaded ? styles.loaded : ''}`}>
               <h1 className={styles.name}>{profileData.name}</h1>
-              <h2 className={styles.title}>{profileData.title}</h2>
+              <AnimatedText phrases={phrases} />
               <p className={styles.intro}>{profileData.intro}</p>
               <p className={styles.caveat}>{profileData.caveat}</p>
               <div className={styles.introText}>
@@ -111,7 +164,7 @@ export default function Home() {
               <div className={styles.buttonGroup}>
                 <button
                   className={styles.ctaButton}
-                  onClick={() => window.location.href ="/profession"}
+                  onClick={() => window.location.href ="/career"}
                 >
                   Skills and Work
                 </button>

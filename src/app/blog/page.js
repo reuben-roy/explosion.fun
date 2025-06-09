@@ -11,7 +11,7 @@ const CATEGORIES = [
     "Books (Fiction)",
     "Books (Non-Fiction)",
     "TV-Series",
-    "Manga Reviews",
+    "Manga",
     "Shower Thoughts",
     "Uncategorized"
 ];
@@ -61,8 +61,11 @@ async function getPosts() {
             return {
                 title: post.title,
                 description: post.excerpt,
+                content: post.content,
                 image: post.featuredImage?.node?.sourceUrl || '/images/blog/akira.jpg',
+                imageAlt: post.featuredImage?.node?.altText || post.title,
                 slug: post.slug,
+                author: post.author?.node?.name || 'Anonymous',
                 categories: post.categories.nodes.map(cat => cat.name),
                 date: post.date,
                 scores: post.scores ? {

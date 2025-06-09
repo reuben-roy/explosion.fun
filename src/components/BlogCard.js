@@ -2,6 +2,12 @@ import Link from 'next/link';
 import styles from './BlogCard.module.css';
 import OptimizedImage from './OptimizedImage';
 
+// Function to strip HTML tags
+const stripHtml = (html) => {
+    if (!html) return '';
+    return html.replace(/<[^>]*>/g, '');
+};
+
 export default function BlogCard({ title, description, image, slug, categories, date, averageScore }) {
     return (
         <Link href={`/blog/post/${slug}`} className={styles.card}>
@@ -26,7 +32,7 @@ export default function BlogCard({ title, description, image, slug, categories, 
                     ))}
                 </div>
                 <h2 className={styles.title}>{title}</h2>
-                <p className={styles.description}>{description}</p>
+                <p className={styles.description}>{stripHtml(description)}</p>
                 <div className={styles.date}>{new Date(date).toLocaleDateString()}</div>
             </div>
         </Link>
