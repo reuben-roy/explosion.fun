@@ -33,7 +33,7 @@ export default function LinkedInCard() {
           </div>
         </div>
         <a 
-          href="https://linkedin.com/in/yourprofile" 
+          href="https://linkedin.com/in/reuben-roy" 
           target="_blank" 
           rel="noopener noreferrer"
           className={styles.viewProfile}

@@ -1,7 +1,3 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
 import Navbar from '../../../../components/Navbar';
 import styles from './post.module.css';
 import { GRAPHQL_ENDPOINT } from '../../../../config/graphql';
@@ -50,177 +46,191 @@ const POST_QUERY = `
     }
 `;
 
-export default function BlogPost() {
-    const { slug } = useParams();
-    const [post, setPost] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const fetchPost = async () => {
-            try {
-                const response = await fetch(GRAPHQL_ENDPOINT, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        query: POST_QUERY,
-                        variables: { slug }
-                    }),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const result = await response.json();
-
-                if (result.errors) {
-                    throw new Error(result.errors[0].message);
-                }
-
-                const { data } = result;
-                
-                if (!data || !data.postBy) {
-                    throw new Error('Post not found');
-                }
-
-                // Transform WordPress data to match our structure
-                const transformedPost = {
-                    title: data.postBy.title,
-                    date: data.postBy.date,
-                    author: data.postBy.author?.node?.name || 'Anonymous',
-                    categories: data.postBy.categories.nodes.map(cat => cat.name),
-                    content: data.postBy.content,
-                    image: data.postBy.featuredImage?.node?.sourceUrl || '/images/blog/akira.jpg',
-                    imageAlt: data.postBy.featuredImage?.node?.altText || data.postBy.title,
-                    scores: data.postBy.scores ? {
-                        storytelling: parseFloat(data.postBy.scores.storyTelling) || 0,
-                        characters: parseFloat(data.postBy.scores.characterDevelopment) || 0,
-                        writing: parseFloat(data.postBy.scores.script) || 0,
-                        direction: parseFloat(data.postBy.scores.direction) || 0,
-                        sound: parseFloat(data.postBy.scores.sound) || 0,
-                        other: parseFloat(data.postBy.scores.other) || 0
-                    } : null
-                };
-
-                // Calculate average score
-                transformedPost.averageScore = transformedPost.scores ? 
-                    calculateAverageScore(transformedPost.scores) : null;
-
-                setPost(transformedPost);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching post:', error);
-                setError(error.message);
-                setLoading(false);
+// GraphQL query to get all post slugs
+const ALL_POSTS_QUERY = `
+    query GetAllPosts {
+        posts {
+            nodes {
+                slug
             }
+        }
+    }
+`;
+
+// Generate static params for all posts
+export async function generateStaticParams() {
+    try {
+        const response = await fetch(GRAPHQL_ENDPOINT, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                query: ALL_POSTS_QUERY,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        if (result.errors) {
+            throw new Error(result.errors[0].message);
+        }
+
+        const { data } = result;
+        
+        if (!data || !data.posts || !data.posts.nodes) {
+            throw new Error('Invalid data structure received from GraphQL');
+        }
+
+        return data.posts.nodes.map((post) => ({
+            slug: post.slug,
+        }));
+    } catch (error) {
+        console.error('Error generating static params:', error);
+        return [];
+    }
+}
+
+// Server component for the blog post
+export default async function BlogPost({ params }) {
+    const { slug } = await params;
+
+    try {
+        const response = await fetch(GRAPHQL_ENDPOINT, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                query: POST_QUERY,
+                variables: { slug }
+            }),
+        }, { next: { revalidate: 3600 } }); // Cache for 1 hour
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        if (result.errors) {
+            throw new Error(result.errors[0].message);
+        }
+
+        const { data } = result;
+        
+        if (!data || !data.postBy) {
+            throw new Error('Post not found');
+        }
+
+        // Transform WordPress data to match our structure
+        const post = {
+            title: data.postBy.title,
+            date: data.postBy.date,
+            author: data.postBy.author?.node?.name || 'Anonymous',
+            categories: data.postBy.categories.nodes.map(cat => cat.name),
+            content: data.postBy.content,
+            image: data.postBy.featuredImage?.node?.sourceUrl || '/images/blog/akira.jpg',
+            imageAlt: data.postBy.featuredImage?.node?.altText || data.postBy.title,
+            scores: data.postBy.scores ? {
+                storytelling: parseFloat(data.postBy.scores.storyTelling) || 0,
+                characters: parseFloat(data.postBy.scores.characterDevelopment) || 0,
+                writing: parseFloat(data.postBy.scores.script) || 0,
+                direction: parseFloat(data.postBy.scores.direction) || 0,
+                sound: parseFloat(data.postBy.scores.sound) || 0,
+                other: parseFloat(data.postBy.scores.other) || 0
+            } : null
         };
 
-        fetchPost();
-    }, [slug]);
+        // Calculate average score
+        post.averageScore = post.scores ? calculateAverageScore(post.scores) : null;
 
-    if (loading) {
         return (
             <>
                 <Navbar />
-                <div className={styles.loading}>Loading...</div>
+                <article className={styles.post}>
+                    <div className={styles.header}>
+                        <div className={styles.meta}>
+                            <div className={styles.categories}>
+                                {post.categories.map((category, index) => (
+                                    <span key={index} className={styles.category}>
+                                        {category}
+                                    </span>
+                                ))}
+                            </div>
+                            <div className={styles.metaInfo}>
+                                <span className={styles.date}>{new Date(post.date).toLocaleDateString()}</span>
+                                {post.averageScore && (
+                                    <span className={styles.score}>
+                                        Average Score: {post.averageScore.toFixed(1)}/10
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+                        <h1 className={styles.title}>{post.title}</h1>
+                        <div className={styles.author}>By {post.author}</div>
+                    </div>
+
+                    {post.image && (
+                        <div className={styles.imageContainer}>
+                            <img 
+                                src={post.image} 
+                                alt={post.imageAlt} 
+                                className={styles.image} 
+                            />
+                        </div>
+                    )}
+
+                    {post.scores && (
+                        <div className={styles.scores}>
+                            <h2>Detailed Scores</h2>
+                            <div className={styles.scoreGrid}>
+                                <div className={styles.scoreItem}>
+                                    <span className={styles.scoreLabel}>Storytelling/Plot</span>
+                                    <span className={styles.scoreValue}>{post.scores.storytelling}/10</span>
+                                </div>
+                                <div className={styles.scoreItem}>
+                                    <span className={styles.scoreLabel}>Character Development</span>
+                                    <span className={styles.scoreValue}>{post.scores.characters}/10</span>
+                                </div>
+                                <div className={styles.scoreItem}>
+                                    <span className={styles.scoreLabel}>Writing/Script</span>
+                                    <span className={styles.scoreValue}>{post.scores.writing}/10</span>
+                                </div>
+                                <div className={styles.scoreItem}>
+                                    <span className={styles.scoreLabel}>Direction</span>
+                                    <span className={styles.scoreValue}>{post.scores.direction}/10</span>
+                                </div>
+                                <div className={styles.scoreItem}>
+                                    <span className={styles.scoreLabel}>Sound and Music</span>
+                                    <span className={styles.scoreValue}>{post.scores.sound}/10</span>
+                                </div>
+                                <div className={styles.scoreItem}>
+                                    <span className={styles.scoreLabel}>Other</span>
+                                    <span className={styles.scoreValue}>{post.scores.other}/5</span>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    <div 
+                        className={styles.content}
+                        dangerouslySetInnerHTML={{ __html: post.content }}
+                    />
+                </article>
             </>
         );
-    }
-
-    if (error) {
+    } catch (error) {
+        console.error('Error fetching post:', error);
         return (
             <>
                 <Navbar />
-                <div className={styles.error}>{error}</div>
+                <div className={styles.error}>{error.message}</div>
             </>
         );
     }
-
-    if (!post) {
-        return (
-            <>
-                <Navbar />
-                <div className={styles.error}>Post not found</div>
-            </>
-        );
-    }
-
-    return (
-        <>
-            <Navbar />
-            <article className={styles.post}>
-                <div className={styles.header}>
-                    <div className={styles.meta}>
-                        <div className={styles.categories}>
-                            {post.categories.map((category, index) => (
-                                <span key={index} className={styles.category}>
-                                    {category}
-                                </span>
-                            ))}
-                        </div>
-                        <div className={styles.metaInfo}>
-                            <span className={styles.date}>{new Date(post.date).toLocaleDateString()}</span>
-                            {post.averageScore && (
-                                <span className={styles.score}>
-                                    Average Score: {post.averageScore.toFixed(1)}/10
-                                </span>
-                            )}
-                        </div>
-                    </div>
-                    <h1 className={styles.title}>{post.title}</h1>
-                    <div className={styles.author}>By {post.author}</div>
-                </div>
-
-                {post.image && (
-                    <div className={styles.imageContainer}>
-                        <img 
-                            src={post.image} 
-                            alt={post.imageAlt} 
-                            className={styles.image} 
-                        />
-                    </div>
-                )}
-
-                {post.scores && (
-                    <div className={styles.scores}>
-                        <h2>Detailed Scores</h2>
-                        <div className={styles.scoreGrid}>
-                            <div className={styles.scoreItem}>
-                                <span className={styles.scoreLabel}>Storytelling/Plot</span>
-                                <span className={styles.scoreValue}>{post.scores.storytelling}/10</span>
-                            </div>
-                            <div className={styles.scoreItem}>
-                                <span className={styles.scoreLabel}>Character Development</span>
-                                <span className={styles.scoreValue}>{post.scores.characters}/10</span>
-                            </div>
-                            <div className={styles.scoreItem}>
-                                <span className={styles.scoreLabel}>Writing/Script</span>
-                                <span className={styles.scoreValue}>{post.scores.writing}/10</span>
-                            </div>
-                            <div className={styles.scoreItem}>
-                                <span className={styles.scoreLabel}>Direction</span>
-                                <span className={styles.scoreValue}>{post.scores.direction}/10</span>
-                            </div>
-                            <div className={styles.scoreItem}>
-                                <span className={styles.scoreLabel}>Sound and Music</span>
-                                <span className={styles.scoreValue}>{post.scores.sound}/10</span>
-                            </div>
-                            <div className={styles.scoreItem}>
-                                <span className={styles.scoreLabel}>Other</span>
-                                <span className={styles.scoreValue}>{post.scores.other}/5</span>
-                            </div>
-                        </div>
-                    </div>
-                )}
-
-                <div 
-                    className={styles.content}
-                    dangerouslySetInnerHTML={{ __html: post.content }}
-                />
-            </article>
-        </>
-    );
-} 
+}
