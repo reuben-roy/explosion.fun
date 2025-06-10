@@ -6,6 +6,7 @@ import styles from "./page.module.css";
 import LinkedInCard from '@/components/LinkedInCard';
 import GitHubCard from '@/components/GitHubCard';
 import HabiticaCard from '@/components/HabiticaCard';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const AnimatedText = ({ phrases }) => {
     const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
@@ -146,6 +147,7 @@ export default function Home() {
 
   return (
     <>
+      <SpeedInsights />
       <Navbar />
 
       {/* Main Content */}
