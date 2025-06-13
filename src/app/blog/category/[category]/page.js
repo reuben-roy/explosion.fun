@@ -1,15 +1,9 @@
 import Navbar from '../../../../components/Navbar';
 import BlogList from '../../../../components/BlogList';
-import { GRAPHQL_ENDPOINT, POSTS_QUERY } from '../../../../config/graphql';
-
-// Helper function to calculate average score
-const calculateAverageScore = (scores) => {
-    if (!scores) return null;
-    
-    const { storytelling, characters, writing, direction, sound, other } = scores;
-    const sum = storytelling + characters + writing + direction + sound + (other + 5);
-    return sum / 6;
-};
+import { GRAPHQL_ENDPOINT, POSTS_LIST_QUERY } from '../../../../config/graphql';
+import { calculateAverageScore } from '../../../../utils/scores';
+import RatingLegend from '../../../../components/RatingLegend';
+import styles from './page.module.css';
 
 // Map URL-friendly category names to display names
 const CATEGORY_NAMES = {
@@ -19,7 +13,22 @@ const CATEGORY_NAMES = {
     'books-fiction': 'Books (Fiction)',
     'books-non-fiction': 'Books (Non-Fiction)',
     'manga': 'Manga Reviews',
-    'shower-thoughts': 'Shower Thoughts'
+    'shower-thoughts': 'Shower Thoughts',
+    'documenting': 'Documenting',
+    'experiment': 'Experiment',
+    'debate': 'Debate',
+    'drama': 'Drama',
+    'geopolitics': 'Geopolitics',
+    'history': 'History',
+    'philosophy': 'Philosophy',
+    'psychology': 'Psychology',
+    'science': 'Science',
+    'technology': 'Technology',
+    'travel': 'Travel',
+    'news': 'News',
+    'religion': 'Religion',
+    'review': 'Review',
+    'uncategorized': 'Uncategorized'
 };
 
 export async function generateStaticParams() {
@@ -35,34 +44,16 @@ async function getPosts() {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            query: POSTS_QUERY,
+            query: POSTS_LIST_QUERY,
         }),
     }, { next: { revalidate: 3600 } }); // Cache for 1 hour
 
     const { data } = await response.json();
     
-    // Transform WordPress data to match our structure
-    const transformedPosts = data.posts.nodes.map(post => ({
-        title: post.title,
-        description: post.excerpt,
-        image: post.featuredImage?.node?.sourceUrl || '/images/blog/akira.jpg',
-        slug: post.slug,
-        categories: post.categories.nodes.map(cat => cat.name),
-        date: post.date,
-        scores: post.scores ? {
-            storytelling: parseFloat(post.scores.storyTelling) || 0,
-            characters: parseFloat(post.scores.characterDevelopment) || 0,
-            writing: parseFloat(post.scores.script) || 0,
-            direction: parseFloat(post.scores.direction) || 0,
-            sound: parseFloat(post.scores.sound) || 0,
-            other: parseFloat(post.scores.other) || 0
-        } : null
-    }));
-
     // Add calculated average score to each post
-    return transformedPosts.map(post => ({
+    return data.posts.nodes.map(post => ({
         ...post,
-        averageScore: post.scores ? calculateAverageScore(post.scores) : null
+        averageScore: calculateAverageScore(post)
     }));
 }
 
@@ -74,7 +65,7 @@ export default async function CategoryPage({ params }) {
 
     // Filter posts by category and sort by score
     const categoryPosts = posts
-        .filter(post => post.categories.includes(categoryName))
+        .filter(post => post.categories.nodes.some(cat => cat.name === categoryName))
         .sort((a, b) => {
             if (a.averageScore === null) return 1;
             if (b.averageScore === null) return -1;
@@ -84,10 +75,13 @@ export default async function CategoryPage({ params }) {
     return (
         <>
             <Navbar />
-            <BlogList 
-                posts={categoryPosts}
-                title={`${categoryName} Reviews`}
-            />
+            <div className={styles.container}>
+                <RatingLegend />
+                <BlogList 
+                    posts={categoryPosts}
+                    title={`${categoryName} Reviews`}
+                />
+            </div>
         </>
     );
 } 

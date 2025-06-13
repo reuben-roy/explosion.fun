@@ -32,13 +32,7 @@ export default function BlogDeck({ title, posts }) {
                     {posts.map((post, index) => (
                         <BlogCard
                             key={index}
-                            image={post.image}
-                            title={post.title}
-                            description={post.description}
-                            slug={post.slug}
-                            categories={post.categories}
-                            date={post.date}
-                            averageScore={post.averageScore}
+                            post={post}
                         />
                     ))}
                 </div>
@@ -52,4 +46,4 @@ export default function BlogDeck({ title, posts }) {
             </div>
         </div>
     );
-} 
+}

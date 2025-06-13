@@ -1,10 +1,23 @@
 import Navbar from '../../components/Navbar';
 import BlogDeck from '../../components/BlogDeck';
 import styles from './blog.module.css';
-import { GRAPHQL_ENDPOINT, POSTS_QUERY } from '../../config/graphql';
+import { GRAPHQL_ENDPOINT, POSTS_LIST_QUERY } from '../../config/graphql';
 
 const CATEGORIES = [
     "Featured",
+    "Documenting",
+    "Experiment",
+    "Debate",
+    "Drama",
+    "Geopolitics",
+    "History",
+    "Philosophy",
+    "Psychology",
+    "Science",
+    "Technology",
+    "Travel",
+    "News",
+    "Religion",
     "Anime",
     "Review",
     "Movies",
@@ -16,15 +29,6 @@ const CATEGORIES = [
     "Uncategorized"
 ];
 
-// Helper function to calculate average score
-const calculateAverageScore = (scores) => {
-    if (!scores) return null;
-    
-    const { storytelling, characters, writing, direction, sound, other } = scores;
-    const sum = storytelling + characters + writing + direction + sound + other;
-    return sum / 6;
-};
-
 // Fetch posts with caching
 async function getPosts() {
     try {
@@ -34,7 +38,7 @@ async function getPosts() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                query: POSTS_QUERY,
+                query: POSTS_LIST_QUERY,
             }),
         }, { next: { revalidate: 3600 } }); // Cache for 1 hour
 
@@ -56,37 +60,8 @@ async function getPosts() {
             throw new Error('Invalid data structure received from GraphQL');
         }
 
-        // Transform WordPress data to match our structure
-        const transformedPosts = data.posts.nodes.map(post => {
-            return {
-                title: post.title,
-                description: post.excerpt,
-                content: post.content,
-                image: post.featuredImage?.node?.sourceUrl || '/images/blog/akira.jpg',
-                imageAlt: post.featuredImage?.node?.altText || post.title,
-                slug: post.slug,
-                author: post.author?.node?.name || 'Anonymous',
-                categories: post.categories.nodes.map(cat => cat.name),
-                date: post.date,
-                scores: post.scores ? {
-                    storytelling: parseFloat(post.scores.storyTelling) || 0,
-                    characters: parseFloat(post.scores.characterDevelopment) || 0,
-                    writing: parseFloat(post.scores.script) || 0,
-                    direction: parseFloat(post.scores.direction) || 0,
-                    sound: parseFloat(post.scores.sound) || 0,
-                    other: parseFloat(post.scores.other) || 0
-                } : null
-            };
-        });
-
-        // Add calculated average score to each post
-        const postsWithAverage = transformedPosts.map(post => ({
-            ...post,
-            averageScore: post.scores ? calculateAverageScore(post.scores) : null
-        }));
-
         // Sort posts by date
-        return postsWithAverage.sort((a, b) => {
+        return data.posts.nodes.sort((a, b) => {
             return new Date(b.date) - new Date(a.date);
         });
     } catch (error) {
@@ -100,7 +75,9 @@ export default async function Blog() {
 
     // Group posts by category
     const postsByCategory = CATEGORIES.reduce((acc, category) => {
-        const categoryPosts = posts.filter(post => post.categories.includes(category));
+        const categoryPosts = posts.filter(post => 
+            post.categories.nodes.some(cat => cat.name === category)
+        );
         if (categoryPosts.length > 0) {
             acc.push({
                 title: category,

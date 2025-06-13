@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import styles from './BlogCard.module.css';
 import OptimizedImage from './OptimizedImage';
+import { calculateAverageScore } from '../utils/scores';
 
 // Function to strip HTML tags
 const stripHtml = (html) => {
@@ -8,13 +9,15 @@ const stripHtml = (html) => {
     return html.replace(/<[^>]*>/g, '');
 };
 
-export default function BlogCard({ title, description, image, slug, categories, date, averageScore }) {
+export default function BlogCard({ post }) {
+    const averageScore = calculateAverageScore(post);
+    
     return (
-        <Link href={`/blog/post/${slug}`} className={styles.card}>
+        <Link href={`/blog/post/${post.slug}`} className={styles.card}>
             <div className={styles.imageContainer}>
                 <OptimizedImage
-                    src={image}
-                    alt={title}
+                    src={post.featuredImage?.node?.sourceUrl || '/images/blog/akira.jpg'}
+                    alt={post.featuredImage?.node?.altText || post.title}
                     className={styles.image}
                 />
                 {averageScore !== null && (
@@ -25,15 +28,15 @@ export default function BlogCard({ title, description, image, slug, categories, 
             </div>
             <div className={styles.content}>
                 <div className={styles.categories}>
-                    {categories.map((category, index) => (
+                    {post.categories.nodes.map((category, index) => (
                         <span key={index} className={styles.category}>
-                            {category}
+                            {category.name}
                         </span>
                     ))}
                 </div>
-                <h2 className={styles.title}>{title}</h2>
-                <p className={styles.description}>{stripHtml(description)}</p>
-                <div className={styles.date}>{new Date(date).toLocaleDateString()}</div>
+                <h2 className={styles.title}>{post.title}</h2>
+                <p className={styles.description}>{stripHtml(post.excerpt)}</p>
+                <div className={styles.date}>{new Date(post.date).toLocaleDateString()}</div>
             </div>
         </Link>
     );

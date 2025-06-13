@@ -7,6 +7,7 @@
 
 .header {
     text-align: center;
+    margin-top: 4rem;
     margin-bottom: 2rem;
 }
 
@@ -96,7 +97,7 @@
 
 .scoreGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
 }
 
@@ -171,9 +172,21 @@
 
     .scores {
         padding: 1rem;
+        /* font-size: 0.8rem; */
     }
 
     .scoreGrid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .scoreLabel {
+        font-size: 0.8rem;
+    }
+
+    .scoreValue {
+        font-size: 0.8rem;
+    }
+    .author {
+        font-size: 0.8rem;
     }
 } 
