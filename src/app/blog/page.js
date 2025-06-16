@@ -59,11 +59,7 @@ async function getPosts() {
             console.error('Unexpected data structure:', data);
             throw new Error('Invalid data structure received from GraphQL');
         }
-
-        // Sort posts by date
-        return data.posts.nodes.sort((a, b) => {
-            return new Date(b.date) - new Date(a.date);
-        });
+        return data.posts.nodes;
     } catch (error) {
         console.error('Error fetching posts:', error);
         return []; // Return empty array on error
@@ -78,6 +74,7 @@ export default async function Blog() {
         const categoryPosts = posts.filter(post => 
             post.categories.nodes.some(cat => cat.name === category)
         );
+
         if (categoryPosts.length > 0) {
             acc.push({
                 title: category,
@@ -96,13 +93,19 @@ export default async function Blog() {
                     {postsByCategory.length === 0 ? (
                         <div className={styles.loading}>No posts found</div>
                     ) : (
-                        postsByCategory.map((category, index) => (
+                        <>
                             <BlogDeck
-                                key={index}
-                                title={category.title}
-                                posts={category.posts}
+                                title="Latest Articles"
+                                posts={posts.slice(0, 20)}
                             />
-                        ))
+                            {postsByCategory.map((category, index) => (
+                                <BlogDeck
+                                    key={index}
+                                    title={category.title}
+                                    posts={category.posts}
+                                />
+                            ))}
+                        </>
                     )}
                 </main>
             </div>

@@ -32,6 +32,7 @@ export default function BlogDeck({ title, posts }) {
                     {posts.map((post, index) => (
                         <BlogCard
                             key={index}
+                            category={title}
                             post={post}
                         />
                     ))}

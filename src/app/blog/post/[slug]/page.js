@@ -240,7 +240,7 @@ export default async function BlogPost({ params }) {
                                     <>
                                         <div className={styles.scoreItem}>
                                             <span className={styles.scoreLabel}>Story</span>
-                                            <span className={styles.scoreValue}>{post.movies.story}/10</span>
+                                            <span className={styles.scoreValue}>{post.movies.storyTelling}/10</span>
                                         </div>
                                         <div className={styles.scoreItem}>
                                             <span className={styles.scoreLabel}>Character Development</span>
