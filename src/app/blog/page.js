@@ -2,32 +2,7 @@ import Navbar from '../../components/Navbar';
 import BlogDeck from '../../components/BlogDeck';
 import styles from './blog.module.css';
 import { GRAPHQL_ENDPOINT, POSTS_LIST_QUERY } from '../../config/graphql';
-
-const CATEGORIES = [
-    "Featured",
-    "Documenting",
-    "Experiment",
-    "Debate",
-    "Drama",
-    "Geopolitics",
-    "History",
-    "Philosophy",
-    "Psychology",
-    "Science",
-    "Technology",
-    "Travel",
-    "News",
-    "Religion",
-    "Anime",
-    "Review",
-    "Movies",
-    "Books (Fiction)",
-    "Books (Non-Fiction)",
-    "TV-Series",
-    "Manga",
-    "Shower Thoughts",
-    "Uncategorized"
-];
+import { CATEGORIES } from '../../utils/categories.js';
 
 // Fetch posts with caching
 async function getPosts() {

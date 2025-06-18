@@ -3,6 +3,7 @@ import styles from './post.module.css';
 import { GRAPHQL_ENDPOINT, getPostQueryByCategory } from '../../../../config/graphql';
 import { calculateAverageScore } from '../../../../utils/scores';
 import RatingLegend from '../../../../components/RatingLegend';
+import { REVIEW_CATEGORIES } from '../../../../utils/reviewCategories';
 
 // GraphQL query to get all post slugs
 const ALL_POSTS_QUERY = `
@@ -85,10 +86,12 @@ export default async function BlogPost({ params }) {
         });
 
         const categoryResult = await categoryResponse.json();
-        const category = categoryResult.data?.post?.categories?.nodes[0]?.name || 'anime';
+        const primaryCategory = categoryResult.data?.post?.categories?.nodes?.find(category => 
+            REVIEW_CATEGORIES.includes(category.name)
+        )?.name || 'anime';
 
         // Get the appropriate query for the category
-        const postQuery = getPostQueryByCategory(category);
+        const postQuery = getPostQueryByCategory(primaryCategory);
 
         // Fetch the full post data
         const response = await fetch(GRAPHQL_ENDPOINT, {
@@ -130,9 +133,9 @@ export default async function BlogPost({ params }) {
                     <div className={styles.header}>
                         <div className={styles.meta}>
                             <div className={styles.categories}>
-                                {post.categories.nodes.map((category, index) => (
-                                    <span key={index} className={styles.category}>
-                                        {category.name}
+                                {post.categories.nodes.map((primaryCategory, index) => (
+                                    <span key={index} className={styles.primaryCategory}>
+                                        {primaryCategory.name}
                                     </span>
                                 ))}
                             </div>
