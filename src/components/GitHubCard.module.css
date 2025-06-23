@@ -112,4 +112,16 @@
   .stats {
     gap: 1rem;
   }
+
+  .header h3 {
+    font-size: 1rem;
+  }
+
+  .content p {
+    font-size: 0.7rem;
+  }
+
+  .viewProfile {
+    font-size: 0.7rem;
+  }
 }

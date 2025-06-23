@@ -63,9 +63,11 @@ export default function Home() {
 
   const phrases = [
     "Full Stack Developer",
+    "Arizona State University (ASU) [2024-2026]",
     "Software Engineer",
-    "An Awakener of God",
+    "National Institute of Technology, Calicut (NITC) [2017-2021]",
     "Problem Solver",
+    "An Awakener of God",
     "Tech Enthusiast",
     "Unordained Apostle of Griffith",
     "Always Learning",
@@ -87,7 +89,7 @@ export default function Home() {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
-    let scrollSpeed = 1; // Adjust speed as needed
+    let scrollSpeed = 1.5; // Adjust speed as needed
     let isPaused = false;
 
     const scroll = () => {

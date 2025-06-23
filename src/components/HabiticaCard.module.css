@@ -172,4 +172,31 @@
   .progressBar {
     height: 20px;
   }
+  
+  .header h3 {
+    font-size: 1rem;
+  }
+
+  .level {
+    font-size: 0.7rem;
+  }
+  .statLabel {
+    text-align: left;
+    font-size: 0.7rem;
+  }
+  
+  .healthLabel {
+    color: #ff6b6b;
+    font-weight: 500;
+  }
+  
+  .expLabel {
+    color: #4ecdc4;
+    font-weight: 500;
+  }
+  
+  .manaLabel {
+    color: #45b7d1;
+    font-weight: 500;
+  }
 }

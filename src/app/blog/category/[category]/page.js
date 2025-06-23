@@ -75,8 +75,8 @@ export default async function CategoryPage({ params }) {
     return (
         <>
             <Navbar />
+            <RatingLegend />
             <div className={styles.container}>
-                <RatingLegend />
                 <BlogList 
                     posts={categoryPosts}
                     title={`${categoryName} Reviews`}

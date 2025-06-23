@@ -2,18 +2,11 @@
 .page {
   font-family: var(--font-geist-sans);
   background: #1a1a1a;
-  min-height: 100vh;
   color: #fff;
 }
 
 .heroSection {
-  min-height: calc(100vh - 80px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem;
-  position: relative;
-  overflow: hidden;
+  padding: 6rem 1rem 2rem 1rem;
 }
 
 .heroSection::before {
@@ -23,7 +16,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at center, rgba(255, 217, 61, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(255, 217, 61, 0.3) 0%, transparent 70%);
   z-index: 0;
 }
 
@@ -142,7 +135,7 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .name {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
   }
 
   .title {
@@ -150,30 +143,39 @@
   }
 
   .intro {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
   }
 
   .buttonGroup {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .ctaButton {
-    width: 100%;
     max-width: 300px;
+    min-width: 150px;
+    font-size: 0.6rem;
+    height: 40px;
+    padding: 0.2rem 1rem;
   }
 
   .scrollContent {
     padding: 1rem;
   }
+
+  .typingText {
+    font-size: 0.7rem;
+  }
+
+  .introText {
+    font-size: 0.9rem;
+  }
 }
 
 /* Infinite Scrolling Cards Section */
 .cardsSection {
-  padding: 4rem 0;
   position: relative;
-  background: rgba(0, 0, 0, 0.3);
 }
 
 .scrollContainer {

@@ -177,19 +177,6 @@ export default function HabiticaCard() {
                         max={habiticaData.mana.max}
                     />
                 </div>
-{/* 
-                <div className={styles.lastUpdate}>
-                    Last check in: {habiticaData.lastUpdate}
-                </div> */}
-{/* 
-                <a
-                    href="https://habitica.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.viewProfile}
-                >
-                    Open Habitica →
-                </a> */}
             </div>
         </div>
     );
