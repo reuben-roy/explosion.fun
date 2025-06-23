@@ -1,8 +1,10 @@
+import Navbar from '@/components/Navbar';
 import styles from './about.module.css';
 
 export default function AboutPage() {
   return (
     <div className={styles.page}>
+      <Navbar />
       <main className={styles.main}>
         <h1 className={styles.title}>About Explosion.fun</h1>
         <p style={{ color: '#ccc', textAlign: 'center', maxWidth: 700, margin: '0 auto 2rem' }}>
