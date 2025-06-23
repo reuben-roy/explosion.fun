@@ -1,6 +1,6 @@
 import styles from './RatingLegend.module.css';
 
-export default function RatingLegend() {
+export default function RatingLegend({ className = '' }) {
     const ratings = [
         { 
             score: 1, 
@@ -55,7 +55,7 @@ export default function RatingLegend() {
     ];
 
     return (
-        <div className={styles.legend}>
+        <div className={`${styles.legend} ${className}`.trim()}>
             <h3 className={styles.title}>Rating Scale</h3>
             <div className={styles.scale}>
                 <div className={styles.ratings}>

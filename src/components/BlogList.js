@@ -3,6 +3,7 @@ import styles from './BlogList.module.css';
 import OptimizedImage from './OptimizedImage';
 
 export default function BlogList({ posts, title }) {
+    console.log("posts", posts);
     return (
         <div className={styles.container}>
             <div className={styles.span}>
@@ -15,12 +16,12 @@ export default function BlogList({ posts, title }) {
                             </div>
                             <div className={styles.imageContainer}>
                                 <OptimizedImage
-                                    src={post.image}
+                                    src={post.featuredImage.node.sourceUrl}
                                     alt={post.title}
                                     className={styles.image}
                                 />
                             </div>
-                            <div className={styles.content}>
+                            {/* <div className={styles.content}> */}
                                 <h2 className={styles.postTitle}>{post.title}</h2>
                                 <div className={styles.meta}>
                                     {post.averageScore !== null && (
@@ -29,7 +30,7 @@ export default function BlogList({ posts, title }) {
                                         </div>
                                     )}
                                 </div>
-                            </div>
+                            {/* </div> */}
                         </Link>
                     ))}
                 </div>

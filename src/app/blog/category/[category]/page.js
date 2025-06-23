@@ -75,11 +75,11 @@ export default async function CategoryPage({ params }) {
     return (
         <>
             <Navbar />
-            <RatingLegend />
+            <RatingLegend className={styles.ratinglegend} />
             <div className={styles.container}>
                 <BlogList 
                     posts={categoryPosts}
-                    title={`${categoryName} Reviews`}
+                    title={`${categoryName} Ranked`}
                 />
             </div>
         </>
