@@ -1,7 +1,7 @@
 // Helper function to calculate average score based on category
 export const calculateAverageScore = (post) => {
     if (!post) return null;
-    
+
     // Get the main category (excluding 'Review')
     const mainCategory = post.categories.nodes
         .find(cat => cat.name.toLowerCase() !== 'review')?.name;
@@ -35,10 +35,11 @@ export const calculateAverageScore = (post) => {
 
     // Get all numeric score fields
     const scores = Object.entries(scoreFields)
-        .filter(([key, value]) => 
-            key !== 'ageRestricted' && 
-            key !== 'fieldGroupName' && 
-            typeof value === 'number'
+        .filter(([key, value]) =>
+            key !== 'ageRestricted' &&
+            key !== 'fieldGroupName' &&
+            typeof value === 'number' &&
+            !isNaN(value)
         )
         .map(([_, value]) => value);
 
