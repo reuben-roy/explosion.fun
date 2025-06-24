@@ -40,7 +40,7 @@ export async function generateStaticParams() {
         }
 
         const { data } = result;
-        
+
         if (!data || !data.posts || !data.posts.nodes) {
             throw new Error('Invalid data structure received from GraphQL');
         }
@@ -61,7 +61,7 @@ function isPostInCategory(post, categorySlug) {
 // Server component for the blog post
 export default async function BlogPost({ params }) {
     const { slug } = await params;
-    
+
     try {
         // First, get the post's category
         const categoryResponse = await fetch(GRAPHQL_ENDPOINT, {
@@ -86,7 +86,7 @@ export default async function BlogPost({ params }) {
         });
 
         const categoryResult = await categoryResponse.json();
-        const primaryCategory = categoryResult.data?.post?.categories?.nodes?.find(category => 
+        const primaryCategory = categoryResult.data?.post?.categories?.nodes?.find(category =>
             REVIEW_CATEGORIES.includes(category.name)
         )?.name || '';
 
@@ -118,7 +118,7 @@ export default async function BlogPost({ params }) {
         }
 
         const { data } = result;
-        
+
         if (!data || !data.post) {
             throw new Error('Post not found');
         }
@@ -156,14 +156,14 @@ export default async function BlogPost({ params }) {
 
                     {post.featuredImage?.node?.sourceUrl && (
                         <div className={styles.imageContainer}>
-                            <img 
-                                src={post.featuredImage.node.sourceUrl} 
-                                alt={post.featuredImage.node.altText || post.title} 
-                                className={styles.image} 
+                            <img
+                                src={post.featuredImage.node.sourceUrl}
+                                alt={post.featuredImage.node.altText || post.title}
+                                className={styles.image}
                             />
                         </div>
                     )}
-                    
+
                     {isReviewCategory && post && (
                         <div className={styles.scores}>
                             <h2>Detailed Scores</h2>
@@ -190,10 +190,10 @@ export default async function BlogPost({ params }) {
                                             <span className={styles.scoreLabel}>Sound</span>
                                             <span className={styles.scoreValue}>{post.anime.sound}/10</span>
                                         </div>
-                                        <div className={styles.scoreItem}>
+                                        {post.anime.other && <div className={styles.scoreItem}>
                                             <span className={styles.scoreLabel}>Other</span>
                                             <span className={styles.scoreValue}>{post.anime.other}/10</span>
-                                        </div>
+                                        </div>}
                                         {post.anime.ageRestricted && (
                                             <div className={styles.scoreItem}>
                                                 <span className={styles.scoreLabel}>Age Restricted</span>
@@ -228,10 +228,10 @@ export default async function BlogPost({ params }) {
                                             <span className={styles.scoreLabel}>Originality</span>
                                             <span className={styles.scoreValue}>{post.mangacomics.originality}/10</span>
                                         </div>
-                                        <div className={styles.scoreItem}>
+                                        {post.mangacomics.other && <div className={styles.scoreItem}>
                                             <span className={styles.scoreLabel}>Other</span>
                                             <span className={styles.scoreValue}>{post.mangacomics.other}/10</span>
-                                        </div>
+                                        </div>}
                                         {post.mangacomics.ageRestricted && (
                                             <div className={styles.scoreItem}>
                                                 <span className={styles.scoreLabel}>Age Restricted</span>
@@ -263,10 +263,10 @@ export default async function BlogPost({ params }) {
                                             <span className={styles.scoreLabel}>Sound</span>
                                             <span className={styles.scoreValue}>{post.movies.sound}/10</span>
                                         </div>
-                                        <div className={styles.scoreItem}>
+                                        {post.movies.other && <div className={styles.scoreItem}>
                                             <span className={styles.scoreLabel}>Other</span>
                                             <span className={styles.scoreValue}>{post.movies.other}/10</span>
-                                        </div>
+                                        </div>}
                                         {post.movies.ageRestricted && (
                                             <div className={styles.scoreItem}>
                                                 <span className={styles.scoreLabel}>Age Restricted</span>
@@ -298,10 +298,10 @@ export default async function BlogPost({ params }) {
                                             <span className={styles.scoreLabel}>Sound</span>
                                             <span className={styles.scoreValue}>{post.tvseries.sound}/10</span>
                                         </div>
-                                        <div className={styles.scoreItem}>
+                                        {post.tvseries.other && <div className={styles.scoreItem}>
                                             <span className={styles.scoreLabel}>Other</span>
                                             <span className={styles.scoreValue}>{post.tvseries.other}/10</span>
-                                        </div>
+                                        </div>}
                                         {post.tvseries.ageRestricted && (
                                             <div className={styles.scoreItem}>
                                                 <span className={styles.scoreLabel}>Age Restricted</span>
@@ -333,10 +333,10 @@ export default async function BlogPost({ params }) {
                                             <span className={styles.scoreLabel}>Emotional Impact</span>
                                             <span className={styles.scoreValue}>{post.booksfiction.emotionalImpact}/10</span>
                                         </div>
-                                        <div className={styles.scoreItem}>
+                                        {post.booksfiction.other && <div className={styles.scoreItem}>
                                             <span className={styles.scoreLabel}>Other</span>
                                             <span className={styles.scoreValue}>{post.booksfiction.other}/10</span>
-                                        </div>
+                                        </div>}
                                     </>
                                 )}
 
@@ -358,10 +358,10 @@ export default async function BlogPost({ params }) {
                                             <span className={styles.scoreLabel}>Real World Impact</span>
                                             <span className={styles.scoreValue}>{post.booksnonfiction.realWorldImpact}/10</span>
                                         </div>
-                                        <div className={styles.scoreItem}>
+                                        {post.booksnonfiction.other && <div className={styles.scoreItem}>
                                             <span className={styles.scoreLabel}>Other</span>
                                             <span className={styles.scoreValue}>{post.booksnonfiction.other}/10</span>
-                                        </div>
+                                        </div>}
                                     </>
                                 )}
                             </div>
@@ -370,7 +370,7 @@ export default async function BlogPost({ params }) {
 
                     {isReviewCategory && <RatingLegend />}
 
-                    <div 
+                    <div
                         className={styles.content}
                         dangerouslySetInnerHTML={{ __html: post.content }}
                     />
