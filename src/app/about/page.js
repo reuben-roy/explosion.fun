@@ -13,7 +13,7 @@ export default function AboutPage() {
         <section style={{ background: 'rgba(255,255,255,0.05)', borderRadius: 12, padding: '1.5rem', maxWidth: 600, margin: '0 auto', color: '#eee', boxShadow: '0 2px 12px rgba(0,0,0,0.1)' }}>
           <h2 style={{ fontSize: '1.5rem', marginBottom: 8 }}>Who made this?</h2>
           <p style={{ margin: 0 }}>
-            Explosion.fun was created by <strong>Reuben Roy</strong> to "hasn't been decided yet". Feel free to suggest ideas if you feel like.
+            Explosion.fun was created by <strong>Reuben Roy</strong> to make fun things for the web. Feel free to suggest ideas if you feel like.
           </p>
         </section>
         <footer style={{ marginTop: 40, textAlign: 'center', color: '#888', fontSize: '1rem' }}>

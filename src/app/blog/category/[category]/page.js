@@ -4,6 +4,7 @@ import { GRAPHQL_ENDPOINT, POSTS_LIST_QUERY } from '../../../../config/graphql';
 import { calculateAverageScore } from '../../../../utils/scores';
 import RatingLegend from '../../../../components/RatingLegend';
 import styles from './page.module.css';
+import { REVIEW_CATEGORIES } from '@/utils/reviewCategories';
 
 // Map URL-friendly category names to display names
 const CATEGORY_NAMES = {
@@ -76,12 +77,12 @@ export default async function CategoryPage({ params }) {
         <>
             <Navbar />
             <RatingLegend className={styles.ratinglegend} />
-            <div className={styles.container}>
+            {REVIEW_CATEGORIES.includes(categoryName) && <div className={styles.container}>
                 <BlogList 
                     posts={categoryPosts}
                     title={`${categoryName} Ranked`}
                 />
-            </div>
+            </div>}
         </>
     );
 } 
