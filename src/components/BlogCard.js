@@ -16,7 +16,7 @@ export default function BlogCard({ post }) {
         <Link href={`/blog/post/${post.slug}`} className={styles.card}>
             <div className={styles.imageContainer}>
                 <OptimizedImage
-                    src={post.featuredImage?.node?.sourceUrl || '/images/blog/akira.jpg'}
+                    src={post.featuredImage?.node?.sourceUrl || '/images/blog/filler.webp'}
                     alt={post.featuredImage?.node?.altText || post.title}
                     className={styles.image}
                 />

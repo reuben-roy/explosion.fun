@@ -88,7 +88,9 @@ export default async function BlogPost({ params }) {
         const categoryResult = await categoryResponse.json();
         const primaryCategory = categoryResult.data?.post?.categories?.nodes?.find(category => 
             REVIEW_CATEGORIES.includes(category.name)
-        )?.name || 'anime';
+        )?.name || '';
+
+        const isReviewCategory = REVIEW_CATEGORIES.includes(primaryCategory);
 
         // Get the appropriate query for the category
         const postQuery = getPostQueryByCategory(primaryCategory);
@@ -162,7 +164,7 @@ export default async function BlogPost({ params }) {
                         </div>
                     )}
                     
-                    {post && (
+                    {isReviewCategory && post && (
                         <div className={styles.scores}>
                             <h2>Detailed Scores</h2>
                             <div className={styles.scoreGrid}>
@@ -366,7 +368,7 @@ export default async function BlogPost({ params }) {
                         </div>
                     )}
 
-                    <RatingLegend />
+                    {isReviewCategory && <RatingLegend />}
 
                     <div 
                         className={styles.content}
