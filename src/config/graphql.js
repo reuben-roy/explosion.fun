@@ -153,7 +153,7 @@ export const BOOK_NON_FICTION_POST_QUERY = `
 // Query for listing posts
 export const POSTS_LIST_QUERY = `
   query GetPosts {
-    posts {
+    posts(first: 100) {
       nodes {
         ${BASE_POST_FIELDS}
         ${ANIME_FIELDS}
