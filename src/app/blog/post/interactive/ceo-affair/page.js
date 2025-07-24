@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import * as d3 from 'd3';
 import Navbar from '../../../../../components/Navbar';
 import styles from './post.module.css';
 
