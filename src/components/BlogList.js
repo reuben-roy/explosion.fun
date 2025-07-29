@@ -15,7 +15,7 @@ export default function BlogList({ posts, title }) {
                             </div>
                             <div className={styles.imageContainer}>
                                 <OptimizedImage
-                                    src={post.featuredImage.node.sourceUrl}
+                                    src={post?.featuredImage?.node?.sourceUrl}
                                     alt={post.title}
                                     className={styles.image}
                                 />
