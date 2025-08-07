@@ -307,8 +307,8 @@ export default function Career() {
 
                         <div className={styles.portfolioProject}>
                             <h3>Serah Design E-Commerce Site</h3>
-                            <p>Most features a small scale business may want are already full built and ready to ship in WordPress and it's vast plugin ecosystem</p>
-                            <p>I've built this site using WordPress along with WooCommerce and the Jetpack plugin in only a couple of days and it supports functionality far beyond anything I could have build alone in that time frame.</p>
+                            <p>Most features a small scale business may want are already full built and ready to ship in WordPress and it&apos;s vast plugin ecosystem</p>
+                            <p>I&apos;ve built this site using WordPress along with WooCommerce and the Jetpack plugin in only a couple of days and it supports functionality far beyond anything I could have build alone in that time frame.</p>
                             <br />
                             <h4>Features:</h4>
 

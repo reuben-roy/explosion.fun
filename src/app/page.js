@@ -155,7 +155,7 @@ export default function Home() {
             </div>
 
             <h1 className={styles.title}>
-              Hi, I'm <span className={styles.name}>{profileData.name}</span>
+              Hi, I&apos;m <span className={styles.name}>{profileData.name}</span>
             </h1>
 
             <div className={styles.typewriter}>
