@@ -191,18 +191,68 @@
 
 .portfolioProject {
   margin-bottom: 3rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .portfolioProject h3 {
-  color: #4ecdc4;
+  color: #fff;
   margin-bottom: 1rem;
   font-size: 1.5rem;
 }
 
+.portfolioProject h4 {
+  color: #4fc3f7;
+  margin: 1.5rem 0 1rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.portfolioProject p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.portfolioProject ul {
+  color: rgba(255, 255, 255, 0.9);
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.portfolioProject li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  position: relative;
+}
+
+.portfolioProject li::marker {
+  color: #4fc3f7;
+}
+
+.subList {
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+  border-left: 2px solid rgba(79, 195, 247, 0.3);
+}
+
+.subList li {
+  margin-bottom: 0.3rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+}
+
+.subList li::marker {
+  color: rgba(79, 195, 247, 0.7);
+}
+
 .portfolioFrame {
-  border-radius: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive Design */

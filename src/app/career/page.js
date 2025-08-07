@@ -38,7 +38,7 @@ export default function Career() {
             description: "Data Visualization (D3.js, Matplotlib), Data Mining, Data Modeling, Machine Learning, NumPy, Pandas"
         },
         {
-            title: "`Pro`ject Management",
+            title: "Project Management",
             description: "Agile, Jira/Kanban, Confluence, Postman"
         },
         {
@@ -201,13 +201,159 @@ export default function Career() {
                         <hr className={styles.divider} />
 
                         <div className={styles.portfolioProject}>
+                            <h3>Explosion.fun Interactive Website</h3>
+                            <p>A creative and interactive portfolio website featuring dynamic visual effects and engaging user experiences. Built with modern web technologies to showcase technical skills through interactive demonstrations.</p>
+                            <p>This project aims to demonstrate front-end development capabilities, creative coding, and the ability to create engaging digital experiences that captivate users while maintaining performance and accessibility.</p>
+                            <br />
+                            <h4>Features:</h4>
+
+                            <ul>
+                                <li>Interactive particle systems and animations</li>
+                                <li>Next.js framework with App Router
+                                    <ul className={styles.subList}>
+                                        <li>Server-side rendering (SSR)</li>
+                                        <li>Static site generation (SSG)</li>
+                                        <li>API routes for backend functionality</li>
+                                        <li>File-based routing system</li>
+                                        <li>Automatic code splitting</li>
+                                    </ul>
+                                </li>
+                                <li>Responsive design across all devices</li>
+                                <li>Dynamic visual effects and transitions</li>
+                                <li>Performance optimized animations</li>
+                                <li>Modern React.js architecture
+                                    <ul className={styles.subList}>
+                                        <li>React hooks for state management</li>
+                                        <li>Component-based architecture</li>
+                                        <li>Custom hooks for reusable logic</li>
+                                        <li>Context API for global state</li>
+                                    </ul>
+                                </li>
+                                <li>Creative coding demonstrations</li>
+                                <li>Interactive portfolio showcase</li>
+                                <li>Clean, modern UI/UX design</li>
+                                <li>Mobile-first responsive layout</li>
+                                <li>Accessibility considerations</li>
+                                <li>Fast loading times and optimization
+                                    <ul className={styles.subList}>
+                                        <li>Image optimization with Next.js Image component</li>
+                                        <li>Lazy loading for performance</li>
+                                        <li>Bundle optimization</li>
+                                        <li>Core Web Vitals optimization</li>
+                                    </ul>
+                                </li>
+                                <li>Modern deployment and hosting
+                                    <ul className={styles.subList}>
+                                        <li>Vercel deployment with CI/CD</li>
+                                        <li>Automatic builds on Git commits</li>
+                                        <li>Edge functions for global performance</li>
+                                        <li>Custom domain configuration</li>
+                                    </ul>
+                                </li>
+                                <li>Development best practices
+                                    <ul className={styles.subList}>
+                                        <li>TypeScript support ready</li>
+                                        <li>ESLint and Prettier configuration</li>
+                                        <li>Component modularity</li>
+                                        <li>CSS Modules for scoped styling</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <iframe
+                                className={styles.portfolioFrame}
+                                src="https://explosion.fun/"
+                                height="600"
+                                width="100%"
+                                title="Explosion.fun Interactive Website"
+                            />
+                        </div>
+
+                        <div className={styles.portfolioProject}>
                             <h3>Natura Bags Website</h3>
+                            <p>A modern, responsive website for Natura Bags showcasing their sustainable bag collection. Built with focus on user experience and mobile-first design.</p>
+                            <p>This project demonstrates clean design principles and modern web development practices, creating an engaging platform for customers to explore eco-friendly bag options.</p>
+                            <br />
+                            <h4>Features:</h4>
+
+                            <ul>
+                                <li>Responsive design</li>
+                                <li>Modern UI/UX with clean aesthetics</li>
+                                <li>Product showcase and gallery
+                                    <ul className={styles.subList}>
+                                        <li>High-quality product imagery</li>
+                                        <li>Automatic image optimization to WebP</li>
+                                        <li>Product categorization</li>
+                                        <li>Interactive product galleries</li>
+                                        <li>Product detail pages</li>
+                                    </ul>
+                                </li>
+                                <li>Contact and inquiry forms</li>
+                                <li>About us and brand storytelling</li>
+                                <li>SEO optimized content</li>
+                                <li>Loading speed optimized against PageSpeed Insights</li>
+                                <li>Newsletter subscription</li>
+                                <li>Sustainability messaging</li>
+                            </ul>
+
                             <iframe
                                 className={styles.portfolioFrame}
                                 src="https://naturabags.com/"
                                 height="600"
                                 width="100%"
                                 title="Natura Bags Website"
+                            />
+                        </div>
+
+                        <div className={styles.portfolioProject}>
+                            <h3>Serah Design E-Commerce Site</h3>
+                            <p>Most features a small scale business may want are already full built and ready to ship in WordPress and it's vast plugin ecosystem</p>
+                            <p>I've built this site using WordPress along with WooCommerce and the Jetpack plugin in only a couple of days and it supports functionality far beyond anything I could have build alone in that time frame.</p>
+                            <br />
+                            <h4>Features:</h4>
+
+                            <ul>
+                                <li>Responsive layout for mobile and desktop</li>
+                                <li>E-Commerce functionalities with WooCommerce
+                                    <ul className={styles.subList}>
+                                        <li>Product catalog with search and filtering</li>
+                                        <li>Shopping cart management</li>
+                                        <li>Inventory tracking</li>
+                                        <li>Features to run discount sales</li>
+                                        <li>Tax management</li>
+                                        <li>Shipping price management</li>
+                                        <li>Shipping third party integration</li>
+                                        <li>Order management system</li>
+                                    </ul>
+                                </li>
+                                <li>Mobile App to manage inventory and sales</li>
+                                <li>Featues to run promotional events</li>
+                                <li>Several ways to have analytics on customers</li>
+                                <li>Bloggin feature</li>
+                                <li>Admin dashboard to manage all aspects of the site</li>
+                                <li>User management
+                                    <ul className={styles.subList}>
+                                        <li>User Authentication</li>
+                                        <li>User Authorization</li>
+                                        <li>Different privilege structures for different types of users</li>
+                                        <li>Data sharing accross applications</li>
+                                    </ul>
+                                </li>
+                                <li>Rest api and GraphQL api support</li>
+                                <li>An entire CMS</li>
+                                <li>Secure payment gateway integration</li>
+                                <li>User account management and order tracking</li>
+                                <li>Instagram integration</li>
+                                <li>Youtube integration</li>
+                                <li>Promotional emails services</li>
+                            </ul>
+
+                            <iframe
+                                className={styles.portfolioFrame}
+                                src="https://serahdesign.com/"
+                                height="600"
+                                width="100%"
+                                title="Serah Design E-Commerce Site"
                             />
                         </div>
                     </section>

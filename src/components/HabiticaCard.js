@@ -38,7 +38,8 @@ export default function HabiticaCard() {
             const headers = {
                 'x-api-user': process.env.NEXT_PUBLIC_HABITICA_USER_ID,
                 'x-api-key': process.env.NEXT_PUBLIC_HABITICA_API_TOKEN,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'x-client': process.env.NEXT_PUBLIC_HABITICA_Client
             };
 
             const response = await fetch('https://habitica.com/api/v3/user', {
