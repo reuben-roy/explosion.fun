@@ -29,7 +29,7 @@ async function getPosts() {
         }
 
         const { data } = result;
-        
+
         if (!data || !data.posts || !data.posts.nodes) {
             console.error('Unexpected data structure:', data);
             throw new Error('Invalid data structure received from GraphQL');
@@ -46,7 +46,7 @@ export default async function Blog() {
 
     // Group posts by category
     const postsByCategory = CATEGORIES.reduce((acc, category) => {
-        const categoryPosts = posts.filter(post => 
+        const categoryPosts = posts.filter(post =>
             post.categories.nodes.some(cat => cat.name === category)
         );
 
@@ -60,30 +60,71 @@ export default async function Blog() {
     }, []);
 
     return (
-        <>
+        <div className={styles.container}>
             <Navbar />
-            <div className={styles.page}>
-                <main className={styles.main}>
+
+            {/* Hero Section */}
+            <section className={styles.hero}>
+                <div className={styles.heroContent}>
                     <h1 className={styles.title}>Blog</h1>
+
+                    <div className={styles.badgeGroup}>
+                        <div className={styles.badge}>
+                            <span>{posts.length} Articles</span>
+                        </div>
+                        <div className={styles.badge}>
+                            <span>{postsByCategory.length} Categories</span>
+                        </div>
+                    </div>
+
+                    <p className={styles.subtitle}>
+                        Thoughts, reviews, and insights about technology, development, and other garbage
+                    </p>
+
+                    <div className={styles.categories}>
+                        {postsByCategory.map((category, index) => (
+                            <span key={index} className={styles.categoryTag}>
+                                {category.title} ({category.posts.length})
+                            </span>
+                        ))}
+                    </div>
+                </div>
+                <div className={styles.heroBackground}>
+                    <div className={styles.grid}></div>
+                    <div className={styles.gradient1}></div>
+                    <div className={styles.gradient2}></div>
+                </div>
+            </section>
+
+            {/* Content Section */}
+            <section className={styles.content}>
+                <div className={styles.contentWrapper}>
                     {postsByCategory.length === 0 ? (
-                        <div className={styles.loading}>No posts found</div>
+                        <div className={styles.emptyState}>
+                            <div className={styles.emptyIcon}>📝</div>
+                            <h3>No posts found</h3>
+                            <p>Check back soon for new articles!</p>
+                        </div>
                     ) : (
                         <>
-                            <BlogDeck
-                                title="Latest Articles"
-                                posts={posts.slice(0, 20)}
-                            />
-                            {postsByCategory.map((category, index) => (
+                            <div className={styles.section}>
                                 <BlogDeck
-                                    key={index}
-                                    title={category.title}
-                                    posts={category.posts}
+                                    title="Latest Articles"
+                                    posts={posts.slice(0, 20)}
                                 />
+                            </div>
+                            {postsByCategory.map((category, index) => (
+                                <div key={index} className={styles.section}>
+                                    <BlogDeck
+                                        title={category.title}
+                                        posts={category.posts}
+                                    />
+                                </div>
                             ))}
                         </>
                     )}
-                </main>
-            </div>
-        </>
+                </div>
+            </section>
+        </div>
     );
 }

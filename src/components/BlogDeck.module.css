@@ -1,72 +1,150 @@
 .deckContainer {
-    margin: 2rem 0;
-    padding: 0 1rem;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
 }
 
 .deckTitle {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: #fff;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+  padding: 0 0.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .scrollContainer {
-    position: relative;
-    display: flex;
-    align-items: center;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .cardsContainer {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    padding: 0.5rem 0;
-    gap: 1rem;
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding: 1rem 0.5rem;
+  gap: 1.5rem;
+  width: 100%;
 }
 
 .cardsContainer::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .scrollButton {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s ease;
-    z-index: 2;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  border: 1px solid #e5e7eb;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #667eea;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
 }
 
 .scrollButton:hover {
-    background: rgba(255, 255, 255, 0.2);
+  background: #667eea;
+  color: white;
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.scrollButton:active {
+  transform: translateY(-50%) scale(0.95);
 }
 
 .leftButton {
-    left: -20px;
+  left: -22px;
 }
 
 .rightButton {
-    right: -20px;
+  right: -22px;
+}
+
+.scrollButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f3f4f6;
+  color: #9ca3af;
+}
+
+.scrollButton:disabled:hover {
+  transform: translateY(-50%);
+  background: #f3f4f6;
+  color: #9ca3af;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Gradient fade effects */
+.scrollContainer::before,
+.scrollContainer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.scrollContainer::before {
+  left: 0;
+  background: linear-gradient(90deg, white 0%, transparent 100%);
+}
+
+.scrollContainer::after {
+  right: 0;
+  background: linear-gradient(270deg, white 0%, transparent 100%);
 }
 
 @media (max-width: 768px) {
-    .scrollButton {
-        display: none;
-    }
-    
-    .deckContainer {
-        padding: 0;
-    }
-} 
+  .scrollButton {
+    display: none;
+  }
+
+  .deckContainer {
+    margin-bottom: 2rem;
+    padding: 0;
+  }
+
+  .deckTitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding: 0;
+  }
+
+  .cardsContainer {
+    padding: 0.5rem 0;
+    gap: 1rem;
+  }
+
+  .scrollContainer::before,
+  .scrollContainer::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .deckTitle {
+    font-size: 1.25rem;
+  }
+
+  .cardsContainer {
+    gap: 0.75rem;
+  }
+}

@@ -9,46 +9,46 @@ import HabiticaCard from '@/components/HabiticaCard';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const AnimatedText = ({ phrases }) => {
-    const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
-    const [displayText, setDisplayText] = useState('');
-    const [isDeleting, setIsDeleting] = useState(false);
-    const [typingSpeed, setTypingSpeed] = useState(100);
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(100);
 
-    useEffect(() => {
-        const currentPhrase = phrases[currentPhraseIndex];
-        
-        if (!isDeleting && displayText === currentPhrase) {
-            // Pause at the end of typing
-            setTimeout(() => setIsDeleting(true), 1000);
-            return;
-        }
+  useEffect(() => {
+    const currentPhrase = phrases[currentPhraseIndex];
 
-        if (isDeleting && displayText === '') {
-            // Move to next phrase after deleting
-            setIsDeleting(false);
-            setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
-            return;
-        }
+    if (!isDeleting && displayText === currentPhrase) {
+      // Pause at the end of typing
+      setTimeout(() => setIsDeleting(true), 1000);
+      return;
+    }
 
-        const timer = setTimeout(() => {
-            if (!isDeleting) {
-                setDisplayText(currentPhrase.slice(0, displayText.length + 1));
-                setTypingSpeed(50);
-            } else {
-                setDisplayText(currentPhrase.slice(0, displayText.length - 1));
-                setTypingSpeed(30);
-            }
-        }, typingSpeed);
+    if (isDeleting && displayText === '') {
+      // Move to next phrase after deleting
+      setIsDeleting(false);
+      setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
+      return;
+    }
 
-        return () => clearTimeout(timer);
-    }, [displayText, isDeleting, currentPhraseIndex, phrases]);
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        setDisplayText(currentPhrase.slice(0, displayText.length + 1));
+        setTypingSpeed(50);
+      } else {
+        setDisplayText(currentPhrase.slice(0, displayText.length - 1));
+        setTypingSpeed(30);
+      }
+    }, typingSpeed);
 
-    return (
-        <div className={styles.animatedText}>
-            <span className={styles.typingText}>{displayText}</span>
-            <span className={styles.cursor}>|</span>
-        </div>
-    );
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, currentPhraseIndex, phrases]);
+
+  return (
+    <div className={styles.animatedText}>
+      <span className={styles.typingText}>{displayText}</span>
+      <span className={styles.cursor}>|</span>
+    </div>
+  );
 };
 
 export default function Home() {
@@ -66,12 +66,6 @@ export default function Home() {
     "Arizona State University (ASU) [2024-2026]",
     "Software Engineer",
     "National Institute of Technology, Calicut (NITC) [2017-2021]",
-    "Problem Solver",
-    "An Awakener of God",
-    "Tech Enthusiast",
-    "Unordained Apostle of Griffith",
-    "Always Learning",
-    "Always Building"
   ];
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -148,55 +142,75 @@ export default function Home() {
   ];
 
   return (
-    <>
+    <div className={styles.container}>
       <SpeedInsights />
       <Navbar />
 
-      {/* Main Content */}
-      <div className={styles.page}>
-        <main className={styles.main}>
-          <section id="hero" className={`${styles.section} ${styles.heroSection}`}>
-            <div className={`${styles.textBox} ${isLoaded ? styles.loaded : ''}`}>
-              <h1 className={styles.name}>{profileData.name}</h1>
-              <AnimatedText phrases={phrases} />
-              <p className={styles.intro}>{profileData.intro}</p>
-              <p className={styles.caveat}>{profileData.caveat}</p>
-              <div className={styles.introText}>
-                <p>{profileData.intro1}</p>
-                <p>{profileData.intro2}</p>
-              </div>
-              <div className={styles.buttonGroup}>
-                <button
-                  className={styles.ctaButton}
-                  onClick={() => window.location.href ="/career"}
-                >
-                  Skills and Work
-                </button>
-                <button
-                  className={styles.ctaButton}
-                  onClick={() => window.location.href ="/blog"}
-                >
-                  Blog
-                </button>
-              </div>
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <div className={`${styles.heroCard} ${isLoaded ? styles.loaded : ''}`}>
+            <div className={styles.badge}>
+              <span>Open to opportunities</span>
             </div>
-          </section>
-        </main>
-      </div>
 
-      {/* Infinite Scrolling Cards Section */}
-      <section className={styles.cardsSection}>
-        <div className={styles.scrollContainer} ref={scrollRef}>
-          <div className={styles.scrollContent}>
-            {/* First set of cards */}
-            {cardComponents}
-            {/* Duplicate set for seamless loop */}
-            {cardComponents.map((card, index) =>
-              React.cloneElement(card, { key: `${card.key}-duplicate` })
-            )}
+            <h1 className={styles.title}>
+              Hi, I'm <span className={styles.name}>{profileData.name}</span>
+            </h1>
+
+            <div className={styles.typewriter}>
+              <AnimatedText phrases={phrases} />
+            </div>
+
+            <p className={styles.description}>
+              {profileData.intro}
+            </p>
+
+            <div className={styles.actions}>
+              <button
+                className={`${styles.button} ${styles.primary}`}
+                onClick={() => window.location.href = "/career"}
+              >
+                View My Work
+                <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+              <button
+                className={`${styles.button} ${styles.secondary}`}
+                onClick={() => window.location.href = "/blog"}
+              >
+                Read Blog
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.heroBackground}>
+          <div className={styles.grid}></div>
+          <div className={styles.gradient1}></div>
+          <div className={styles.gradient2}></div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className={styles.features}>
+        <div className={styles.featuresContent}>
+          <div className={styles.sectionHeader}>
+            <h2>Connect & Explore</h2>
+            <p>Discover my journey across different platforms and projects</p>
+          </div>
+
+          <div className={styles.cardGrid} ref={scrollRef}>
+            <div className={styles.cardTrack}>
+              {cardComponents}
+              {cardComponents.map((card, index) =>
+                React.cloneElement(card, { key: `${card.key}-duplicate` })
+              )}
+            </div>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
