@@ -9,7 +9,7 @@
   margin-bottom: 1.5rem;
   color: #1a1a1a;
   padding: 0 0.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eff 0%, #764bff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -45,7 +45,7 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  color: #667eea;
+  color: #667eff;
   font-size: 1.25rem;
   cursor: pointer;
   display: flex;
@@ -58,7 +58,7 @@
 }
 
 .scrollButton:hover {
-  background: #667eea;
+  background: #667eff;
   color: white;
   transform: translateY(-50%) scale(1.05);
   box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);

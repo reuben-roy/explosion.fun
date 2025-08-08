@@ -38,7 +38,7 @@
   font-weight: 700;
   color: #333;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eff 0%, #764bff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -76,7 +76,7 @@
 }
 
 .ctaButton {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eff 0%, #764bff 100%);
   color: white;
   border: none;
   padding: 15px 30px;
@@ -103,7 +103,7 @@
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eff 0%, #764bff 100%);
   display: flex;
   align-items: center;
   justify-content: center;

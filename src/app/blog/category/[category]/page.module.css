@@ -13,7 +13,7 @@
   color: #333;
 }
 
-.page * {
+.container * {
   text-shadow: none !important;
   color: inherit;
 }
@@ -28,12 +28,12 @@
   text-shadow: none;
 }
 
-.page a {
+.container a {
   color: #0066cc;
   text-shadow: none;
 }
 
-.page a:hover {
+.container a:hover {
   color: #004499;
   text-shadow: none;
 }
@@ -68,7 +68,7 @@
     color: #333;
   }
 
-  .page * {
+  .container * {
     text-shadow: none !important;
   }
 

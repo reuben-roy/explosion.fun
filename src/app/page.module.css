@@ -363,7 +363,7 @@
 .sectionHeader h2 {
   font-size: 3rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #fff 0%, #ffd93d 100%);
+  background: linear-gradient(135deg, #fcff60 0%, #e9ba00 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 1rem;
@@ -548,7 +548,7 @@
   display: inline-flex;
   align-items: center;
   padding: 0.5rem 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eff 0%, #764bff 100%);
   color: white;
   border-radius: 50px;
   font-size: 0.875rem;
@@ -567,7 +567,7 @@
 }
 
 .name {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eff 0%, #764bff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -586,7 +586,7 @@
 .animatedText {
   font-size: 1.125rem;
   font-weight: 500;
-  color: #667eea;
+  color: #667eff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -601,7 +601,7 @@
   display: inline-block;
   margin-left: 2px;
   animation: blink 1s step-end infinite;
-  color: #764ba2;
+  color: #764bff;
 }
 
 @keyframes blink {
@@ -644,7 +644,7 @@
   display: block;
   font-size: 2rem;
   font-weight: 700;
-  color: #667eea;
+  color: #667eff;
   margin-bottom: 0.5rem;
 }
 
@@ -677,7 +677,7 @@
 }
 
 .primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eff 0%, #764bff 100%);
   color: white;
   box-shadow: 0 4px 14px 0 rgba(102, 126, 234, 0.3);
 }

@@ -37,7 +37,7 @@
   display: inline-flex;
   align-items: center;
   padding: 0.5rem 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eff 0%, #764bff 100%);
   color: white;
   border-radius: 50px;
   font-size: 0.875rem;
@@ -52,7 +52,7 @@
   margin-bottom: 1.5rem;
   color: #1a1a1a;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eff 0%, #764bff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -84,7 +84,7 @@
   align-items: center;
   padding: 0.5rem 1rem;
   background: rgba(102, 126, 234, 0.1);
-  color: #667eea;
+  color: #667eff;
   border-radius: 20px;
   font-size: 0.775rem;
   font-weight: 500;
@@ -120,7 +120,7 @@
   display: block;
   font-size: 2rem;
   font-weight: 700;
-  color: #667eea;
+  color: #667eff;
   margin-bottom: 0.5rem;
 }
 
