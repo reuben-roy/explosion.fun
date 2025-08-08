@@ -86,12 +86,11 @@ function isPostInCategory(post, categorySlug) {
 }
 
 // Server component for the blog post
-export default async function BlogPost({ params, searchParams }) {
+export default async function BlogPost({ params }) {
     const { slug } = await params;
 
-    // Light theme support (default to light)
-    const theme = searchParams?.theme || 'light';
-    const isLightTheme = theme === 'light';
+    // Static theme to keep this page SSG-safe
+    const isLightTheme = true;
 
     try {
         // First, get the post's category
@@ -136,7 +135,8 @@ export default async function BlogPost({ params, searchParams }) {
                 query: postQuery,
                 variables: { slug }
             }),
-        }, { next: { revalidate: 3600 } }); // Cache for 1 hour
+            next: { revalidate: 3600 } // Cache for 1 hour (ISR)
+        });
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -154,9 +154,11 @@ export default async function BlogPost({ params, searchParams }) {
             throw new Error('Post not found');
         }
 
+        // Ensure averageScore is either a finite number or null
+        const avg = calculateAverageScore(data.post);
         const post = {
             ...data.post,
-            averageScore: calculateAverageScore(data.post)
+            averageScore: Number.isFinite(avg) ? avg : null
         };
 
         const hasImage = Boolean(post.featuredImage?.node?.sourceUrl);
@@ -178,7 +180,8 @@ export default async function BlogPost({ params, searchParams }) {
                                     </span>
                                 ))}
                                 <span className={styles.primaryCategory}>
-                                    Score: {post.averageScore.toFixed(1)}/10
+                                    {/* Guard display of average score */}
+                                    Score: {Number.isFinite(post.averageScore) ? `${post.averageScore.toFixed(1)}/10` : 'N/A'}
                                 </span>
                             </div>
                         </div>

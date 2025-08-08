@@ -93,7 +93,7 @@
   color: #222;
 }
 
-:global(svg text) {
+.container :global(svg text) {
   user-select: none;
 }
 
