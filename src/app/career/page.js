@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import styles from './career.module.css';
 
@@ -12,57 +12,77 @@ export default function Career() {
         // This is where you'd implement the canvas background effect
     }, []);
 
-    const skills = [
+    // New: categories with child skills
+    const skillCategories = [
         {
-            title: "Backend Development",
-            description: "Java (Spring Boot), Python, .NET, Microservices, REST APIs, Maven, JUnit5, Mockito"
+            name: "Backend Development",
+            items: ["Java", "Spring Boot", "Python", ".NET", "Microservices", "REST APIs", "Maven", "JUnit5", "Mockito", "Unit Testing"]
         },
         {
-            title: "Frontend Development",
-            description: "HTML, CSS, JavaScript, React.js, Three.js, Bootstrap, MUI, D3.js"
+            name: "Frontend Development",
+            items: ["HTML", "CSS", "JavaScript", "React.js", "Three.js", "Bootstrap", "MUI", "D3.js"]
         },
         {
-            title: "Databases",
-            description: "PostgreSQL, Redis, MySQL, SQL and NoSQL Databases"
+            name: "Databases",
+            items: ["PostgreSQL", "Redis", "MySQL", "SQL", "NoSQL"]
         },
         {
-            title: "Cloud & Infrastructure",
-            description: "AWS, Google Cloud, Azure, Docker, Heroku, Vercel, Firebase"
+            name: "Cloud & Infrastructure",
+            items: ["AWS", "Google Cloud", "Azure", "Docker", "Heroku", "Vercel", "Firebase"]
         },
         {
-            title: "Version Control & DevOps",
-            description: "Git, GitHub, BitBucket, GitHub Actions, SonarQube, Unit Testing"
+            name: "Version Control & DevOps",
+            items: ["Git", "GitHub", "BitBucket", "GitHub Actions"]
         },
         {
-            title: "Data Science & Analytics",
-            description: "Data Visualization (D3.js, Matplotlib), Data Mining, Data Modeling, Machine Learning, NumPy, Pandas"
+            name: "Data Science & Analytics",
+            items: ["Data Visualization (D3.js, Matplotlib)", "Data Mining", "Data Modeling", "Machine Learning", "NumPy", "Pandas"]
         },
         {
-            title: "Project Management",
-            description: "Agile, Jira/Kanban, Confluence, Postman"
+            name: "Project Management",
+            items: ["Agile", "Jira/Kanban", "Confluence", "Postman"]
         },
         {
-            title: "Content Management",
-            description: "WordPress, iText, Poetry"
+            name: "Content Management",
+            items: ["WordPress", "iText", "Poetry"]
         },
         {
-            title: "Development Tools",
-            description: "VS Code, Postman, SonarQube"
+            name: "Development Tools",
+            items: ["VS Code", "Postman", "SonarQube"]
         },
         {
-            title: "Soft Skills",
-            description: "Strong Written and Verbal Communication, Problem Solving, Software Development, Web Development"
+            name: "Soft Skills",
+            items: ["Written Communication", "Verbal Communication", "Problem Solving", "Software Development", "Web Development"]
         }
     ];
+
+    // New: which categories are expanded
+    const [expanded, setExpanded] = useState([]);
+    const toggleCategory = (index) => {
+        setExpanded((prev) =>
+            prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+        );
+    };
 
     const workExperience = [
         {
             title: "Full-Stack Developer, Tata Consultancy Services (IKEA Client Project)",
-            description: "Built the microservices powering the IKEA websites, processing millions of transactions annually. Worked on the \"Planner\" tool letting users built their rooms in 3D. Acquired knowledge on corporate tooling, processes and how to work in agile teams."
+            description: "Built the microservices powering the IKEA websites, processing millions of transactions annually. Primary focus on the Quotation Management initiative: created services to generate quotes, manage revisions/approvals, and automatically notify customers and internal stakeholders about order status updates. Also contributed to the 3D \"Planner\" tool that lets users build their rooms in 3D. Worked closely with cross-functional teams in an agile environment, adopting corporate tooling and processes.",
+            skills: [
+                "Java", "Spring Boot", "Python", "REST APIs", "Microservices", "Maven", "Gradle", "JUnit5", "Mockito",
+                "Node.js", "Express", "OAuth", "OIDC", "JWT", "WebSockets", "HTML", "CSS", "JavaScript", "React.js", "Bootstrap",
+                "PostgreSQL", "GCP", "Docker", "CI/CD", "GitHub Actions", "ESLint", "Prettier", "SonarQube",
+                "Agile/Scrum", "Jira", "Confluence", "Postman"
+            ]
         },
         {
             title: "Full-Stack Developer, RCKR Software (CPSI/ Trubridge Client Project)",
-            description: "Developed secure backend systems for the Unify service, following the FHIR specification, allowing hospitals USA wide to exchange information seamlessly, reducing cost of patient care significantly."
+            description: "Developed secure backend systems for the Unify service, following the FHIR specification, allowing hospitals USA wide to exchange information seamlessly, reducing cost of patient care significantly.",
+            skills: [
+                ".NET", "REST APIs", "Microservices", "FHIR", "HL7", "Mockito", "OAuth", "JWT", "HTML", "CSS", "JavaScript",
+                "PostgreSQL", "Redis", "SQL", "NoSQL", "Azure", "Docker", "CI/CD", "Bitbucket Pipelines", "SonarQube",
+                "Agile/Scrum", "Jira", "Confluence", "Postman", "Performance Optimization"
+            ]
         }
     ];
 
@@ -80,7 +100,12 @@ export default function Career() {
         {
             title: "Geo-Enterprises, Kerala",
             date: "December 2020",
-            description: "Did digital marketing, search-engine optimisation, acquired skills related to customer and employee management."
+            description: "Developed comprehensive e-commerce solutions using WordPress ecosystem, implementing payment gateways, performance optimization, and digital marketing strategies to drive business growth.",
+            skills: [
+                "WordPress", "WooCommerce", "Jetpack", "Razorpay Integration", "Payment Gateways", "HTML", "CSS",
+                "SEO Optimization", "Digital Marketing", "Google Analytics", "Performance Optimization", "Security Implementation", "SSL/TLS",
+                "REST API Integration", "Custom Theme Development", "Responsive Design", "User Experience Design (UX)"
+            ]
         }
     ];
 
@@ -112,6 +137,99 @@ export default function Career() {
         }
     ];
 
+    const projects = [
+        {
+            title: "Explosion.fun Interactive Website",
+            overview: [
+                "A creative and interactive portfolio website featuring dynamic visual effects and engaging user experiences.",
+                "Demonstrates front-end development capabilities, creative coding, and performance-conscious interactions."
+            ],
+            features: [
+                {
+                    title: "Platform & Architecture",
+                    items: [
+                        "Next.js App Router", "SSR & SSG", "File-based routing", "API Routes", "Automatic code splitting"
+                    ]
+                },
+                {
+                    title: "Performance & Quality",
+                    items: [
+                        "Core Web Vitals optimization", "Bundle optimization", "Lazy loading", "Image optimization", "ESLint & Prettier"
+                    ]
+                },
+                {
+                    title: "UI/UX & Accessibility",
+                    items: [
+                        "Responsive design", "CSS Modules", "Accessible interactions", "Subtle motion/animation", "Creative coding demos"
+                    ]
+                },
+                {
+                    title: "Deployment",
+                    items: [
+                        "Vercel CI/CD", "Edge functions", "Custom domain", "Preview deployments"
+                    ]
+                }
+            ],
+            url: "https://explosion.fun/"
+        },
+        {
+            title: "Natura Bags Website",
+            overview: [
+                "A modern, responsive website for Natura Bags showcasing their sustainable bag collection.",
+                "Focus on mobile-first UX and fast product exploration."
+            ],
+            features: [
+                {
+                    title: "Product & Media",
+                    items: [
+                        "High‑quality imagery", "Automatic WebP optimization", "Product categorization", "Interactive galleries"
+                    ]
+                },
+                {
+                    title: "Content & SEO",
+                    items: [
+                        "Brand storytelling", "SEO‑optimized content", "Schema‑ready structure", "Fast loading"
+                    ]
+                },
+                {
+                    title: "Engagement",
+                    items: [
+                        "Contact & inquiry forms", "Newsletter", "Sustainability messaging"
+                    ]
+                }
+            ],
+            url: "https://naturabags.com/"
+        },
+        {
+            title: "Serah Design E‑Commerce Site",
+            overview: [
+                "A WooCommerce storefront leveraging the WordPress ecosystem for rapid delivery.",
+                "Covers a broad set of commerce, analytics, and operations features."
+            ],
+            features: [
+                {
+                    title: "Commerce",
+                    items: [
+                        "Product catalog & search", "Inventory tracking", "Discounts & promotions", "Tax & shipping management", "Order management"
+                    ]
+                },
+                {
+                    title: "Platform",
+                    items: [
+                        "WooCommerce", "Jetpack", "REST & GraphQL API", "Admin dashboard", "User roles & authorization"
+                    ]
+                },
+                {
+                    title: "Integrations",
+                    items: [
+                        "Payment gateways", "Instagram", "YouTube", "Email marketing"
+                    ]
+                }
+            ],
+            url: "https://serahdesign.com/"
+        }
+    ];
+
     return (
         <>
             <Navbar />
@@ -131,13 +249,42 @@ export default function Career() {
                             </p>
                         </div>
 
-                        <div className={styles.skillsGrid}>
-                            {skills.map((skill, index) => (
-                                <div key={index} className={styles.skillCard}>
-                                    <h4>{skill.title}</h4>
-                                    <p>{skill.description}</p>
-                                </div>
-                            ))}
+                        {/* New accordion-based skills UI */}
+                        <div className={styles.skillsAccordion}>
+                            {skillCategories.map((cat, index) => {
+                                const isOpen = expanded.includes(index);
+                                return (
+                                    <div
+                                        key={cat.name}
+                                        className={`${styles.skillCategory} ${isOpen ? styles.open : ''}`}
+                                    >
+                                        <button
+                                            type="button"
+                                            className={styles.skillHeader}
+                                            aria-expanded={isOpen}
+                                            aria-controls={`skill-cat-${index}`}
+                                            onClick={() => toggleCategory(index)}
+                                        >
+                                            <span>{cat.name}</span>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+                                                <span className={styles.skillCount}>{cat.items.length}</span>
+                                                <span className={styles.skillToggleIcon} aria-hidden="true" />
+                                            </div>
+                                        </button>
+
+                                        <div
+                                            id={`skill-cat-${index}`}
+                                            className={styles.skillContent}
+                                        >
+                                            <div className={styles.pillsWrap}>
+                                                {cat.items.map((item) => (
+                                                    <span key={item} className={styles.skillPill}>{item}</span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
                         </div>
                     </section>
 
@@ -155,6 +302,16 @@ export default function Career() {
                                     <div key={index} className={styles.experienceCard}>
                                         <h4>{job.title}</h4>
                                         <p className={styles.experienceDescription}>{job.description}</p>
+                                        {job.skills?.length ? (
+                                            <div className={styles.jobSkills}>
+                                                <div className={styles.jobSkillsHeader}>Skills</div>
+                                                <div className={styles.pillsWrap}>
+                                                    {job.skills.map((s) => (
+                                                        <span key={s} className={styles.skillPill}>{s}</span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ) : null}
                                     </div>
                                 ))}
                             </div>
@@ -167,6 +324,16 @@ export default function Career() {
                                         <h4>{internship.title}</h4>
                                         <p className={styles.experienceDate}>{internship.date}</p>
                                         <p className={styles.experienceDescription}>{internship.description}</p>
+                                        {internship.skills?.length ? (
+                                            <div className={styles.jobSkills}>
+                                                <div className={styles.jobSkillsHeader}>Skills</div>
+                                                <div className={styles.pillsWrap}>
+                                                    {internship.skills.map((s) => (
+                                                        <span key={s} className={styles.skillPill}>{s}</span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ) : null}
                                     </div>
                                 ))}
                             </div>
@@ -200,162 +367,37 @@ export default function Career() {
                         <h2>Previous Web Projects</h2>
                         <hr className={styles.divider} />
 
-                        <div className={styles.portfolioProject}>
-                            <h3>Explosion.fun Interactive Website</h3>
-                            <p>A creative and interactive portfolio website featuring dynamic visual effects and engaging user experiences. Built with modern web technologies to showcase technical skills through interactive demonstrations.</p>
-                            <p>This project aims to demonstrate front-end development capabilities, creative coding, and the ability to create engaging digital experiences that captivate users while maintaining performance and accessibility.</p>
-                            <br />
-                            <h4>Features:</h4>
+                        {projects.map((proj) => (
+                            <div key={proj.title} className={styles.portfolioProject}>
+                                <h3>{proj.title}</h3>
+                                {proj.overview.map((p, i) => (
+                                    <p key={i}>{p}</p>
+                                ))}
+                                <br />
+                                <h4>Feature Highlights</h4>
 
-                            <ul>
-                                <li>Interactive particle systems and animations</li>
-                                <li>Next.js framework with App Router
-                                    <ul className={styles.subList}>
-                                        <li>Server-side rendering (SSR)</li>
-                                        <li>Static site generation (SSG)</li>
-                                        <li>API routes for backend functionality</li>
-                                        <li>File-based routing system</li>
-                                        <li>Automatic code splitting</li>
-                                    </ul>
-                                </li>
-                                <li>Responsive design across all devices</li>
-                                <li>Dynamic visual effects and transitions</li>
-                                <li>Performance optimized animations</li>
-                                <li>Modern React.js architecture
-                                    <ul className={styles.subList}>
-                                        <li>React hooks for state management</li>
-                                        <li>Component-based architecture</li>
-                                        <li>Custom hooks for reusable logic</li>
-                                        <li>Context API for global state</li>
-                                    </ul>
-                                </li>
-                                <li>Creative coding demonstrations</li>
-                                <li>Interactive portfolio showcase</li>
-                                <li>Clean, modern UI/UX design</li>
-                                <li>Mobile-first responsive layout</li>
-                                <li>Accessibility considerations</li>
-                                <li>Fast loading times and optimization
-                                    <ul className={styles.subList}>
-                                        <li>Image optimization with Next.js Image component</li>
-                                        <li>Lazy loading for performance</li>
-                                        <li>Bundle optimization</li>
-                                        <li>Core Web Vitals optimization</li>
-                                    </ul>
-                                </li>
-                                <li>Modern deployment and hosting
-                                    <ul className={styles.subList}>
-                                        <li>Vercel deployment with CI/CD</li>
-                                        <li>Automatic builds on Git commits</li>
-                                        <li>Edge functions for global performance</li>
-                                        <li>Custom domain configuration</li>
-                                    </ul>
-                                </li>
-                                <li>Development best practices
-                                    <ul className={styles.subList}>
-                                        <li>TypeScript support ready</li>
-                                        <li>ESLint and Prettier configuration</li>
-                                        <li>Component modularity</li>
-                                        <li>CSS Modules for scoped styling</li>
-                                    </ul>
-                                </li>
-                            </ul>
+                                <div className={styles.featuresGrid}>
+                                    {proj.features.map((group) => (
+                                        <div key={group.title} className={styles.featureGroup}>
+                                            <h5>{group.title}</h5>
+                                            <ul className={styles.featureList}>
+                                                {group.items.map((item) => (
+                                                    <li key={item} className={styles.featureItem}>{item}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    ))}
+                                </div>
 
-                            <iframe
-                                className={styles.portfolioFrame}
-                                src="https://explosion.fun/"
-                                height="600"
-                                width="100%"
-                                title="Explosion.fun Interactive Website"
-                            />
-                        </div>
-
-                        <div className={styles.portfolioProject}>
-                            <h3>Natura Bags Website</h3>
-                            <p>A modern, responsive website for Natura Bags showcasing their sustainable bag collection. Built with focus on user experience and mobile-first design.</p>
-                            <p>This project demonstrates clean design principles and modern web development practices, creating an engaging platform for customers to explore eco-friendly bag options.</p>
-                            <br />
-                            <h4>Features:</h4>
-
-                            <ul>
-                                <li>Responsive design</li>
-                                <li>Modern UI/UX with clean aesthetics</li>
-                                <li>Product showcase and gallery
-                                    <ul className={styles.subList}>
-                                        <li>High-quality product imagery</li>
-                                        <li>Automatic image optimization to WebP</li>
-                                        <li>Product categorization</li>
-                                        <li>Interactive product galleries</li>
-                                        <li>Product detail pages</li>
-                                    </ul>
-                                </li>
-                                <li>Contact and inquiry forms</li>
-                                <li>About us and brand storytelling</li>
-                                <li>SEO optimized content</li>
-                                <li>Loading speed optimized against PageSpeed Insights</li>
-                                <li>Newsletter subscription</li>
-                                <li>Sustainability messaging</li>
-                            </ul>
-
-                            <iframe
-                                className={styles.portfolioFrame}
-                                src="https://naturabags.com/"
-                                height="600"
-                                width="100%"
-                                title="Natura Bags Website"
-                            />
-                        </div>
-
-                        <div className={styles.portfolioProject}>
-                            <h3>Serah Design E-Commerce Site</h3>
-                            <p>Most features a small scale business may want are already full built and ready to ship in WordPress and it&apos;s vast plugin ecosystem</p>
-                            <p>I&apos;ve built this site using WordPress along with WooCommerce and the Jetpack plugin in only a couple of days and it supports functionality far beyond anything I could have build alone in that time frame.</p>
-                            <br />
-                            <h4>Features:</h4>
-
-                            <ul>
-                                <li>Responsive layout for mobile and desktop</li>
-                                <li>E-Commerce functionalities with WooCommerce
-                                    <ul className={styles.subList}>
-                                        <li>Product catalog with search and filtering</li>
-                                        <li>Shopping cart management</li>
-                                        <li>Inventory tracking</li>
-                                        <li>Features to run discount sales</li>
-                                        <li>Tax management</li>
-                                        <li>Shipping price management</li>
-                                        <li>Shipping third party integration</li>
-                                        <li>Order management system</li>
-                                    </ul>
-                                </li>
-                                <li>Mobile App to manage inventory and sales</li>
-                                <li>Featues to run promotional events</li>
-                                <li>Several ways to have analytics on customers</li>
-                                <li>Bloggin feature</li>
-                                <li>Admin dashboard to manage all aspects of the site</li>
-                                <li>User management
-                                    <ul className={styles.subList}>
-                                        <li>User Authentication</li>
-                                        <li>User Authorization</li>
-                                        <li>Different privilege structures for different types of users</li>
-                                        <li>Data sharing accross applications</li>
-                                    </ul>
-                                </li>
-                                <li>Rest api and GraphQL api support</li>
-                                <li>An entire CMS</li>
-                                <li>Secure payment gateway integration</li>
-                                <li>User account management and order tracking</li>
-                                <li>Instagram integration</li>
-                                <li>Youtube integration</li>
-                                <li>Promotional emails services</li>
-                            </ul>
-
-                            <iframe
-                                className={styles.portfolioFrame}
-                                src="https://serahdesign.com/"
-                                height="600"
-                                width="100%"
-                                title="Serah Design E-Commerce Site"
-                            />
-                        </div>
+                                <iframe
+                                    className={styles.portfolioFrame}
+                                    src={proj.url}
+                                    height="600"
+                                    width="100%"
+                                    title={proj.title}
+                                />
+                            </div>
+                        ))}
                     </section>
                 </main>
             </div>

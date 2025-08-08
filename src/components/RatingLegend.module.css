@@ -1,116 +1,118 @@
 .legend {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin: 2rem 0;
+  /* background handled by theme */
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 0 0 1.5rem 0;
-    color: #fff;
-    text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  /* color handled by theme */
+  text-align: center;
 }
 
 .scale {
-    position: relative;
+  position: relative;
 }
 
 .ratings {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .rating {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    min-width: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 60px;
 }
 
 .score {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.1);
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-    transition: background-color 0.2s ease;
+  font-size: 1.1rem;
+  font-weight: 600;
+  /* color and background handled by theme */
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  /* removed background transition as hover bg is removed */
 }
 
+/* removed hover background
 .score:hover {
-    background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.2);
 }
+*/
 
 .score:hover::after {
-    content: attr(title);
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 0.5rem;
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    font-size: 0.8rem;
-    font-weight: normal;
-    border-radius: 4px;
-    white-space: nowrap;
-    z-index: 2;
-    margin-bottom: 0.5rem;
-    width: 200px;
-    text-align: center;
-    line-height: 1.4;
-    display: flex;
-    text-wrap: wrap;
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: normal;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 2;
+  margin-bottom: 0.5rem;
+  width: 200px;
+  text-align: center;
+  line-height: 1.4;
+  /* removed unnecessary flex and nonstandard text-wrap */
 }
 
 .label {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.9);
-    text-align: center;
-    line-height: 1.2;
+  font-size: 0.8rem;
+  /* color handled by theme */
+  text-align: center;
+  line-height: 1.2;
 }
 
 @media (max-width: 768px) {
-    .legend {
-        padding: 1rem;
-        margin: 1rem 0;
-    }
+  .legend {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
 
-    .ratings {
-        flex-wrap: wrap;
-        gap: 1rem;
-        justify-content: center;
-    }
+  .ratings {
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
 
-    .rating {
-        min-width: 40px;
-        flex: 0 0 calc(20% - 0.8rem);
-    }
-    
-    .score {
-        font-size: 0.9rem;
-        width: 20px;
-        height: 20px;
-    }
+  .rating {
+    min-width: 40px;
+    flex: 0 0 calc(20% - 0.8rem);
+  }
 
-    .score:hover::after {
-        font-size: 0.7rem;
-        width: 150px;
-        white-space: normal;
-    }
+  .score {
+    font-size: 0.9rem;
+    width: 20px;
+    height: 20px;
+  }
 
-    .label {
-        font-size: 0.7rem;
-    }
-} 
+  .score:hover::after {
+    font-size: 0.7rem;
+    width: 150px;
+    white-space: normal;
+  }
+
+  .label {
+    font-size: 0.7rem;
+  }
+}

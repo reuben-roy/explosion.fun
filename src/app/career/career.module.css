@@ -86,6 +86,140 @@
   font-size: 0.9rem;
 }
 
+/* Skills Accordion */
+.skillsAccordion {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skillCategory {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.skillCategory:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.skillHeader {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 1rem 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 14px;
+}
+
+.skillHeader:focus-visible {
+  outline: 2px solid #4ecdc4;
+  outline-offset: 2px;
+}
+
+.skillCount {
+  color: #4ecdc4;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(78, 205, 196, 0.15);
+  border: 1px solid rgba(78, 205, 196, 0.35);
+}
+
+.skillToggleIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(78, 205, 196, 0.18);
+  border: 1px solid rgba(78, 205, 196, 0.35);
+  transition: transform 0.25s ease, background 0.25s ease,
+    border-color 0.25s ease;
+  position: relative;
+}
+
+.skillToggleIcon::before {
+  content: "▾";
+  color: #4ecdc4;
+  font-size: 14px;
+  transform: rotate(-90deg);
+  transition: transform 0.25s ease;
+  line-height: 1;
+}
+
+.open .skillToggleIcon::before {
+  transform: rotate(0deg);
+}
+
+.skillContent {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  padding: 0 1.1rem;
+  border-top: 1px solid transparent;
+  transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.open .skillContent {
+  max-height: 500px; /* enough for multiple lines of pills */
+  opacity: 1;
+  padding: 0.5rem 1.1rem 1rem 1.1rem;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.pillsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.skillPill {
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    135deg,
+    rgba(79, 195, 247, 0.18),
+    rgba(78, 205, 196, 0.18)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #eafffd;
+  font-size: 0.9rem;
+  letter-spacing: 0.1px;
+  backdrop-filter: blur(6px);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.skillPill:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(
+    135deg,
+    rgba(79, 195, 247, 0.3),
+    rgba(78, 205, 196, 0.3)
+  );
+  border-color: rgba(78, 205, 196, 0.45);
+}
+
 /* Experience Section */
 .experienceContainer {
   max-width: 800px;
@@ -134,6 +268,18 @@
   color: #ddd;
   line-height: 1.6;
   font-size: 0.95rem;
+}
+
+/* New: Work Experience job skills */
+.jobSkills {
+  margin-top: 0.75rem;
+}
+.jobSkillsHeader {
+  color: #4ecdc4;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.3px;
 }
 
 /* Certifications Section */
@@ -255,6 +401,50 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
+/* New: Projects features grid */
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.featureGroup {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 0.9rem;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.featureGroup:hover {
+  transform: translateY(-2px);
+  border-color: rgba(78, 205, 196, 0.35);
+}
+
+.featureGroup h5 {
+  margin: 0 0 0.5rem 0;
+  color: #4fc3f7;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.featureList {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.featureItem {
+  margin: 0.25rem 0;
+  line-height: 1.5;
+}
+
+.featureItem::marker {
+  color: #4ecdc4;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .main {
@@ -286,6 +476,16 @@
 
   .portfolioFrame {
     height: 400px;
+  }
+
+  /* New: single column accordion on mobile */
+  .skillsAccordion {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr;
   }
 }
 

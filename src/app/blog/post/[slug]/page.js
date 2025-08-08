@@ -86,8 +86,12 @@ function isPostInCategory(post, categorySlug) {
 }
 
 // Server component for the blog post
-export default async function BlogPost({ params }) {
+export default async function BlogPost({ params, searchParams }) {
     const { slug } = await params;
+
+    // Light theme support (default to light)
+    const theme = searchParams?.theme || 'light';
+    const isLightTheme = theme === 'light';
 
     try {
         // First, get the post's category
@@ -155,10 +159,16 @@ export default async function BlogPost({ params }) {
             averageScore: calculateAverageScore(data.post)
         };
 
+        const hasImage = Boolean(post.featuredImage?.node?.sourceUrl);
+
         return (
             <>
                 <Navbar />
-                <article className={styles.post}>
+                <article
+                    className={styles.post}
+                    data-theme={isLightTheme ? 'light' : 'dark'}
+                    style={isLightTheme ? { backgroundColor: '#ffffff', color: '#111827' } : undefined}
+                >
                     <div className={styles.header}>
                         <div className={styles.meta}>
                             <div className={styles.categories}>
@@ -167,18 +177,23 @@ export default async function BlogPost({ params }) {
                                         {primaryCategory.name}
                                     </span>
                                 ))}
-                            </div>
-                            <div className={styles.metaInfo}>
-                                <span className={styles.date}>{new Date(post.date).toLocaleDateString()}</span>
-                                {post.averageScore && (
-                                    <span className={styles.score}>
-                                        Average Score: {post.averageScore.toFixed(1)}/10
-                                    </span>
-                                )}
+                                <span className={styles.primaryCategory}>
+                                    Score: {post.averageScore.toFixed(1)}/10
+                                </span>
                             </div>
                         </div>
                         <h1 className={styles.title}>{post.title}</h1>
-                        <div className={styles.author}>By {post.author?.node?.firstName} {post.author?.node?.lastName || 'Anonymous'}</div>
+
+                        {!hasImage && (
+                            <div className={styles.headerMeta}>
+                                <span className={styles.score}>
+                                    {new Date(post.date).toLocaleDateString()}
+                                </span>
+                                <span className={styles.score}>
+                                    By {post.author?.node?.firstName} {post.author?.node?.lastName || 'Anonymous'}
+                                </span>
+                            </div>
+                        )}
                     </div>
 
                     {post.featuredImage?.node?.sourceUrl && (
@@ -188,6 +203,14 @@ export default async function BlogPost({ params }) {
                                 alt={post.featuredImage.node.altText || post.title}
                                 className={styles.image}
                             />
+                            <div className={styles.imageMeta}>
+                                <span className={styles.score}>
+                                    {new Date(post.date).toLocaleDateString()}
+                                </span>
+                                <span className={styles.score}>
+                                    By {post.author?.node?.firstName} {post.author?.node?.lastName || 'Anonymous'}
+                                </span>
+                            </div>
                         </div>
                     )}
 
@@ -409,7 +432,13 @@ export default async function BlogPost({ params }) {
         return (
             <>
                 <Navbar />
-                <div className={styles.error}>{error.message}</div>
+                <div
+                    className={styles.error}
+                    data-theme={isLightTheme ? 'light' : 'dark'}
+                    style={isLightTheme ? { backgroundColor: '#ffffff', color: '#111827' } : undefined}
+                >
+                    {error.message}
+                </div>
             </>
         );
     }

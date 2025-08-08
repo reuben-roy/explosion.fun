@@ -1,17 +1,82 @@
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  background-color: white;
+  min-height: 100vh;
+  color: #333;
+}
+
+.page {
+  background-color: white;
+  min-height: 100vh;
+  color: #333;
+}
+
+.page * {
+  text-shadow: none !important;
+  color: inherit;
+}
+
+.page h1,
+.page h2,
+.page h3,
+.page h4,
+.page h5,
+.page h6 {
+  color: #222;
+  text-shadow: none;
+}
+
+.page a {
+  color: #0066cc;
+  text-shadow: none;
+}
+
+.page a:hover {
+  color: #004499;
+  text-shadow: none;
 }
 
 .ratinglegend {
-    margin: 3.5rem 0 0 0;
+  margin: 3.5rem 0 0 0;
+  background-color: white;
+  color: #333;
+  text-shadow: none;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.ratinglegend * {
+  color: #333 !important;
+  text-shadow: none !important;
 }
 
 @media (max-width: 768px) {
-    .container {
-        padding: 0;
-        margin: 0;
-        max-width: 100%;
-    }
+  .container {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+    background-color: white;
+    color: #333;
+  }
+
+  .page {
+    background-color: white;
+    color: #333;
+  }
+
+  .page * {
+    text-shadow: none !important;
+  }
+
+  .ratinglegend {
+    border: 1px solid #eee;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 2rem 1rem 0 1rem;
+  }
 }

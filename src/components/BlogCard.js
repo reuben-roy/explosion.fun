@@ -17,8 +17,11 @@ const truncateText = (text, maxLength = 120) => {
 
 export default function BlogCard({ post }) {
     const averageScore = calculateAverageScore(post);
-    const cleanExcerpt = stripHtml(post.excerpt);
-    const truncatedExcerpt = truncateText(cleanExcerpt);
+
+    // Build a short description from content (fallback to excerpt), strip HTML, then soft-truncate
+    const rawDescription = post?.content || post?.excerpt || '';
+    const cleanDescription = stripHtml(rawDescription);
+    const truncatedDescription = truncateText(cleanDescription, 300);
 
     // Format date more elegantly
     const formatDate = (dateString) => {
@@ -53,7 +56,17 @@ export default function BlogCard({ post }) {
                     ))}
                 </div>
                 <h2 className={styles.title}>{post.title}</h2>
-                <p className={styles.description}>{truncatedExcerpt}</p>
+                <p
+                    className={styles.description}
+                    style={{
+                        display: '-webkit-box',
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden'
+                    }}
+                >
+                    {truncatedDescription}
+                </p>
                 <div className={styles.date}>{formatDate(post.date)}</div>
             </div>
         </Link>

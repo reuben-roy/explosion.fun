@@ -3,6 +3,8 @@ import BlogDeck from '../../components/BlogDeck';
 import styles from './blog.module.css';
 import { GRAPHQL_ENDPOINT, POSTS_LIST_QUERY } from '../../config/graphql';
 import { CATEGORIES } from '../../utils/categories.js';
+import fs from 'fs';
+import path from 'path';
 
 // Fetch posts with caching
 async function getPosts() {
@@ -41,15 +43,69 @@ async function getPosts() {
     }
 }
 
+// NEW: gather interactive local pages and treat them like posts
+async function getInteractivePosts() {
+    const root = path.join(process.cwd(), 'src', 'app', 'blog', 'post', 'interactive');
+    let dirs = [];
+    try {
+        dirs = await fs.promises.readdir(root, { withFileTypes: true });
+    } catch {
+        return [];
+    }
+
+    // Map of slug -> metadata (extend here when adding more interactive pages)
+    const META = {
+        'solar-system': {
+            title: 'Interactive 3D Solar System',
+            excerpt: 'Explore an accelerated Three.js model of the solar system.',
+        }
+    };
+
+    const results = [];
+    for (const dirent of dirs) {
+        if (!dirent.isDirectory()) continue;
+        const slug = dirent.name;
+        if (!META[slug]) continue;
+        const pageFile = path.join(root, slug, 'page.js');
+        try {
+            const stat = await fs.promises.stat(pageFile);
+            const modified = stat.mtime.toISOString();
+            results.push({
+                // Mimic WP post shape minimally
+                id: `interactive-${slug}`,
+                slug: `interactive/${slug}`,          // so /blog/post/${slug} => /blog/post/interactive/solar-system
+                title: META[slug].title,
+                excerpt: META[slug].excerpt,
+                date: modified,
+                modified,
+                categories: { nodes: [{ name: 'Interactive' }] }
+            });
+        } catch {
+            continue;
+        }
+    }
+    return results;
+}
+
 export default async function Blog() {
-    const posts = await getPosts();
+    const [wpPosts, interactivePosts] = await Promise.all([
+        getPosts(),
+        getInteractivePosts()
+    ]);
+
+    // Combine & sort by modified / date desc
+    const allPosts = [...wpPosts, ...interactivePosts].sort((a, b) =>
+        new Date(b.modified || b.date) - new Date(a.modified || a.date)
+    );
+
+    // Ensure Interactive category considered even if not in original CATEGORIES
+    const categoriesList = Array.from(new Set([...CATEGORIES, 'Interactive']));
 
     // Group posts by category
-    const postsByCategory = CATEGORIES.reduce((acc, category) => {
-        const categoryPosts = posts.filter(post =>
-            post.categories.nodes.some(cat => cat.name === category)
+    const postsByCategory = categoriesList.reduce((acc, category) => {
+        const categoryPosts = allPosts.filter(post =>
+            post.categories?.nodes?.some(cat => cat.name === category)
         );
-
         if (categoryPosts.length > 0) {
             acc.push({
                 title: category,
@@ -70,7 +126,7 @@ export default async function Blog() {
 
                     <div className={styles.badgeGroup}>
                         <div className={styles.badge}>
-                            <span>{posts.length} Articles</span>
+                            <span>{allPosts.length} Articles</span>
                         </div>
                         <div className={styles.badge}>
                             <span>{postsByCategory.length} Categories</span>
@@ -110,7 +166,7 @@ export default async function Blog() {
                             <div className={styles.section}>
                                 <BlogDeck
                                     title="Latest Articles"
-                                    posts={posts.slice(0, 20)}
+                                    posts={allPosts.slice(0, 20)}
                                 />
                             </div>
                             {postsByCategory.map((category, index) => (

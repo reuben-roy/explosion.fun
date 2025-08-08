@@ -50,7 +50,7 @@ async function getPosts() {
     }, { next: { revalidate: 3600 } }); // Cache for 1 hour
 
     const { data } = await response.json();
-    
+
     // Add calculated average score to each post
     return data.posts.nodes.map(post => ({
         ...post,
@@ -74,15 +74,15 @@ export default async function CategoryPage({ params }) {
         });
 
     return (
-        <>
+        <div className={styles.page}>
             <Navbar />
             <RatingLegend className={styles.ratinglegend} />
             {REVIEW_CATEGORIES.includes(categoryName) && <div className={styles.container}>
-                <BlogList 
+                <BlogList
                     posts={categoryPosts}
                     title={`${categoryName} Ranked`}
                 />
             </div>}
-        </>
+        </div>
     );
-} 
+}
