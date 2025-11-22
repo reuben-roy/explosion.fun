@@ -23,7 +23,7 @@ export default function ProjectsPage() {
             <main className={styles.main}>
                 <header className={styles.header}>
                     <h1 className={styles.title}>Projects</h1>
-                    <p className={styles.subtitle}>Things I've built and am working on.</p>
+                    <p className={styles.subtitle}>Things I&apos;ve built and am working on.</p>
                 </header>
 
                 <div className={styles.grid}>
