@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import styles from './Navbar.module.css';
 import DropdownMenu from './DropdownMenu';
+import ProjectsDropdown from './ProjectsDropdown';
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -40,6 +41,7 @@ export default function Navbar() {
                         Blog
                     </Link>
                     <DropdownMenu onClose={() => setIsMenuOpen(false)} />
+                    <ProjectsDropdown onClose={() => setIsMenuOpen(false)} />
                     <Link 
                         href="/career" 
                         className={`${styles.link} ${pathname === '/career' ? styles.active : ''}`}

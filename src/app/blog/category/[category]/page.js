@@ -5,15 +5,17 @@ import { calculateAverageScore } from '../../../../utils/scores';
 import RatingLegend from '../../../../components/RatingLegend';
 import styles from './page.module.css';
 import { REVIEW_CATEGORIES } from '@/utils/reviewCategories';
+import fs from 'fs';
+import path from 'path';
 
 // Map URL-friendly category names to display names
 const CATEGORY_NAMES = {
     'anime': 'Anime',
     'movies': 'Movies',
-    'tv-series': 'TV Series',
+    'tv-series': 'TV-Series',
     'books-fiction': 'Books (Fiction)',
     'books-non-fiction': 'Books (Non-Fiction)',
-    'manga': 'Manga Reviews',
+    'manga': 'Manga',
     'shower-thoughts': 'Shower Thoughts',
     'documenting': 'Documenting',
     'experiment': 'Experiment',
@@ -29,6 +31,8 @@ const CATEGORY_NAMES = {
     'news': 'News',
     'religion': 'Religion',
     'review': 'Review',
+    'featured': 'Featured',
+    'interactive': 'Interactive',
     'uncategorized': 'Uncategorized'
 };
 
@@ -58,8 +62,58 @@ async function getPosts() {
     }));
 }
 
+// NEW: gather interactive local pages and treat them like posts
+async function getInteractivePosts() {
+    const root = path.join(process.cwd(), 'src', 'app', 'blog', 'post', 'interactive');
+    let dirs = [];
+    try {
+        dirs = await fs.promises.readdir(root, { withFileTypes: true });
+    } catch {
+        return [];
+    }
+
+    // Map of slug -> metadata (extend here when adding more interactive pages)
+    const META = {
+        'solar-system': {
+            title: 'Interactive 3D Solar System',
+            excerpt: 'Explore an accelerated Three.js model of the solar system.',
+        }
+    };
+
+    const results = [];
+    for (const dirent of dirs) {
+        if (!dirent.isDirectory()) continue;
+        const slug = dirent.name;
+        if (!META[slug]) continue;
+        const pageFile = path.join(root, slug, 'page.js');
+        try {
+            const stat = await fs.promises.stat(pageFile);
+            const modified = stat.mtime.toISOString();
+            results.push({
+                // Mimic WP post shape minimally
+                id: `interactive-${slug}`,
+                slug: `interactive/${slug}`,          // so /blog/post/${slug} => /blog/post/interactive/solar-system
+                title: META[slug].title,
+                excerpt: META[slug].excerpt,
+                date: modified,
+                modified,
+                categories: { nodes: [{ name: 'Interactive' }] },
+                averageScore: null // Interactive posts don't have scores usually
+            });
+        } catch {
+            continue;
+        }
+    }
+    return results;
+}
+
 export default async function CategoryPage({ params }) {
-    const posts = await getPosts();
+    const [wpPosts, interactivePosts] = await Promise.all([
+        getPosts(),
+        getInteractivePosts()
+    ]);
+    
+    const posts = [...wpPosts, ...interactivePosts];
     const parameters = await params;
     const categorySlug = parameters.category;
     const categoryName = CATEGORY_NAMES[categorySlug] || 'Uncategorized';
@@ -76,13 +130,13 @@ export default async function CategoryPage({ params }) {
     return (
         <div className={styles.page}>
             <Navbar />
-            <RatingLegend className={styles.ratinglegend} />
-            {REVIEW_CATEGORIES.includes(categoryName) && <div className={styles.container}>
+            <RatingLegend className={styles.ratinglegend} theme="dark" />
+            <div className={styles.container}>
                 <BlogList
                     posts={categoryPosts}
                     title={`${categoryName} Ranked`}
                 />
-            </div>}
+            </div>
         </div>
     );
 }

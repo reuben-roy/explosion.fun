@@ -1,6 +1,6 @@
 import styles from './RatingLegend.module.css';
 
-export default function RatingLegend({ className = '', theme = 'white' }) {
+export default function RatingLegend({ className = '', theme = 'dark' }) {
     const ratings = [
         {
             score: 1,

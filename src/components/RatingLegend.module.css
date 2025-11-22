@@ -1,22 +1,19 @@
 .legend {
-  /* background handled by theme */
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin: 2rem 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  /* Default dark theme styles */
+  color: #ffffff;
 }
 
 .title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin: 0 0 1.5rem 0;
-  /* color handled by theme */
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 2rem 0;
+  color: #ffffff;
   text-align: center;
 }
 
 .scale {
   position: relative;
+  padding: 0 1rem;
 }
 
 .ratings {
@@ -24,95 +21,62 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .rating {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  min-width: 60px;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 80px;
 }
 
 .score {
   font-size: 1.1rem;
-  font-weight: 600;
-  /* color and background handled by theme */
-  width: 24px;
-  height: 24px;
+  font-weight: 700;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   z-index: 1;
-  /* removed background transition as hover bg is removed */
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
 }
 
-/* removed hover background
-.score:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-*/
-
-.score:hover::after {
-  content: attr(title);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0.5rem;
-  background: rgba(0, 0, 0, 0.9);
-  color: white;
-  font-size: 0.8rem;
-  font-weight: normal;
-  border-radius: 4px;
-  white-space: nowrap;
-  z-index: 2;
-  margin-bottom: 0.5rem;
-  width: 200px;
-  text-align: center;
-  line-height: 1.4;
-  /* removed unnecessary flex and nonstandard text-wrap */
+.rating:hover .score {
+  background: #ffffff;
+  color: #000000;
+  transform: scale(1.1);
 }
 
 .label {
   font-size: 0.8rem;
-  /* color handled by theme */
   text-align: center;
-  line-height: 1.2;
+  color: #a1a1aa;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.rating:hover .label {
+  color: #ffffff;
 }
 
 @media (max-width: 768px) {
-  .legend {
-    padding: 1rem;
-    margin: 1rem 0;
-  }
-
   .ratings {
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem 0.5rem;
   }
-
+  
   .rating {
-    min-width: 40px;
-    flex: 0 0 calc(20% - 0.8rem);
-  }
-
-  .score {
-    font-size: 0.9rem;
-    width: 20px;
-    height: 20px;
-  }
-
-  .score:hover::after {
-    font-size: 0.7rem;
-    width: 150px;
-    white-space: normal;
-  }
-
-  .label {
-    font-size: 0.7rem;
+    min-width: auto;
   }
 }

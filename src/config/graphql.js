@@ -150,6 +150,20 @@ export const BOOK_NON_FICTION_POST_QUERY = `
   }
 `;
 
+export const SIDETRACK_POSTS_QUERY = `
+  query GetSideTrackPosts {
+    posts(where: {categoryName: "Side-Track"}, first: 100) {
+      nodes {
+        title
+        content
+        excerpt
+        date
+        slug
+      }
+    }
+  }
+`;
+
 // Query for listing posts
 export const POSTS_LIST_QUERY = `
   query GetPosts {
@@ -183,4 +197,4 @@ export const getPostQueryByCategory = (category) => {
         default:
             return ANIME_POST_QUERY; // Default fallback
     }
-}; 
+};

@@ -8,7 +8,7 @@
 }
 
 .main {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
   display: flex;
@@ -16,24 +16,32 @@
   align-items: center;
 }
 
+.header {
+  margin-bottom: 4rem;
+  width: 100%;
+  text-align: center;
+}
+
 .title {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
-  margin-bottom: 2rem;
-  text-align: center;
+  margin-bottom: 1rem;
   background: linear-gradient(to bottom right, #ffffff 30%, #a1a1aa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.intro {
+.subtitle {
   font-size: 1.125rem;
-  line-height: 1.7;
   color: #a1a1aa;
-  text-align: center;
-  max-width: 650px;
-  margin-bottom: 3rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
 }
 
 .card {
@@ -41,63 +49,40 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 2rem;
-  width: 100%;
-  max-width: 600px;
-  backdrop-filter: blur(10px);
-  transition: transform 0.2s ease;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .card:hover {
-  transform: translateY(-2px);
   background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 .cardTitle {
   font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
   color: #ffffff;
 }
 
-.cardText {
+.cardDescription {
   color: #a1a1aa;
   line-height: 1.6;
-  margin: 0;
-}
-
-.cardText strong {
-  color: #60a5fa;
-}
-
-.footer {
-  margin-top: 4rem;
-  color: #52525b;
-  font-size: 0.875rem;
-}
-
-@media (max-width: 768px) {
-  .page {
-    padding-top: 5rem;
-  }
-  
-  .card {
-    padding: 1.5rem;
-  }
-}
-
-.textContainer {
-  max-width: 650px;
-  margin-bottom: 3rem;
-  text-align: left;
-}
-
-.textContainer p {
-  font-size: 1.125rem;
-  line-height: 1.8;
-  color: #a1a1aa;
   margin-bottom: 1.5rem;
+  flex-grow: 1;
 }
 
-.textContainer p:last-child {
-  margin-bottom: 0;
+.cardLink {
+  color: #3b82f6;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cardLink:hover {
+  text-decoration: underline;
 }

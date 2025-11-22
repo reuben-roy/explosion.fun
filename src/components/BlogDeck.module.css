@@ -7,9 +7,8 @@
   font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: #1a1a1a;
   padding: 0 0.5rem;
-  background: linear-gradient(135deg, #667eff 0%, #764bff 100%);
+  background: linear-gradient(to right, #ffffff, #a1a1aa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -40,32 +39,26 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: white;
-  border: 1px solid #e5e7eb;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  color: #667eff;
+  color: #ffffff;
   font-size: 1.25rem;
   cursor: pointer;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  z-index: 2;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-weight: 600;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
 }
 
 .scrollButton:hover {
-  background: #667eff;
-  color: white;
-  transform: translateY(-50%) scale(1.05);
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-}
-
-.scrollButton:active {
-  transform: translateY(-50%) scale(0.95);
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
 }
 
 .leftButton {
@@ -76,75 +69,12 @@
   right: -22px;
 }
 
-.scrollButton:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background: #f3f4f6;
-  color: #9ca3af;
-}
-
-.scrollButton:disabled:hover {
-  transform: translateY(-50%);
-  background: #f3f4f6;
-  color: #9ca3af;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Gradient fade effects */
-.scrollContainer::before,
-.scrollContainer::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 40px;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.scrollContainer::before {
-  left: 0;
-  background: linear-gradient(90deg, white 0%, transparent 100%);
-}
-
-.scrollContainer::after {
-  right: 0;
-  background: linear-gradient(270deg, white 0%, transparent 100%);
-}
-
 @media (max-width: 768px) {
   .scrollButton {
     display: none;
   }
-
-  .deckContainer {
-    margin-bottom: 2rem;
-    padding: 0;
-  }
-
+  
   .deckTitle {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
-    padding: 0;
-  }
-
-  .cardsContainer {
-    padding: 0.5rem 0;
-    gap: 1rem;
-  }
-
-  .scrollContainer::before,
-  .scrollContainer::after {
-    display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .deckTitle {
-    font-size: 1.25rem;
-  }
-
-  .cardsContainer {
-    gap: 0.75rem;
   }
 }

@@ -1,0 +1,38 @@
+.page {
+  min-height: 100vh;
+  background-color: #030303;
+  color: #ffffff;
+  font-family: var(--font-geist-sans);
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+}
+
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  margin-bottom: 4rem;
+  width: 100%;
+  text-align: center;
+}
+
+.title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(to bottom right, #ffffff 30%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: #a1a1aa;
+}

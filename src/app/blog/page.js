@@ -93,8 +93,13 @@ export default async function Blog() {
         getInteractivePosts()
     ]);
 
+    // Filter out Side-Track posts
+    const filteredWpPosts = wpPosts.filter(post => 
+        !post.categories?.nodes?.some(cat => cat.name === 'Side-Track')
+    );
+
     // Combine & sort by modified / date desc
-    const allPosts = [...wpPosts, ...interactivePosts].sort((a, b) =>
+    const allPosts = [...filteredWpPosts, ...interactivePosts].sort((a, b) =>
         new Date(b.modified || b.date) - new Date(a.modified || a.date)
     );
 

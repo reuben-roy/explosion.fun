@@ -1,0 +1,146 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 2rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.item {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.item::before {
+    content: '';
+    position: absolute;
+    left: -2.35rem;
+    top: 0.5rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #3b82f6;
+    border-radius: 50%;
+    border: 2px solid #030303;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    z-index: 1;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    color: inherit;
+    margin-bottom: 0.5rem;
+}
+
+.header:hover .version {
+    color: #3b82f6;
+}
+
+.headerContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-grow: 1;
+    padding-right: 1rem;
+}
+
+.excerpt {
+    font-size: 1rem;
+    color: #a1a1aa;
+    line-height: 1.5;
+}
+
+.excerpt p {
+    margin: 0;
+}
+
+.versionInfo {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.version {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    transition: color 0.2s ease;
+}
+
+.date {
+    font-size: 0.875rem;
+    color: #a1a1aa;
+    font-family: var(--font-geist-mono);
+}
+
+.arrow {
+    color: #71717a;
+    transition: transform 0.3s ease;
+    font-size: 0.875rem;
+}
+
+.item.open .arrow {
+    transform: rotate(180deg);
+    color: #ffffff;
+}
+
+.contentWrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+}
+
+.item.open .contentWrapper {
+    grid-template-rows: 1fr;
+}
+
+.content {
+    overflow: hidden;
+    color: #d4d4d8;
+    line-height: 1.6;
+}
+
+/* Inner content styling */
+.content > div {
+    padding-top: 0.5rem;
+}
+
+.content ul, .content ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.content li {
+    margin-bottom: 0.5rem;
+}
+
+.content p {
+    margin-bottom: 1rem;
+}
+
+.content iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.content a {
+    color: #3b82f6;
+    text-decoration: underline;
+}
+
+.empty {
+    text-align: center;
+    color: #a1a1aa;
+    padding: 2rem;
+}

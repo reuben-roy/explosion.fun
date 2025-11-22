@@ -90,7 +90,7 @@ export default async function BlogPost({ params }) {
     const { slug } = await params;
 
     // Static theme to keep this page SSG-safe
-    const isLightTheme = true;
+    const isLightTheme = false;
 
     try {
         // First, get the post's category
@@ -164,12 +164,11 @@ export default async function BlogPost({ params }) {
         const hasImage = Boolean(post.featuredImage?.node?.sourceUrl);
 
         return (
-            <>
+            <div className={styles.pageContainer}>
                 <Navbar />
                 <article
                     className={styles.post}
                     data-theme={isLightTheme ? 'light' : 'dark'}
-                    style={isLightTheme ? { backgroundColor: '#ffffff', color: '#111827' } : undefined}
                 >
                     <div className={styles.header}>
                         <div className={styles.meta}>
@@ -428,21 +427,20 @@ export default async function BlogPost({ params }) {
                         dangerouslySetInnerHTML={{ __html: post.content }}
                     />
                 </article>
-            </>
+            </div>
         );
     } catch (error) {
         console.error('Error fetching post:', error);
         return (
-            <>
+            <div className={styles.pageContainer}>
                 <Navbar />
                 <div
                     className={styles.error}
                     data-theme={isLightTheme ? 'light' : 'dark'}
-                    style={isLightTheme ? { backgroundColor: '#ffffff', color: '#111827' } : undefined}
                 >
                     {error.message}
                 </div>
-            </>
+            </div>
         );
     }
 }

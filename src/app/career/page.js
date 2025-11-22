@@ -240,7 +240,7 @@ export default function Career() {
                     {/* Skills Section */}
                     <section id="skills" className={styles.section}>
                         <div className={styles.sectionHeader}>
-                            <h2><u>Skills</u></h2>
+                            <h2>Skills</h2>
                             <p className={styles.subtitle}>
                                 A person is more than the list of technologies they used to get work done
                             </p>
@@ -291,7 +291,7 @@ export default function Career() {
                     {/* Experience Section */}
                     <section id="experience" className={styles.section}>
                         <div className={styles.sectionHeader}>
-                            <h2><u>Work Experience</u></h2>
+                            <h2>Work Experience</h2>
                         </div>
 
                         <div className={styles.experienceContainer}>
@@ -343,7 +343,7 @@ export default function Career() {
                     {/* Certifications Section */}
                     <section id="certifications" className={styles.section}>
                         <div className={styles.sectionHeader}>
-                            <h2><u>Certifications and Workshops</u></h2>
+                            <h2>Certifications and Workshops</h2>
                         </div>
 
                         <div className={styles.certificationsGrid}>

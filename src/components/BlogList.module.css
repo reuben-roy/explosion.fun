@@ -1,12 +1,18 @@
 .container {
   margin: 4rem auto;
+  width: 100%;
 }
 
 .title {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 2rem;
-  color: #222;
+  color: #ffffff;
+  text-align: center;
+  background: linear-gradient(to right, #ffffff, #a1a1aa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .list {
@@ -17,132 +23,95 @@
 
 .item {
   display: grid;
-  grid-template-columns: 1fr 3fr 5fr 2fr;
+  grid-template-columns: 60px 120px 1fr auto;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
-  border-radius: 12px;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
   text-decoration: none;
-  color: #333;
-  transition: transform 0.2s ease, background-color 0.2s ease,
-    box-shadow 0.2s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  color: #ffffff;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
 }
 
 .item:hover {
   transform: translateY(-2px);
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-color: #dee2e6;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .rank {
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  color: #6c757d;
+  color: #60a5fa;
   text-align: center;
+  font-family: var(--font-geist-mono);
 }
 
 .imageContainer {
-  flex: 0 0 100px;
-  height: 100px;
-  border-radius: 6px;
+  width: 120px;
+  height: 80px;
+  border-radius: 8px;
   overflow: hidden;
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-}
-
-.content {
-  flex: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
 }
 
 .postTitle {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 600;
   margin: 0;
-  color: #222;
-}
-
-.description {
-  font-size: 1rem;
-  color: #666;
-  margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  color: #ffffff;
+  line-height: 1.4;
 }
 
 .meta {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .score {
-  background: #e9ecef;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
   font-weight: 600;
   font-size: 0.9rem;
-  color: #495057;
-  border: 1px solid #dee2e6;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-
-  .title {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: #222;
-  }
-
   .item {
-    padding: 0.75rem;
+    grid-template-columns: 1fr;
     gap: 1rem;
-    background: #f8f9fa;
-    border: 1px solid #e9ecef;
+    text-align: center;
+    padding: 1.5rem;
   }
 
   .rank {
-    font-size: 0.7rem;
+    font-size: 1rem;
+    color: #a1a1aa;
+    margin-bottom: 0.5rem;
   }
 
   .imageContainer {
-    flex: 0 0 80px;
-    height: 50px;
+    width: 100%;
+    height: 200px;
+    margin: 0 auto;
   }
 
-  .postTitle {
-    font-size: 0.6rem;
-  }
-
-  .score {
-    font-size: 0.5rem;
-    align-items: center;
+  .meta {
     justify-content: center;
-    background: #e9ecef;
-    color: #495057;
-    border: 1px solid #dee2e6;
+    margin-top: 0.5rem;
   }
-}
-
-.span {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: block;
 }

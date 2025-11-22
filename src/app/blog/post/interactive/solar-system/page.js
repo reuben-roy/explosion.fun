@@ -38,7 +38,7 @@ export default function SolarSystemClient() {
 
         /* --- Scene Setup --- */
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xffffff);
+        // scene.background = new THREE.Color(0xffffff);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
@@ -98,7 +98,7 @@ export default function SolarSystemClient() {
             starPositions[i * 3 + 2] = r * Math.cos(phi);
         }
         starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
-        const starMat = new THREE.PointsMaterial({ color: 0x000000, size: 2, sizeAttenuation: true, transparent: true, opacity: 0.30 }); // changed to black
+        const starMat = new THREE.PointsMaterial({ color: 0xffffff, size: 2, sizeAttenuation: true, transparent: true, opacity: 0.60 }); // changed to white
         const stars = new THREE.Points(starGeo, starMat);
         scene.add(stars);
 
@@ -112,7 +112,7 @@ export default function SolarSystemClient() {
             const orbitCurve = new THREE.EllipseCurve(0, 0, d.orbitRadius * ORBIT_SCALE, d.orbitRadius * ORBIT_SCALE, 0, Math.PI * 2, false, 0);
             const points = orbitCurve.getPoints(180);
             const orbitGeo = new THREE.BufferGeometry().setFromPoints(points.map(p => new THREE.Vector3(p.x, 0, p.y)));
-            const orbitMat = new THREE.LineBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.22 }); // was gray; now black
+            const orbitMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.15 }); // white orbits
             const orbitLine = new THREE.LineLoop(orbitGeo, orbitMat);
             systemGroup.add(orbitLine);
 

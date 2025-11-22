@@ -54,7 +54,7 @@ const AnimatedText = ({ phrases }) => {
 export default function Home() {
   const [profileData, setProfileData] = useState({
     name: "Reuben Roy",
-    intro: "Passionate developer creating innovative web solutions",
+    intro: "Developer creating web solutions",
     designation: "Software Engineer",
     caveat: "Always learning, always building",
     intro1: "Welcome to my digital portfolio showcasing my journey in technology.",
@@ -181,6 +181,12 @@ export default function Home() {
                 onClick={() => window.location.href = "/blog"}
               >
                 Read Blog
+              </button>
+              <button
+                className={`${styles.button} ${styles.secondary}`}
+                onClick={() => window.location.href = "/side-track"}
+              >
+                Side-Track App Changelogs
               </button>
             </div>
           </div>
