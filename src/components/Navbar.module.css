@@ -162,7 +162,7 @@
     display: flex;
     flex-direction: column;
     position: fixed;
-    bottom: 0;
+    bottom: -600px;
     left: 0;
     right: 0;
     background: linear-gradient(180deg, rgba(28, 28, 30, 0.98) 0%, rgba(18, 18, 20, 0.99) 100%);
@@ -171,16 +171,19 @@
     border-radius: 24px 24px 0 0;
     padding: 0 0 env(safe-area-inset-bottom, 20px) 0;
     z-index: 1001;
-    transform: translateY(100%);
-    transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
     max-height: 85vh;
-    max-height: 85dvh;
     box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.4);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .mobileMenuActive {
-    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .mobileMenuHandle {
@@ -210,23 +213,7 @@
     text-decoration: none;
     color: #fff;
     transition: all 0.2s ease;
-    transform: translateY(20px);
-    opacity: 0;
-    animation: slideUp 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards;
-    animation-delay: var(--delay);
     border: 1px solid transparent;
-  }
-
-  .mobileMenuActive .mobileLink {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  @keyframes slideUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
 
   .mobileLink:active {
@@ -256,18 +243,6 @@
   }
 
   /* Expandable Section */
-  .mobileExpandable {
-    transform: translateY(20px);
-    opacity: 0;
-    animation: slideUp 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards;
-    animation-delay: var(--delay);
-  }
-
-  .mobileMenuActive .mobileExpandable {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
   .mobileExpandableButton {
     width: 100%;
     cursor: pointer;
