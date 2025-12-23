@@ -1,99 +1,67 @@
 .card {
-  background: rgba(200, 200, 255, 0.1);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin: 1rem 1rem;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  min-width: 300px;
-  max-width: 400px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: linear-gradient(135deg, rgba(0, 119, 181, 0.1) 0%, rgba(0, 119, 181, 0.02) 100%);
+  border: 1px solid rgba(0, 119, 181, 0.2);
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  transition: all 0.2s ease;
+  width: 100%;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, rgba(0, 119, 181, 0.15) 0%, rgba(0, 119, 181, 0.05) 100%);
+  border-color: rgba(0, 119, 181, 0.4);
+  transform: translateX(4px);
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.header h3 {
-  font-size: 1.2rem;
-  color: #0077b5;
-  margin: 0;
-}
-
-.linkedinIcon {
-  font-size: 1.5rem;
-  background: #0077b5;
-  color: white;
-  padding: 8px;
-  border-radius: 6px;
+.iconWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #0077b5 0%, #005885 100%);
+  border-radius: 8px;
+  flex-shrink: 0;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
 }
 
-.content h4 {
-  font-size: 1.1rem;
-  color: #a69e9e;
-  margin: 0;
+.title {
+  font-size: 0.875rem;
   font-weight: 600;
+  color: #fff;
 }
 
-.content p {
-  color: #666;
-  margin: 0;
-  font-size: 0.9rem;
+.subtitle {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
 }
 
-.label {
-  font-size: 0.8rem;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.arrow {
+  color: rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
 }
 
-.viewProfile {
-  background: #0077b5;
-  color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  text-align: center;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-  margin-top: 1rem;
+.card:hover .arrow {
+  color: #0077b5;
+  transform: translate(2px, -2px);
 }
 
-.viewProfile:hover {
-  background: #005582;
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .card {
-    margin: 1rem 0;
-    min-width: 280px;
-  }
-
-  .content {
-    font-size: 0.6rem;
-  }
-
-  .content h4 {
-    font-size: 0.8rem;
+    min-width: 200px;
+    max-width: 240px;
+    flex-shrink: 0;
   }
 }

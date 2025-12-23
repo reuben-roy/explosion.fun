@@ -1,0 +1,62 @@
+.page {
+    min-height: 100vh;
+    background-color: #030303;
+    color: #ffffff;
+    font-family: var(--font-geist-sans);
+}
+
+.main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 4rem;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(to right, #ffffff, #a1a1aa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    color: #71717a;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.ratingLegend {
+    margin: 0 auto 3rem;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+@media (max-width: 768px) {
+    .main {
+        padding: 5rem 1rem 3rem;
+    }
+
+    .header {
+        margin-bottom: 2rem;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+    }
+
+    .ratingLegend {
+        margin-bottom: 2rem;
+        padding: 1rem;
+    }
+}

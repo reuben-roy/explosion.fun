@@ -1,0 +1,389 @@
+/* Hero Section */
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
+  overflow: hidden;
+}
+
+.heroContent {
+  width: 100%;
+  max-width: 1400px;
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  align-items: flex-start;
+  padding: 0 2rem;
+}
+
+.heroLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.heroRight {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.heroRight::-webkit-scrollbar {
+  display: none;
+}
+
+.heroLeft.loaded, .heroRight.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #a1a1aa;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(8px);
+}
+
+/* Typography */
+.title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.03em;
+  background: linear-gradient(to bottom right, #ffffff 30%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.name {
+  color: #ffffff; /* Fallback */
+  background: linear-gradient(to right, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.typewriter {
+  margin-bottom: 2rem;
+  height: 2rem; /* Fixed height to prevent layout shift */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.animatedText {
+  font-family: var(--font-geist-mono);
+  font-size: 1.125rem;
+  color: #a1a1aa;
+  display: flex;
+  align-items: center;
+}
+
+.typingText {
+  display: inline-block;
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 2px;
+  width: 8px;
+  height: 1.2em;
+  background-color: #60a5fa;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.description {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #a1a1aa;
+  max-width: 600px;
+  margin: 0 0 3rem 0;
+}
+
+/* Buttons */
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.primary {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+}
+
+.primary:hover {
+  background: #e5e5e5;
+  transform: translateY(-1px);
+}
+
+.secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Background Effects */
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+
+.gradient1 {
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 70%);
+  filter: blur(60px);
+}
+
+.gradient2 {
+  position: absolute;
+  bottom: -20%;
+  right: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.15) 0%, transparent 70%);
+  filter: blur(60px);
+}
+
+/* Spotify Card Wrapper - compact style */
+.spotifyWrapper {
+  width: 100%;
+  background: rgba(30, 30, 30, 0.6);
+  border-radius: 10px;
+  padding: 0.75rem;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(30, 215, 96, 0.15);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.spotifyWrapper:hover {
+  border-color: rgba(30, 215, 96, 0.3);
+  background: rgba(35, 35, 35, 0.7);
+}
+
+.spotifyEmbed {
+  border-radius: 6px;
+  border: none;
+}
+
+.spotifyHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spotifyIcon {
+  width: 24px;
+  height: 24px;
+  background: #1DB954;
+  color: white;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.spotifyTitle {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .heroContent {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .heroLeft {
+    align-items: center;
+    text-align: center;
+  }
+
+  .heroRight {
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-x: visible;
+    overflow-y: visible;
+    max-height: none;
+    padding-bottom: 1rem;
+    padding-right: 0;
+    width: 100%;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .typewriter {
+    justify-content: center;
+  }
+
+  .description {
+    margin: 0 auto 3rem auto;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+
+  .spotifyWrapper {
+    min-width: 260px;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding-top: 7rem;
+    padding-bottom: 2rem;
+  }
+
+  .badge {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .typewriter {
+    margin-bottom: 1rem;
+    height: 1.5rem;
+  }
+
+  .animatedText {
+    font-size: 0.95rem;
+  }
+
+  .description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .heroRight {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    /* Add horizontal scroll snap */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .heroRight > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  .heroContent {
+    gap: 1.5rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    gap: 0.75rem;
+  }
+
+  .button {
+    width: 100%;
+    justify-content: center;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .spotifyWrapper {
+    min-width: 240px;
+    max-width: 260px;
+  }
+}

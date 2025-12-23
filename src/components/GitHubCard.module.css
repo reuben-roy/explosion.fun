@@ -1,127 +1,68 @@
 .card {
-  background: rgba(33, 33, 33, 0.9);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin: 1rem 1rem;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  min-width: 300px;
-  max-width: 400px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: linear-gradient(135deg, rgba(88, 166, 255, 0.08) 0%, rgba(36, 41, 47, 0.5) 100%);
+  border: 1px solid rgba(88, 166, 255, 0.15);
+  border-radius: 10px;
+  text-decoration: none;
   color: white;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.2s ease;
+  width: 100%;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(88, 166, 255, 0.12) 0%, rgba(36, 41, 47, 0.6) 100%);
+  border-color: rgba(88, 166, 255, 0.35);
+  transform: translateX(4px);
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.header h3 {
-  font-size: 1.2rem;
-  color: #ffffff;
-  margin: 0;
-}
-
-.githubIcon {
-  font-size: 1.5rem;
-  background: #24292f;
-  color: white;
-  padding: 8px;
-  border-radius: 6px;
+.iconWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #2d333b 0%, #1c2128 100%);
+  border: 1px solid rgba(88, 166, 255, 0.2);
+  border-radius: 8px;
+  flex-shrink: 0;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
 }
 
-.content h4 {
-  font-size: 1.1rem;
-  color: #ffffff;
-  margin: 0;
+.title {
+  font-size: 0.875rem;
   font-weight: 600;
+  color: #fff;
 }
 
-.content p {
-  color: #ffffff;
-  margin: 0;
-  font-size: 0.9rem;
-}
-
-.stats {
-  display: flex;
-  gap: 1.5rem;
-  margin: 1rem 0;
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.number {
-  font-size: 1.2rem;
-  font-weight: bold;
+.subtitle {
+  font-size: 0.75rem;
   color: #58a6ff;
 }
 
-.label {
-  font-size: 0.8rem;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.arrow {
+  color: rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
 }
 
-.viewProfile {
-  background: #24292f;
-  color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  text-align: center;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-  margin-top: 1rem;
-  border: 1px solid #58a6ff;
+.card:hover .arrow {
+  color: #58a6ff;
+  transform: translate(2px, -2px);
 }
 
-.viewProfile:hover {
-  background: #58a6ff;
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .card {
-    margin: 1rem 0;
-    min-width: 280px;
-  }
-
-  .stats {
-    gap: 1rem;
-  }
-
-  .header h3 {
-    font-size: 1rem;
-  }
-
-  .content p {
-    font-size: 0.7rem;
-  }
-
-  .viewProfile {
-    font-size: 0.7rem;
+    min-width: 200px;
+    max-width: 240px;
+    flex-shrink: 0;
   }
 }

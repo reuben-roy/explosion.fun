@@ -16,9 +16,7 @@ export default function HabiticaCard() {
         health: { current: 45, max: 50 },
         experience: { current: 1250, max: 2000 },
         mana: { current: 30, max: 40 },
-        class: 'warrior',
-        name: 'Reuben Roy',
-        lastUpdate: new Date().toLocaleDateString(),
+        class: 'WARRIOR',
         loading: true,
         error: null
     });
@@ -26,7 +24,6 @@ export default function HabiticaCard() {
     const fetchHabiticaData = async () => {
         const now = Date.now();
 
-        // Check if we have cached data that's still valid
         if (userCache.data && userCache.timestamp && (now - userCache.timestamp) < userCache.ttl) {
             updateHabiticaState(userCache.data);
             return;
@@ -49,11 +46,8 @@ export default function HabiticaCard() {
 
             if (response.status === 200) {
                 const userData = await response.json();
-
-                // Cache the data
                 userCache.data = userData;
                 userCache.timestamp = now;
-
                 updateHabiticaState(userData);
             } else {
                 throw new Error(`Error: ${response.status}`);
@@ -63,120 +57,77 @@ export default function HabiticaCard() {
             setHabiticaData(prev => ({
                 ...prev,
                 loading: false,
-                error: 'Failed to load Habitica data'
+                error: 'Failed to load'
             }));
         }
     };
 
     const updateHabiticaState = (userData) => {
         const stats = userData.data.stats;
-        const data = userData.data;
-
         setHabiticaData({
             level: stats.lvl,
             health: {
-                current: parseFloat(stats.hp.toFixed(1)),
+                current: parseFloat(stats.hp.toFixed(0)),
                 max: stats.maxHealth
             },
             experience: {
-                current: parseFloat(stats.exp.toFixed(1)),
+                current: parseFloat(stats.exp.toFixed(0)),
                 max: stats.toNextLevel
             },
             mana: {
-                current: parseFloat(stats.mp.toFixed(1)),
+                current: parseFloat(stats.mp.toFixed(0)),
                 max: stats.maxMP
             },
             class: stats.class.toUpperCase(),
-            name: data.profile?.name || 'Reuben Roy',
-            lastUpdate: data.auth.timestamps.loggedin.slice(0, 10),
             loading: false,
             error: null
         });
     };
 
     useEffect(() => {
-        // Only fetch if we have the required environment variables
         if (process.env.NEXT_PUBLIC_HABITICA_USER_ID && process.env.NEXT_PUBLIC_HABITICA_API_TOKEN) {
             fetchHabiticaData();
         } else {
-            setHabiticaData(prev => ({
-                ...prev,
-                loading: false,
-                error: 'Habitica credentials not configured'
-            }));
+            setHabiticaData(prev => ({ ...prev, loading: false }));
         }
     }, []);
 
-    const getProgressPercentage = (current, max) => {
-        return (current / max) * 100;
-    };
-
-    const getClassIcon = (className) => {
-        const icons = {
-            'WARRIOR': '⚔️',
-            'MAGE': '🔮',
-            'HEALER': '💚',
-            'ROGUE': '🗡️'
-        };
-        return icons[className] || '🎮';
-    };
+    const healthPercent = (habiticaData.health.current / habiticaData.health.max) * 100;
+    const expPercent = (habiticaData.experience.current / habiticaData.experience.max) * 100;
+    const manaPercent = (habiticaData.mana.current / habiticaData.mana.max) * 100;
 
     return (
         <div className={styles.card}>
             <div className={styles.header}>
-                <h3>Habitica Stats</h3>
-                <div className={styles.habiticaIcon}>
-                    {habiticaData.loading ? '⏳' : getClassIcon(habiticaData.class)}
+                <div className={styles.iconWrapper}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+                    </svg>
                 </div>
+                <span className={styles.title}>Habitica</span>
+                <span className={styles.level}>Lvl {habiticaData.level}</span>
             </div>
-
-            <div className={styles.content}>
-                {habiticaData.loading ? (
-                    <div className={styles.loading}>Loading Habitica data...</div>
-                ) : habiticaData.error ? (
-                    <div className={styles.error}>
-                        <p>{habiticaData.error}</p>
-                        <p>Using demo data</p>
+            <div className={styles.stats}>
+                <div className={styles.statRow}>
+                    <span className={styles.statIcon} style={{ color: '#ff6b6b' }}>HP</span>
+                    <div className={styles.barContainer}>
+                        <div className={styles.barFill} style={{ width: `${healthPercent}%`, background: 'linear-gradient(90deg, #ff6b6b, #ff8e8e)' }} />
                     </div>
-                ) : null}
-
-                <div className={styles.level}>
-                    {habiticaData.name} -- Level {habiticaData.level} -- {habiticaData.class}
+                    <span className={styles.statValue}>{habiticaData.health.current}</span>
                 </div>
-
-                <div className={styles.progressContainer}>
-                    <div className={styles.statLabel}>
-                        <span className={styles.healthLabel}>
-                            Health: {habiticaData.health.current}/{habiticaData.health.max}
-                        </span>
+                <div className={styles.statRow}>
+                    <span className={styles.statIcon} style={{ color: '#ffd93d' }}>XP</span>
+                    <div className={styles.barContainer}>
+                        <div className={styles.barFill} style={{ width: `${expPercent}%`, background: 'linear-gradient(90deg, #ffd93d, #ffe066)' }} />
                     </div>
-                    <progress
-                        className={`${styles.progressBar} ${styles.healthProgress}`}
-                        value={habiticaData.health.current}
-                        max={habiticaData.health.max}
-                    />
-
-                    <div className={styles.statLabel}>
-                        <span className={styles.expLabel}>
-                            Experience: {habiticaData.experience.current}/{habiticaData.experience.max}
-                        </span>
+                    <span className={styles.statValue}>{habiticaData.experience.current}</span>
+                </div>
+                <div className={styles.statRow}>
+                    <span className={styles.statIcon} style={{ color: '#45b7d1' }}>MP</span>
+                    <div className={styles.barContainer}>
+                        <div className={styles.barFill} style={{ width: `${manaPercent}%`, background: 'linear-gradient(90deg, #45b7d1, #67d1e8)' }} />
                     </div>
-                    <progress
-                        className={`${styles.progressBar} ${styles.expProgress}`}
-                        value={habiticaData.experience.current}
-                        max={habiticaData.experience.max}
-                    />
-
-                    <div className={styles.statLabel}>
-                        <span className={styles.manaLabel}>
-                            Mana: {habiticaData.mana.current}/{habiticaData.mana.max}
-                        </span>
-                    </div>
-                    <progress
-                        className={`${styles.progressBar} ${styles.manaProgress}`}
-                        value={habiticaData.mana.current}
-                        max={habiticaData.mana.max}
-                    />
+                    <span className={styles.statValue}>{habiticaData.mana.current}</span>
                 </div>
             </div>
         </div>

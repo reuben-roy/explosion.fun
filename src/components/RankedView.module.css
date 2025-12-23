@@ -1,0 +1,348 @@
+.container {
+    padding: 4rem 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.header h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(to right, #ffffff, #a1a1aa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.header p {
+    color: #71717a;
+    font-size: 1rem;
+}
+
+/* Two-column layout */
+.content {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+/* Sidebar */
+.sidebar {
+    position: sticky;
+    top: 5rem;
+}
+
+.sidebarTitle {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #71717a;
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.categoryNav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.categoryButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0.75rem;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: #a1a1aa;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: left;
+}
+
+.categoryButton:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+.categoryButton.active {
+    background: rgba(96, 165, 250, 0.15);
+    color: #60a5fa;
+}
+
+.categoryName {
+    font-weight: 500;
+}
+
+.categoryCount {
+    font-size: 0.75rem;
+    color: #71717a;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+}
+
+.categoryButton.active .categoryCount {
+    background: rgba(96, 165, 250, 0.2);
+    color: #60a5fa;
+}
+
+/* List container */
+.listContainer {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.listContainer::-webkit-scrollbar {
+    width: 6px;
+}
+
+.listContainer::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.listContainer::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.listContainer::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.empty {
+    padding: 3rem;
+    text-align: center;
+    color: #71717a;
+    font-size: 0.95rem;
+}
+
+/* Card */
+.card {
+    display: flex;
+    align-items: stretch;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 1rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateX(4px);
+}
+
+.rank {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    flex-shrink: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #71717a;
+}
+
+.card:nth-child(1) .rank { color: #fbbf24; }
+.card:nth-child(2) .rank { color: #d1d5db; }
+.card:nth-child(3) .rank { color: #cd7f32; }
+
+.cardContent {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.cardTop {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.category {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #a1a1aa;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+}
+
+.date {
+    font-size: 0.7rem;
+    color: #52525b;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.35;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.excerpt {
+    font-size: 0.8rem;
+    color: #71717a;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+}
+
+.scoreBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.75rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    min-width: 60px;
+}
+
+.scoreValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #60a5fa;
+    line-height: 1;
+}
+
+.scoreLabel {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #52525b;
+    margin-top: 0.2rem;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 900px) {
+    .content {
+        grid-template-columns: 160px 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    .container {
+        padding: 2.5rem 1rem;
+    }
+
+    .header {
+        margin-bottom: 1.5rem;
+    }
+
+    .header h2 {
+        font-size: 1.75rem;
+    }
+
+    .header p {
+        font-size: 0.9rem;
+    }
+
+    .content {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .sidebar {
+        position: relative;
+        top: 0;
+    }
+
+    .sidebarTitle {
+        display: none;
+    }
+
+    .categoryNav {
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 0.5rem;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .categoryNav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .categoryButton {
+        flex-shrink: 0;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        white-space: nowrap;
+    }
+
+    .categoryButton.active {
+        border-color: rgba(96, 165, 250, 0.4);
+    }
+
+    .categoryCount {
+        display: none;
+    }
+
+    .listContainer {
+        max-height: 50vh;
+    }
+
+    .card {
+        padding: 0.85rem;
+    }
+
+    .rank {
+        width: 32px;
+        font-size: 0.9rem;
+    }
+
+    .title {
+        font-size: 0.95rem;
+    }
+
+    .excerpt {
+        -webkit-line-clamp: 1;
+        font-size: 0.75rem;
+    }
+
+    .scoreBox {
+        min-width: 50px;
+        padding: 0 0.5rem;
+    }
+
+    .scoreValue {
+        font-size: 1.25rem;
+    }
+}

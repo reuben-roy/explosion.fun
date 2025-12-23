@@ -6,24 +6,28 @@
 .dropdownButton {
     background: none;
     border: none;
-    color: #fff;
-    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+    font-weight: 450;
     padding: 0.5rem 1rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    transition: color 0.2s ease;
+    transition: all 0.2s ease;
     font-family: inherit;
+    border-radius: 8px;
 }
 
 .dropdownButton:hover {
-    color: rgba(255, 255, 255, 0.8);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .arrow {
-    font-size: 0.8rem;
-    transition: transform 0.2s ease;
+    font-size: 0.65rem;
+    transition: transform 0.25s ease;
+    opacity: 0.6;
 }
 
 .up {
@@ -32,56 +36,98 @@
 
 .menu {
     position: absolute;
-    top: 100%;
-    left: 0;
-    background: rgba(0, 0, 0, 0.9);
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, rgba(28, 28, 30, 0.98) 0%, rgba(18, 18, 20, 0.99) 100%);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    border-radius: 14px;
     padding: 0.5rem;
-    min-width: 200px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 180px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    animation: dropdownFadeIn 0.2s ease;
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 .menuItem {
-    display: block;
-    padding: 0.75rem 1rem;
-    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
-    transition: background-color 0.2s ease;
-    border-radius: 4px;
+    transition: all 0.15s ease;
+    border-radius: 10px;
+    font-size: 0.95rem;
 }
 
 .menuItem:hover {
     background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
 }
 
 @media (max-width: 768px) {
     .dropdown {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         width: 100%;
+        max-width: 280px;
     }
 
     .dropdownButton {
         width: 100%;
-        justify-content: space-between;
-        padding: 1rem 0;
-        font-size: 1.5rem;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        border-radius: 8px;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .dropdownButton:hover,
+    .dropdownButton:active {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .arrow {
+        font-size: 0.7rem;
     }
 
     .menu {
         position: static;
-        background: transparent;
-        border: none;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
         box-shadow: none;
-        padding: 0;
-        padding-left: 1rem;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        width: 100%;
     }
 
     .menuItem {
-        font-size: 1.2rem;
-        padding: 0.75rem 0;
-        color: #a1a1aa;
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+        color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        border-radius: 6px;
+    }
+
+    .menuItem:hover,
+    .menuItem:active {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #fff;
     }
 }
