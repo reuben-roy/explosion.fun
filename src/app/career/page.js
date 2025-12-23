@@ -173,60 +173,22 @@ export default function Career() {
             url: "https://explosion.fun/"
         },
         {
-            title: "Natura Bags Website",
+            title: "Freelance E-Commerce Projects",
             overview: [
-                "A modern, responsive website for Natura Bags showcasing their sustainable bag collection.",
-                "Focus on mobile-first UX and fast product exploration."
+                "Built responsive websites for small businesses including Natura Bags and Serah Design, focusing on product showcasing, SEO optimization, and seamless e-commerce functionality."
             ],
             features: [
                 {
-                    title: "Product & Media",
+                    title: "Key Features",
                     items: [
-                        "High‑quality imagery", "Automatic WebP optimization", "Product categorization", "Interactive galleries"
-                    ]
-                },
-                {
-                    title: "Content & SEO",
-                    items: [
-                        "Brand storytelling", "SEO‑optimized content", "Schema‑ready structure", "Fast loading"
-                    ]
-                },
-                {
-                    title: "Engagement",
-                    items: [
-                        "Contact & inquiry forms", "Newsletter", "Sustainability messaging"
+                        "WooCommerce & WordPress", "Payment gateway integration", "SEO optimization", "Product catalogs", "Responsive design", "Image optimization"
                     ]
                 }
             ],
-            url: "https://naturabags.com/"
-        },
-        {
-            title: "Serah Design E‑Commerce Site",
-            overview: [
-                "A WooCommerce storefront leveraging the WordPress ecosystem for rapid delivery.",
-                "Covers a broad set of commerce, analytics, and operations features."
-            ],
-            features: [
-                {
-                    title: "Commerce",
-                    items: [
-                        "Product catalog & search", "Inventory tracking", "Discounts & promotions", "Tax & shipping management", "Order management"
-                    ]
-                },
-                {
-                    title: "Platform",
-                    items: [
-                        "WooCommerce", "Jetpack", "REST & GraphQL API", "Admin dashboard", "User roles & authorization"
-                    ]
-                },
-                {
-                    title: "Integrations",
-                    items: [
-                        "Payment gateways", "Instagram", "YouTube", "Email marketing"
-                    ]
-                }
-            ],
-            url: "https://serahdesign.com/"
+            urls: [
+                { name: "Natura Bags", url: "https://naturabags.com/" },
+                { name: "Serah Design", url: "https://serahdesign.com/" }
+            ]
         }
     ];
 
@@ -373,7 +335,7 @@ export default function Career() {
                                 {proj.overview.map((p, i) => (
                                     <p key={i}>{p}</p>
                                 ))}
-                                <br />
+
                                 <h4>Feature Highlights</h4>
 
                                 <div className={styles.featuresGrid}>
@@ -389,13 +351,31 @@ export default function Career() {
                                     ))}
                                 </div>
 
-                                <iframe
-                                    className={styles.portfolioFrame}
-                                    src={proj.url}
-                                    height="600"
-                                    width="100%"
-                                    title={proj.title}
-                                />
+                                {proj.url && (
+                                    <iframe
+                                        className={styles.portfolioFrame}
+                                        src={proj.url}
+                                        height="450"
+                                        width="100%"
+                                        title={proj.title}
+                                    />
+                                )}
+
+                                {proj.urls && (
+                                    <div className={styles.projectLinks}>
+                                        {proj.urls.map((link) => (
+                                            <a
+                                                key={link.url}
+                                                href={link.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={styles.projectLink}
+                                            >
+                                                {link.name} ↗
+                                            </a>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         ))}
                     </section>

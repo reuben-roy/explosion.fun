@@ -1,11 +1,11 @@
 .card {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(10px);
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 0;
-  min-width: 300px;
-  max-width: 350px;
-  margin: 0.75rem;
+  min-width: 240px;
+  max-width: 280px;
+  margin: 0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
@@ -14,6 +14,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
 }
 
 .card:hover {
@@ -25,7 +26,7 @@
 
 .imageContainer {
   width: 100%;
-  height: 200px;
+  height: 140px;
   position: relative;
   overflow: hidden;
 }
@@ -43,41 +44,41 @@
 
 .score {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.75rem;
+  right: 0.75rem;
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
+  padding: 0.2rem 0.5rem;
+  border-radius: 16px;
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .content {
-  padding: 1.5rem;
+  padding: 1rem;
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
 .title {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 700;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   color: #ffffff;
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
 .description {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   color: #a1a1aa;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
   flex: 1;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -92,12 +93,12 @@
 }
 
 .date {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #71717a;
 }
 
 .readMore {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #60a5fa;
   display: flex;
@@ -107,4 +108,84 @@
 
 .readMore:hover {
   text-decoration: underline;
+}
+
+/* Categories in card */
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.category {
+  font-size: 0.65rem;
+  color: #a1a1aa;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .card {
+    min-width: 200px;
+    max-width: 220px;
+    margin: 0;
+    border-radius: 10px;
+  }
+
+  .imageContainer {
+    height: 110px;
+  }
+
+  .content {
+    padding: 0.75rem;
+  }
+
+  .title {
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .description {
+    font-size: 0.75rem;
+    -webkit-line-clamp: 2;
+    margin-bottom: 0.75rem;
+  }
+
+  .date {
+    font-size: 0.7rem;
+  }
+
+  .score {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.15rem 0.4rem;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    min-width: 160px;
+    max-width: 180px;
+    margin: 0;
+  }
+
+  .imageContainer {
+    height: 90px;
+  }
+
+  .content {
+    padding: 0.6rem;
+  }
+
+  .title {
+    font-size: 0.8rem;
+  }
+
+  .description {
+    display: none;
+  }
 }

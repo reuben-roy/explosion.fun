@@ -1,5 +1,5 @@
 import Navbar from '../../components/Navbar';
-import BlogDeck from '../../components/BlogDeck';
+import BlogContent from '../../components/BlogContent';
 import styles from './blog.module.css';
 import { GRAPHQL_ENDPOINT, POSTS_LIST_QUERY } from '../../config/graphql';
 import { CATEGORIES } from '../../utils/categories.js';
@@ -141,14 +141,6 @@ export default async function Blog() {
                     <p className={styles.subtitle}>
                         Thoughts, reviews, and insights about technology, development, and other garbage
                     </p>
-
-                    <div className={styles.categories}>
-                        {postsByCategory.map((category, index) => (
-                            <span key={index} className={styles.categoryTag}>
-                                {category.title} ({category.posts.length})
-                            </span>
-                        ))}
-                    </div>
                 </div>
                 <div className={styles.heroBackground}>
                     <div className={styles.grid}></div>
@@ -157,35 +149,7 @@ export default async function Blog() {
                 </div>
             </section>
 
-            {/* Content Section */}
-            <section className={styles.content}>
-                <div className={styles.contentWrapper}>
-                    {postsByCategory.length === 0 ? (
-                        <div className={styles.emptyState}>
-                            <div className={styles.emptyIcon}>📝</div>
-                            <h3>No posts found</h3>
-                            <p>Check back soon for new articles!</p>
-                        </div>
-                    ) : (
-                        <>
-                            <div className={styles.section}>
-                                <BlogDeck
-                                    title="Latest Articles"
-                                    posts={allPosts.slice(0, 20)}
-                                />
-                            </div>
-                            {postsByCategory.map((category, index) => (
-                                <div key={index} className={styles.section}>
-                                    <BlogDeck
-                                        title={category.title}
-                                        posts={category.posts}
-                                    />
-                                </div>
-                            ))}
-                        </>
-                    )}
-                </div>
-            </section>
+            <BlogContent allPosts={allPosts} postsByCategory={postsByCategory} />
         </div>
     );
 }

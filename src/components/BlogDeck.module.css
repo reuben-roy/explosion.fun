@@ -1,13 +1,13 @@
 .deckContainer {
-  margin-bottom: 3rem;
-  padding: 0 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0;
 }
 
 .deckTitle {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
-  padding: 0 0.5rem;
+  margin-bottom: 0.75rem;
+  padding: 0 1rem;
   background: linear-gradient(to right, #ffffff, #a1a1aa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -26,8 +26,9 @@
   scroll-behavior: smooth;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  padding: 1rem 0.5rem;
-  gap: 1.5rem;
+  padding: 0.5rem 0;
+  padding-left: 1rem;
+  gap: 0.5rem;
   width: 100%;
 }
 
@@ -75,6 +76,16 @@
   }
   
   .deckTitle {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .deckContainer {
+    margin-bottom: 1rem;
+  }
+
+  .cardsContainer {
+    gap: 0.25rem;
+    padding: 0.25rem;
   }
 }

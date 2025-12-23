@@ -21,23 +21,23 @@
 .main {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 .section {
-  margin-bottom: 6rem;
-  padding: 2rem 0;
+  margin-bottom: 3rem;
+  padding: 1rem 0;
 }
 
 .sectionHeader {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .sectionHeader h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   background: linear-gradient(to right, #ffffff, #a1a1aa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -45,23 +45,23 @@
 }
 
 .subtitle {
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: #a1a1aa;
-  margin: 1rem 0;
-  line-height: 1.6;
+  margin: 0.5rem 0;
+  line-height: 1.5;
 }
 
 .subtext {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #71717a;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 /* Skills Accordion */
 .skillsAccordion {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
   max-width: 800px;
   margin: 0 auto;
 }
@@ -84,11 +84,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem;
+  padding: 0.75rem 1rem;
   background: transparent;
   border: none;
   color: #e4e4e7;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   text-align: left;
@@ -151,18 +151,18 @@
 }
 
 .pillsWrap {
-  padding: 0 1.25rem 1.25rem 1.25rem;
+  padding: 0 1rem 0.75rem 1rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .skillPill {
   background: rgba(255, 255, 255, 0.05);
   color: #d4d4d8;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
   font-weight: 500;
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.2s;
@@ -178,28 +178,28 @@
 .experienceContainer {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 4rem;
+  gap: 2rem;
 }
 
 .experienceSection {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .sectionTitle {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: #ffffff;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .experienceCard {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 2rem;
+  border-radius: 10px;
+  padding: 1.25rem;
   transition: all 0.2s ease;
 }
 
@@ -210,50 +210,51 @@
 }
 
 .experienceCard h4 {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: #ffffff;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
 .experienceDate {
   font-family: var(--font-geist-mono);
   color: #a1a1aa;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
 }
 
 .experienceDescription {
   color: #d4d4d8;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
 }
 
 .jobSkills {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .jobSkillsHeader {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #71717a;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Certifications */
 .certificationsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.75rem;
 }
 
 .certCard {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 1.5rem;
+  border-radius: 8px;
+  padding: 1rem;
   transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
@@ -269,10 +270,10 @@
 
 .certCard a,
 .certCard span {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #ffffff;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   display: block;
 }
 
@@ -288,50 +289,51 @@
 
 /* Portfolio */
 .portfolioProject {
-  margin-bottom: 6rem;
+  margin-bottom: 2.5rem;
   background: rgba(255, 255, 255, 0.02);
-  border-radius: 16px;
-  padding: 2rem;
+  border-radius: 12px;
+  padding: 1.25rem;
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .portfolioProject h3 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #ffffff;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .portfolioProject p {
   color: #d4d4d8;
-  line-height: 1.6;
-  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
 }
 
 .portfolioProject h4 {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: #ffffff;
-  margin: 2rem 0 1rem 0;
+  margin: 1rem 0 0.5rem 0;
 }
 
 .divider {
   border: 0;
   height: 1px;
   background: rgba(255, 255, 255, 0.1);
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 
 .featuresGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .featureGroup h5 {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: #ffffff;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -342,10 +344,10 @@
 
 .featureItem {
   color: #a1a1aa;
-  margin-bottom: 0.5rem;
-  padding-left: 1.2rem;
+  margin-bottom: 0.25rem;
+  padding-left: 1rem;
   position: relative;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
 }
 
 .featureItem::before {
@@ -360,7 +362,34 @@
   border-radius: 8px;
   background: #000;
   width: 100%;
-  height: 600px;
+  height: 450px;
+}
+
+.projectLinks {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.projectLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  color: #e4e4e7;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.projectLink:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
 }
 
 @media (max-width: 768px) {
@@ -368,15 +397,23 @@
     padding-top: 60px;
   }
   
+  .main {
+    padding: 1rem;
+  }
+  
+  .section {
+    margin-bottom: 2rem;
+  }
+  
   .sectionHeader h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   
   .experienceContainer {
-    gap: 2rem;
+    gap: 1.5rem;
   }
   
   .portfolioFrame {
-    height: 400px;
+    height: 300px;
   }
 }
