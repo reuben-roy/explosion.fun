@@ -420,7 +420,7 @@ export default async function BlogPost({ params }) {
                         </div>
                     )}
 
-                    {isReviewCategory && <RatingLegend />}
+                    {isReviewCategory && <RatingLegend className={styles.ratingLegend} />}
 
                     <div
                         className={styles.content}

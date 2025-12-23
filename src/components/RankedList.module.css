@@ -251,12 +251,13 @@
     .container {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        overflow-x: hidden;
     }
 
     .sidebar {
         position: relative;
         top: 0;
-        padding: 1rem;
+        padding: 0;
         background: transparent;
         border: none;
     }
@@ -298,10 +299,16 @@
     .contentHeader {
         margin-bottom: 1rem;
         padding-bottom: 0.75rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
     }
 
     .categoryTitle {
         font-size: 1.25rem;
+    }
+
+    .totalCount {
+        font-size: 0.8rem;
     }
 
     .card {

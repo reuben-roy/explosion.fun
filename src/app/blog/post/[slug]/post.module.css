@@ -190,33 +190,37 @@
 /* Scores Panel */
 .scores {
   background: var(--panel-bg);
-  border-radius: 16px;
-  padding: 2rem;
-  margin: 3rem 0;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin: 2rem 0;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .scores h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 1.5rem;
-  color: var(--heading);
+  text-align: left;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
 }
 
 .scoreGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .scoreItem {
   background: var(--panel-item-bg);
-  padding: 1rem;
-  border-radius: 12px;
-  display: flex;
-  justify-content: space-between;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  display: inline-flex;
   align-items: center;
+  gap: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.85rem;
 }
 
 .scoreLabel {
@@ -226,7 +230,23 @@
 
 .scoreValue {
   font-weight: 700;
-  color: var(--heading);
+  color: #60a5fa;
+}
+
+.ratingLegend {
+  margin: 0 auto 2rem;
+  max-width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 768px) {
+  .ratingLegend {
+    padding: 1rem;
+  }
 }
 
 .error {

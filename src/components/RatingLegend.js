@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from './RatingLegend.module.css';
 
 export default function RatingLegend({ className = '', theme = 'dark' }) {
-    const [hoveredScore, setHoveredScore] = useState(null);
+    const [activeScore, setActiveScore] = useState(null);
+    const legendRef = useRef(null);
 
     const ratings = [
         { score: 1, label: 'Abomination', description: 'An experience with no redeeming qualities, potentially unbearable or extremely unenjoyable.' },
@@ -21,8 +22,40 @@ export default function RatingLegend({ className = '', theme = 'dark' }) {
 
     const isWhiteTheme = theme === 'white';
 
+    // Handle click outside to close tooltip on mobile
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (legendRef.current && !legendRef.current.contains(event.target)) {
+                setActiveScore(null);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('touchstart', handleClickOutside);
+        
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('touchstart', handleClickOutside);
+        };
+    }, []);
+
+    const handleScoreInteraction = (score, event) => {
+        // For touch devices, toggle the tooltip on tap
+        if (event.type === 'click') {
+            setActiveScore(activeScore === score ? null : score);
+        }
+    };
+
+    const handleMouseEnter = (score) => {
+        setActiveScore(score);
+    };
+
+    const handleMouseLeave = () => {
+        setActiveScore(null);
+    };
+
     return (
-        <div className={`${styles.legend} ${isWhiteTheme ? styles.whiteTheme : ''} ${className}`.trim()}>
+        <div ref={legendRef} className={`${styles.legend} ${isWhiteTheme ? styles.whiteTheme : ''} ${className}`.trim()}>
             <div className={styles.header}>
                 <span className={styles.title}>Rating Scale</span>
             </div>
@@ -32,12 +65,13 @@ export default function RatingLegend({ className = '', theme = 'dark' }) {
                     {ratings.map(({ score, label, description }) => (
                         <div
                             key={score}
-                            className={styles.scoreItem}
-                            onMouseEnter={() => setHoveredScore(score)}
-                            onMouseLeave={() => setHoveredScore(null)}
+                            className={`${styles.scoreItem} ${activeScore === score ? styles.active : ''}`}
+                            onMouseEnter={() => handleMouseEnter(score)}
+                            onMouseLeave={handleMouseLeave}
+                            onClick={(e) => handleScoreInteraction(score, e)}
                         >
                             <span className={styles.score}>{score}</span>
-                            {hoveredScore === score && (
+                            {activeScore === score && (
                                 <div className={styles.tooltip}>
                                     <strong>{label}</strong>
                                     <span>{description}</span>
