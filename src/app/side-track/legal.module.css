@@ -1,0 +1,157 @@
+.page {
+    min-height: 100vh;
+    background-color: #030303;
+    color: #ffffff;
+    font-family: var(--font-geist-sans);
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+}
+
+.main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    margin-bottom: 3rem;
+    width: 100%;
+    text-align: center;
+}
+
+.title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to bottom right, #ffffff 30%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 1.125rem;
+    color: #a1a1aa;
+    margin-bottom: 0.5rem;
+}
+
+.lastUpdated {
+    font-size: 0.875rem;
+    color: #71717a;
+}
+
+.content {
+    width: 100%;
+}
+
+.section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #27272a;
+}
+
+.section:last-child {
+    border-bottom: none;
+}
+
+.section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.section h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #e4e4e7;
+}
+
+.section p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #a1a1aa;
+    margin-bottom: 1rem;
+}
+
+.section ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.section li {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #a1a1aa;
+    margin-bottom: 0.5rem;
+}
+
+.section a {
+    color: #60a5fa;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.section a:hover {
+    color: #93c5fd;
+    text-decoration: underline;
+}
+
+.contactEmail {
+    margin-top: 0.5rem;
+}
+
+.contactEmail a {
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+.faq {
+    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    background-color: #0a0a0a;
+    border-radius: 0.75rem;
+    border: 1px solid #27272a;
+}
+
+.faq h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+.faq p {
+    margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+    .page {
+        padding-top: 5rem;
+    }
+
+    .header {
+        margin-bottom: 2rem;
+    }
+
+    .section h2 {
+        font-size: 1.25rem;
+    }
+
+    .section h3 {
+        font-size: 1rem;
+    }
+
+    .section p,
+    .section li {
+        font-size: 0.9375rem;
+    }
+
+    .faq {
+        padding: 1rem;
+    }
+}
