@@ -187,6 +187,58 @@
   color: var(--muted);
 }
 
+/* Video and iframe styling */
+.content video,
+.content iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Horizontal videos (landscape) - 16:9 aspect ratio */
+.content iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+/* Vertical videos (portrait) - constrain width */
+.content video[style*="aspect-ratio"][style*="9/16"],
+.content video[style*="aspect-ratio"][style*="9 / 16"] {
+  max-width: 450px;
+  width: 100%;
+}
+
+/* General vertical video constraint */
+.content video {
+  max-height: 600px;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+/* If video has width > height (landscape), allow full width */
+@media (min-width: 769px) {
+  .content video {
+    max-width: 600px;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .content video,
+  .content iframe {
+    margin: 1.5rem auto;
+    max-height: 500px;
+  }
+
+  .content video {
+    max-width: 100%;
+  }
+}
+
 /* Scores Panel */
 .scores {
   background: var(--panel-bg);
