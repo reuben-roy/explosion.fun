@@ -226,6 +226,7 @@
   }
 
   .content video {
+    max-width: 90vw;
     max-height: 125px;
   }
 }
