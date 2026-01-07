@@ -206,7 +206,7 @@
 /* Video styling - constrain dimensions to prevent overwhelming content */
 .content video {
   max-width: 100%;
-  max-height: 600px;
+  max-height: 150px;
   width: auto;
   object-fit: contain;
 }
@@ -226,7 +226,7 @@
   }
 
   .content video {
-    max-height: 500px;
+    max-height: 125px;
   }
 }
 
