@@ -58,6 +58,10 @@ async function getInteractivePosts() {
         'solar-system': {
             title: 'Interactive 3D Solar System',
             excerpt: 'Explore an accelerated Three.js model of the solar system.',
+        },
+        'bird-migration': {
+            title: 'Flight of the Storks',
+            excerpt: 'An interactive visualization tracking the epic 4,000km migration of three white storks from the Netherlands to West Africa.',
         }
     };
 
@@ -94,7 +98,7 @@ export default async function Blog() {
     ]);
 
     // Filter out Side-Track posts
-    const filteredWpPosts = wpPosts.filter(post => 
+    const filteredWpPosts = wpPosts.filter(post =>
         !post.categories?.nodes?.some(cat => cat.name === 'Side-Track')
     );
 

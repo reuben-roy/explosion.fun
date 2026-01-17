@@ -173,6 +173,33 @@ export default function Career() {
             url: "https://explosion.fun/"
         },
         {
+            title: "Interactive Visualizations",
+            overview: [
+                "A collection of immersive 3D and data visualizations exploring complex concepts through code.",
+                "Demonstrating proficiency in WebGL (Three.js) and Data Visualization (D3.js)."
+            ],
+            features: [
+                {
+                    title: "Technologies Used",
+                    items: [
+                        "Three.js / React Three Fiber", "D3.js & TopoJSON", "Physics Engine Integration", "SVG Animations", "Performance Optimization"
+                    ]
+                }
+            ],
+            interactivePreviews: [
+                {
+                    title: "Flight of the Storks",
+                    url: "/blog/post/interactive/bird-migration",
+                    height: 500
+                },
+                {
+                    title: "3D Solar System",
+                    url: "/blog/post/interactive/solar-system",
+                    height: 500
+                }
+            ]
+        },
+        {
             title: "Freelance E-Commerce Projects",
             overview: [
                 "Built responsive websites for small businesses including Natura Bags and Serah Design, focusing on product showcasing, SEO optimization, and seamless e-commerce functionality."
@@ -359,6 +386,28 @@ export default function Career() {
                                         width="100%"
                                         title={proj.title}
                                     />
+                                )}
+
+                                {proj.interactivePreviews && (
+                                    <div className={styles.interactivePreviews}>
+                                        {proj.interactivePreviews.map((preview) => (
+                                            <div key={preview.url} className={styles.previewItem}>
+                                                <h4 className={styles.previewTitle}>
+                                                    <a href={preview.url} target="_blank" rel="noopener noreferrer">
+                                                        {preview.title} ↗
+                                                    </a>
+                                                </h4>
+                                                <iframe
+                                                    className={styles.portfolioFrame}
+                                                    src={preview.url}
+                                                    height={preview.height || 450}
+                                                    width="100%"
+                                                    title={preview.title}
+                                                    loading="lazy"
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
                                 )}
 
                                 {proj.urls && (

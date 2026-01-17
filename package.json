@@ -16,7 +16,8 @@
     "next": "15.3.6",
     "react": "19.1.2",
     "react-dom": "19.1.2",
-    "three": "^0.179.1"
+    "three": "^0.179.1",
+    "topojson-client": "^3.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -1,0 +1,155 @@
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: grab;
+}
+
+.svg:active {
+    cursor: grabbing;
+}
+
+/* Loading state */
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* Background */
+.background {
+    fill: #050510;
+}
+
+/* Graticule (grid lines) */
+.graticule {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.03);
+    stroke-width: 0.5;
+}
+
+/* Land masses */
+.land {
+    fill: #1a1f2e;
+    stroke: #2d3748;
+    stroke-width: 0.5;
+}
+
+/* Zoom Controls */
+.zoomControls {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 10;
+}
+
+.zoomButton {
+    width: 36px;
+    height: 36px;
+    background: rgba(20, 25, 40, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.zoomButton:hover {
+    background: rgba(0, 217, 255, 0.2);
+    border-color: rgba(0, 217, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.zoomButton:active {
+    transform: scale(0.95);
+}
+
+/* Instructions */
+.instructions {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    padding: 8px 12px;
+    background: rgba(20, 25, 40, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #64748b;
+    font-size: 11px;
+    z-index: 10;
+}
+
+/* Trail Styling */
+.trail {
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: url(#glow);
+    transition: opacity 0.3s ease;
+}
+
+.trail.eric {
+    stroke: #ff9f43;
+}
+
+.trail.nico {
+    stroke: #00d9ff;
+}
+
+.trail.sanne {
+    stroke: #ff6b9d;
+}
+
+/* Current Position Markers */
+.currentPosition {
+    filter: url(#softGlow);
+}
+
+/* No data message */
+.noData {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #64748b;
+    font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .instructions {
+        display: none;
+    }
+
+    .zoomControls {
+        bottom: 8px;
+        right: 8px;
+    }
+
+    .zoomButton {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+}

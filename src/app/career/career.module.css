@@ -146,7 +146,8 @@
 }
 
 .open .skillContent {
-  max-height: 500px; /* Arbitrary large height */
+  max-height: 500px;
+  /* Arbitrary large height */
   transition: max-height 0.5s ease-in;
 }
 
@@ -396,24 +397,55 @@
   .page {
     padding-top: 60px;
   }
-  
+
   .main {
     padding: 1rem;
   }
-  
+
   .section {
     margin-bottom: 2rem;
   }
-  
+
   .sectionHeader h2 {
     font-size: 1.5rem;
   }
-  
+
   .experienceContainer {
     gap: 1.5rem;
   }
-  
+
   .portfolioFrame {
     height: 300px;
   }
+}
+
+.interactivePreviews {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-top: 1.5rem;
+}
+
+.previewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.previewTitle {
+  font-size: 1.1rem !important;
+  margin: 0 !important;
+}
+
+.previewTitle a {
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.previewTitle a:hover {
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
 }

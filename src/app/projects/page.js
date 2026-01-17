@@ -16,6 +16,7 @@ const projects = [
     }
 ];
 
+
 export default function ProjectsPage() {
     return (
         <div className={styles.page}>
