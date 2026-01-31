@@ -187,6 +187,50 @@
   color: var(--muted);
 }
 
+/* Base video and iframe styling */
+.content video,
+.content iframe {
+  display: block;
+  margin: 2rem auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Iframe styling - horizontal videos with 16:9 aspect ratio */
+.content iframe {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+/* Video styling - constrain dimensions to prevent overwhelming content */
+.content video {
+  max-width: 100%;
+  max-height: 150px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Desktop: Further constrain video width */
+@media (min-width: 769px) {
+  .content video {
+    max-width: 450px;
+  }
+}
+
+/* Mobile: Tighter height constraints, full width */
+@media (max-width: 768px) {
+  .content video,
+  .content iframe {
+    margin: 1.5rem auto;
+  }
+
+  .content video {
+    max-width: 90vw;
+    max-height: 125px;
+  }
+}
+
 /* Scores Panel */
 .scores {
   background: var(--panel-bg);
