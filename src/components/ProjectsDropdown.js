@@ -39,6 +39,13 @@ export default function ProjectsDropdown({ onClose }) {
             {isOpen && (
                 <div className={styles.menu}>
                     <Link
+                        href="/projects/youtube-scholar"
+                        className={styles.menuItem}
+                        onClick={handleLinkClick}
+                    >
+                        YouTube Scholar
+                    </Link>
+                    <Link
                         href="/side-track"
                         className={styles.menuItem}
                         onClick={handleLinkClick}

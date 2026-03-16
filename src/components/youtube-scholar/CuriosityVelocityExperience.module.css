@@ -1,0 +1,362 @@
+.main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 8rem 1.5rem 5rem;
+  display: grid;
+  gap: 1.75rem;
+  color: #f3f2ef;
+  font-family: var(--font-geist-sans);
+}
+
+.hero,
+.chartSectionGrid,
+.footerGrid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.hero {
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  align-items: start;
+}
+
+.chartSectionGrid,
+.footerGrid {
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+}
+
+.heroCopy h1 {
+  font-size: clamp(3rem, 7vw, 5.3rem);
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+  max-width: 9ch;
+  margin-bottom: 1rem;
+}
+
+.heroSubtitle,
+.bodyCopy,
+.sectionHeader p,
+.metricDetail,
+.episodeSummary {
+  color: #c8ced7;
+  line-height: 1.7;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8fb8de;
+  margin-bottom: 0.75rem;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 1.8rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.chartCard,
+.sideCard,
+.noteCard,
+.metricCard,
+.episodeCard {
+  position: relative;
+  background:
+    radial-gradient(circle at top left, rgba(143, 184, 222, 0.14), transparent 36%),
+    linear-gradient(180deg, rgba(17, 22, 29, 0.96), rgba(8, 10, 14, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+}
+
+.chartCard,
+.sideCard,
+.noteCard {
+  padding: 1.5rem;
+}
+
+.metricGrid,
+.highlightsGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.metricGrid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.highlightsGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.metricCard {
+  padding: 1rem;
+}
+
+.metricValue {
+  font-size: clamp(1.45rem, 3vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.metricLabel {
+  margin-top: 0.4rem;
+  color: #eef2f7;
+}
+
+.metricDetail {
+  margin-top: 0.45rem;
+  font-size: 0.86rem;
+}
+
+.sectionHeader {
+  margin-bottom: 1rem;
+}
+
+.sectionHeader h2,
+.sideCardHeader h3,
+.noteCard h3 {
+  font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  margin-bottom: 0.7rem;
+}
+
+.legendRow,
+.phaseLegend,
+.episodeMeta,
+.episodeHeader,
+.copyStack {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.legendRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.legendItem,
+.phaseLegendItem,
+.topicPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.legendSwatch,
+.phaseSwatch {
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.chartSurface {
+  position: relative;
+}
+
+.chartPlaceholder {
+  position: relative;
+  min-height: 260px;
+  border-radius: 20px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
+    rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.chartPlaceholderGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 100% 56px, 72px 100%;
+  opacity: 0.55;
+}
+
+.chartPlaceholderGlow {
+  position: absolute;
+  inset: auto 10% 18% 8%;
+  height: 34%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(103, 193, 184, 0.28), rgba(242, 166, 90, 0.22));
+  filter: blur(34px);
+  opacity: 0.8;
+}
+
+.svgChart {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.axisText {
+  fill: #8f98a7;
+  color: #8f98a7;
+  font-size: 0.8rem;
+}
+
+.tooltip,
+.tooltipStatic {
+  position: absolute;
+  z-index: 2;
+  width: min(320px, calc(100% - 2rem));
+  padding: 0.8rem 0.95rem;
+  border-radius: 16px;
+  background: rgba(6, 10, 14, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.28);
+  pointer-events: none;
+}
+
+.tooltip {
+  left: 1rem;
+  bottom: 1rem;
+}
+
+.tooltipStatic {
+  right: 1rem;
+  top: 1rem;
+}
+
+.tooltip strong,
+.tooltipStatic strong {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.tooltip span,
+.tooltipStatic span {
+  display: block;
+  color: #c8ced7;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.phaseLegend {
+  margin-top: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.sideCardHeader {
+  margin-bottom: 1rem;
+}
+
+.episodeList {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.episodeCard {
+  padding: 1rem;
+}
+
+.phaseBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.episodeDates,
+.highlightLabel {
+  color: #9ea8b6;
+  font-size: 0.86rem;
+}
+
+.episodeTopic {
+  display: block;
+  margin: 0.75rem 0 0.35rem;
+  font-size: 1rem;
+}
+
+.episodeMeta {
+  margin-top: 0.9rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  color: #9ea8b6;
+  font-size: 0.82rem;
+}
+
+.copyStack {
+  margin-bottom: 1rem;
+}
+
+.expandButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(103, 193, 184, 0.28);
+  background: rgba(103, 193, 184, 0.12);
+  color: #dff8f5;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.expandButton:hover {
+  transform: translateY(-1px);
+  border-color: rgba(103, 193, 184, 0.45);
+  background: rgba(103, 193, 184, 0.16);
+}
+
+@media (max-width: 1100px) {
+  .hero,
+  .chartSectionGrid,
+  .footerGrid,
+  .highlightsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .metricGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .main {
+    padding: 7rem 1rem 4rem;
+    gap: 1.25rem;
+  }
+
+  .chartCard,
+  .sideCard,
+  .noteCard {
+    padding: 1.15rem;
+    border-radius: 20px;
+  }
+
+  .metricGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .episodeMeta {
+    grid-template-columns: 1fr;
+  }
+
+  .tooltip,
+  .tooltipStatic {
+    position: static;
+    width: 100%;
+    margin-top: 0.75rem;
+    transform: none;
+  }
+}

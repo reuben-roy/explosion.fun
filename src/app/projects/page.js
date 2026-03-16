@@ -9,6 +9,12 @@ export const metadata = {
 
 const projects = [
     {
+        title: 'Chief Information Aggregator & YouTube Scholar',
+        description: 'An interactive D3.js case study that turns my YouTube Takeout history into a dark-theme research dashboard about curiosity, learning loops, and rabbit holes.',
+        link: '/projects/youtube-scholar',
+        linkText: 'View Experience'
+    },
+    {
         title: 'Side-Track',
         description: 'A task tracking app designed to help you stay focused and manage your time effectively. Check out the changelog and release notes.',
         link: '/side-track',
