@@ -1,43 +1,54 @@
 .container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 4rem 1.5rem 4rem;
-  color: #e2e8f0;
+  padding: 8rem 1.5rem 5rem;
+  display: grid;
+  gap: 3rem;
+  color: #f3f2ef;
+  font-family: var(--font-geist-sans);
 }
 
 /* Header */
 .header {
-  text-align: center;
-  padding: 3rem 1rem 2rem;
-  margin-bottom: 2rem;
-  background: linear-gradient(135deg, rgba(79, 70, 229, 0.15), rgba(59, 130, 246, 0.1));
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.5rem;
 }
 
 .header h1 {
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 800;
-  color: #f8fafc;
-  margin: 0 0 0.5rem;
-  letter-spacing: -0.04em;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+  color: #f3f2ef;
+  margin: 0 0 1.25rem;
 }
 
 .header p {
-  color: #8f98a7;
-  font-size: 1rem;
+  color: #d0d6de;
+  font-size: 1.1rem;
+  line-height: 1.7;
   margin: 0;
+  max-width: 62ch;
+}
+
+/* Section Title */
+.sectionTitle {
+  font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: #f3f2ef;
+  margin: 0 0 1.25rem 0;
 }
 
 /* KPI Grid */
 .kpiGrid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 1rem;
-  margin-bottom: 2.5rem;
 }
 
+/* Cards */
+.card,
+.findingCard,
+.recCard,
 .kpiCard {
   position: relative;
   background:
@@ -50,8 +61,11 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
-  padding: 1.25rem;
-  text-align: center;
+}
+
+.kpiCard {
+  padding: 1.1rem 1rem;
+  text-align: left;
   transition: transform 160ms ease, border-color 160ms ease;
 }
 
@@ -61,40 +75,32 @@
 }
 
 .kpiValue {
-  font-size: clamp(1.4rem, 3vw, 1.75rem);
-  font-weight: 800;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
   letter-spacing: -0.04em;
   margin-bottom: 0.25rem;
 }
 
 .kpiLabel {
-  font-size: 0.8rem;
-  color: #8f98a7;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  font-size: 0.95rem;
+  color: #eef2f7;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .kpiSub {
-  font-size: 0.75rem;
+  font-size: 0.86rem;
   color: #8f98a7;
-  margin-top: 0.35rem;
-}
-
-/* Section Title */
-.sectionTitle {
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
-  font-weight: 700;
-  color: #f8fafc;
-  margin: 2.5rem 0 1rem;
-  letter-spacing: -0.04em;
+  margin-top: 0.45rem;
+  line-height: 1.5;
 }
 
 /* Grid layouts */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .grid2 {
@@ -107,58 +113,24 @@
   grid-column: 1 / -1;
 }
 
-/* Cards */
 .card {
-  position: relative;
-  background:
-    radial-gradient(
-      circle at top left,
-      rgba(143, 184, 222, 0.14),
-      transparent 36%
-    ),
-    linear-gradient(180deg, rgba(17, 22, 29, 0.96), rgba(8, 10, 14, 0.98));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
   padding: 1.5rem;
   overflow: hidden;
 }
 
 .findingCard {
-  position: relative;
-  background:
-    radial-gradient(
-      circle at top left,
-      rgba(143, 184, 222, 0.14),
-      transparent 36%
-    ),
-    linear-gradient(180deg, rgba(17, 22, 29, 0.96), rgba(8, 10, 14, 0.98));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
-  padding: 1.25rem;
+  padding: 1.5rem;
 }
 
 .findingCard p {
-  color: #8f98a7;
-  font-size: 0.875rem;
+  color: #c8ced7;
+  font-size: 0.95rem;
   line-height: 1.7;
   margin: 0.75rem 0 0;
 }
 
 .recCard {
-  position: relative;
-  background:
-    radial-gradient(
-      circle at top left,
-      rgba(143, 184, 222, 0.14),
-      transparent 36%
-    ),
-    linear-gradient(180deg, rgba(17, 22, 29, 0.96), rgba(8, 10, 14, 0.98));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
-  padding: 1.25rem;
+  padding: 1.5rem;
   transition: transform 160ms ease, border-color 160ms ease;
 }
 
@@ -168,14 +140,14 @@
 }
 
 .recCard h3 {
-  font-size: 1rem;
-  color: #f8fafc;
+  font-size: 1.1rem;
+  color: #f3f2ef;
   margin: 0 0 0.5rem;
 }
 
 .recCard p {
-  color: #8f98a7;
-  font-size: 0.85rem;
+  color: #c8ced7;
+  font-size: 0.95rem;
   line-height: 1.7;
   margin: 0;
 }
@@ -215,8 +187,8 @@
 
 .chartSubtitle {
   color: #8f98a7;
-  font-size: 0.8rem;
-  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
 }
 
 /* Tooltip */
@@ -226,29 +198,40 @@
   background: rgba(6, 10, 14, 0.96);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 16px;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.8rem;
-  color: #e2e8f0;
+  padding: 0.8rem 0.95rem;
+  font-size: 0.9rem;
+  color: #c8ced7;
   z-index: 10;
   white-space: nowrap;
   box-shadow: 0 18px 54px rgba(0, 0, 0, 0.28);
+  line-height: 1.5;
+}
+
+.tooltip strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #f3f2ef;
 }
 
 /* Legend */
 .legendRow {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.65rem;
   justify-content: center;
-  padding-top: 0.75rem;
+  padding-top: 1.25rem;
 }
 
 .legendItem {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  font-size: 0.75rem;
-  color: #8f98a7;
+  gap: 0.55rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: #c8ced7;
+  font-size: 0.85rem;
 }
 
 .legendDot {
@@ -263,28 +246,32 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 .table th {
   text-align: left;
-  padding: 0.6rem 0.75rem;
+  padding: 0.8rem 0.95rem;
   color: #8f98a7;
   font-weight: 600;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .table td {
-  padding: 0.5rem 0.75rem;
+  padding: 0.8rem 0.95rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   color: #e2e8f0;
 }
 
+.table tbody tr {
+  transition: background 160ms ease;
+}
+
 .table tbody tr:hover {
-  background: rgba(79, 70, 229, 0.06);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .tableScroll {
@@ -311,7 +298,7 @@
   display: flex;
   gap: 0.75rem;
   align-items: flex-start;
-  padding: 0.75rem 0;
+  padding: 0.85rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -326,29 +313,34 @@
 }
 
 .insightContent {
-  font-size: 0.85rem;
-  color: #8f98a7;
+  font-size: 0.95rem;
+  color: #c8ced7;
   line-height: 1.7;
 }
 
 .insightContent strong {
-  color: #e2e8f0;
+  color: #f3f2ef;
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
   .kpiGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 7rem 1rem 4rem;
+    gap: 2rem;
+  }
+
+  .header h1 {
+    font-size: clamp(2.5rem, 8vw, 3rem);
+  }
+
   .kpiGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .grid,
@@ -361,10 +353,7 @@
   .recCard,
   .kpiCard {
     border-radius: 20px;
-  }
-
-  .container {
-    padding: 3rem 1rem 3rem;
+    padding: 1.15rem;
   }
 }
 
