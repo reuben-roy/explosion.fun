@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Analysis Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --neutral: #6b7280;
+            --bg: #0f1117;
+            --card-bg: #1a1d2e;
+            --card-border: #2a2d3e;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --text-bright: #f8fafc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding-bottom: 60px;
+        }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #4338ca 100%);
+            color: white;
+            padding: 48px 20px 40px;
+            margin-bottom: 40px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.03em; }
+        .subtitle { font-size: 1.1rem; opacity: 0.85; font-weight: 300; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        .grid-full { grid-column: 1 / -1; }
+        .grid-2 { grid-column: span 2; }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--card-border);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        .card h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            color: var(--text-bright);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .card h2 span { font-size: 0.8rem; color: var(--text-muted); font-weight: 400; }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .kpi-card {
+            background: var(--card-bg);
+            padding: 20px 16px;
+            border-radius: 14px;
+            text-align: center;
+            border: 1px solid var(--card-border);
+            border-top: 3px solid transparent;
+        }
+        .kpi-value { font-size: 2.2rem; font-weight: 800; margin: 8px 0; line-height: 1; color: var(--text-bright); }
+        .kpi-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+        .kpi-sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+
+        .chart-container { position: relative; height: 300px; width: 100%; }
+        .chart-container-sm { position: relative; height: 250px; width: 100%; }
+        .chart-container-tall { position: relative; height: 360px; width: 100%; }
+
+        .insight-list { list-style: none; }
+        .insight-item {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            align-items: start;
+            gap: 14px;
+        }
+        .insight-item:last-child { border-bottom: none; }
+        .insight-icon { font-size: 1.3rem; line-height: 1; margin-top: 2px; }
+        .insight-content h4 { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; color: var(--text-bright); }
+        .insight-content p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+        .insight-content strong { color: var(--text-bright); }
+
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        th { text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--card-border); color: var(--text-muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+        td { padding: 10px 12px; border-bottom: 1px solid var(--card-border); color: var(--text-main); }
+        tr:last-child td { border-bottom: none; }
+        .progress-bar { height: 6px; background: #2a2d3e; border-radius: 3px; overflow: hidden; width: 80px; }
+        .progress-fill { height: 100%; border-radius: 3px; }
+
+        .heatmap-table { border-collapse: collapse; font-size: 0.75rem; width: 100%; }
+        .heatmap-table th, .heatmap-table td { padding: 7px 5px; text-align: center; border: 1px solid var(--card-border); }
+        .heatmap-table th { background: rgba(255,255,255,0.03); font-weight: 600; color: var(--text-muted); white-space: nowrap; }
+        .heatmap-cell { border-radius: 4px; font-weight: 600; min-width: 40px; }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 56px 0 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--card-border);
+            color: var(--text-bright);
+            letter-spacing: -0.01em;
+        }
+
+        .finding-card {
+            background: linear-gradient(135deg, rgba(79,70,229,0.08) 0%, rgba(124,58,237,0.05) 100%);
+            border: 1px solid rgba(79,70,229,0.25);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+        }
+        .finding-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--text-bright); margin-bottom: 6px; }
+        .finding-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+        .finding-card .num { display: inline-block; background: var(--primary); color: white; width: 22px; height: 22px; border-radius: 50%; text-align: center; font-size: 0.75rem; line-height: 22px; font-weight: 700; margin-right: 8px; }
+
+        .rec-card {
+            background: rgba(16,185,129,0.06);
+            border: 1px solid rgba(16,185,129,0.2);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 10px;
+        }
+        .rec-card h4 { font-size: 0.9rem; font-weight: 700; color: #34d399; margin-bottom: 4px; }
+        .rec-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+        .tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.03em; }
+        .tag-red { background: rgba(239,68,68,0.15); color: #f87171; }
+        .tag-green { background: rgba(16,185,129,0.15); color: #34d399; }
+        .tag-blue { background: rgba(79,70,229,0.15); color: #818cf8; }
+        .tag-yellow { background: rgba(245,158,11,0.15); color: #fbbf24; }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-column: 1; }
+            h1 { font-size: 1.8rem; }
+            .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>Time Analysis Dashboard</h1>
+        <div class="subtitle" id="date-range">Loading...</div>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- KPI Row -->
+    <div class="kpi-grid">
+        <div class="kpi-card" style="border-top-color: var(--primary);">
+            <div class="kpi-label">Productive</div>
+            <div class="kpi-value" id="kpi-productive">--</div>
+            <div class="kpi-sub" id="kpi-productive-sub"></div>
+        </div>
+        <div class="kpi-card" style="border-top-color: var(--danger);">
+            <div class="kpi-label">Entertainment</div>
+            <div class="kpi-value" id="kpi-entertainment">--</div>
+            <div class="kpi-sub" id="kpi-entertainment-sub"></div>
+        </div>
+        <div class="kpi-card" style="border-top-color: var(--warning);">
+            <div class="kpi-label">Focus Score</div>
+            <div class="kpi-value" id="kpi-focus">--</div>
+            <div class="kpi-sub">Productive / Active</div>
+        </div>
+        <div class="kpi-card" style="border-top-color: #8b5cf6;">
+            <div class="kpi-label">Deep Work</div>
+            <div class="kpi-value" id="kpi-deepwork">--</div>
+            <div class="kpi-sub" id="kpi-deepwork-sub">Sessions >= 25 min</div>
+        </div>
+        <div class="kpi-card" style="border-top-color: var(--success);">
+            <div class="kpi-label">Sleep Avg</div>
+            <div class="kpi-value" id="kpi-sleep">--</div>
+            <div class="kpi-sub" id="kpi-sleep-sub"></div>
+        </div>
+        <div class="kpi-card" style="border-top-color: #06b6d4;">
+            <div class="kpi-label">Frag. Index</div>
+            <div class="kpi-value" id="kpi-frag">--</div>
+            <div class="kpi-sub">Sessions / prod hour</div>
+        </div>
+    </div>
+
+    <!-- Executive Summary -->
+    <div class="card grid-full" style="margin-bottom: 24px;">
+        <h2>Key Findings</h2>
+        <div id="findings-container"></div>
+    </div>
+
+    <!-- Row 1: Hourly Rhythm + Activity Breakdown -->
+    <div class="grid">
+        <div class="card grid-2">
+            <h2>Hourly Activity Rhythm <span>Avg mins / hour (stacked)</span></h2>
+            <div class="chart-container">
+                <canvas id="hourlyChart"></canvas>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Time Allocation</h2>
+            <div class="chart-container-sm">
+                <canvas id="activityDoughnut"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 2: Focus Stats + Top Distractions -->
+    <div class="grid">
+        <div class="card">
+            <h2>Focus & Fragmentation</h2>
+            <div class="insight-list">
+                <div class="insight-item">
+                    <span class="insight-icon">&#x1f9e9;</span>
+                    <div class="insight-content">
+                        <h4>Context Switching</h4>
+                        <p>You switch apps roughly <strong id="ctx-switch-rate">0</strong> times per active hour. Peaks at <strong id="ctx-switch-peak">0</strong> switches/hr.</p>
+                    </div>
+                </div>
+                <div class="insight-item">
+                    <span class="insight-icon">&#x23f1;&#xfe0f;</span>
+                    <div class="insight-content">
+                        <h4>Avg Productive Session</h4>
+                        <p><strong id="avg-prod-session">0</strong> min avg, <strong id="median-prod-session">0</strong> min median. <span class="tag tag-red" id="pct-under-2">0%</span> are under 2 min.</p>
+                    </div>
+                </div>
+                <div class="insight-item">
+                    <span class="insight-icon">&#x1f6d1;</span>
+                    <div class="insight-content">
+                        <h4>Avg Entertainment Session</h4>
+                        <p><strong id="avg-ent-session">0</strong> min avg -- <strong id="ent-vs-prod-ratio">0</strong>x longer than productive sessions.</p>
+                    </div>
+                </div>
+                <div class="insight-item">
+                    <span class="insight-icon">&#x1f4aa;</span>
+                    <div class="insight-content">
+                        <h4>Deep Work Record</h4>
+                        <p>Longest unbroken productive block: <strong id="max-prod-session">0</strong> min. Only <strong id="deep-sessions-total">0</strong> sessions hit 25+ min in <span id="total-days-span">0</span> days.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card grid-2">
+            <h2>Top Time Sinks <span>Entertainment</span></h2>
+            <table id="distraction-table">
+                <thead><tr><th>Activity</th><th>Duration</th><th>Impact</th></tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Deep Analysis Section -->
+    <h2 class="section-title">Deep Analysis</h2>
+
+    <!-- Row 3: Circadian + Session Duration -->
+    <div class="grid">
+        <div class="card grid-2">
+            <h2>Circadian Focus Ratio <span>% of active time by hour</span></h2>
+            <div class="chart-container">
+                <canvas id="circadianChart"></canvas>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Session Duration Distribution <span>% of sessions</span></h2>
+            <div class="chart-container-sm">
+                <canvas id="sessionHistogram"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 4: Day-of-Week + Transition Matrix -->
+    <div class="grid">
+        <div class="card grid-2">
+            <h2>Day-of-Week Breakdown <span>daily avg hours</span></h2>
+            <div class="chart-container">
+                <canvas id="dowChart"></canvas>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Transition Heatmap <span>% of exits</span></h2>
+            <div style="overflow-x: auto;">
+                <table class="heatmap-table" id="transition-table"></table>
+            </div>
+            <div style="margin-top: 10px; font-size: 0.75rem; color: var(--text-muted);">
+                Row = from, Column = to. Darker = more frequent.
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 5: Drift Paths + Stickiness -->
+    <div class="grid">
+        <div class="card">
+            <h2>Top Drift Paths <span>Productive &#8594; Entertainment</span></h2>
+            <table id="drift-table">
+                <thead><tr><th>Path</th><th>Count</th></tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="card">
+            <h2>Distraction Stickiness <span>% chance you stay</span></h2>
+            <div class="chart-container-sm">
+                <canvas id="stickinessChart"></canvas>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Top Categories <span>by total hours</span></h2>
+            <div class="chart-container-sm">
+                <canvas id="projectsChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interests Section -->
+    <h2 class="section-title">Interests & Affinities</h2>
+
+    <div class="grid">
+        <div class="card">
+            <h2>YouTube Topics <span>hours by category</span></h2>
+            <div class="chart-container-sm">
+                <canvas id="ytTopicsChart"></canvas>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Anime Breakdown <span>hours per show</span></h2>
+            <div class="chart-container-sm">
+                <canvas id="animeChart"></canvas>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Sleep vs Productivity</h2>
+            <div class="insight-list">
+                <div class="insight-item">
+                    <span class="insight-icon">&#x1f4a4;</span>
+                    <div class="insight-content">
+                        <h4>Sleep Consistency</h4>
+                        <p>Avg <strong id="sleep-mean">0</strong>h/night (range: <span id="sleep-range">0-0</span>h). Std dev: <strong id="sleep-std">0</strong>h.</p>
+                    </div>
+                </div>
+                <div class="insight-item">
+                    <span class="insight-icon">&#x2705;</span>
+                    <div class="insight-content">
+                        <h4>After Good Sleep (&ge;<span id="sleep-thresh">0</span>h)</h4>
+                        <p><strong id="good-sleep-prod">0</strong>h productive, <strong id="good-sleep-ent">0</strong>h entertainment</p>
+                    </div>
+                </div>
+                <div class="insight-item">
+                    <span class="insight-icon">&#x274c;</span>
+                    <div class="insight-content">
+                        <h4>After Poor Sleep</h4>
+                        <p><strong id="bad-sleep-prod">0</strong>h productive, <strong id="bad-sleep-ent">0</strong>h entertainment</p>
+                    </div>
+                </div>
+                <div class="insight-item">
+                    <span class="insight-icon">&#x1f4c8;</span>
+                    <div class="insight-content">
+                        <h4>Correlation</h4>
+                        <p>Sleep &#8596; Productivity: <strong id="corr-prod">0</strong> &nbsp; Sleep &#8596; Entertainment: <strong id="corr-ent">0</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Late Night + Willpower -->
+    <div class="grid">
+        <div class="card">
+            <h2>Late Night Audit <span>10pm - 2am</span></h2>
+            <div class="chart-container-sm">
+                <canvas id="lateNightChart"></canvas>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Willpower Depletion</h2>
+            <div class="chart-container-sm">
+                <canvas id="willpowerChart"></canvas>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Guilty Pleasures <span>Return-to-work rate</span></h2>
+            <table id="guilty-table">
+                <thead><tr><th>Category</th><th>Return Rate</th><th>Verdict</th></tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Recommendations -->
+    <h2 class="section-title">Recommendations</h2>
+    <div id="recommendations-container" style="max-width: 800px;"></div>
+
+</div>
+
+<script>
+const DATA = {"total_seconds": 1507516.025, "total_days": 31, "date_range": {"start": "2026-02-15", "end": "2026-03-17"}, "daily_avg_hours": 13.51, "project_breakdown": {"Sleep": 192046.0, "Sample Projects \u25b8 Web Browsing": 184539.532, "YouTube": 166106.803, "Socializing": 165655.0, "Life Maintenance": 143569.0, "Coding": 119154.406, "Anime": 78465.396, "AI Tools": 60981.665, "Career": 49874.773, "University": 43042.702, "Google Docs": 41298.151, "Messaging": 37345.652, "Job Prep": 32325.0, "Uncategorized": 32146.471, "Part Time": 30227.0, "Planning/Journaling": 22009.995, "Networking": 17707.0, "Social Media": 16233.552, "Email": 12101.9, "Sample Projects \u25b8 Web Browsing \u25b8 Education & Research": 9340.023, "Sample Projects \u25b8 Communication": 8929.536, "Sample Projects \u25b8 File Management": 7754.364, "Shopping": 7531.503, "Sample Projects \u25b8 Office & Business": 7089.133, "Data Science": 5892.86, "Sample Projects \u25b8 Web Browsing \u25b8 Other Unproductive": 5121.0, "Music": 2863.417, "Google Drive": 2389.339, "Sample Projects \u25b8 Web Browsing \u25b8 Tech": 2156.6639999999998, "Sample Projects \u25b8 Reading & Writing": 1417.901, "Entertainment": 817.0, "Design": 708.657, "Sample Projects \u25b8 Web Browsing \u25b8 Shopping & Travel": 230.045, "Reading": 102.05300000000001, "Shipping": 80.963, "Wiki Browsing": 76.983, "Dev Tools": 47.996, "Sample Projects \u25b8 Graphics": 29.067, "Learning Video": 26.338, "Sample Projects \u25b8 Web Browsing \u25b8 News & Procrastination": 15.0, "Sample Projects \u25b8 Development": 14.099, "Planning": 12.882000000000001, "Wikipedia": 12.154, "Sample Projects \u25b8 Finance": 9.995000000000001, "Navigation": 9.001, "Calendar": 3.059, "Google Sheets": 2.997, "Sample Projects \u25b8 Web Browsing \u25b8 Social Media": 1.998}, "activity_type_breakdown": {"Education": 43183.247, "Entertainment": 263746.151, "Life": 151190.467, "Neutral": 339870.828, "Productive": 314478.68, "Sleep": 192046.0, "Social": 203000.652}, "app_breakdown": {"Brave Browser": 699934.326, "Code": 72704.282, "WhatsApp": 28756.821, "Safari": 18348.7, "Terminal": 12465.812, "Codex": 12423.761, "Notion": 10377.1, "zoom.us": 8901.347, "Finder": 7854.37, "cmux": 6310.023, "Slack": 5487.578, "Android Studio": 4435.421, "Windows App": 3679.974, "Telegram": 3101.253, "Spotify": 2755.132, "System Settings": 2130.819, "Bitwarden": 1792.315, "Timing Tracker": 1729.08, "Preview": 1285.906, "Timing": 1264.904}, "top_distractions": {"Watch Sentenced to Be a Hero English Sub/Dub online Free on HiAnime.to - Audio playing": 14045.575, "Watch Clevatess English Sub/Dub online Free on HiAnime.to - Audio playing": 11616.535, "YouTube": 6837.456, "Watch The Legend of Hei English Sub/Dub online Free on HiAnime.to - Audio playing": 6488.478999999999, "Watch Clevatess English Sub/Dub online Free on HiAnime.to": 6070.034, "Watch Grimgar: Ashes and Illusions English Sub/Dub online Free on HiAnime.to": 5447.886, "Watch Sentenced to Be a Hero English Sub/Dub online Free on HiAnime.to": 5235.539, "This Got Way Worse - YouTube - Audio playing": 4271.945, "Blind Dating: Trevor Wallace vs Zach Justice - YouTube - Audio playing": 3894.887, "Watch Jujutsu Kaisen: The Culling Game Part 1 English Sub/Dub online Free on HiAnime.to": 3826.666, "Watch Jujutsu Kaisen: The Culling Game Part 1 English Sub/Dub online Free on HiAnime.to - Audio playing": 3759.9629999999997, "Watch The Legend of Hei English Sub/Dub online Free on HiAnime.to": 3458.421, "Watch Jack-of-All-Trades, Party of None English Sub/Dub online Free on HiAnime.to - Audio playing": 3417.8430000000003, "Watch Grimgar: Ashes and Illusions English Sub/Dub online Free on HiAnime.to - Audio playing": 2797.327, "Onion News Network S2E1 - Asteroid Heads to Earth - YouTube": 2717.091, "Home / X": 2588.306, "Instagram": 2374.234, "War With Iran - YouTube": 2309.949, "The Economy Can't Survive This - YouTube": 2104.23, "Pakistan and Afghanistan are At War. - YouTube - Audio playing": 1999.155}, "top_productive": {"Google Gemini": 42560.09, "OpenClaw Control": 17016.212, "Plan - Google Docs": 13461.786, "DeveloperWeek": 13318.894, "PhysicsGrader": 12017.067000000001, "Journal - Pinned": 9440.615, "Welcome": 7188.2210000000005, "Walmart Split - Google Sheets": 5749.471, "Kali": 5034.71, "Kaggle Notebook Editor": 4918.614, "Feed | LinkedIn": 4786.178, "ar-chatbot-python": 4716.204, "Welcome \u2014 Spread-Out": 4478.737, "-zsh": 4281.51, "MS 3-Data Munging and Visualization": 3572.204, "ser541_26sc_project": 3221.2, "Developer Week": 2717.243, "OpenClaw Canvas \u2014 PhysicsGrader": 2669.3880000000004, "Untitled document - Google Docs": 2566.687, "ubuntu@reuben-vnic: ~ \u2014 ssh -i ~/Downloads/Oracle Cloud/ssh-key-2026-03-13-2.key ubuntu@163.192.14.110": 2341.315}, "hourly_distribution": {"Neutral": {"0": 6.9, "1": 3.6, "2": 1.5, "3": 2.3, "4": 0.0, "5": 0.0, "6": 6.1, "7": 0.3, "8": 0.4, "9": 4.7, "10": 9.8, "11": 15.2, "12": 11.0, "13": 15.2, "14": 12.6, "15": 15.5, "16": 11.8, "17": 12.2, "18": 9.1, "19": 13.3, "20": 6.0, "21": 12.1, "22": 8.8, "23": 4.2}, "Life": {"0": 0.0, "1": 1.6, "2": 0.3, "3": 0.0, "4": 0.0, "5": 0.0, "6": 1.1, "7": 3.1, "8": 2.6, "9": 4.4, "10": 5.3, "11": 4.1, "12": 9.7, "13": 4.3, "14": 3.2, "15": 15.7, "16": 2.7, "17": 10.9, "18": 1.6, "19": 1.1, "20": 2.4, "21": 0.8, "22": 4.0, "23": 2.3}, "Productive": {"0": 4.9, "1": 2.4, "2": 2.9, "3": 1.1, "4": 0.9, "5": 1.6, "6": 0.6, "7": 0.5, "8": 2.3, "9": 2.6, "10": 9.3, "11": 10.5, "12": 10.1, "13": 8.2, "14": 6.1, "15": 10.3, "16": 14.6, "17": 16.1, "18": 10.2, "19": 7.3, "20": 12.8, "21": 12.3, "22": 10.2, "23": 11.4}, "Sleep": {"0": 10.8, "1": 18.1, "2": 24.8, "3": 43.2, "4": 0.0, "5": 0.0, "6": 1.2, "7": 2.5, "8": 0.0, "9": 0.0, "10": 1.4, "11": 0.0, "12": 0.3, "13": 0.0, "14": 0.0, "15": 0.0, "16": 0.0, "17": 0.0, "18": 0.0, "19": 0.0, "20": 0.0, "21": 0.8, "22": 0.0, "23": 0.0}, "Social": {"0": 3.9, "1": 1.6, "2": 0.2, "3": 0.0, "4": 0.0, "5": 0.0, "6": 0.1, "7": 0.0, "8": 5.5, "9": 0.2, "10": 0.6, "11": 1.6, "12": 1.1, "13": 2.4, "14": 3.5, "15": 4.1, "16": 3.1, "17": 10.4, "18": 19.1, "19": 8.9, "20": 6.8, "21": 10.6, "22": 10.2, "23": 15.5}, "Entertainment": {"0": 14.3, "1": 13.9, "2": 1.5, "3": 1.6, "4": 0.3, "5": 0.1, "6": 0.1, "7": 1.5, "8": 1.2, "9": 4.1, "10": 3.8, "11": 6.2, "12": 6.4, "13": 4.4, "14": 6.9, "15": 7.4, "16": 5.9, "17": 6.0, "18": 9.3, "19": 10.7, "20": 6.3, "21": 7.1, "22": 12.2, "23": 10.9}, "Education": {"0": 0.2, "1": 0.0, "2": 0.1, "3": 0.1, "4": 0.0, "5": 0.0, "6": 0.0, "7": 0.0, "8": 0.0, "9": 0.0, "10": 1.9, "11": 2.1, "12": 1.4, "13": 2.2, "14": 1.0, "15": 0.4, "16": 1.7, "17": 2.7, "18": 2.6, "19": 2.1, "20": 2.1, "21": 1.3, "22": 0.6, "23": 0.6}}, "focus_stats": {"productive": {"count": 4792, "avg_duration_min": 1.09, "median_duration_min": 0.2, "max_duration_min": 50.4}, "entertainment": {"count": 1353, "avg_duration_min": 3.25, "median_duration_min": 0.27, "max_duration_min": 168.0}, "education": {"count": 679, "avg_duration_min": 1.06, "median_duration_min": 0.15, "max_duration_min": 48.2}}, "context_switching": {"0": 4.2, "1": 2.1, "2": 0.6, "3": 0.5, "4": 0.0, "5": 0.0, "6": 0.7, "7": 0.6, "8": 1.6, "9": 3.4, "10": 8.1, "11": 9.4, "12": 10.0, "13": 7.7, "14": 8.5, "15": 10.8, "16": 14.1, "17": 17.6, "18": 11.7, "19": 10.5, "20": 10.5, "21": 13.5, "22": 8.9, "23": 7.3}, "type_switching": {"0": 7.2, "1": 3.1, "2": 2.3, "3": 1.5, "4": 0.1, "5": 0.3, "6": 1.0, "7": 0.9, "8": 1.3, "9": 4.3, "10": 9.2, "11": 8.6, "12": 11.4, "13": 10.5, "14": 10.8, "15": 13.5, "16": 16.9, "17": 19.5, "18": 12.5, "19": 10.7, "20": 15.9, "21": 16.5, "22": 11.3, "23": 9.5}, "flow_sessions": {"count": 11, "total_hours": 6.2, "per_day": 0.35}, "fragmentation_index": {"mean": 59.6, "best_day": "2026-02-28 00:00:00", "worst_day": "2026-03-09 00:00:00"}, "session_duration_profile": {"productive": {"session_count": 4792, "avg_min": 1.09, "median_min": 0.2, "max_min": 50.4, "total_hours": 87.4, "pct_under_2min": 85.3, "pct_under_5min": 95.2, "pct_over_25min": 0.2}, "entertainment": {"session_count": 1353, "avg_min": 3.25, "median_min": 0.27, "max_min": 168.0, "total_hours": 73.3, "pct_under_2min": 79.8, "pct_under_5min": 87.4, "pct_over_25min": 3.2}, "education": {"session_count": 679, "avg_min": 1.06, "median_min": 0.15, "max_min": 48.2, "total_hours": 12.0, "pct_under_2min": 88.5, "pct_under_5min": 94.7, "pct_over_25min": 0.4}, "social": {"session_count": 1024, "avg_min": 3.3, "median_min": 0.22, "max_min": 263.6, "total_hours": 56.4, "pct_under_2min": 88.6, "pct_under_5min": 94.0, "pct_over_25min": 3.4}, "neutral": {"session_count": 4371, "avg_min": 1.3, "median_min": 0.15, "max_min": 185.0, "total_hours": 94.4, "pct_under_2min": 89.8, "pct_under_5min": 95.4, "pct_over_25min": 0.8}}, "transition_matrix_pct": {"Education": {"Education": 0.0, "Entertainment": 8.1, "Life": 0.7, "Neutral": 42.1, "Productive": 42.3, "Sleep": 0.0, "Social": 6.8}, "Entertainment": {"Education": 3.6, "Entertainment": 0.0, "Life": 1.0, "Neutral": 42.1, "Productive": 44.5, "Sleep": 0.7, "Social": 8.1}, "Life": {"Education": 0.9, "Entertainment": 2.9, "Life": 0.0, "Neutral": 8.0, "Productive": 85.8, "Sleep": 0.0, "Social": 2.4}, "Neutral": {"Education": 6.6, "Entertainment": 13.0, "Life": 1.1, "Neutral": 0.0, "Productive": 68.7, "Sleep": 0.0, "Social": 10.5}, "Productive": {"Education": 6.1, "Entertainment": 12.4, "Life": 9.7, "Neutral": 63.5, "Productive": 0.0, "Sleep": 0.1, "Social": 8.2}, "Sleep": {"Education": 0.0, "Entertainment": 53.3, "Life": 0.0, "Neutral": 20.0, "Productive": 26.7, "Sleep": 0.0, "Social": 0.0}, "Social": {"Education": 4.4, "Entertainment": 11.0, "Life": 1.6, "Neutral": 41.6, "Productive": 41.4, "Sleep": 0.0, "Social": 0.0}}, "distraction_stickiness": {"Social Media": 65.7, "YouTube": 49.9, "Anime": 34.2, "Music": 22.4, "Wiki Browsing": 14.3}, "productive_to_entertainment_paths": {"Coding -> YouTube": 214, "AI Tools -> YouTube": 80, "Coding -> Anime": 62, "AI Tools -> Social Media": 56, "Career -> YouTube": 38, "Coding -> Social Media": 21, "Career -> Anime": 20, "Email -> YouTube": 17, "AI Tools -> Anime": 12, "Google Docs -> YouTube": 11}, "circadian_productive_ratio": {"0": 16.8, "1": 10.6, "2": 46.2, "3": 23.1, "4": 75.8, "5": 94.9, "6": 7.4, "7": 8.5, "8": 19.6, "9": 16.2, "10": 36.6, "11": 31.8, "12": 29.0, "13": 28.4, "14": 21.3, "15": 20.0, "16": 41.1, "17": 32.3, "18": 24.7, "19": 21.6, "20": 40.9, "21": 30.7, "22": 23.5, "23": 26.7}, "circadian_entertainment_ratio": {"0": 47.5, "1": 60.1, "2": 22.7, "3": 31.5, "4": 22.4, "5": 3.0, "6": 1.1, "7": 27.3, "8": 9.8, "9": 25.7, "10": 12.3, "11": 15.5, "12": 16.0, "13": 12.0, "14": 20.8, "15": 13.8, "16": 14.8, "17": 10.2, "18": 17.9, "19": 24.7, "20": 17.3, "21": 16.1, "22": 26.5, "23": 24.3}, "best_focus_hours": [16, 20, 10, 17, 11], "willpower_depletion": {"morning_8_12_ent_pct": 15.3, "afternoon_12_17_ent_pct": 15.2, "evening_17_22_ent_pct": 16.8}, "wake_to_work_latency": {"mean": 65.6, "median": 0.4}, "late_night_breakdown": {"Education": {"hours": 0.7, "pct": 0.8}, "Entertainment": {"hours": 26.5, "pct": 29.6}, "Life": {"hours": 4.1, "pct": 4.6}, "Neutral": {"hours": 12.2, "pct": 13.6}, "Productive": {"hours": 14.9, "pct": 16.7}, "Sleep": {"hours": 15.0, "pct": 16.7}, "Social": {"hours": 16.1, "pct": 18.0}}, "day_of_week": {"Monday": {"n_days": 5, "productive_h": 3.6, "education_h": 0.5, "entertainment_h": 2.7, "social_h": 1.2, "sleep_h": 1.2}, "Tuesday": {"n_days": 5, "productive_h": 2.9, "education_h": 0.8, "entertainment_h": 3.1, "social_h": 0.9, "sleep_h": 3.0}, "Wednesday": {"n_days": 4, "productive_h": 2.1, "education_h": 0.4, "entertainment_h": 2.8, "social_h": 0.9, "sleep_h": 0.1}, "Thursday": {"n_days": 4, "productive_h": 2.5, "education_h": 0.3, "entertainment_h": 2.1, "social_h": 1.5, "sleep_h": 2.4}, "Friday": {"n_days": 4, "productive_h": 3.2, "education_h": 0.3, "entertainment_h": 1.4, "social_h": 2.4, "sleep_h": 1.5}, "Saturday": {"n_days": 4, "productive_h": 1.7, "education_h": 0.1, "entertainment_h": 2.3, "social_h": 2.6, "sleep_h": 1.5}, "Sunday": {"n_days": 5, "productive_h": 3.4, "education_h": 0.2, "entertainment_h": 2.0, "social_h": 3.2, "sleep_h": 2.0}}, "weekday_vs_weekend": {"weekday": {"Education": 0.5, "Entertainment": 2.5, "Life": 1.6, "Neutral": 3.2, "Productive": 2.9, "Sleep": 1.7, "Social": 1.4}, "weekend": {"Education": 0.1, "Entertainment": 2.1, "Life": 0.8, "Neutral": 2.6, "Productive": 2.6, "Sleep": 1.8, "Social": 3.0}}, "sleep_consistency": {"mean_h": 4.1, "std_h": 3.0, "min_h": 0.5, "max_h": 7.9}, "youtube_topics": {"Other/Uncategorized": 29.7, "Tech/Programming": 8.5, "Politics/News": 3.2, "Entertainment/Comedy": 2.9, "Finance/Career": 1.0, "Gaming": 0.4, "Education/Science": 0.2, "Lifestyle": 0.2}, "anime_breakdown": {"Sentenced to Be a Hero": {"hours": 5.4, "sessions": 51}, "Clevatess": {"hours": 4.9, "sessions": 57}, "The Legend of Hei": {"hours": 2.8, "sessions": 21}, "Grimgar: Ashes and Illusions": {"hours": 2.3, "sessions": 89}, "Jujutsu Kaisen: The Culling Game Part 1": {"hours": 2.1, "sessions": 17}, "Jack-of-All-Trades, Party of None": {"hours": 1.5, "sessions": 23}, "Frieren: Beyond Journey's End Season 2": {"hours": 0.8, "sessions": 8}, "Tower of God Season 2": {"hours": 0.4, "sessions": 2}, "Search result for sentenced on HiAnime": {"hours": 0.4, "sessions": 3}, "Search result for clevatess on HiAnime - Audio playing": {"hours": 0.4, "sessions": 2}}, "most_initiated": {"Sample Projects \u25b8 Web Browsing": 3622, "Coding": 2545, "Career": 1303, "AI Tools": 1236, "Google Docs": 1070, "Messaging": 990, "Uncategorized": 902, "YouTube": 808, "Sample Projects \u25b8 Web Browsing \u25b8 Education & Research": 717, "University": 661, "Sample Projects \u25b8 File Management": 540, "Shopping": 482, "Sample Projects \u25b8 Office & Business": 424, "Planning/Journaling": 414, "Email": 313}, "sleep_productivity": {"good_sleep_avg_productive_h": 4.7, "bad_sleep_avg_productive_h": 2.3, "good_sleep_avg_entertainment_h": 3.0, "bad_sleep_avg_entertainment_h": 2.1, "good_sleep_threshold_h": 4.0, "correlation_sleep_prod": 0.597, "correlation_sleep_ent": 0.168}};
+
+function render(d) {
+    const totalH = d.total_seconds / 3600;
+    const days = d.total_days;
+    const bd = d.activity_type_breakdown;
+
+    const prodH = (bd.Productive || 0) / 3600;
+    const eduH = (bd.Education || 0) / 3600;
+    const workH = prodH + eduH;
+    const entH = (bd.Entertainment || 0) / 3600;
+    const sleepH = (bd.Sleep || 0) / 3600;
+    const activeH = totalH - sleepH;
+    const focusPct = activeH > 0 ? (workH / activeH * 100) : 0;
+
+    document.getElementById('date-range').textContent =
+        `${d.date_range.start} to ${d.date_range.end}  \u2022  ${days} days  \u2022  ${totalH.toFixed(0)}h tracked`;
+
+    setText('kpi-productive', workH.toFixed(1) + 'h');
+    setText('kpi-productive-sub', `${(workH/days).toFixed(1)}h/day (${prodH.toFixed(0)}h Dev + ${eduH.toFixed(0)}h Edu)`);
+    setText('kpi-entertainment', entH.toFixed(1) + 'h');
+    setText('kpi-entertainment-sub', `${(entH/days).toFixed(1)}h/day`);
+    setText('kpi-focus', focusPct.toFixed(0) + '%');
+    setText('kpi-sleep', (sleepH/days).toFixed(1) + 'h');
+    setText('kpi-sleep-sub', `${d.sleep_consistency.min_h}-${d.sleep_consistency.max_h}h range`);
+
+    if (d.flow_sessions) {
+        setText('kpi-deepwork', d.flow_sessions.count);
+        setText('kpi-deepwork-sub', `${d.flow_sessions.total_hours}h total (${d.flow_sessions.per_day}/day)`);
+    }
+    if (d.fragmentation_index) setText('kpi-frag', d.fragmentation_index.mean);
+
+    // Focus stats
+    const ctxVals = Object.values(d.context_switching || {});
+    const activeCtx = ctxVals.filter(v => v > 0);
+    setText('ctx-switch-rate', (activeCtx.reduce((a,b)=>a+b,0) / (activeCtx.length||1)).toFixed(1));
+    setText('ctx-switch-peak', Math.max(...ctxVals).toFixed(1));
+
+    const ps = d.focus_stats?.productive || {};
+    const es = d.focus_stats?.entertainment || {};
+    setText('avg-prod-session', (ps.avg_duration_min || 0).toFixed(1));
+    setText('median-prod-session', (ps.median_duration_min || 0).toFixed(1));
+    setText('avg-ent-session', (es.avg_duration_min || 0).toFixed(1));
+    const ratio = ps.avg_duration_min > 0 ? (es.avg_duration_min / ps.avg_duration_min) : 0;
+    setText('ent-vs-prod-ratio', ratio.toFixed(1));
+    setText('max-prod-session', (ps.max_duration_min || 0).toFixed(0));
+    setText('total-days-span', days);
+    setText('deep-sessions-total', d.flow_sessions?.count || 0);
+
+    const sdp = d.session_duration_profile?.productive || {};
+    setText('pct-under-2', (sdp.pct_under_2min || 0) + '% under 2 min');
+
+    // Key Findings
+    const findings = [
+        { t: 'Severe Fragmentation', p: `Avg productive session: ${ps.avg_duration_min?.toFixed(1) || 0} min. ${sdp.pct_under_2min || 0}% are under 2 min. Only ${d.flow_sessions?.count || 0} deep-work sessions (25+ min) in ${days} days.` },
+        { t: 'Entertainment Holds Attention 3x Longer', p: `Entertainment sessions avg ${es.avg_duration_min?.toFixed(1) || 0} min vs ${ps.avg_duration_min?.toFixed(1) || 0} min productive. Max entertainment block: ${es.max_duration_min?.toFixed(0) || 0} min.` },
+        { t: 'Coding \u2192 YouTube is the #1 Drift Path', p: `214 times you went from Coding straight to YouTube. Social Media is the stickiest distraction (${d.distraction_stickiness?.['Social Media'] || 0}% chance you stay).` },
+        { t: 'Sleep Drives Productivity', p: `After good sleep (\u2265${d.sleep_productivity?.good_sleep_threshold_h || 0}h): ${d.sleep_productivity?.good_sleep_avg_productive_h || 0}h productive. After poor sleep: ${d.sleep_productivity?.bad_sleep_avg_productive_h || 0}h. Correlation: ${d.sleep_productivity?.correlation_sleep_prod?.toFixed(2) || 0}.` },
+        { t: 'Monday Best, Saturday Worst', p: `Monday avg ${d.day_of_week?.Monday?.productive_h || 0}h productive. Saturday only ${d.day_of_week?.Saturday?.productive_h || 0}h. Friday has the most context switches (${d.context_switching?.[17] || 0}/hr peak at 5pm).` }
+    ];
+    const fc = document.getElementById('findings-container');
+    fc.innerHTML = findings.map((f,i) =>
+        `<div class="finding-card"><h4><span class="num">${i+1}</span>${f.t}</h4><p>${f.p}</p></div>`
+    ).join('');
+
+    // Charts
+    const hrs24 = Array.from({length:24},(_,i)=>i+':00');
+    const getH = (type) => {
+        const td = d.hourly_distribution?.[type];
+        if (!td) return new Array(24).fill(0);
+        return hrs24.map((_,h) => td[h.toString()] || td[h] || 0);
+    };
+
+    // 1. Hourly stacked
+    makeChart('hourlyChart', 'bar', hrs24, [
+        { label:'Productive', data:getH('Productive'), backgroundColor:'#4f46e5', stack:'s' },
+        { label:'Education', data:getH('Education'), backgroundColor:'#3b82f6', stack:'s' },
+        { label:'Entertainment', data:getH('Entertainment'), backgroundColor:'#ef4444', stack:'s' },
+        { label:'Social', data:getH('Social'), backgroundColor:'#f59e0b', stack:'s' },
+        { label:'Life', data:getH('Life'), backgroundColor:'#10b981', stack:'s' },
+        { label:'Neutral', data:getH('Neutral'), backgroundColor:'#475569', stack:'s' }
+    ], { y: { title: { display:true, text:'Avg Minutes', color:'#94a3b8' } } });
+
+    // 2. Activity Doughnut
+    const donutL = ['Productive','Education','Entertainment','Social','Life','Sleep','Neutral'];
+    const donutC = ['#4f46e5','#3b82f6','#ef4444','#f59e0b','#10b981','#8b5cf6','#475569'];
+    new Chart(el('activityDoughnut'), {
+        type: 'doughnut',
+        data: { labels: donutL, datasets:[{ data: donutL.map(l => bd[l]||0), backgroundColor: donutC, borderWidth:0 }] },
+        options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'right', labels:{ color:'#94a3b8' } } }, cutout:'65%' }
+    });
+
+    // 3. Top Distractions Table
+    const distBody = document.getElementById('distraction-table').querySelector('tbody');
+    Object.entries(d.top_distractions||{}).sort(([,a],[,b])=>b-a).slice(0,8).forEach(([name,sec]) => {
+        const h = (sec/3600).toFixed(1);
+        const pct = (sec/d.total_seconds*100).toFixed(1);
+        const dn = name.length > 55 ? name.substring(0,55)+'...' : name;
+        distBody.innerHTML += `<tr><td>${dn}</td><td>${h}h</td><td><div style="display:flex;align-items:center;gap:8px"><div class="progress-bar"><div class="progress-fill" style="width:${Math.min(pct*8,100)}%;background:#ef4444"></div></div><span style="font-size:0.75em;color:var(--text-muted)">${pct}%</span></div></td></tr>`;
+    });
+
+    // 4. Circadian Focus Ratio
+    if (d.circadian_productive_ratio && d.circadian_entertainment_ratio) {
+        const cHrs = Array.from({length:18},(_,i)=>(i+6)+':00');
+        const pR = cHrs.map((_,i) => d.circadian_productive_ratio[(i+6).toString()]||0);
+        const eR = cHrs.map((_,i) => d.circadian_entertainment_ratio[(i+6).toString()]||0);
+        new Chart(el('circadianChart'), {
+            type:'line',
+            data:{ labels:cHrs, datasets:[
+                { label:'Productive %', data:pR, borderColor:'#818cf8', backgroundColor:'rgba(129,140,248,0.1)', fill:true, tension:0.3, pointRadius:3, pointBackgroundColor:'#818cf8' },
+                { label:'Entertainment %', data:eR, borderColor:'#f87171', backgroundColor:'rgba(248,113,113,0.08)', fill:true, tension:0.3, pointRadius:3, pointBackgroundColor:'#f87171' }
+            ]},
+            options:{ responsive:true, maintainAspectRatio:false,
+                scales:{ y:{ beginAtZero:true, max:55, title:{display:true,text:'%',color:'#94a3b8'}, grid:{color:'rgba(255,255,255,0.05)'}, ticks:{color:'#94a3b8'} }, x:{grid:{display:false}, ticks:{color:'#94a3b8'}} },
+                plugins:{ legend:{position:'top',labels:{color:'#94a3b8'}}, tooltip:{mode:'index',intersect:false} }
+            }
+        });
+    }
+
+    // 5. Session Histogram
+    if (d.session_duration_profile) {
+        const sp = d.session_duration_profile;
+        const bk = ['< 2 min','2-5 min','5-25 min','25+ min'];
+        const hc = {productive:'#818cf8', entertainment:'#f87171', education:'#60a5fa'};
+        const hds = ['productive','entertainment','education'].map(t => {
+            const s = sp[t]||{};
+            const u2=s.pct_under_2min||0, u5=s.pct_under_5min||0, o25=s.pct_over_25min||0;
+            return { label:t[0].toUpperCase()+t.slice(1), data:[u2,u5-u2,100-u5-o25,o25], backgroundColor:hc[t], borderRadius:4 };
+        });
+        makeChart('sessionHistogram','bar',bk,hds,{ y:{title:{display:true,text:'% of sessions',color:'#94a3b8'}} });
+    }
+
+    // 6. Day-of-Week
+    if (d.day_of_week) {
+        const dow = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+        const dl = dow.map(d=>d.slice(0,3));
+        const gd = f => dow.map(day => (d.day_of_week[day]||{})[f]||0);
+        makeChart('dowChart','bar',dl,[
+            { label:'Productive', data:gd('productive_h'), backgroundColor:'#4f46e5', stack:'a', borderRadius:4 },
+            { label:'Education', data:gd('education_h'), backgroundColor:'#3b82f6', stack:'a', borderRadius:4 },
+            { label:'Entertainment', data:gd('entertainment_h'), backgroundColor:'#ef4444', borderRadius:4 },
+            { label:'Social', data:gd('social_h'), backgroundColor:'#f59e0b', borderRadius:4 }
+        ], { y:{title:{display:true,text:'Hours/day',color:'#94a3b8'}} });
+    }
+
+    // 7. Transition Heatmap
+    if (d.transition_matrix_pct) {
+        const tm = d.transition_matrix_pct;
+        const types = Object.keys(tm).filter(t=>t!=='Sleep');
+        const tbl = document.getElementById('transition-table');
+        let html = '<tr><th></th>'+types.map(t=>`<th>${t.slice(0,5)}</th>`).join('')+'</tr>';
+        types.forEach(from => {
+            html += `<tr><th>${from.slice(0,5)}</th>`;
+            types.forEach(to => {
+                const val = (tm[from]||{})[to]||0;
+                const int = Math.min(val/45,1);
+                const bg = val > 0 ? `rgba(129,140,248,${0.08+int*0.85})` : 'transparent';
+                const col = int > 0.35 ? '#fff' : '#94a3b8';
+                html += `<td class="heatmap-cell" style="background:${bg};color:${col}">${val>0?val+'%':'\u2013'}</td>`;
+            });
+            html += '</tr>';
+        });
+        tbl.innerHTML = html;
+    }
+
+    // 8. Drift Paths Table
+    if (d.productive_to_entertainment_paths) {
+        const db = document.getElementById('drift-table').querySelector('tbody');
+        db.innerHTML = '';
+        Object.entries(d.productive_to_entertainment_paths).sort(([,a],[,b])=>b-a).slice(0,10).forEach(([p,c]) => {
+            db.innerHTML += `<tr><td>${p}</td><td><strong>${c}</strong></td></tr>`;
+        });
+    }
+
+    // 9. Stickiness
+    if (d.distraction_stickiness) {
+        const ent = Object.entries(d.distraction_stickiness).sort(([,a],[,b])=>b-a);
+        new Chart(el('stickinessChart'), {
+            type:'bar',
+            data:{ labels:ent.map(([n])=>n), datasets:[{
+                label:'Stickiness %', data:ent.map(([,v])=>v),
+                backgroundColor:ent.map(([,v])=>v>50?'#f87171':v>30?'#fbbf24':'#34d399'), borderRadius:6
+            }]},
+            options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+                scales:{ x:{beginAtZero:true,max:100,grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#94a3b8'}}, y:{grid:{display:false},ticks:{color:'#94a3b8'}} },
+                plugins:{ legend:{display:false} }
+            }
+        });
+    }
+
+    // 10. Projects
+    const topP = Object.entries(d.project_breakdown||{}).sort(([,a],[,b])=>b-a).slice(0,8);
+    new Chart(el('projectsChart'), {
+        type:'bar',
+        data:{ labels:topP.map(([n])=>n.length>25?n.slice(0,25)+'...':n), datasets:[{
+            label:'Hours', data:topP.map(([,s])=>s/3600), backgroundColor:'#818cf8', borderRadius:4
+        }]},
+        options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+            scales:{ x:{grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#94a3b8'}}, y:{grid:{display:false},ticks:{color:'#94a3b8',font:{size:11}}} },
+            plugins:{ legend:{display:false} }
+        }
+    });
+
+    // 11. YouTube Topics
+    if (d.youtube_topics) {
+        const yt = Object.entries(d.youtube_topics).filter(([,v])=>v>0.1);
+        const ytColors = ['#818cf8','#f87171','#fbbf24','#34d399','#60a5fa','#a78bfa','#f472b6','#475569'];
+        new Chart(el('ytTopicsChart'), {
+            type:'doughnut',
+            data:{ labels:yt.map(([n])=>n), datasets:[{ data:yt.map(([,v])=>v), backgroundColor:ytColors, borderWidth:0 }]},
+            options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{position:'right',labels:{color:'#94a3b8',font:{size:11}}} }, cutout:'55%' }
+        });
+    }
+
+    // 12. Anime Breakdown
+    if (d.anime_breakdown) {
+        const ab = Object.entries(d.anime_breakdown).filter(([n])=>!n.startsWith('Search')).slice(0,7);
+        new Chart(el('animeChart'), {
+            type:'bar',
+            data:{ labels:ab.map(([n])=>n.length>28?n.slice(0,28)+'...':n), datasets:[{
+                label:'Hours', data:ab.map(([,v])=>v.hours), backgroundColor:'#a78bfa', borderRadius:4
+            }]},
+            options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+                scales:{ x:{grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#94a3b8'}}, y:{grid:{display:false},ticks:{color:'#94a3b8',font:{size:11}}} },
+                plugins:{ legend:{display:false} }
+            }
+        });
+    }
+
+    // 13. Sleep stats
+    if (d.sleep_consistency) {
+        const sc = d.sleep_consistency;
+        setText('sleep-mean', sc.mean_h);
+        setText('sleep-range', `${sc.min_h}\u2013${sc.max_h}`);
+        setText('sleep-std', sc.std_h);
+    }
+    if (d.sleep_productivity) {
+        const sp = d.sleep_productivity;
+        setText('sleep-thresh', sp.good_sleep_threshold_h);
+        setText('good-sleep-prod', sp.good_sleep_avg_productive_h);
+        setText('good-sleep-ent', sp.good_sleep_avg_entertainment_h);
+        setText('bad-sleep-prod', sp.bad_sleep_avg_productive_h);
+        setText('bad-sleep-ent', sp.bad_sleep_avg_entertainment_h);
+        setText('corr-prod', sp.correlation_sleep_prod?.toFixed(2) || 'N/A');
+        setText('corr-ent', sp.correlation_sleep_ent?.toFixed(2) || 'N/A');
+    }
+
+    // 14. Late Night Audit
+    if (d.late_night_breakdown) {
+        const ln = Object.entries(d.late_night_breakdown).filter(([k])=>k!=='Sleep').sort(([,a],[,b])=>b.hours-a.hours);
+        const lnColors = { Entertainment:'#f87171', Social:'#fbbf24', Productive:'#818cf8', Neutral:'#475569', Life:'#34d399', Education:'#60a5fa' };
+        new Chart(el('lateNightChart'), {
+            type:'doughnut',
+            data:{ labels:ln.map(([n])=>n+' ('+ln.find(([k])=>k===n)[1].hours+'h)'),
+                datasets:[{ data:ln.map(([,v])=>v.hours), backgroundColor:ln.map(([n])=>lnColors[n]||'#475569'), borderWidth:0 }]},
+            options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{position:'right',labels:{color:'#94a3b8',font:{size:11}}} }, cutout:'50%' }
+        });
+    }
+
+    // 15. Willpower Depletion
+    if (d.willpower_depletion) {
+        const wp = d.willpower_depletion;
+        new Chart(el('willpowerChart'), {
+            type:'bar',
+            data:{ labels:['Morning\n8am-12pm','Afternoon\n12pm-5pm','Evening\n5pm-10pm'],
+                datasets:[{ label:'Entertainment %', data:[wp.morning_8_12_ent_pct, wp.afternoon_12_17_ent_pct, wp.evening_17_22_ent_pct],
+                    backgroundColor:['#34d399','#fbbf24','#f87171'], borderRadius:8, barThickness:48 }]},
+            options:{ responsive:true, maintainAspectRatio:false,
+                scales:{ y:{beginAtZero:true,max:30,title:{display:true,text:'% entertainment',color:'#94a3b8'},grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#94a3b8'}}, x:{grid:{display:false},ticks:{color:'#94a3b8'}} },
+                plugins:{ legend:{display:false} }
+            }
+        });
+    }
+
+    // 16. Guilty Pleasures
+    const gpBody = document.getElementById('guilty-table').querySelector('tbody');
+    const gpData = [
+        ['Wiki Browsing', 100.0], ['Music', 70.1], ['Anime', 69.9], ['YouTube', 64.3], ['Social Media', 59.4]
+    ];
+    gpData.forEach(([cat, rate]) => {
+        const verdict = rate >= 60 ? '<span class="tag tag-green">Recoverable</span>' : '<span class="tag tag-red">Dead End</span>';
+        gpBody.innerHTML += `<tr><td>${cat}</td><td><strong>${rate}%</strong></td><td>${verdict}</td></tr>`;
+    });
+
+    // 17. Recommendations
+    const recs = [
+        { t:'Implement a 25-minute timer rule', p:'Your productive sessions average under 2 min. Use a Pomodoro timer \u2014 commit to 25 min of uninterrupted work before any context switch. Getting 4 of these per day would dramatically boost your deep-work from 0.35/day.' },
+        { t:'Protect your peak hours (4pm, 8pm, 10am)', p:'These are your highest-focus hours by the data. Block them as Do Not Disturb \u2014 no social media, no YouTube, no messaging during these windows.' },
+        { t:'Watch out for Social Media', p:'Once you start, there\u2019s a 65.7% chance you stay. It\u2019s your stickiest distraction. Block it during work hours entirely rather than relying on willpower.' },
+        { t:'Create browser friction', p:'Use separate browser profiles: a \u2018Work\u2019 profile that blocks YouTube, Reddit, X, and HiAnime; and a \u2018Personal\u2019 profile for after-hours. This adds a speed bump to the Productive \u2192 Entertainment drift.' },
+        { t:'Prioritize sleep', p:`Correlation between sleep and next-day productivity is 0.60. After good sleep (\u2265${d.sleep_productivity?.good_sleep_threshold_h||4}h): ${d.sleep_productivity?.good_sleep_avg_productive_h||0}h productive vs ${d.sleep_productivity?.bad_sleep_avg_productive_h||0}h after poor sleep.` },
+        { t:'Reduce morning startup time', p:'You take 65.6 min on average from first activity to first productive work. Prepare the night before \u2014 leave your IDE open, have a task ready.' }
+    ];
+    const rc = document.getElementById('recommendations-container');
+    rc.innerHTML = recs.map(r => `<div class="rec-card"><h4>${r.t}</h4><p>${r.p}</p></div>`).join('');
+}
+
+function el(id) { return document.getElementById(id).getContext('2d'); }
+function setText(id, val) { const e = document.getElementById(id); if(e) e.textContent = val; }
+
+function makeChart(id, type, labels, datasets, scaleOpts) {
+    new Chart(el(id), {
+        type, data: { labels, datasets: datasets.map(ds => ({ borderRadius:4, ...ds })) },
+        options: {
+            responsive:true, maintainAspectRatio:false,
+            scales: Object.fromEntries(Object.entries({
+                x: { grid:{display:false}, ticks:{color:'#94a3b8'} },
+                y: { beginAtZero:true, grid:{color:'rgba(255,255,255,0.05)'}, ticks:{color:'#94a3b8'} },
+                ...(scaleOpts||{})
+            }).map(([k,v]) => [k, { ...{grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#94a3b8'}}, ...v }])),
+            plugins: { legend:{position:'top',labels:{color:'#94a3b8'}}, tooltip:{mode:'index',intersect:false} }
+        }
+    });
+}
+
+render(DATA);
+</script>
+
+</body>
+</html>

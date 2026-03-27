@@ -9,6 +9,12 @@ export const metadata = {
 
 const projects = [
     {
+        title: 'Time Management Analysis',
+        description: 'A deep-dive D3.js dashboard analyzing 31 days of tracked screen time — focus fragmentation, distraction gravity, circadian rhythms, sleep-productivity correlations, and the hidden YouTube habit.',
+        link: '/projects/time-management',
+        linkText: 'View Dashboard'
+    },
+    {
         title: 'Chief Information Aggregator & YouTube Scholar',
         description: 'An interactive D3.js case study that turns my YouTube Takeout history into a dark-theme research dashboard about curiosity, learning loops, and rabbit holes.',
         link: '/projects/youtube-scholar',

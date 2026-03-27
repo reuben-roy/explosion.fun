@@ -53,6 +53,13 @@ export default function ProjectsDropdown({ onClose }) {
                         Side-Track
                     </Link>
                     <Link
+                        href="/projects/time-management"
+                        className={styles.menuItem}
+                        onClick={handleLinkClick}
+                    >
+                        Time Management Analysis
+                    </Link>
+                    <Link
                         href="/projects"
                         className={styles.menuItem}
                         onClick={handleLinkClick}
