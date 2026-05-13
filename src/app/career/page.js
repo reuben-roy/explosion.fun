@@ -16,28 +16,15 @@ export default function Career() {
     const skillCategories = [
         {
             name: "Backend Development",
-            items: ["Java", "Spring Boot", "Python", ".NET", "Microservices", "REST APIs", "Maven", "JUnit5", "Mockito", "Unit Testing",
-        "Fastify",
-        "Go",
-        "Kotlin",
-        "Node.js",
-        "Prisma",
-        "REST"]
+            items: ["Java", "Spring Boot", "Python", ".NET", "Microservices", "REST APIs", "Maven", "JUnit5", "Mockito", "Unit Testing"]
         },
         {
             name: "Frontend Development",
-            items: ["HTML", "CSS", "JavaScript", "React.js", "Three.js", "Bootstrap", "MUI", "D3.js",
-        "Next.js",
-        "React",
-        "React Native",
-        "Tailwind CSS",
-        "TypeScript",
-        "Vite"]
+            items: ["HTML", "CSS", "JavaScript", "React.js", "Three.js", "Bootstrap", "MUI", "D3.js"]
         },
         {
             name: "Databases",
-            items: ["PostgreSQL", "Redis", "MySQL", "SQL", "NoSQL",
-        "SQLite"]
+            items: ["PostgreSQL", "Redis", "MySQL", "SQL", "NoSQL"]
         },
         {
             name: "Cloud & Infrastructure",
@@ -66,7 +53,7 @@ export default function Career() {
         {
             name: "Soft Skills",
             items: ["Written Communication", "Verbal Communication", "Problem Solving", "Software Development", "Web Development"]
-        },
+        }
     ];
 
     // New: which categories are expanded
@@ -96,7 +83,7 @@ export default function Career() {
                 "PostgreSQL", "Redis", "SQL", "NoSQL", "Azure", "Docker", "CI/CD", "Bitbucket Pipelines", "SonarQube",
                 "Agile/Scrum", "Jira", "Confluence", "Postman", "Performance Optimization"
             ]
-        },
+        }
     ];
 
     const internships = [
@@ -119,7 +106,7 @@ export default function Career() {
                 "SEO Optimization", "Digital Marketing", "Google Analytics", "Performance Optimization", "Security Implementation", "SSL/TLS",
                 "REST API Integration", "Custom Theme Development", "Responsive Design", "User Experience Design (UX)"
             ]
-        },
+        }
     ];
 
     const certifications = [
@@ -147,103 +134,7 @@ export default function Career() {
             title: "Astrophysics Workshop Conductor",
             organization: "NIT Calicut",
             link: null
-        },
-        {
-            title: "Blistering Barnacles",
-            overview: [
-                "Hackathon-ready scaffold for a real-estate SaaS dashboard — CRM, AI copilots, automation, and a built-in RAG-powered Learning Hub."
-            ],
-            features: [{"title": "Technology Stack", "items": ["Anthropic", "FullCalendar", "Go", "LLMs", "Lucide", "Next.js", "OpenAI", "RAG", "React", "Tailwind CSS"]}],
-            urls: [{"name": "Blistering Barnacles Live \u2197", "url": "https://blistering-barnacles.vercel.app"}, {"name": "GitHub Repository", "url": "https://github.com/reuben-roy/blistering-barnacles"}]
-        },
-        {
-            title: "Kali",
-            overview: [
-                "Landing page and waitlist for Kali — a fitness platform that treats physical progression like version control."
-            ],
-            features: [{"title": "Technology Stack", "items": ["Go", "Lucide", "Next.js", "PostgreSQL", "React", "SQL", "Tailwind CSS", "TypeScript", "Vercel"]}],
-            urls: [{"name": "Kali Live \u2197", "url": "https://kali-rose.vercel.app"}, {"name": "GitHub Repository", "url": "https://github.com/reuben-roy/Kali"}]
-        },
-        {
-            title: "Kali Platform",
-            overview: [
-                "The mobile engine for Kali — a React Native fitness app that treats physical progression like a tech tree, with muscle-specific fatigue tracking and local-first data."
-            ],
-            features: [{"title": "Technology Stack", "items": ["Go", "Lucide", "REST", "React", "React Native", "SQL", "SQLite", "Tailwind CSS", "TypeScript"]}],
-            urls: [{"name": "GitHub Repository", "url": "https://github.com/reuben-roy/Kali-Platform"}]
-        },
-        {
-            title: "Ranker",
-            overview: [
-                "A career exploration and ranking app that maps your skills, interests, and traits against a dynamic hierarchical job database to surface the best-fit roles."
-            ],
-            features: [{"title": "Technology Stack", "items": ["Go", "Lucide", "OAuth", "PostgreSQL", "RAG", "REST", "React", "React Native", "SQL", "Tailwind CSS"]}],
-            urls: [{"name": "GitHub Repository", "url": "https://github.com/reuben-roy/Ranker"}]
-        },
-        {
-            title: "Side Track",
-            overview: [
-                "A React Native iOS weight-training app with a random workout picker, muscle-specific fatigue tracking, local leaderboard rankings, and Apple Health integration."
-            ],
-            features: [{"title": "Technology Stack", "items": ["Go", "PostgreSQL", "RAG", "React", "React Native", "SQL", "SQLite", "TypeScript"]}],
-            urls: [{"name": "Side Track Live \u2197", "url": "https://apps.apple.com/app/side-track/id6755348971"}, {"name": "GitHub Repository", "url": "https://github.com/reuben-roy/Side-Track"}]
-        },
-        {
-            title: "Switch Market",
-            overview: [
-                "A lightweight, vanilla-JS shopping demo with D3-powered visualizations, real-time search, and CSV sales data integration — hosted on Firebase."
-            ],
-            features: [{"title": "Technology Stack", "items": ["D3.js", "Firebase", "Go", "Java", "JavaScript", "Python"]}],
-            urls: [{"name": "GitHub Repository", "url": "https://github.com/reuben-roy/Switch-Market"}]
-        },
-        {
-            title: "Window",
-            overview: [
-                "An Android app that watches your screen — tracking app usage, scraping visible UI text, and running on-device Gemini Nano AI to summarize your digital activity."
-            ],
-            features: [{"title": "Technology Stack", "items": ["Gemini", "Go", "Gradle", "Kotlin", "RAG", "SQL", "SQLite"]}],
-            urls: [{"name": "GitHub Repository", "url": "https://github.com/reuben-roy/Window"}]
-        },
-        {
-            title: "Window Extension",
-            overview: [
-                "A Chrome extension that transforms your browser into an intelligent productivity co-pilot — connecting to Google Calendar, blocking distractions during focus sessions, and running an OpenClaw-powered assistant layer for idea evaluation and task management."
-            ],
-            features: [{"title": "Technology Stack", "items": ["Fastify", "FullCalendar", "Go", "Node.js", "OAuth", "PostgreSQL", "Prisma", "RAG", "REST", "React"]}],
-            urls: [{"name": "GitHub Repository", "url": "https://github.com/reuben-roy/Window-Extension"}]
-        },
-        {
-            title: "Kali",
-            overview: [
-                "Landing page and waitlist for Kali — a fitness platform that treats physical progression like version control."
-            ],
-            features: [{"title": "Technology Stack", "items": ["Go", "Lucide", "Next.js", "PostgreSQL", "React", "SQL", "Tailwind CSS", "TypeScript", "Vercel"]}],
-            urls: [{"name": "Kali Live \u2197", "url": "https://kali-rose.vercel.app"}, {"name": "GitHub Repository", "url": "https://github.com/reuben-roy/Kali"}]
-        },
-        {
-            title: "Side Track",
-            overview: [
-                "A React Native iOS weight-training app with a random workout picker, muscle-specific fatigue tracking, local leaderboard rankings, and Apple Health integration."
-            ],
-            features: [{"title": "Technology Stack", "items": ["Go", "PostgreSQL", "RAG", "React", "React Native", "SQL", "SQLite", "TypeScript"]}],
-            urls: [{"name": "Side Track Live \u2197", "url": "https://apps.apple.com/app/side-track/id6755348971"}, {"name": "GitHub Repository", "url": "https://github.com/reuben-roy/Side-Track"}]
-        },
-        {
-            title: "Window",
-            overview: [
-                "An Android app that watches your screen — tracking app usage, scraping visible UI text, and running on-device Gemini Nano AI to summarize your digital activity."
-            ],
-            features: [{"title": "Technology Stack", "items": ["Gemini", "Go", "Gradle", "Kotlin", "RAG", "SQL", "SQLite"]}],
-            urls: [{"name": "GitHub Repository", "url": "https://github.com/reuben-roy/Window"}]
-        },
-        {
-            title: "Window Extension",
-            overview: [
-                "A Chrome extension that transforms your browser into an intelligent productivity co-pilot — connecting to Google Calendar, blocking distractions during focus sessions, and running an OpenClaw-powered assistant layer for idea evaluation and task management."
-            ],
-            features: [{"title": "Technology Stack", "items": ["Fastify", "FullCalendar", "Go", "Node.js", "OAuth", "PostgreSQL", "Prisma", "RAG", "REST", "React"]}],
-            urls: [{"name": "GitHub Repository", "url": "https://github.com/reuben-roy/Window-Extension"}]
-        },
+        }
     ];
 
     const projects = [
