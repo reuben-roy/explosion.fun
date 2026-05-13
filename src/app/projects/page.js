@@ -25,7 +25,32 @@ const projects = [
         description: 'A task tracking app designed to help you stay focused and manage your time effectively. Check out the changelog and release notes.',
         link: '/side-track',
         linkText: 'View Release Notes'
-    }
+    },
+
+    {
+        title: "Kali",
+        description: "Landing page and waitlist for Kali — a fitness platform that treats physical progression like version control.",
+        link: "https://github.com/reuben-roy/Kali",
+        linkText: "View on GitHub"
+    },
+    {
+        title: "Side-Track",
+        description: "A React Native iOS weight-training app with a random workout picker, muscle-specific fatigue tracking, local leaderboard rankings, and Apple Health integration.",
+        link: "/side-track",
+        linkText: "View Project"
+    },
+    {
+        title: "Window",
+        description: "An Android app that watches your screen — tracking app usage, scraping visible UI text, and running on-device Gemini Nano AI to summarize your digital activity.",
+        link: "https://github.com/reuben-roy/Window",
+        linkText: "View on GitHub"
+    },
+    {
+        title: "Window-Extension",
+        description: "A Chrome extension that transforms your browser into an intelligent productivity co-pilot — connecting to Google Calendar, blocking distractions during focus sessions, and running an OpenClaw-powered...",
+        link: "https://github.com/reuben-roy/Window-Extension",
+        linkText: "View on GitHub"
+    },
 ];
 
 
