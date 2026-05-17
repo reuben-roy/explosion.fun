@@ -22,7 +22,8 @@ export default function Career() {
         "Kotlin",
         "Node.js",
         "Prisma",
-        "REST"]
+        "REST",
+        "GraphQL"]
         },
         {
             name: "Frontend Development",
@@ -96,7 +97,7 @@ export default function Career() {
                 "PostgreSQL", "Redis", "SQL", "NoSQL", "Azure", "Docker", "CI/CD", "Bitbucket Pipelines", "SonarQube",
                 "Agile/Scrum", "Jira", "Confluence", "Postman", "Performance Optimization"
             ]
-        }
+        },
     ];
 
     const internships = [
@@ -119,7 +120,7 @@ export default function Career() {
                 "SEO Optimization", "Digital Marketing", "Google Analytics", "Performance Optimization", "Security Implementation", "SSL/TLS",
                 "REST API Integration", "Custom Theme Development", "Responsive Design", "User Experience Design (UX)"
             ]
-        }
+        },
     ];
 
     const certifications = [
@@ -289,6 +290,24 @@ export default function Career() {
             ],
             features: [{"title": "Technology Stack", "items": ["D3.js", "Firebase", "Go", "Java", "JavaScript", "Python"]}],
             urls: [{"name": "GitHub Repository", "url": "https://github.com/reuben-roy/switch-market"}]
+        },
+        {
+            title: "Auto Explosion",
+            overview: [
+                "Personal portfolio, blog, and interactive tools hub built with Next.js — a digital playground for data-driven storytelling."
+            ],
+            features: [{"title": "Technology Stack", "items": ["D3.js", "Firebase", "Go", "GraphQL", "Next.js", "PostHog", "React", "Three.js", "Turbopack", "Vercel", "WordPress"]}],
+            url: "https://auto.explosion.fun",
+            urls: [{"name": "Visit Auto Explosion", "url": "https://auto.explosion.fun"}, {"name": "GitHub Repository", "url": "https://github.com/reuben-roy/Auto-Explosion"}]
+        },
+        {
+            title: "Job Answer App",
+            overview: [
+                "A single-page tool that uses Google Gemini to generate tailored job-application answers from your resume and writing rules."
+            ],
+            features: [{"title": "Technology Stack", "items": ["Gemini", "Go", "Java", "JavaScript", "LLMs", "Node.js", "OpenAI", "Vercel"]}],
+            url: "https://job-answer-app.vercel.app",
+            urls: [{"name": "Visit Job Answer App", "url": "https://job-answer-app.vercel.app"}, {"name": "GitHub Repository", "url": "https://github.com/reuben-roy/job-answer-app"}]
         }, ];
 
     return (

@@ -75,6 +75,25 @@ const projects = [
         link: "https://github.com/reuben-roy/window-extension",
         linkText: "View on GitHub"
     },
+
+    {
+        title: "Auto-Explosion",
+        description: "Personal portfolio, blog, and interactive tools hub built with Next.js — a digital playground for data-driven storytelling.",
+        link: "https://github.com/reuben-roy/Auto-Explosion",
+        linkText: "View on GitHub"
+    },
+    {
+        title: "explosion.fun",
+        description: "Live deployment repo for [explosion.fun](https://explosion.fun) — a personal blog, portfolio, and interactive tools hub built with Next.js.",
+        link: "https://github.com/reuben-roy/explosion.fun",
+        linkText: "View on GitHub"
+    },
+    {
+        title: "Job Answer App",
+        description: "A single-page tool that uses Google Gemini to generate tailored job-application answers from your resume and writing rules.",
+        link: "https://github.com/reuben-roy/job-answer-app",
+        linkText: "View on GitHub"
+    },
 ];
 
 
