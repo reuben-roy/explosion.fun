@@ -238,8 +238,8 @@ export default function Career() {
                 "Landing page and waitlist for Kali — a fitness platform that treats physical progression like version control."
             ],
             features: [{"title": "Technology Stack", "items": ["Go", "Lucide", "Next.js", "PostgreSQL", "React", "SQL", "Tailwind CSS", "TypeScript", "Vercel"]}],
-            url: "https://kali-rose.vercel.app",
-            urls: [{"name": "Visit Kali", "url": "https://kali-rose.vercel.app"}, {"name": "GitHub Repository", "url": "https://github.com/reuben-roy/kali"}]
+            url: "https://kali.aureole10.com",
+            urls: [{"name": "Visit Kali", "url": "https://kali.aureole10.com/"}, {"name": "GitHub Repository", "url": "https://github.com/reuben-roy/kali"}]
         },
         {
             title: "Side-Track",
@@ -259,13 +259,13 @@ export default function Career() {
             urls: [{"name": "GitHub Repository", "url": "https://github.com/reuben-roy/window"}]
         },
         {
-            title: "blistering-barnacles",
+            title: "Lofty rebuild",
             overview: [
                 "A project built with Anthropic, FullCalendar, Go, LLMs, Lucide, Next.js."
             ],
             features: [{"title": "Technology Stack", "items": ["Anthropic", "FullCalendar", "Go", "LLMs", "Lucide", "Next.js", "OpenAI", "RAG", "React", "Tailwind CSS", "Turbopack", "TypeScript"]}],
-            url: "https://blistering-barnacles.vercel.app",
-            urls: [{"name": "Visit blistering-barnacles", "url": "https://blistering-barnacles.vercel.app"}, {"name": "GitHub Repository", "url": "https://github.com/reuben-roy/blistering-barnacles"}]
+            url: "https://lofty.explosion.fun/",
+            urls: [{"name": "Visit Lofty rebuild", "url": "https://lofty.explosion.fun/"}, {"name": "GitHub Repository", "url": "https://github.com/reuben-roy/blistering-barnacles"}]
         },
         {
             title: "Clackinator",
@@ -306,8 +306,8 @@ export default function Career() {
                 "A single-page tool that uses Google Gemini to generate tailored job-application answers from your resume and writing rules."
             ],
             features: [{"title": "Technology Stack", "items": ["Gemini", "Go", "Java", "JavaScript", "LLMs", "Node.js", "OpenAI", "Vercel"]}],
-            url: "https://job-answer-app.vercel.app",
-            urls: [{"name": "Visit Job Answer App", "url": "https://job-answer-app.vercel.app"}, {"name": "GitHub Repository", "url": "https://github.com/reuben-roy/job-answer-app"}]
+            url: "https://answers.explosion.fun/",
+            urls: [{"name": "Visit Job Answer App", "url": "https://answers.explosion.fun/"}, {"name": "GitHub Repository", "url": "https://github.com/reuben-roy/job-answer-app"}]
         }, ];
 
     return (

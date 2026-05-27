@@ -97,7 +97,7 @@ Software engineer and generalist creating web solutions. Builds interactive webs
 
 - Landing page and waitlist for Kali, a fitness platform that treats physical progression like version control.
 - Technology stack: Go, Lucide, Next.js, PostgreSQL, React, SQL, Tailwind CSS, TypeScript, Vercel.
-- Links: https://kali-rose.vercel.app, https://github.com/reuben-roy/kali
+- Links: https://kali.aureole10.com, https://github.com/reuben-roy/kali
 
 ### Side-Track
 
@@ -115,7 +115,7 @@ Software engineer and generalist creating web solutions. Builds interactive webs
 
 - A project built with Anthropic, FullCalendar, Go, LLMs, Lucide, and Next.js.
 - Technology stack: Anthropic, FullCalendar, Go, LLMs, Lucide, Next.js, OpenAI, RAG, React, Tailwind CSS, Turbopack, TypeScript.
-- Links: https://blistering-barnacles.vercel.app, https://github.com/reuben-roy/blistering-barnacles
+- Links: http://lofty.explosion.fun/, https://github.com/reuben-roy/blistering-barnacles
 
 ### Clackinator
 
@@ -145,4 +145,4 @@ Software engineer and generalist creating web solutions. Builds interactive webs
 
 - A single-page tool that uses Google Gemini to generate tailored job-application answers from your resume and writing rules.
 - Technology stack: Gemini, Go, Java, JavaScript, LLMs, Node.js, OpenAI, Vercel.
-- Links: https://job-answer-app.vercel.app, https://github.com/reuben-roy/job-answer-app
+- Links: https://answers.explosion.fun, https://github.com/reuben-roy/job-answer-app
