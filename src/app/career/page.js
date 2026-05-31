@@ -67,7 +67,7 @@ export default function Career() {
         {
             name: "Soft Skills",
             items: ["Written Communication", "Verbal Communication", "Problem Solving", "Software Development", "Web Development"]
-        }
+        },
     ];
 
     // New: which categories are expanded
@@ -308,6 +308,15 @@ export default function Career() {
             features: [{"title": "Technology Stack", "items": ["Gemini", "Go", "Java", "JavaScript", "LLMs", "Node.js", "OpenAI", "Vercel"]}],
             url: "https://answers.explosion.fun/",
             urls: [{"name": "Visit Job Answer App", "url": "https://answers.explosion.fun/"}, {"name": "GitHub Repository", "url": "https://github.com/reuben-roy/job-answer-app"}]
+        },
+        {
+            title: "blistering-barnacles",
+            overview: [
+                "<div align=\"center\">."
+            ],
+            features: [{"title": "Technology Stack", "items": ["Anthropic", "Docker", "FullCalendar", "GitHub Actions", "Go", "LLMs", "Lucide", "Next.js", "Node.js", "OpenAI", "RAG", "React", "Tailwind CSS", "Turbopack", "TypeScript"]}],
+            url: "https://lofty.explosion.fun/",
+            urls: [{"name": "Visit blistering-barnacles", "url": "https://lofty.explosion.fun/"}, {"name": "GitHub Repository", "url": "https://github.com/reuben-roy/blistering-barnacles"}]
         }, ];
 
     return (
