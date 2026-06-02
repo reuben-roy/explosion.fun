@@ -214,20 +214,25 @@ export default function Terminal() {
 
         <div className={styles.inputLine} aria-hidden={!booted}>
           <span className={styles.promptLabel}>{PROMPT}</span>
-          <input
-            ref={inputRef}
-            className={styles.input}
-            value={input}
-            onChange={(event) => setInput(event.target.value)}
-            onKeyDown={handleKeyDown}
-            disabled={!booted}
-            aria-label="Terminal command input. Type help and press Enter for a list of commands."
-            autoComplete="off"
-            autoCapitalize="off"
-            autoCorrect="off"
-            spellCheck="false"
-          />
-          <span className={styles.caret} />
+          {/* Display layer: mirrors input text with a block cursor right after it */}
+          <div className={styles.inputWrapper}>
+            <span className={styles.inputText} aria-hidden="true">{input}</span>
+            <span className={styles.caret} aria-hidden="true" />
+            {/* Real input: transparent overlay; captures keystrokes */}
+            <input
+              ref={inputRef}
+              className={styles.hiddenInput}
+              value={input}
+              onChange={(event) => setInput(event.target.value)}
+              onKeyDown={handleKeyDown}
+              disabled={!booted}
+              aria-label="Terminal command input. Type help and press Enter for a list of commands."
+              autoComplete="off"
+              autoCapitalize="off"
+              autoCorrect="off"
+              spellCheck="false"
+            />
+          </div>
         </div>
       </div>
     </div>

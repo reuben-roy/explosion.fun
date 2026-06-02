@@ -93,33 +93,53 @@
   flex-shrink: 0;
 }
 
-.input {
+/* Wrapper holds the visible text mirror + block cursor + the hidden real input */
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
   flex: 1;
-  min-width: 0; /* let the input shrink below its default intrinsic width */
-  width: 0;
-  background: transparent;
-  border: none;
-  outline: none;
+  min-width: 0;
+  min-height: 1.2em;
+}
+
+/* Mirrors the value of the hidden input so the block caret tracks correctly */
+.inputText {
+  white-space: pre;   /* preserve spaces */
   color: #ffffff;
-  font-family: inherit;
-  font-size: inherit;
-  caret-color: #4ade80;
-  padding: 0;
+  pointer-events: none;
+  user-select: none;
 }
 
-.input:disabled {
-  opacity: 0.6;
-}
-
-/* Decorative blinking block caret that sits after the input.
-   The real text caret is provided by caret-color above. */
+/* Block cursor — positioned immediately after the mirrored text */
 .caret {
-  width: 9px;
+  width: 0.55em;
   height: 1.1em;
   background: #4ade80;
   display: inline-block;
-  animation: blink 1s step-end infinite;
   flex-shrink: 0;
+  animation: blink 1s step-end infinite;
+}
+
+/* Real input: covers the wrapper, fully transparent — captures keystrokes only */
+.hiddenInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: transparent;
+  caret-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  cursor: text;
+}
+
+.hiddenInput:disabled {
+  cursor: default;
 }
 
 @keyframes blink {
