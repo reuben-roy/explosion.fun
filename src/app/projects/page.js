@@ -9,6 +9,12 @@ export const metadata = {
 
 const projects = [
     {
+        title: 'Greatness',
+        description: 'Define your own Self-Actualization metrics, upload your Google Takeout browsing data, and get a composite Greatness Score. Compete on the public leaderboard.',
+        link: '/projects/greatness',
+        linkText: 'Launch Greatness'
+    },
+    {
         title: 'Time Management Analysis',
         description: 'A deep-dive D3.js dashboard analyzing 31 days of tracked screen time — focus fragmentation, distraction gravity, circadian rhythms, sleep-productivity correlations, and the hidden YouTube habit.',
         link: '/projects/time-management',

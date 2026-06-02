@@ -63,7 +63,7 @@ mindmap
 **Profit motive (explicit):**
 
 - **Greatness** is architected as an open platform with public leaderboards — a path to freemium analytics, coaching integrations, or B2B “focus intelligence” for teams.
-- **YouTube Scholar** and **Time Management** dashboards function as **proof-of-work** for data-engineering and product sense — directly supporting career positioning (see `/career`).
+- **YouTube Scholar** and **Time Management** dashboards function as **proof-of-work** for data-engineering and product sense.
 - **Side-Track** is a product shell (changelog, legal, support) ready for app-store or subscription monetization.
 - The blog + projects loop drives **inbound attention**; ranked reviews and interactive posts increase time-on-site and shareability without paid acquisition.
 
@@ -174,7 +174,6 @@ flowchart TB
 flowchart LR
   HOME["/"]
   ABOUT["/about"]
-  CAREER["/career"]
   BLOG["/blog"]
   RANKED["/blog/ranked"]
   SLUG["/blog/post/:slug"]
@@ -213,7 +212,6 @@ flowchart LR
 |------|------|-------------|
 | `/` | Server | Hero + ranked reviews from CMS (1h revalidate) |
 | `/about` | Static | About page |
-| `/career` | Static | Skills stack showcase |
 | `/blog` | Static | Blog index |
 | `/blog/ranked` | Static | Ranked list view |
 | `/blog/post/[slug]` | Dynamic | CMS post by slug + category-specific scores |

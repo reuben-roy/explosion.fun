@@ -1,0 +1,277 @@
+.page {
+  min-height: 100vh;
+  background-color: #030303;
+  color: #f3f2ef;
+  font-family: var(--font-geist-sans);
+  padding: 5.5rem 1.5rem 4rem;
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.loader {
+  text-align: center;
+  padding: 4rem;
+  color: #8f98a7;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0 0 0.75rem;
+  background: linear-gradient(to bottom right, #ffffff 30%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: #8f98a7;
+  line-height: 1.6;
+}
+
+.dropzone {
+  border: 2px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 200ms ease;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.dropzone:hover,
+.dropzoneActive {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.04);
+}
+
+.fileInput {
+  display: none;
+}
+
+.dropIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.dropTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #f3f2ef;
+  margin: 0 0 0.5rem;
+}
+
+.dropText {
+  font-size: 0.9rem;
+  color: #8f98a7;
+  margin: 0;
+}
+
+.helpSection {
+  margin-top: 2.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+}
+
+.helpTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f3f2ef;
+  margin: 0 0 1rem;
+}
+
+.helpSteps {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #c8ced7;
+  font-size: 0.9rem;
+  line-height: 2;
+}
+
+.helpSteps code {
+  background: rgba(59, 130, 246, 0.1);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: #3b82f6;
+}
+
+.helpLink {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+.processingCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.progressBarOuter {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.progressBarInner {
+  height: 100%;
+  background: #3b82f6;
+  border-radius: 999px;
+  transition: width 300ms ease;
+}
+
+.progressInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.progressStep {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f3f2ef;
+}
+
+.progressDetail {
+  font-size: 0.85rem;
+  color: #8f98a7;
+}
+
+.processingNote {
+  font-size: 0.85rem;
+  color: #8f98a7;
+  margin: 0;
+}
+
+.resultCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.resultIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.12);
+  border: 2px solid #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #10b981;
+  margin: 0 auto 1.25rem;
+}
+
+.resultTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f3f2ef;
+  margin: 0 0 1.5rem;
+}
+
+.resultStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.statValue {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #f3f2ef;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: #8f98a7;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.resultRange {
+  font-size: 0.85rem;
+  color: #8f98a7;
+  margin: 0 0 1.5rem;
+}
+
+.primaryBtn {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  background: #3b82f6;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 150ms ease;
+  text-decoration: none;
+}
+
+.primaryBtn:hover {
+  opacity: 0.9;
+}
+
+.emptyCard {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}
+
+.emptyCard h2 {
+  font-size: 1.4rem;
+  margin: 0 0 0.75rem;
+  color: #f3f2ef;
+}
+
+.emptyCard p {
+  font-size: 0.95rem;
+  color: #8f98a7;
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
+}
+
+.error {
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  font-size: 0.85rem;
+  margin-top: 1.5rem;
+  text-align: center;
+}

@@ -1,0 +1,256 @@
+.page {
+  min-height: 100vh;
+  background-color: #030303;
+  color: #f3f2ef;
+  font-family: var(--font-geist-sans);
+  padding-top: 60px;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 6rem 1.5rem 5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.heroBadge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  background: rgba(59, 130, 246, 0.06);
+  color: #3b82f6;
+  margin-bottom: 2rem;
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  margin: 0 0 1.5rem;
+  background: linear-gradient(to bottom right, #ffffff 30%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroAccent {
+  color: transparent;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #8f98a7;
+  max-width: 55ch;
+  margin: 0 auto 2.5rem;
+}
+
+.heroCta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primaryBtn {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  border-radius: 12px;
+  background: #3b82f6;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 150ms ease;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.primaryBtn:hover {
+  opacity: 0.9;
+}
+
+.secondaryBtn {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: #e2e8f0;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 150ms ease;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.secondaryBtn:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Sections */
+.section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.sectionTitle {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-align: center;
+  margin: 0 0 1rem;
+  color: #f3f2ef;
+}
+
+.sectionSubtitle {
+  font-size: 1.05rem;
+  color: #8f98a7;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 55ch;
+  margin: 0 auto 2.5rem;
+}
+
+/* Features */
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.featureCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.featureCard:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.featureIcon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.featureName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f3f2ef;
+  margin: 0 0 0.5rem;
+}
+
+.featureDesc {
+  font-size: 0.9rem;
+  color: #8f98a7;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Metrics */
+.metricList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.metricRow {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+}
+
+.metricInfo {}
+
+.metricHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.metricDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.metricName {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f3f2ef;
+  margin: 0;
+  flex: 1;
+}
+
+.metricWeight {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #8f98a7;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.metricDesc {
+  font-size: 0.9rem;
+  color: #8f98a7;
+  line-height: 1.6;
+  margin: 0;
+  padding-left: 1.6rem;
+}
+
+/* CTA Section */
+.ctaSection {
+  text-align: center;
+  padding: 5rem 1.5rem;
+  background:
+    radial-gradient(circle at center, rgba(245, 158, 11, 0.04), transparent 60%);
+}
+
+.ctaTitle {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.75rem;
+  color: #f3f2ef;
+}
+
+.ctaSubtitle {
+  font-size: 1.05rem;
+  color: #8f98a7;
+  margin: 0 0 2rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 1rem 3rem;
+  }
+
+  .featureGrid {
+    grid-template-columns: 1fr;
+  }
+}

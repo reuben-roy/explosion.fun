@@ -1,0 +1,150 @@
+.terminal {
+  width: 100%;
+  max-width: 640px;
+  background: rgba(10, 12, 16, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  cursor: text;
+}
+
+.titleBar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dots {
+  display: inline-flex;
+  gap: 0.4rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.red {
+  background: #ff5f56;
+}
+.yellow {
+  background: #ffbd2e;
+}
+.green {
+  background: #27c93f;
+}
+
+.titleText {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.02em;
+}
+
+.body {
+  padding: 1rem 1.1rem 1.2rem;
+  height: 340px;
+  overflow-y: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #c8d3c5;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+.body::-webkit-scrollbar {
+  width: 8px;
+}
+.body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+.line {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.commandLine {
+  color: #ffffff;
+}
+
+.errorLine {
+  color: #ff7b72;
+}
+
+.inputLine {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.15rem;
+  min-width: 0;
+}
+
+.promptLabel {
+  color: #4ade80;
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  min-width: 0; /* let the input shrink below its default intrinsic width */
+  width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: inherit;
+  caret-color: #4ade80;
+  padding: 0;
+}
+
+.input:disabled {
+  opacity: 0.6;
+}
+
+/* Decorative blinking block caret that sits after the input.
+   The real text caret is provided by caret-color above. */
+.caret {
+  width: 9px;
+  height: 1.1em;
+  background: #4ade80;
+  display: inline-block;
+  animation: blink 1s step-end infinite;
+  flex-shrink: 0;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .terminal {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .body {
+    height: 280px;
+    font-size: 0.82rem;
+  }
+
+  .titleText {
+    font-size: 0.7rem;
+  }
+}
