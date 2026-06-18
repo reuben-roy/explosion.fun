@@ -166,6 +166,14 @@ flowchart TB
 | **GitHub Actions** | Claude Code on `@claude` mentions; automated PR review |
 | **Vercel** | Analytics, Speed Insights, static hosting |
 
+## Documentation
+
+Developer-facing docs live in [`docs/`](docs/README.md):
+
+- [`docs/developer-guide.md`](docs/developer-guide.md) covers local setup, route conventions, CMS behavior, and static export expectations.
+- [`docs/data-pipelines.md`](docs/data-pipelines.md) documents the offline processing model for YouTube, time-management, migration, and other data artifacts.
+- [`docs/customization.md`](docs/customization.md) explains how to separate the reusable publishing/data platform from personal content.
+
 ---
 
 ## Site Map — All Routes
