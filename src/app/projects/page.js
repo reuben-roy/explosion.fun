@@ -96,8 +96,14 @@ const projects = [
     },
     {
         title: "Job Answer App",
-        description: "A single-page tool that uses Google Gemini to generate tailored job-application answers from your resume and writing rules.",
+        description: "A single-page tool that uses OpenRouter to generate tailored job-application answers from your resume and writing rules.",
         link: "https://github.com/reuben-roy/job-answer-app",
+        linkText: "View on GitHub"
+    },
+    {
+        title: "Kali-Platform",
+        description: "The mobile engine for Kali — a React Native fitness app that treats physical progression like a tech tree, with muscle-specific fatigue tracking and local-first data.",
+        link: "https://github.com/reuben-roy/Kali-Platform",
         linkText: "View on GitHub"
     },
 ];
