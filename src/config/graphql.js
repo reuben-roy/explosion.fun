@@ -150,9 +150,20 @@ export const BOOK_NON_FICTION_POST_QUERY = `
   }
 `;
 
+// Cursor pagination fields. WPGraphQL caps any single request at 100 nodes
+// (graphql_connection_max_query_amount), so every list query must page through
+// the connection rather than asking for one large `first`.
+const PAGE_INFO = `
+  pageInfo {
+    hasNextPage
+    endCursor
+  }
+`;
+
 export const SIDETRACK_POSTS_QUERY = `
-  query GetSideTrackPosts {
-    posts(where: {categoryName: "Side-Track"}, first: 100) {
+  query GetSideTrackPosts($first: Int!, $after: String) {
+    posts(where: {categoryName: "Side-Track"}, first: $first, after: $after) {
+      ${PAGE_INFO}
       nodes {
         title
         content
@@ -166,8 +177,9 @@ export const SIDETRACK_POSTS_QUERY = `
 
 // Query for listing posts
 export const POSTS_LIST_QUERY = `
-  query GetPosts {
-    posts(first: 100) {
+  query GetPosts($first: Int!, $after: String) {
+    posts(first: $first, after: $after) {
+      ${PAGE_INFO}
       nodes {
         ${BASE_POST_FIELDS}
         ${ANIME_FIELDS}
@@ -176,6 +188,18 @@ export const POSTS_LIST_QUERY = `
         ${TV_SERIES_FIELDS}
         ${BOOK_FICTION_FIELDS}
         ${BOOK_NON_FICTION_FIELDS}
+      }
+    }
+  }
+`;
+
+// Slugs only - used to generate static params for every post.
+export const POST_SLUGS_QUERY = `
+  query GetAllPostSlugs($first: Int!, $after: String) {
+    posts(first: $first, after: $after) {
+      ${PAGE_INFO}
+      nodes {
+        slug
       }
     }
   }

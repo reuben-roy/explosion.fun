@@ -1,47 +1,10 @@
 import Navbar from '../../components/Navbar';
 import BlogContent from '../../components/BlogContent';
 import styles from './blog.module.css';
-import { GRAPHQL_ENDPOINT, POSTS_LIST_QUERY } from '../../config/graphql';
+import { getAllPosts } from '../../lib/wordpress';
 import { CATEGORIES } from '../../utils/categories.js';
 import fs from 'fs';
 import path from 'path';
-
-// Fetch posts with caching
-async function getPosts() {
-    try {
-        const response = await fetch(GRAPHQL_ENDPOINT, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                query: POSTS_LIST_QUERY,
-            }),
-        }, { next: { revalidate: 3600 } }); // Cache for 1 hour
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.json();
-
-        if (result.errors) {
-            console.error('GraphQL Errors:', result.errors);
-            throw new Error(result.errors[0].message);
-        }
-
-        const { data } = result;
-
-        if (!data || !data.posts || !data.posts.nodes) {
-            console.error('Unexpected data structure:', data);
-            throw new Error('Invalid data structure received from GraphQL');
-        }
-        return data.posts.nodes;
-    } catch (error) {
-        console.error('Error fetching posts:', error);
-        return []; // Return empty array on error
-    }
-}
 
 // NEW: gather interactive local pages and treat them like posts
 async function getInteractivePosts() {
@@ -93,7 +56,7 @@ async function getInteractivePosts() {
 
 export default async function Blog() {
     const [wpPosts, interactivePosts] = await Promise.all([
-        getPosts(),
+        getAllPosts(),
         getInteractivePosts()
     ]);
 

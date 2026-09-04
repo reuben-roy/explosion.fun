@@ -1,84 +1,18 @@
 import Navbar from '../../../../components/Navbar';
 import styles from './post.module.css';
 import { GRAPHQL_ENDPOINT, getPostQueryByCategory } from '../../../../config/graphql';
+import { getAllPostSlugs } from '../../../../lib/wordpress';
 import { calculateAverageScore } from '../../../../utils/scores';
 import RatingLegend from '../../../../components/RatingLegend';
 import { REVIEW_CATEGORIES } from '../../../../utils/reviewCategories';
 
-// GraphQL query to get all post slugs with pagination
-const ALL_POSTS_QUERY = `
-    query GetAllPosts($first: Int, $after: String) {
-        posts(first: $first, after: $after) {
-            nodes {
-                slug
-            }
-            pageInfo {
-                hasNextPage
-                endCursor
-            }
-        }
-    }
-`;
-
 // Generate static params for all posts
 export async function generateStaticParams() {
-    try {
-        let allPosts = [];
-        let hasNextPage = true;
-        let endCursor = null;
-        const postsPerPage = 100; // Fetch in batches of 100
+    const slugs = await getAllPostSlugs();
 
-        while (hasNextPage) {
-            const response = await fetch(GRAPHQL_ENDPOINT, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    query: ALL_POSTS_QUERY,
-                    variables: {
-                        first: postsPerPage,
-                        after: endCursor
-                    }
-                }),
-            });
+    console.log(`Generated ${slugs.length} static params`);
 
-            if (!response.ok) {
-                console.error(`HTTP error! status: ${response.status}`);
-                break;
-            }
-
-            const result = await response.json();
-
-            if (result.errors) {
-                console.error('GraphQL errors:', result.errors);
-                break;
-            }
-
-            const { data } = result;
-
-            if (!data || !data.posts || !data.posts.nodes) {
-                console.error('Invalid data structure received from GraphQL');
-                break;
-            }
-
-            allPosts.push(...data.posts.nodes);
-            hasNextPage = data.posts.pageInfo.hasNextPage;
-            endCursor = data.posts.pageInfo.endCursor;
-        }
-
-        const staticParams = allPosts.map((post) => ({
-            slug: post.slug,
-        }));
-
-        console.log(`Generated ${staticParams.length} static params:`, staticParams.map(p => p.slug));
-
-        return staticParams;
-    } catch (error) {
-        console.error('Error generating static params:', error);
-        // Return empty array instead of throwing to prevent build failure
-        return [];
-    }
+    return slugs.map((slug) => ({ slug }));
 }
 
 function isPostInCategory(post, categorySlug) {

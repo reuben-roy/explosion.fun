@@ -1,24 +1,14 @@
 import Navbar from '../../../components/Navbar';
 import RatingLegend from '../../../components/RatingLegend';
 import RankedList from '../../../components/RankedList';
-import { GRAPHQL_ENDPOINT, POSTS_LIST_QUERY } from '../../../config/graphql';
+import { getAllPosts } from '../../../lib/wordpress';
 import { calculateAverageScore } from '../../../utils/scores';
 import styles from './page.module.css';
 
-async function getPosts() {
-    const response = await fetch(GRAPHQL_ENDPOINT, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            query: POSTS_LIST_QUERY,
-        }),
-    }, { next: { revalidate: 3600 } });
+async function getRankedPosts() {
+    const posts = await getAllPosts();
 
-    const { data } = await response.json();
-
-    return data.posts.nodes.map(post => ({
+    return posts.map(post => ({
         ...post,
         averageScore: calculateAverageScore(post)
     }));
@@ -30,7 +20,7 @@ export const metadata = {
 };
 
 export default async function RankedPage() {
-    const posts = await getPosts();
+    const posts = await getRankedPosts();
 
     return (
         <div className={styles.page}>
