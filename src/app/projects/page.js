@@ -106,6 +106,12 @@ const projects = [
         link: "https://github.com/reuben-roy/Kali-Platform",
         linkText: "View on GitHub"
     },
+    {
+        title: "reuben-roy",
+        description: "A self-maintaining GitHub profile — the contribution snake regenerates via GitHub Actions and an OpenClaw agent runs 24/7 to keep the site, CV, and blog in sync.",
+        link: "https://github.com/reuben-roy/reuben-roy",
+        linkText: "View on GitHub"
+    },
 ];
 
 
