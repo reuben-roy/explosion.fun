@@ -15,6 +15,12 @@ const projects = [
         linkText: 'Read the Deep Dive'
     },
     {
+        title: 'Who Got the Jobs?',
+        description: 'A decade of BLS employment data by sex, unpacking the claim that women accounted for 97.53% of the August 2026 net payroll gain.',
+        link: '/projects/employment-by-sex',
+        linkText: 'Explore the Data'
+    },
+    {
         title: 'Greatness',
         description: 'Define your own Self-Actualization metrics, upload your Google Takeout browsing data, and get a composite Greatness Score. Compete on the public leaderboard.',
         link: '/projects/greatness',

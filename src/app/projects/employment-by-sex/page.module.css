@@ -1,0 +1,6 @@
+.page {
+  min-height: 100vh;
+  background: #070a0d;
+  color: #f5f2ea;
+  font-family: var(--font-geist-sans);
+}

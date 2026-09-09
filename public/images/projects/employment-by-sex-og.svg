@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#080b0e"/><stop offset=".55" stop-color="#121a20"/><stop offset="1" stop-color="#080b0e"/></linearGradient>
+    <radialGradient id="pink"><stop stop-color="#ff6b8a" stop-opacity=".22"/><stop offset="1" stop-color="#ff6b8a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="blue"><stop stop-color="#5ec7e8" stop-opacity=".2"/><stop offset="1" stop-color="#5ec7e8" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0H0V60" fill="none" stroke="#fff" stroke-opacity=".045"/></pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="230" cy="540" r="340" fill="url(#pink)"/>
+  <circle cx="1010" cy="150" r="350" fill="url(#blue)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <text x="72" y="78" fill="#d9c65c" font-family="ui-monospace, monospace" font-size="17" font-weight="700" letter-spacing="2">U.S. EMPLOYMENT BY SEX · 2016–2026</text>
+  <text x="64" y="238" fill="#f5f2ea" font-family="Arial, Helvetica, sans-serif" font-size="108" font-weight="750" letter-spacing="-7">Who got</text>
+  <text x="64" y="342" fill="#f5f2ea" font-family="Arial, Helvetica, sans-serif" font-size="108" font-weight="750" letter-spacing="-7">the jobs?</text>
+  <line x1="70" y1="402" x2="1130" y2="402" stroke="#f5f2ea" stroke-opacity=".2"/>
+  <text x="72" y="455" fill="#9da4aa" font-family="Arial, Helvetica, sans-serif" font-size="18">AUGUST 2026 NET PAYROLL GAIN</text>
+  <text x="72" y="530" fill="#f5f2ea" font-family="ui-monospace, monospace" font-size="66" font-weight="700">+162k</text>
+  <text x="470" y="455" fill="#ff6b8a" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">WOMEN</text>
+  <text x="470" y="530" fill="#ff6b8a" font-family="ui-monospace, monospace" font-size="66" font-weight="700">97.53%</text>
+  <text x="910" y="455" fill="#5ec7e8" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">MEN</text>
+  <text x="910" y="530" fill="#5ec7e8" font-family="ui-monospace, monospace" font-size="66" font-weight="700">2.47%</text>
+  <text x="72" y="592" fill="#737d84" font-family="Arial, Helvetica, sans-serif" font-size="18">explosion.fun / data story</text>
+</svg>
