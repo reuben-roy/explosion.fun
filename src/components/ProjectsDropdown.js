@@ -39,6 +39,13 @@ export default function ProjectsDropdown({ onClose }) {
             {isOpen && (
                 <div className={styles.menu}>
                     <Link
+                        href="/projects/auto-apply"
+                        className={styles.menuItem}
+                        onClick={handleLinkClick}
+                    >
+                        Auto-Apply
+                    </Link>
+                    <Link
                         href="/projects/greatness"
                         className={styles.menuItem}
                         onClick={handleLinkClick}

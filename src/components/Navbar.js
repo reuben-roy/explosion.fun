@@ -45,6 +45,13 @@ export default function Navbar() {
                     <DropdownMenu onClose={closeMenu} />
                     <ProjectsDropdown onClose={closeMenu} />
                     <Link
+                        href="/cv"
+                        className={`${styles.link} ${pathname === '/cv' ? styles.active : ''}`}
+                        onClick={closeMenu}
+                    >
+                        CV
+                    </Link>
+                    <Link
                         href="/docs"
                         className={`${styles.link} ${pathname === '/docs' ? styles.active : ''}`}
                         onClick={closeMenu}

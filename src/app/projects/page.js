@@ -9,6 +9,12 @@ export const metadata = {
 
 const projects = [
     {
+        title: 'Auto-Apply — Autonomous Job-Application Agent',
+        description: 'A local-first agent that applies to jobs overnight and knows when not to. The model only answers questions; schema-first form discovery, trust-ordered resolution, a confidence gate, and verified submissions do the rest. Paired with the Hermes scraper it runs the whole pipeline unattended.',
+        link: '/projects/auto-apply',
+        linkText: 'Read the Deep Dive'
+    },
+    {
         title: 'Greatness',
         description: 'Define your own Self-Actualization metrics, upload your Google Takeout browsing data, and get a composite Greatness Score. Compete on the public leaderboard.',
         link: '/projects/greatness',

@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "node scripts/sync-cv.mjs && next build",
     "start": "next start",
     "lint": "next lint",
-    "youtube:data": "node scripts/process-youtube-data.js"
+    "youtube:data": "node scripts/process-youtube-data.js",
+    "cv:sync": "node scripts/sync-cv.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.100.1",

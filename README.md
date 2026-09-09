@@ -10,7 +10,7 @@
 [![Supabase](https://img.shields.io/badge/Supabase-Auth+%26+DB-3ECF8E?style=flat-square&logo=supabase)](https://supabase.com/)
 [![Static Export](https://img.shields.io/badge/Deploy-Static+Export-000?style=flat-square&logo=vercel)](https://vercel.com/)
 
-[Live site](https://explosion.fun) · [CMS GraphQL](https://cms.explosion.fun/graphql) · [Projects](/projects)
+[Live site](https://explosion.fun) · [CV](https://explosion.fun/cv) · [CMS GraphQL](https://cms.explosion.fun/graphql) · [Projects](/projects)
 
 </div>
 
@@ -166,6 +166,25 @@ flowchart TB
 | **GitHub Actions** | Claude Code on `@claude` mentions; automated PR review |
 | **Vercel** | Analytics, Speed Insights, static hosting |
 
+## CV & Career Surface
+
+The CV is content, not markup. [`src/content/cv.md`](src/content/cv.md) is the single source of truth;
+[`/cv`](https://explosion.fun/cv) renders it, and `scripts/sync-cv.mjs` (wired into `npm run build`) publishes the
+same file verbatim at [`/cv.md`](https://explosion.fun/cv.md). Edit the Markdown, rebuild, and both surfaces move together.
+
+| Surface | For | Notes |
+|---------|-----|-------|
+| `/cv` | Humans | Rendered Markdown — nested bullets, `**bold**`, inline code, links |
+| `/cv.md` | Agents, scrapers, resume builders | Raw Markdown, no HTML parsing required |
+| `/cv` JSON-LD | Structured consumers | schema.org `Person` with `knowsAbout` and a `SoftwareSourceCode` for Auto-Apply |
+| `/projects/auto-apply` | Both | Full technical write-up, with its own `SoftwareSourceCode` JSON-LD |
+
+The lead project on all of them is **Auto-Apply** — a local-first agentic system that applies to jobs unattended,
+paired with the **Hermes** scraper that supplies the day's listings. The write-up is deliberately specific about
+architecture (the model answers questions; it never drives the browser or decides to submit), the confidence gate,
+post-submit verification, failover and degradation behaviour, and what was actually hard to build — so anyone
+reading it, human or machine, gets a usable reference rather than a tagline.
+
 ## Documentation
 
 Developer-facing docs live in [`docs/`](docs/README.md):
@@ -186,10 +205,15 @@ flowchart LR
   RANKED["/blog/ranked"]
   SLUG["/blog/post/:slug"]
   PROJ["/projects"]
+  CV["/cv"]
   ST["/side-track"]
 
   HOME --> BLOG
   HOME --> PROJ
+  HOME --> CV
+  CV --> AA["/projects/auto-apply"]
+  CV --> RAW["/cv.md — machine-readable"]
+  PROJ --> AA
   PROJ --> G["/projects/greatness"]
   PROJ --> TM["/projects/time-management"]
   PROJ --> YT["/projects/youtube-scholar"]
@@ -226,7 +250,10 @@ flowchart LR
 | `/blog/post/interactive/solar-system` | Client | Three.js orbital sim |
 | `/blog/post/interactive/bird-migration` | Client | D3 + TopoJSON migration map |
 | `/blog/post/interactive/ceo-affair` | Static | Interactive narrative |
+| `/cv` | Static | CV rendered from `src/content/cv.md`, plus `Person` JSON-LD for machine readers |
+| `/cv.md` | Asset | Raw CV Markdown, synced from `src/content/cv.md` at build time |
 | `/projects` | Static | Project hub cards |
+| `/projects/auto-apply` | Static | Auto-Apply technical deep dive + `SoftwareSourceCode` JSON-LD |
 | `/projects/greatness` | Client | Product landing |
 | `/projects/greatness/login` | Client | Supabase email auth |
 | `/projects/greatness/onboarding` | Client | Goal definition (domains + keywords) |
@@ -456,6 +483,8 @@ explosion.fun/
 │   ├── components/          # UI, D3 experiences, Greatness nav/auth
 │   ├── config/              # GraphQL, Supabase client
 │   └── utils/               # Scores, Takeout parser, Greatness algorithms
+│   ├── content/             # Markdown source (CV)
+├── public/cv.md             # Generated from src/content/cv.md (npm run cv:sync)
 ├── public/data/             # Prebuilt JSON + Takeout raw (local)
 ├── scripts/                 # Offline data processors
 ├── supabase/schema.sql      # Greatness DB + RLS

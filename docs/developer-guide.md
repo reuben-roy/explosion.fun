@@ -55,7 +55,9 @@ That means pages should be compatible with static output. When adding a route, a
 | `/blog/ranked` | Ranked review view |
 | `/blog/post/[slug]` | CMS-backed post detail route |
 | `/blog/post/interactive/*` | Interactive long-form pages |
+| `/cv` | CV rendered from `src/content/cv.md`, with `Person` JSON-LD; raw Markdown is published at `/cv.md` by `scripts/sync-cv.mjs` during `npm run build` |
 | `/projects` | Project hub |
+| `/projects/auto-apply` | Auto-Apply technical deep dive (agentic job-application system) |
 | `/projects/time-management` | Screen-time dashboard |
 | `/projects/youtube-scholar` | YouTube Takeout analysis |
 | `/side-track/*` | Product shell, changelog, legal, and support pages |
