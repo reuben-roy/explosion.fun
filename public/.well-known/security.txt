@@ -1,0 +1,5 @@
+Contact: https://github.com/reuben-roy/explosion.fun/security/advisories/new
+Expires: 2027-09-09T00:00:00.000Z
+Canonical: https://www.explosion.fun/.well-known/security.txt
+Preferred-Languages: en
+Policy: https://github.com/reuben-roy/explosion.fun/security
