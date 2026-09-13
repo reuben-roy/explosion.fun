@@ -251,9 +251,11 @@ flowchart LR
 | `/blog/post/interactive/bird-migration` | Client | D3 + TopoJSON migration map |
 | `/blog/post/interactive/ceo-affair` | Static | Interactive narrative |
 | `/cv` | Static | CV rendered from `src/content/cv.md`, plus `Person` JSON-LD for machine readers |
-| `/cv.md` | Asset | Raw CV Markdown, synced from `src/content/cv.md` at build time |
+| `/cv.md` | Asset | Raw CV Markdown, synced from `src/content/cv.md` at build time via `scripts/sync-cv.mjs` |
+| `/cv` JSON-LD | Structured consumers | schema.org `Person` with `knowsAbout` and a `SoftwareSourceCode` for Auto-Apply |
 | `/projects` | Static | Project hub cards |
 | `/projects/auto-apply` | Static | Auto-Apply technical deep dive + `SoftwareSourceCode` JSON-LD |
+| `/projects/employment-by-sex` | Client | Employment-by-sex BLS data visualization dashboard |
 | `/projects/greatness` | Client | Product landing |
 | `/projects/greatness/login` | Client | Supabase email auth |
 | `/projects/greatness/onboarding` | Client | Goal definition (domains + keywords) |
@@ -438,6 +440,14 @@ Turns ~67k watch events and ~5.5k searches into a narrative “Chief Information
 ### Side-Track
 
 Workout tracking companion — marketing surface with changelog fed from CMS `Side-Track` category posts.
+
+### Auto-Apply
+
+A local-first agentic system that applies to jobs unattended — paired with the Hermes scraper that supplies daily listings. The model answers questions; it never drives the browser or decides to submit. Features a confidence gate, post-submit verification, failover and degradation behaviour, and a full technical write-up with `SoftwareSourceCode` JSON-LD.
+
+### Employment by Sex
+
+BLS employment data visualization dashboard — interactive charts breaking down U.S. employment by sex across industries, powered by D3 and monthly Bureau of Labor Statistics JSON. Built as a portfolio-grade data visualization artifact with an Open Graph preview card.
 
 ---
 
