@@ -58,7 +58,7 @@ That means pages should be compatible with static output. When adding a route, a
 | `/cv` | CV rendered from `src/content/cv.md`, with `Person` JSON-LD; raw Markdown is published at `/cv.md` by `scripts/sync-cv.mjs` during `npm run build` |
 | `/projects` | Project hub |
 | `/projects/auto-apply` | Auto-Apply technical deep dive (agentic job-application system) |
-| `/projects/agent-star-growth` | GitHub star history comparisons for OpenClaw, Hermes Agent, and DeepSeek Harness |
+| `/projects/agent-star-growth` | DeepSeek Harness growth and future scenarios, with selectable public-repository star comparisons |
 | `/projects/time-management` | Screen-time dashboard |
 | `/projects/youtube-scholar` | YouTube Takeout analysis |
 | `/side-track/*` | Product shell, changelog, legal, and support pages |

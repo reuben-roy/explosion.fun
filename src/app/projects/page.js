@@ -21,8 +21,8 @@ const projects = [
         linkText: 'Explore the Data'
     },
     {
-        title: 'GitHub Stars: The Rise of AI Agents',
-        description: 'A fixed historical comparison of star growth for OpenClaw, Hermes Agent, and DeepSeek Harness, through October 3, 2026.',
+        title: 'GitHub Stars: Rise of DeepSeek Harness',
+        description: 'Explore DeepSeek Harness growth, compare current stars across major coding harness repositories, and try illustrative projections.',
         link: '/projects/agent-star-growth',
         linkText: 'Explore the Charts'
     },

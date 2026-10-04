@@ -1,1 +1,459 @@
-{"asOf": "2026-10-03", "method": "Approximate historical points digitized from Star History SVG path endpoints; rounded to nearest 100 stars and calendar day. Current counts retrieved directly from GitHub API. No daily history or statistical confidence interval is claimed.", "source": "https://api.star-history.com/svg?repos=NousResearch/hermes-agent,openclaw/openclaw,deepseek-ai/deepseek-harness&type=Date", "series": [{"name": "OpenClaw", "repo": "openclaw/openclaw", "current": 391233, "points": [{"date": "2026-01-19", "stars": 4700}, {"date": "2026-02-06", "stars": 158700}, {"date": "2026-02-25", "stars": 214800}, {"date": "2026-03-15", "stars": 299800}, {"date": "2026-04-02", "stars": 332200}, {"date": "2026-04-21", "stars": 349900}, {"date": "2026-05-09", "stars": 360000}, {"date": "2026-05-28", "stars": 367000}, {"date": "2026-06-15", "stars": 372100}, {"date": "2026-07-03", "stars": 375900}, {"date": "2026-07-22", "stars": 379200}, {"date": "2026-08-09", "stars": 382100}, {"date": "2026-08-27", "stars": 385400}, {"date": "2026-09-15", "stars": 388600}, {"date": "2026-10-03", "stars": 391233}]}, {"name": "Hermes Agent", "repo": "NousResearch/hermes-agent", "current": 250946, "points": [{"date": "2026-03-07", "stars": 1900}, {"date": "2026-03-30", "stars": 16600}, {"date": "2026-04-23", "stars": 108700}, {"date": "2026-05-16", "stars": 149400}, {"date": "2026-06-08", "stars": 183500}, {"date": "2026-07-02", "stars": 204900}, {"date": "2026-07-25", "stars": 218000}, {"date": "2026-08-17", "stars": 230100}, {"date": "2026-09-10", "stars": 243200}, {"date": "2026-10-03", "stars": 250946}]}, {"name": "DeepSeek Harness", "repo": "deepseek-ai/deepseek-harness", "current": 242817, "points": [{"date": "2026-08-14", "stars": 74200}, {"date": "2026-08-17", "stars": 138900}, {"date": "2026-08-20", "stars": 168100}, {"date": "2026-08-23", "stars": 184200}, {"date": "2026-08-26", "stars": 194600}, {"date": "2026-08-29", "stars": 200900}, {"date": "2026-09-01", "stars": 205600}, {"date": "2026-09-04", "stars": 210200}, {"date": "2026-09-07", "stars": 213200}, {"date": "2026-09-09", "stars": 215500}, {"date": "2026-09-12", "stars": 219900}, {"date": "2026-09-15", "stars": 223600}, {"date": "2026-09-18", "stars": 227700}, {"date": "2026-09-21", "stars": 231000}, {"date": "2026-09-24", "stars": 234100}, {"date": "2026-09-27", "stars": 236800}, {"date": "2026-09-30", "stars": 240300}, {"date": "2026-10-03", "stars": 242817}]}], "rates": {"7": 988.1428571428571, "14": 1001.2142857142857, "30": 1138.3444444444447}}
+{
+  "asOf": "2026-10-03",
+  "method": "DeepSeek Harness, Hermes Agent, and OpenClaw historical points are approximate, digitized from a previously retrieved Star History SVG and rounded to 100 stars/calendar day. Other repositories have only a GitHub API snapshot dated October 3, 2026; no history is inferred. All comparisons count public repository stars, not product users or quality.",
+  "source": "https://api.star-history.com/svg?repos=NousResearch/hermes-agent,openclaw/openclaw,deepseek-ai/deepseek-harness&type=Date",
+  "series": [
+    {
+      "name": "OpenClaw",
+      "repo": "openclaw/openclaw",
+      "current": 391233,
+      "points": [
+        {
+          "date": "2026-01-19",
+          "stars": 4700
+        },
+        {
+          "date": "2026-02-06",
+          "stars": 158700
+        },
+        {
+          "date": "2026-02-25",
+          "stars": 214800
+        },
+        {
+          "date": "2026-03-15",
+          "stars": 299800
+        },
+        {
+          "date": "2026-04-02",
+          "stars": 332200
+        },
+        {
+          "date": "2026-04-21",
+          "stars": 349900
+        },
+        {
+          "date": "2026-05-09",
+          "stars": 360000
+        },
+        {
+          "date": "2026-05-28",
+          "stars": 367000
+        },
+        {
+          "date": "2026-06-15",
+          "stars": 372100
+        },
+        {
+          "date": "2026-07-03",
+          "stars": 375900
+        },
+        {
+          "date": "2026-07-22",
+          "stars": 379200
+        },
+        {
+          "date": "2026-08-09",
+          "stars": 382100
+        },
+        {
+          "date": "2026-08-27",
+          "stars": 385400
+        },
+        {
+          "date": "2026-09-15",
+          "stars": 388600
+        },
+        {
+          "date": "2026-10-03",
+          "stars": 391233
+        }
+      ],
+      "note": "General-purpose agent with messaging and automation capabilities.",
+      "historyMethod": "digitized",
+      "source": "https://api.star-history.com/svg?repos=NousResearch/hermes-agent,openclaw/openclaw,deepseek-ai/deepseek-harness&type=Date",
+      "url": "https://github.com/openclaw/openclaw"
+    },
+    {
+      "name": "Hermes Agent",
+      "repo": "NousResearch/hermes-agent",
+      "current": 250946,
+      "points": [
+        {
+          "date": "2026-03-07",
+          "stars": 1900
+        },
+        {
+          "date": "2026-03-30",
+          "stars": 16600
+        },
+        {
+          "date": "2026-04-23",
+          "stars": 108700
+        },
+        {
+          "date": "2026-05-16",
+          "stars": 149400
+        },
+        {
+          "date": "2026-06-08",
+          "stars": 183500
+        },
+        {
+          "date": "2026-07-02",
+          "stars": 204900
+        },
+        {
+          "date": "2026-07-25",
+          "stars": 218000
+        },
+        {
+          "date": "2026-08-17",
+          "stars": 230100
+        },
+        {
+          "date": "2026-09-10",
+          "stars": 243200
+        },
+        {
+          "date": "2026-10-03",
+          "stars": 250946
+        }
+      ],
+      "note": "General-purpose agent with learning and skills capabilities.",
+      "historyMethod": "digitized",
+      "source": "https://api.star-history.com/svg?repos=NousResearch/hermes-agent,openclaw/openclaw,deepseek-ai/deepseek-harness&type=Date",
+      "url": "https://github.com/NousResearch/hermes-agent"
+    },
+    {
+      "name": "DeepSeek Harness",
+      "repo": "deepseek-ai/deepseek-harness",
+      "current": 242817,
+      "points": [
+        {
+          "date": "2026-08-14",
+          "stars": 74200
+        },
+        {
+          "date": "2026-08-17",
+          "stars": 138900
+        },
+        {
+          "date": "2026-08-20",
+          "stars": 168100
+        },
+        {
+          "date": "2026-08-23",
+          "stars": 184200
+        },
+        {
+          "date": "2026-08-26",
+          "stars": 194600
+        },
+        {
+          "date": "2026-08-29",
+          "stars": 200900
+        },
+        {
+          "date": "2026-09-01",
+          "stars": 205600
+        },
+        {
+          "date": "2026-09-04",
+          "stars": 210200
+        },
+        {
+          "date": "2026-09-07",
+          "stars": 213200
+        },
+        {
+          "date": "2026-09-09",
+          "stars": 215500
+        },
+        {
+          "date": "2026-09-12",
+          "stars": 219900
+        },
+        {
+          "date": "2026-09-15",
+          "stars": 223600
+        },
+        {
+          "date": "2026-09-18",
+          "stars": 227700
+        },
+        {
+          "date": "2026-09-21",
+          "stars": 231000
+        },
+        {
+          "date": "2026-09-24",
+          "stars": 234100
+        },
+        {
+          "date": "2026-09-27",
+          "stars": 236800
+        },
+        {
+          "date": "2026-09-30",
+          "stars": 240300
+        },
+        {
+          "date": "2026-10-03",
+          "stars": 242817
+        }
+      ],
+      "note": "Plugin-based agent harness; focus of the growth and projection charts.",
+      "historyMethod": "digitized",
+      "source": "https://api.star-history.com/svg?repos=NousResearch/hermes-agent,openclaw/openclaw,deepseek-ai/deepseek-harness&type=Date",
+      "url": "https://github.com/deepseek-ai/deepseek-harness"
+    },
+    {
+      "name": "Claude Code",
+      "repo": "anthropics/claude-code",
+      "url": "https://github.com/anthropics/claude-code",
+      "current": 149220,
+      "createdAt": "2025-02-22T17:41:21Z",
+      "note": "Public repository for Claude Code plugins, examples, and issue tracking; repository stars do not measure the closed-source product’s usage.",
+      "historyMethod": "snapshot-only",
+      "source": "https://api.github.com/repos/anthropics/claude-code",
+      "points": [
+        {
+          "date": "2026-10-03",
+          "stars": 149220
+        }
+      ]
+    },
+    {
+      "name": "Codex CLI",
+      "repo": "openai/codex",
+      "url": "https://github.com/openai/codex",
+      "current": 127756,
+      "createdAt": "2025-04-13T05:37:54Z",
+      "note": "Stars cover the open-source Codex CLI repository, not adoption of the full Codex product.",
+      "historyMethod": "snapshot-only",
+      "source": "https://api.github.com/repos/openai/codex",
+      "points": [
+        {
+          "date": "2026-10-03",
+          "stars": 127756
+        }
+      ]
+    },
+    {
+      "name": "Pi",
+      "repo": "earendil-works/pi",
+      "url": "https://github.com/earendil-works/pi",
+      "current": 112159,
+      "createdAt": "2025-08-09T14:03:50Z",
+      "note": "Toolkit monorepo including the coding-agent CLI, LLM API, agent loop, and terminal UI. Formerly badlogic/pi-mono.",
+      "historyMethod": "snapshot-only",
+      "source": "https://api.github.com/repos/earendil-works/pi",
+      "points": [
+        {
+          "date": "2026-10-03",
+          "stars": 112159
+        }
+      ]
+    },
+    {
+      "name": "Gemini CLI",
+      "repo": "google-gemini/gemini-cli",
+      "url": "https://github.com/google-gemini/gemini-cli",
+      "current": 107226,
+      "createdAt": "2025-04-17T17:04:31Z",
+      "note": "Open-source terminal coding agent.",
+      "historyMethod": "snapshot-only",
+      "source": "https://api.github.com/repos/google-gemini/gemini-cli",
+      "points": [
+        {
+          "date": "2026-10-03",
+          "stars": 107226
+        }
+      ]
+    },
+    {
+      "name": "OpenCode",
+      "repo": "anomalyco/opencode",
+      "url": "https://github.com/anomalyco/opencode",
+      "current": 211636,
+      "createdAt": "2025-04-30T20:08:00Z",
+      "note": "Open-source coding agent.",
+      "historyMethod": "snapshot-only",
+      "source": "https://api.github.com/repos/anomalyco/opencode",
+      "points": [
+        {
+          "date": "2026-10-03",
+          "stars": 211636
+        }
+      ]
+    },
+    {
+      "name": "Goose",
+      "repo": "aaif-goose/goose",
+      "url": "https://github.com/aaif-goose/goose",
+      "current": 54914,
+      "createdAt": "2024-08-23T19:03:36Z",
+      "note": "General-purpose extensible agent; formerly block/goose, now aaif-goose/goose.",
+      "historyMethod": "snapshot-only",
+      "source": "https://api.github.com/repos/aaif-goose/goose",
+      "points": [
+        {
+          "date": "2026-10-03",
+          "stars": 54914
+        }
+      ]
+    },
+    {
+      "name": "OpenHands",
+      "repo": "OpenHands/OpenHands",
+      "url": "https://github.com/OpenHands/OpenHands",
+      "current": 89915,
+      "createdAt": "2024-03-13T03:33:31Z",
+      "note": "Repository includes a broader software-development agent platform.",
+      "historyMethod": "snapshot-only",
+      "source": "https://api.github.com/repos/OpenHands/OpenHands",
+      "points": [
+        {
+          "date": "2026-10-03",
+          "stars": 89915
+        }
+      ]
+    },
+    {
+      "name": "Cline",
+      "repo": "cline/cline",
+      "url": "https://github.com/cline/cline",
+      "current": 69791,
+      "createdAt": "2024-07-06T07:28:10Z",
+      "note": "Coding agent available as an SDK, IDE extension, and CLI.",
+      "historyMethod": "snapshot-only",
+      "source": "https://api.github.com/repos/cline/cline",
+      "points": [
+        {
+          "date": "2026-10-03",
+          "stars": 69791
+        }
+      ]
+    },
+    {
+      "name": "Aider",
+      "repo": "Aider-AI/aider",
+      "url": "https://github.com/Aider-AI/aider",
+      "current": 49358,
+      "createdAt": "2023-05-09T18:57:49Z",
+      "note": "Terminal AI pair-programming tool.",
+      "historyMethod": "snapshot-only",
+      "source": "https://api.github.com/repos/Aider-AI/aider",
+      "points": [
+        {
+          "date": "2026-10-03",
+          "stars": 49358
+        }
+      ]
+    },
+    {
+      "name": "Continue",
+      "repo": "continuedev/continue",
+      "url": "https://github.com/continuedev/continue",
+      "current": 36104,
+      "createdAt": "2023-05-24T03:39:39Z",
+      "note": "Open-source coding agent repository.",
+      "historyMethod": "snapshot-only",
+      "source": "https://api.github.com/repos/continuedev/continue",
+      "points": [
+        {
+          "date": "2026-10-03",
+          "stars": 36104
+        }
+      ]
+    },
+    {
+      "name": "Kilo Code",
+      "repo": "Kilo-Org/kilocode",
+      "url": "https://github.com/Kilo-Org/kilocode",
+      "current": 27486,
+      "createdAt": "2025-03-10T15:34:26Z",
+      "note": "Broader agentic engineering platform repository.",
+      "historyMethod": "snapshot-only",
+      "source": "https://api.github.com/repos/Kilo-Org/kilocode",
+      "points": [
+        {
+          "date": "2026-10-03",
+          "stars": 27486
+        }
+      ]
+    },
+    {
+      "name": "Qwen Code",
+      "repo": "QwenLM/qwen-code",
+      "url": "https://github.com/QwenLM/qwen-code",
+      "current": 28287,
+      "createdAt": "2025-06-26T01:37:46Z",
+      "note": "Terminal coding agent.",
+      "historyMethod": "snapshot-only",
+      "source": "https://api.github.com/repos/QwenLM/qwen-code",
+      "points": [
+        {
+          "date": "2026-10-03",
+          "stars": 28287
+        }
+      ]
+    },
+    {
+      "name": "SWE-agent",
+      "repo": "SWE-agent/SWE-agent",
+      "url": "https://github.com/SWE-agent/SWE-agent",
+      "current": 20482,
+      "createdAt": "2024-04-02T04:09:47Z",
+      "note": "Issue-solving research agent; repository stars are not benchmark performance.",
+      "historyMethod": "snapshot-only",
+      "source": "https://api.github.com/repos/SWE-agent/SWE-agent",
+      "points": [
+        {
+          "date": "2026-10-03",
+          "stars": 20482
+        }
+      ]
+    },
+    {
+      "name": "Crush",
+      "repo": "charmbracelet/crush",
+      "url": "https://github.com/charmbracelet/crush",
+      "current": 28476,
+      "createdAt": "2025-05-21T12:14:57Z",
+      "note": "Terminal coding agent.",
+      "historyMethod": "snapshot-only",
+      "source": "https://api.github.com/repos/charmbracelet/crush",
+      "points": [
+        {
+          "date": "2026-10-03",
+          "stars": 28476
+        }
+      ]
+    },
+    {
+      "name": "Mini SWE-agent",
+      "repo": "SWE-agent/mini-swe-agent",
+      "url": "https://github.com/SWE-agent/mini-swe-agent",
+      "current": 8183,
+      "createdAt": "2025-06-28T20:18:15Z",
+      "note": "Minimal issue-solving and terminal coding agent.",
+      "historyMethod": "snapshot-only",
+      "source": "https://api.github.com/repos/SWE-agent/mini-swe-agent",
+      "points": [
+        {
+          "date": "2026-10-03",
+          "stars": 8183
+        }
+      ]
+    }
+  ],
+  "rates": {
+    "7": 988.1428571428571,
+    "14": 1001.2142857142857,
+    "30": 1138.3444444444447
+  },
+  "collectedAt": "2026-10-04T00:57:47.025187+00:00",
+  "forecastMethod": "DeepSeek rates are average daily additions over 7/14/30-day windows, using linear interpolation of sampled historical values. Slower: daily additions halve every 30 days. Steady: constant additions. Faster: 1.5 times the selected daily rate. Scenarios are illustrative and not confidence intervals."
+}

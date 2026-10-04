@@ -6,20 +6,20 @@ import styles from './page.module.css';
 
 export const metadata = {
   metadataBase: new URL('https://www.explosion.fun'),
-  title: 'GitHub Stars: The Rise of AI Agents',
-  description: 'A historical comparison of GitHub star growth for OpenClaw, Hermes Agent, and DeepSeek Harness through October 3, 2026.',
+  title: 'GitHub Stars: Rise of DeepSeek Harness',
+  description: 'Explore DeepSeek Harness star growth, compare current stars across 18 coding harness repositories, and model illustrative growth scenarios.',
   alternates: { canonical: '/projects/agent-star-growth' },
   openGraph: {
-    title: 'GitHub Stars: The Rise of AI Agents',
-    description: 'A fixed historical snapshot comparing star growth for OpenClaw, Hermes Agent, and DeepSeek Harness.',
+    title: 'GitHub Stars: Rise of DeepSeek Harness',
+    description: 'DeepSeek Harness star history and projections, alongside current GitHub star counts for major coding harnesses.',
     url: '/projects/agent-star-growth',
     siteName: 'explosion.fun',
     type: 'article',
   },
   twitter: {
     card: 'summary',
-    title: 'GitHub Stars: The Rise of AI Agents',
-    description: 'Historical star growth for OpenClaw, Hermes Agent, and DeepSeek Harness.',
+    title: 'GitHub Stars: Rise of DeepSeek Harness',
+    description: 'DeepSeek Harness growth, current harness star counts, and interactive projections.',
   },
 };
 
@@ -33,14 +33,12 @@ export default async function AgentStarGrowthPage() {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Dataset',
-    name: 'Historical GitHub star growth for AI agent repositories',
-    description: 'Approximate historical values digitized from Star History, with exact GitHub API counts on October 3, 2026.',
-    temporalCoverage: '2026-01/2026-10',
+    name: 'GitHub stars for coding harness repositories',
+    description: 'A fixed GitHub star-count snapshot across coding harness repositories, with approximate sampled histories for three repositories.',
+    temporalCoverage: data.asOf,
     dateModified: data.asOf,
     isBasedOn: [
-      'https://github.com/openclaw/openclaw',
-      'https://github.com/NousResearch/hermes-agent',
-      'https://github.com/deepseek-ai/deepseek-harness',
+      ...data.series.map((item) => item.url || `https://github.com/${item.repo}`),
       data.source,
     ],
     distribution: {
