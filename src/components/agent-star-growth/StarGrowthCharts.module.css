@@ -1,0 +1,70 @@
+.experience {
+  --ink: #f5f2ea;
+  --muted: #a5a8ad;
+  --panel: rgba(255, 255, 255, 0.035);
+  --rule: rgba(255, 255, 255, 0.12);
+  width: min(1120px, calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 5.5rem 0 3.5rem;
+  color: var(--ink);
+}
+
+.header { max-width: 880px; margin: 0 auto 3.5rem; text-align: center; }
+.eyebrow { margin: 0 0 0.85rem; color: #aaaeb4; font-size: 0.73rem; font-weight: 750; letter-spacing: 0.16em; text-transform: uppercase; }
+.header h1 { max-width: 850px; margin: 0 auto 1.1rem; font-size: clamp(2.55rem, 7vw, 5.8rem); line-height: 0.98; letter-spacing: -0.065em; font-weight: 760; }
+.intro { max-width: 680px; margin: 0 auto; color: #b4b7bd; font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.65; }
+.snapshot { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.65rem 1.75rem; margin-top: 1.8rem; color: #959aa2; font-size: 0.78rem; }
+.snapshot span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.snapshot strong { color: #e4e3df; font-weight: 650; }
+.charts { display: grid; gap: 1.25rem; }
+.chartCard { min-width: 0; padding: clamp(1.15rem, 3vw, 2rem); border: 1px solid var(--rule); border-radius: 18px; background: var(--panel); }
+.chartHeading { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; margin-bottom: 1rem; }
+.chartHeading h2 { margin: 0 0 0.4rem; font-size: clamp(1.15rem, 2vw, 1.55rem); letter-spacing: -0.025em; }
+.chartHeading p { margin: 0; color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
+.legend { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.35rem 0.65rem; }
+.legendButton { display: inline-flex; align-items: center; gap: 0.42rem; border: 0; padding: 0.35rem 0.1rem; background: transparent; color: var(--ink); font: inherit; font-size: 0.78rem; cursor: pointer; }
+.legendButton:focus-visible { outline: 2px solid #fff; outline-offset: 3px; border-radius: 3px; }
+.mutedLegend { color: #747981; }
+.legendSwatch { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--series-color); }
+.mutedLegend .legendSwatch { opacity: 0.3; }
+.chartWrap { position: relative; width: 100%; }
+.chartSvg { display: block; width: 100%; height: auto; overflow: visible; font-family: var(--font-geist-sans); }
+.yTick line { stroke: rgba(255,255,255,0.1); stroke-dasharray: 3 5; }
+.yTick text, .xTick text { fill: #979da5; font-size: 11px; }
+.yTick text { text-anchor: end; }
+.xTick line { stroke: rgba(255,255,255,0.25); }
+.line { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.yLabel { fill: #818790; font-size: 10px; letter-spacing: 0.05em; text-anchor: middle; }
+.xLabel { fill: #818790; font-size: 11px; text-anchor: middle; }
+.legendCount { color: #aaaeb4; font-variant-numeric: tabular-nums; }
+.sampleDot { stroke: #080b10; stroke-width: 1.3; }
+.cursorLine { stroke: rgba(255,255,255,0.6); stroke-width: 1; stroke-dasharray: 3 4; }
+.interactionSurface { fill: transparent; cursor: crosshair; touch-action: pan-y; outline: none; }
+.interactionSurface:focus-visible { stroke: rgba(255,255,255,0.8); stroke-width: 1; stroke-dasharray: 4 5; }
+.tooltip { position: absolute; top: 0.6rem; left: 0.7rem; z-index: 1; display: grid; gap: 0.36rem; min-width: 168px; max-width: min(250px, calc(100% - 1.4rem)); padding: 0.7rem 0.85rem; border: 1px solid rgba(255,255,255,0.16); border-radius: 9px; background: rgba(9,12,17,0.94); box-shadow: 0 8px 28px rgba(0,0,0,0.25); font-size: 0.75rem; pointer-events: none; }
+.tooltip strong { padding-bottom: 0.15rem; color: #f6f4ee; font-size: 0.8rem; }
+.tooltip span { display: grid; grid-template-columns: 0.5rem 1fr auto; align-items: center; gap: 0.4rem; color: #b9bdc4; }
+.tooltip i { width: 0.48rem; height: 0.48rem; border-radius: 50%; }
+.tooltip b { color: #fff; font-variant-numeric: tabular-nums; }
+.keyboardHint { margin: 0.55rem 0 0; color: #828891; font-size: 0.72rem; }
+.methodology { display: grid; grid-template-columns: minmax(190px, 0.7fr) 1.7fr; gap: 2.2rem; margin-top: 1.25rem; padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid var(--rule); border-radius: 18px; background: var(--panel); }
+.methodology h2 { max-width: 250px; margin: 0; font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.1; letter-spacing: -0.04em; }
+.methodCopy { color: #b7bbc1; font-size: 0.88rem; line-height: 1.75; }
+.methodCopy p { margin: 0 0 0.85rem; }
+.methodCopy a, .footer a { color: #e3d394; text-decoration: underline; text-decoration-color: rgba(227,211,148,0.45); text-underline-offset: 3px; }
+.download { display: inline-flex; gap: 0.5rem; margin-top: 0.25rem; font-weight: 650; }
+.footer { margin-top: 1.7rem; color: #818790; text-align: center; font-size: 0.74rem; }
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+@media (max-width: 760px) {
+  .experience { width: min(100% - 1.5rem, 680px); padding-top: 4rem; }
+  .header { margin-bottom: 2.3rem; }
+  .snapshot { gap: 0.5rem 1rem; }
+  .chartHeading { flex-direction: column; gap: 0.55rem; }
+  .legend { justify-content: flex-start; }
+  .chartCard { padding: 1rem 0.8rem; border-radius: 14px; }
+  .chartHeading p { font-size: 0.8rem; }
+  .yTick text, .xTick text, .xLabel { font-size: 11px; }
+  .line { stroke-width: 2.5; }
+  .methodology { grid-template-columns: 1fr; gap: 1rem; border-radius: 14px; }
+}
