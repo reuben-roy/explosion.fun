@@ -7,7 +7,7 @@ import styles from './cv.module.css';
 export const metadata = {
   title: 'CV | Reuben Roy',
   description:
-    'Reuben Roy — software engineer working on AI and agentic systems. Work history, skills, and projects, including Auto-Apply, an autonomous local-first job-application agent.',
+    'Reuben Roy — software engineer building AI agents, backend systems, and native apps. Updated projects and downloadable PDF CV.',
   alternates: {
     canonical: 'https://explosion.fun/cv',
   },
@@ -36,6 +36,10 @@ const personJsonLd = {
   ],
   knowsAbout: [
     'Agentic AI systems',
+    'Native macOS apps with SwiftUI',
+    'Local voice agents and speech processing',
+    'Spring Boot APIs and transactional outbox',
+    'OIDC and Auth0 authentication',
     'LLM orchestration',
     'Local inference with Ollama',
     'Retrieval-augmented generation',
@@ -175,6 +179,9 @@ export default async function CvPage() {
       <Navbar />
       <main className={styles.main}>
         <div className={styles.toolbar}>
+          <a href="/reuben-roy-cv.pdf" download className={styles.toolbarPrimary}>
+            Download PDF CV
+          </a>
           <Link href="/projects/auto-apply" className={styles.toolbarPrimary}>
             Auto-Apply deep dive <span aria-hidden="true">→</span>
           </Link>

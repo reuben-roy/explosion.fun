@@ -1,6 +1,8 @@
 # Reuben Roy
 
-Software Engineer | AI & Agentic Systems | Generalist creating web solutions
+Software Engineer | AI Agents, Backend Systems & Native Apps
+
+Updated October 2026.
 
 ## Links
 
@@ -11,7 +13,7 @@ Software Engineer | AI & Agentic Systems | Generalist creating web solutions
 
 ## Summary
 
-Software engineer and generalist who builds autonomous, agentic systems on top of production-grade backends. Current focus is applied AI: local-first LLM pipelines, retrieval-augmented answer resolution, and long-running unattended agents that make consequential decisions with explicit confidence gates, verification, and failover rather than optimism. Also builds interactive websites, data visualizations, mobile experiences, and backend microservices at scale. Always learning, always building.
+Software engineer and generalist who builds autonomous, agentic systems on top of production-grade backends. Current focus is applied AI: local-first LLM pipelines, retrieval-augmented answer resolution, and long-running unattended agents that make consequential decisions with explicit confidence gates, verification, and failover rather than optimism. Also builds interactive websites, data visualizations, mobile experiences, and backend microservices at scale. Recent work spans native macOS application automation, a Java/Spring job-feed backend, remote AI task execution, and local voice-driven productivity tools.
 
 ## Education
 
@@ -21,6 +23,7 @@ Software engineer and generalist who builds autonomous, agentic systems on top o
 ## Skills
 
 - AI and Agentic Systems: LLM orchestration, Local inference (Ollama), Structured JSON output, RAG, Semantic retrieval and embeddings, Confidence gating, Prompt verification, Browser automation agents (Playwright, Patchright, browser-use), Tool-using agents, Autonomous task queues with retry and dead-lettering, OpenRouter, Anthropic, Gemini, Claude Code
+- Native and Voice Applications: Swift, SwiftUI, Electron, macOS Keychain, LiveKit Agents, Parakeet, faster-whisper
 - Backend Development: Java, Spring Boot, Python, .NET, C#, Microservices, REST APIs, Maven, JUnit5, Mockito, Unit Testing, FastAPI, Fastify, Go, Kotlin, Node.js, Prisma, GraphQL
 - Frontend Development: HTML, CSS, JavaScript, TypeScript, React.js, React Native, Next.js, Three.js, D3.js, Tailwind CSS, Bootstrap, MUI, Vite
 - Databases: PostgreSQL, Redis, MySQL, SQL, NoSQL, SQLite
@@ -90,6 +93,68 @@ Software engineer and generalist who builds autonomous, agentic systems on top o
 - Astrophysics Workshop Conductor - NIT Calicut
 
 ## Projects
+
+### Job Applicator - Native macOS Application (Development Preview)
+
+- Building a SwiftUI macOS app with a bundled Python application engine for queued Greenhouse and Ashby applications, evolving the Auto-Apply engine into a desktop product.
+- Profile-first answer resolution, reusable answers, per-field submission gates, first-run human review, Keychain-backed provider credentials, and Gmail security-code handling.
+- Supports local and hosted OpenAI-compatible inference; account sign-in uses Auth0 authorization-code PKCE. Cloud features require deployment configuration and validation; this is a development preview.
+- Technology stack: Swift, SwiftUI, Python, Playwright/Patchright, SQLite, Auth0, macOS Keychain.
+
+### Job Applicator API - Backend and Analytics
+
+- Implemented a separate Java 21 / Spring Boot 3 backend with a versioned API, OIDC validation, PostgreSQL account data, Flyway migrations, transactional outbox, telemetry, and a Next.js admin dashboard.
+- Curated-feed synchronization uses cursor-based changes, ETags, compressed page caching, and transaction-scoped advisory locking to preserve commit order.
+- Hosted inference provides an OpenAI-compatible endpoint with key-pool failover and per-user request and token limits. Service extraction is in development; remaining integrations and deployment validation are tracked separately.
+- Technology stack: Java 21, Spring Boot 3, PostgreSQL, Flyway, Auth0/OIDC, Next.js, Docker.
+
+### Job Board Collector - Job Discovery Pipeline
+
+- Built a Python worker that collects public Greenhouse and Ashby postings through shared ATS adapters and per-company TOML configuration, then publishes changes to the Job Applicator feed API.
+- Board discovery and URL harvesting draft new sources; a SQLite journal supports incremental publishing and source diagnostics.
+- Bounded retries, snapshot validation, and two complete missed polls before closing a posting protect against transient upstream failures.
+- Technology stack: Python, SQLite, HTTP APIs, TOML, Docker, pytest, Ruff.
+
+### Hired Gun - Remote AI Task Execution
+
+- Built a remote-help workflow where an operator creates a job and a recipient starts a macOS agent with a one-use code; an operator dashboard shows progress and receives structured completion reports.
+- Model credentials stay on the server behind a per-session inference proxy. Includes a recipient CLI, operator CLI, and portable ChatGPT / Claude Code plugin.
+- Technology stack: TypeScript, Node.js, Hono, PostgreSQL/Neon, PGlite, Vercel.
+
+### NotAnother - Desktop Accountability Companion
+
+- Built an Electron macOS companion with a transparent desktop overlay, menu-bar task list, Markdown task storage, timers, planning tools, and proactive nudges.
+- Tool calling operates on tasks and focus state; a local intent parser supports basic commands without a model key. Optional Google Calendar, Tasks, and Gmail integrations supply context.
+- Technology stack: Electron, TypeScript, Node.js, DeepSeek, Google APIs, Markdown/JSON storage.
+
+### CheckLister - Local Voice Accountability Prototype
+
+- Built a local-first voice agent for task capture, proactive check-ins, and duration estimates that calibrate against actual completion time.
+- Headless prototype combines LiveKit Agents, Ollama, local speech recognition and synthesis, SQLite, and APScheduler; live microphone and menu-bar integration remain in progress.
+- Technology stack: Python, LiveKit Agents, Ollama, faster-whisper, SQLite, APScheduler, macOS speech synthesis.
+
+### Window for macOS - Voice Quiz Utility
+
+- Built a SwiftUI menu-bar quiz app with local speech synthesis, a Parakeet transcription sidecar on Apple Silicon, and a Python answer evaluator.
+- Exact answers short-circuit model evaluation; other answers use Ollama or an optional OpenAI-compatible hosted provider.
+- Technology stack: SwiftUI, AVSpeechSynthesizer, Python, Parakeet, Ollama, Apple Silicon/MPS.
+
+### K2 Horizon - API Benchmarking Experiment
+
+- Created a Python CLI to discover IFM models, run inference through an OpenAI-compatible API, and compare reasoning-effort settings and response latency.
+- Technology stack: Python, OpenAI-compatible SDK, IFM K2 Horizon API.
+
+### Hiring Agent - Open-Source Exploration
+
+- Explored the existing interviewstreet/hiring-agent resume-to-score pipeline: PDF extraction, structured LLM outputs, GitHub enrichment, and evidence-based evaluation with local Ollama or Gemini.
+- Upstream project: [interviewstreet/hiring-agent](https://github.com/interviewstreet/hiring-agent).
+
+### Coding Harness Star Growth - Interactive Data Visualization
+
+- Built an interactive D3 comparison of coding-agent harness repositories, including DeepSeek Harness, with switchable series and illustrative growth scenarios.
+- Published the underlying JSON snapshot and dataset metadata, distinguishing sampled histories from aggregate-based estimates.
+- Technology stack: Next.js, React, D3.js, JSON, schema.org Dataset.
+- Link: [Interactive comparison](https://explosion.fun/projects/agent-star-growth).
 
 ### Auto-Apply — Autonomous Job-Application Agent
 
@@ -185,3 +250,21 @@ Software engineer and generalist who builds autonomous, agentic systems on top o
 - Built responsive websites for small businesses including Natura Bags and Serah Design, focusing on product showcasing, SEO optimization, and seamless e-commerce functionality.
 - Highlights: WooCommerce and WordPress, payment gateway integration, SEO optimization, product catalogs, responsive design, image optimization.
 - Links: https://naturabags.com/, https://serahdesign.com/
+
+### blistering-barnacles
+
+- A project built with Anthropic, FullCalendar, Go, LLMs, Lucide, and Next.js.
+- Technology stack: Anthropic, FullCalendar, Go, LLMs, Lucide, Next.js, OpenAI, RAG, React, Tailwind CSS, Turbopack, TypeScript.
+- Links: http://lofty.explosion.fun/, https://github.com/reuben-roy/blistering-barnacles
+
+### Switch-Market
+
+- A lightweight, vanilla-JS shopping demo with D3-powered visualizations, real-time search, and CSV sales data integration hosted on Firebase.
+- Technology stack: D3.js, Firebase, Go, Java, JavaScript, Python.
+- Link: https://github.com/reuben-roy/switch-market
+
+### Auto Explosion
+
+- Personal portfolio, blog, and interactive tools hub built with Next.js, a digital playground for data-driven storytelling.
+- Technology stack: D3.js, Firebase, Go, GraphQL, Next.js, PostHog, React, Three.js, Turbopack, Vercel, WordPress.
+- Links: https://auto.explosion.fun, https://github.com/reuben-roy/Auto-Explosion
