@@ -1,88 +1,115 @@
-.page {
-  min-height: 100vh;
-  background-color: #030303;
-  color: #ffffff;
-  font-family: var(--font-geist-sans);
-  padding-top: 6rem;
-  padding-bottom: 4rem;
-}
-
-.main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.header {
-  margin-bottom: 4rem;
-  width: 100%;
-  text-align: center;
-}
-
-.title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  margin-bottom: 1rem;
-  background: linear-gradient(to bottom right, #ffffff 30%, #a1a1aa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.subtitle {
-  font-size: 1.125rem;
-  color: #a1a1aa;
-}
-
-.grid {
+.featuredGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
 }
 
-.card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 2rem;
-  transition: all 0.2s ease;
+.featuredCard {
   display: flex;
   flex-direction: column;
   height: 100%;
+  border: 1px solid var(--ef-line);
+  background: var(--ef-bg);
+  transition: border-color var(--ef-dur) var(--ef-ease), transform var(--ef-dur) var(--ef-ease);
 }
 
-.card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+.featuredCard:hover {
+  border-color: var(--ef-ink);
+  transform: translateY(-3px);
 }
 
-.cardTitle {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: #ffffff;
+.featuredVisual {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: 1px solid var(--ef-line);
 }
 
-.cardDescription {
-  color: #a1a1aa;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  flex-grow: 1;
+.featuredBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1.25rem;
+  flex: 1;
 }
 
-.cardLink {
-  color: #3b82f6;
-  font-weight: 600;
-  display: inline-flex;
+.featuredTop {
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--ef-muted);
 }
 
-.cardLink:hover {
-  text-decoration: underline;
+.featuredBody h3 {
+  margin-top: 0.15rem;
+}
+
+.featuredBody .ef-mono {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  font-size: 0.5625rem;
+}
+
+.projectGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--ef-line);
+  border: 1px solid var(--ef-line);
+}
+
+.projectCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  height: 100%;
+  min-height: 240px;
+  padding: 1.25rem;
+  background: var(--ef-bg);
+  transition: background-color var(--ef-dur) var(--ef-ease);
+}
+
+.projectCard:hover {
+  background: var(--ef-bg-2);
+}
+
+.projectTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--ef-muted);
+}
+
+.projectTop .ef-mono {
+  font-size: 0.5625rem;
+}
+
+.projectLink {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  font-family: var(--ef-font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ef-muted);
+  transition: color var(--ef-dur) var(--ef-ease);
+}
+
+.projectCard:hover .projectLink {
+  color: var(--ef-orange);
+}
+
+@media (max-width: 1100px) {
+  .featuredGrid,
+  .projectGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .featuredGrid,
+  .projectGrid {
+    grid-template-columns: 1fr;
+  }
 }

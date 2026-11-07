@@ -1,7 +1,8 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import Link from 'next/link';
-import Navbar from '@/components/Navbar';
+import PageHero from '@/components/site/PageHero';
+import { PixelArrow } from '@/components/site/PixelMark';
 import styles from './cv.module.css';
 
 export const metadata = {
@@ -176,28 +177,51 @@ export default async function CvPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
-      <Navbar />
-      <main className={styles.main}>
-        <div className={styles.toolbar}>
-          <a href="/reuben-roy-cv.pdf" download className={styles.toolbarPrimary}>
-            Download PDF CV
-          </a>
-          <Link href="/projects/auto-apply" className={styles.toolbarPrimary}>
-            Auto-Apply deep dive <span aria-hidden="true">→</span>
-          </Link>
-          <a href="/cv.md" className={styles.toolbarLink}>
-            Machine-readable Markdown
-          </a>
-          <Link href="/projects" className={styles.toolbarLink}>
-            All projects
-          </Link>
-        </div>
 
-        <article
-          className={styles.content}
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-      </main>
+      <PageHero
+        eyebrow="Curriculum vitae"
+        title="Reuben Roy"
+        description="Software engineer building AI agents, backend systems, and native apps. The short version: production-grade backends, local-first LLM pipelines, and agents that know when to stop."
+        art="dots"
+        meta={
+          <>
+            <span>
+              <strong>AI &amp; agentic systems</strong>
+            </span>
+            <span>
+              <strong>Backend</strong> Java · Python · .NET
+            </span>
+            <span>
+              <strong>Native</strong> Swift · SwiftUI
+            </span>
+          </>
+        }
+        actions={
+          <>
+            <a href="/reuben-roy-cv.pdf" download className="ef-btn ef-btn--primary">
+              Download PDF CV <PixelArrow size={17} />
+            </a>
+            <Link href="/projects/auto-apply" className="ef-btn">
+              Auto-Apply deep dive
+            </Link>
+            <a href="/cv.md" className="ef-btn">
+              Markdown
+            </a>
+            <Link href="/projects" className="ef-btn">
+              All projects
+            </Link>
+          </>
+        }
+      />
+
+      <section className={styles.section}>
+        <div className="ef-wrap">
+          <article
+            className={`ef-prose ${styles.content}`}
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        </div>
+      </section>
     </div>
   );
 }

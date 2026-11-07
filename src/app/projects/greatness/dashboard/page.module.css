@@ -1,9 +1,9 @@
 .page {
   min-height: 100vh;
-  background-color: #030303;
-  color: #f3f2ef;
-  font-family: var(--font-geist-sans);
-  padding: 5.5rem 1.5rem 4rem;
+  background: var(--ef-paper);
+  color: #101013;
+  font-family: var(--ef-font-body);
+  padding: 2.5rem 1.5rem 4rem;
 }
 
 .container {
@@ -16,7 +16,7 @@
 .loader {
   text-align: center;
   padding: 4rem;
-  color: #8f98a7;
+  color: #6b6b73;
   font-size: 1.1rem;
 }
 
@@ -25,19 +25,20 @@
 }
 
 .title {
+  font-family: var(--ef-font-display);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   margin: 0 0 0.5rem;
-  background: linear-gradient(to bottom right, #ffffff 30%, #a1a1aa 100%);
+  background: linear-gradient(to bottom right, #fbfbf8 30%, #6b6b73 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: currentColor;
   background-clip: text;
 }
 
 .subtitle {
   font-size: 1rem;
-  color: #8f98a7;
+  color: #6b6b73;
   margin: 0;
 }
 
@@ -48,20 +49,21 @@
 }
 
 .kpiCard {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.14);
+  border-radius: 0;
   padding: 1.1rem 1rem;
   transition: all 0.2s ease;
 }
 
 .kpiCard:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--ef-line-soft);
+  border-color: rgba(16,16,19,0.24);
   transform: translateY(-2px);
 }
 
 .kpiValue {
+  font-family: var(--ef-font-display);
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 700;
   letter-spacing: -0.04em;
@@ -75,22 +77,23 @@
 
 .kpiSub {
   font-size: 0.82rem;
-  color: #8f98a7;
+  color: #6b6b73;
   margin-top: 0.4rem;
 }
 
 .sectionTitle {
+  font-family: var(--ef-font-display);
   font-size: clamp(1.3rem, 2vw, 1.8rem);
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: #f3f2ef;
+  color: #101013;
   margin: 0 0 1rem;
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.14);
+  border-radius: 0;
   padding: 1.5rem;
   overflow: hidden;
 }
@@ -122,8 +125,8 @@
   position: absolute;
   pointer-events: none;
   background: rgba(6, 10, 14, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 16px;
+  border: 1px solid rgba(16,16,19,0.16);
+  border-radius: 0;
   padding: 0.8rem 0.95rem;
   font-size: 0.9rem;
   color: #c8ced7;
@@ -136,7 +139,7 @@
 .tooltip strong {
   display: block;
   margin-bottom: 0.35rem;
-  color: #f3f2ef;
+  color: #101013;
 }
 
 .legendRow {
@@ -153,8 +156,8 @@
   gap: 0.55rem;
   padding: 0.5rem 0.8rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(16,16,19,0.12);
+  background: var(--ef-cream);
   color: #c8ced7;
   font-size: 0.85rem;
 }
@@ -168,9 +171,9 @@
 }
 
 .metricCard {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.14);
+  border-radius: 0;
   padding: 1.5rem;
 }
 
@@ -184,7 +187,7 @@
 .metricLabel {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #f3f2ef;
+  color: #101013;
 }
 
 .metricValue {
@@ -195,7 +198,7 @@
 .metricBar {
   width: 100%;
   height: 8px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--ef-line-soft);
   border-radius: 999px;
   overflow: hidden;
   margin-bottom: 0.75rem;
@@ -209,7 +212,7 @@
 
 .metricDesc {
   font-size: 0.85rem;
-  color: #8f98a7;
+  color: #6b6b73;
   line-height: 1.5;
   margin: 0;
 }
@@ -223,10 +226,10 @@
 
 .primaryBtn {
   padding: 0.7rem 1.5rem;
-  border-radius: 10px;
+  border-radius: 0;
   border: none;
-  background: #3b82f6;
-  color: #fff;
+  background: var(--ef-ink);
+  color: var(--ef-paper);
   font-size: 0.95rem;
   font-weight: 600;
   font-family: inherit;
@@ -240,10 +243,10 @@
 
 .secondaryBtn {
   padding: 0.7rem 1.5rem;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0;
+  border: 1px solid rgba(16,16,19,0.16);
   background: transparent;
-  color: #e2e8f0;
+  color: #101013;
   font-size: 0.95rem;
   font-weight: 500;
   font-family: inherit;
@@ -252,8 +255,8 @@
 }
 
 .secondaryBtn:hover {
-  border-color: rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--ef-ink);
+  background: var(--ef-cream);
 }
 
 .emptyState {
@@ -261,20 +264,20 @@
   padding: 4rem 2rem;
   background:
     radial-gradient(circle at top left, rgba(245, 158, 11, 0.04), transparent 40%),
-    linear-gradient(180deg, rgba(17, 22, 29, 0.96), rgba(8, 10, 14, 0.98));
-  border: 1px solid rgba(255, 255, 255, 0.08);
+    linear-gradient(180deg, rgba(17, 22, 29, 0.96), #fbfbf8);
+  border: 1px solid rgba(16,16,19,0.12);
   border-radius: 24px;
 }
 
 .emptyState h2 {
   font-size: 1.5rem;
   margin: 0 0 0.75rem;
-  color: #f3f2ef;
+  color: #101013;
 }
 
 .emptyState p {
   font-size: 1rem;
-  color: #8f98a7;
+  color: #6b6b73;
   margin: 0 0 1.5rem;
   line-height: 1.6;
 }

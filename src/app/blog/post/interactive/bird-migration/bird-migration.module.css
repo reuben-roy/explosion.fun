@@ -1,6 +1,7 @@
 .page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0a0a12 0%, #0d1117 50%, #0a0a12 100%);
+  background: #101013;
+  color: #fbfbf8;
   position: relative;
   overflow: hidden;
 }
@@ -13,14 +14,14 @@
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(ellipse at 20% 20%, rgba(0, 217, 255, 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(255, 107, 157, 0.03) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 20%, rgba(250, 80, 15, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(255, 175, 1, 0.04) 0%, transparent 50%);
   pointer-events: none;
 }
 
 .main {
   position: relative;
-  padding: 80px 20px 40px;
+  padding: clamp(2rem, 4vw, 3rem) 20px 40px;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -32,19 +33,19 @@
 }
 
 .title {
-  font-size: 3rem;
+  color: #fbfbf8;
+  font-family: var(--ef-font-display);
+  font-size: clamp(2.6rem, 6vw, 4.5rem);
   font-weight: 700;
-  background: linear-gradient(135deg, #ffffff 0%, #a0aec0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: none;
+  -webkit-text-fill-color: currentColor;
   margin-bottom: 12px;
   letter-spacing: -0.02em;
 }
 
 .subtitle {
   font-size: 1.1rem;
-  color: #a0aec0;
+  color: #a1a1aa;
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
@@ -63,8 +64,8 @@
 .loadingSpinner {
   width: 60px;
   height: 60px;
-  border: 3px solid rgba(255, 255, 255, 0.1);
-  border-top-color: #00d9ff;
+  border: 3px solid rgba(251, 251, 248, 0.14);
+  border-top-color: #ff8204;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -76,7 +77,7 @@
 }
 
 .loadingText {
-  color: #a0aec0;
+  color: #a1a1aa;
   font-size: 1rem;
 }
 
@@ -89,10 +90,10 @@
 
 /* Map Container */
 .mapContainer {
-  background: rgba(20, 25, 40, 0.6);
+  background: rgba(26, 26, 30, 0.88);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
+  border: 1px solid #31313a;
+  border-radius: 0;
   padding: 24px;
   position: relative;
   overflow: hidden;
@@ -105,15 +106,15 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(251, 251, 248, 0.14), transparent);
 }
 
 .mapWrapper {
   width: 100%;
   aspect-ratio: 16 / 10;
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
-  background: #0a0a12;
+  background: #0c0c0f;
 }
 
 /* Controls Section */
@@ -125,10 +126,10 @@
 
 /* Timeline Container */
 .timelineContainer {
-  background: rgba(20, 25, 40, 0.6);
+  background: rgba(26, 26, 30, 0.88);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  border: 1px solid #31313a;
+  border-radius: 0;
   padding: 20px 24px;
 }
 
@@ -147,6 +148,7 @@
 
 @media (max-width: 600px) {
   .title {
+  color: #fbfbf8;
     font-size: 2rem;
   }
 
@@ -161,28 +163,28 @@
 
 /* Info Panel */
 .infoPanel {
-  background: rgba(20, 25, 40, 0.6);
+  background: rgba(26, 26, 30, 0.88);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  border: 1px solid #31313a;
+  border-radius: 0;
   padding: 20px 24px;
 }
 
 .infoPanelTitle {
   font-size: 1rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #fbfbf8;
   margin-bottom: 12px;
 }
 
 .infoPanelText {
   font-size: 0.9rem;
-  color: #a0aec0;
+  color: #a1a1aa;
   line-height: 1.7;
 }
 
 .infoPanelText strong {
-  color: #ffffff;
+  color: #fbfbf8;
 }
 
 /* Stats Row */
@@ -192,7 +194,7 @@
   flex-wrap: wrap;
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(251, 251, 248, 0.12);
 }
 
 .stat {
@@ -203,7 +205,7 @@
 
 .statLabel {
   font-size: 0.75rem;
-  color: #64748b;
+  color: #a1a1aa;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -211,7 +213,7 @@
 .statValue {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #fbfbf8;
   font-family: var(--font-geist-mono);
 }
 
@@ -228,7 +230,7 @@
   align-items: center;
   gap: 8px;
   font-size: 0.85rem;
-  color: #a0aec0;
+  color: #a1a1aa;
 }
 
 .legendDot {
@@ -239,18 +241,18 @@
 }
 
 .legendDot.eric {
-  background: #ff9f43;
-  color: #ff9f43;
+  background: #ffaf01;
+  color: #ffaf01;
 }
 
 .legendDot.nico {
-  background: #00d9ff;
-  color: #00d9ff;
+  background: #ff8204;
+  color: #ff8204;
 }
 
 .legendDot.sanne {
-  background: #ff6b9d;
-  color: #ff6b9d;
+  background: #e51300;
+  color: #e51300;
 }
 
 /* Gradient Legend */
@@ -258,13 +260,13 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #94a3b8;
+  color: #a1a1aa;
   font-size: 0.8rem;
   padding: 4px 12px;
-  background: rgba(20, 25, 40, 0.6);
+  background: rgba(26, 26, 30, 0.88);
   backdrop-filter: blur(10px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0;
+  border: 1px solid #31313a;
 }
 
 .speedGradientBar {

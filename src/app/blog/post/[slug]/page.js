@@ -1,40 +1,187 @@
-import Navbar from '../../../../components/Navbar';
+import Link from 'next/link';
 import styles from './post.module.css';
 import { GRAPHQL_ENDPOINT, getPostQueryByCategory } from '../../../../config/graphql';
 import { getAllPostSlugs } from '../../../../lib/wordpress';
 import { calculateAverageScore } from '../../../../utils/scores';
 import RatingLegend from '../../../../components/RatingLegend';
 import { REVIEW_CATEGORIES } from '../../../../utils/reviewCategories';
+import { PixelArrow } from '../../../../components/site/PixelMark';
 
 // Generate static params for all posts
 export async function generateStaticParams() {
-    const slugs = await getAllPostSlugs();
+  const slugs = await getAllPostSlugs();
 
-    console.log(`Generated ${slugs.length} static params`);
+  console.log(`Generated ${slugs.length} static params`);
 
-    return slugs.map((slug) => ({ slug }));
+  return slugs.map((slug) => ({ slug }));
 }
 
 function isPostInCategory(post, categorySlug) {
-    return post.categories.nodes.some(category => category.slug === categorySlug);
+  return post.categories.nodes.some((category) => category.slug === categorySlug);
+}
+
+// Every review category shares the same rendering shape: a list of named
+// criteria mapped onto the GraphQL field names, plus optional age flag.
+const SCORE_SETS = [
+  {
+    category: 'anime',
+    key: 'anime',
+    fields: [
+      ['Story', 'story'],
+      ['Character Development', 'characterDevelopment'],
+      ['Script', 'script'],
+      ['Direction', 'direction'],
+      ['Sound', 'sound'],
+      ['Other', 'other'],
+    ],
+    ageRestricted: true,
+  },
+  {
+    category: 'manga',
+    key: 'mangacomics',
+    fields: [
+      ['Art', 'art'],
+      ['Character Development', 'characterDevelopment'],
+      ['Script', 'script'],
+      ['Emotional Impact', 'emotionalImpact'],
+      ['Meaning', 'meaning'],
+      ['Originality', 'originality'],
+      ['Other', 'other'],
+    ],
+    ageRestricted: true,
+  },
+  {
+    category: 'movies',
+    key: 'movies',
+    fields: [
+      ['Story', 'storyTelling'],
+      ['Character Development', 'characterDevelopment'],
+      ['Script', 'script'],
+      ['Direction', 'direction'],
+      ['Sound', 'sound'],
+      ['Other', 'other'],
+    ],
+    ageRestricted: true,
+  },
+  {
+    category: 'tv-series',
+    key: 'tvseries',
+    fields: [
+      ['Story', 'story'],
+      ['Character Development', 'characterDevelopment'],
+      ['Script', 'script'],
+      ['Direction', 'direction'],
+      ['Sound', 'sound'],
+      ['Other', 'other'],
+    ],
+    ageRestricted: true,
+  },
+  {
+    category: 'books-fiction',
+    key: 'booksfiction',
+    fields: [
+      ['Story', 'story'],
+      ['Character Development', 'characterDevelopment'],
+      ['Writing', 'writing'],
+      ['World Building', 'worldBuilding'],
+      ['Emotional Impact', 'emotionalImpact'],
+      ['Other', 'other'],
+    ],
+    ageRestricted: false,
+  },
+  {
+    category: 'books-non-fiction',
+    key: 'booksnonfiction',
+    fields: [
+      ['Content Quality', 'contentQuality'],
+      ['Research', 'research'],
+      ['Writing', 'writing'],
+      ['Real World Impact', 'realWorldImpact'],
+      ['Other', 'other'],
+    ],
+    ageRestricted: false,
+  },
+];
+
+const scoreTone = (score) => {
+  if (score >= 9) return 'var(--ef-green)';
+  if (score >= 7.5) return 'var(--ef-yellow)';
+  if (score >= 6) return 'var(--ef-tangerine)';
+  return 'var(--ef-orange)';
+};
+
+function ScoreBreakdown({ post }) {
+  const sets = SCORE_SETS.filter(
+    (set) => isPostInCategory(post, set.category) && post[set.key]
+  );
+
+  if (sets.length === 0) return null;
+
+  return (
+    <section className={styles.breakdown} aria-labelledby="score-breakdown">
+      <div className={styles.breakdownHead}>
+        <h2 id="score-breakdown" className={styles.sectionTitle}>
+          Detailed scores
+        </h2>
+        <span className={styles.sectionNote}>Fixed rubric · 1–10</span>
+      </div>
+
+      {sets.map((set) => {
+        const data = post[set.key];
+        const fields = set.fields.filter(([, field]) => data[field] != null);
+
+        return (
+          <div key={set.key} className={styles.scoreList}>
+            {fields.map(([label, field]) => {
+              const value = Number(data[field]);
+              return (
+                <div key={field} className={styles.scoreRow}>
+                  <span className={styles.scoreLabel}>{label}</span>
+                  <span className={styles.scoreTrack} aria-hidden="true">
+                    <span
+                      className={styles.scoreFill}
+                      style={{
+                        width: `${Math.max(0, Math.min(100, value * 10))}%`,
+                        background: scoreTone(value),
+                      }}
+                    />
+                  </span>
+                  <span className={styles.scoreNumber}>{data[field]}</span>
+                </div>
+              );
+            })}
+            {set.ageRestricted && data.ageRestricted && (
+              <div className={styles.scoreRow}>
+                <span className={styles.scoreLabel}>Age Restricted</span>
+                <span className={styles.scoreTrack} aria-hidden="true">
+                  <span
+                    className={styles.scoreFill}
+                    style={{ width: '100%', background: 'var(--ef-red)' }}
+                  />
+                </span>
+                <span className={styles.scoreNumber}>Yes</span>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </section>
+  );
 }
 
 // Server component for the blog post
 export default async function BlogPost({ params }) {
-    const { slug } = await params;
+  const { slug } = await params;
 
-    // Static theme to keep this page SSG-safe
-    const isLightTheme = false;
-
-    try {
-        // First, get the post's category
-        const categoryResponse = await fetch(GRAPHQL_ENDPOINT, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                query: `
+  try {
+    // First, get the post's category
+    const categoryResponse = await fetch(GRAPHQL_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `
                     query GetPostCategory($slug: ID!) {
                         post(id: $slug, idType: SLUG) {
                             categories {
@@ -45,336 +192,203 @@ export default async function BlogPost({ params }) {
                         }
                     }
                 `,
-                variables: { slug }
-            }),
-        });
+        variables: { slug },
+      }),
+    });
 
-        const categoryResult = await categoryResponse.json();
-        const primaryCategory = categoryResult.data?.post?.categories?.nodes?.find(category =>
-            REVIEW_CATEGORIES.includes(category.name)
-        )?.name || '';
+    const categoryResult = await categoryResponse.json();
+    const primaryCategory =
+      categoryResult.data?.post?.categories?.nodes?.find((category) =>
+        REVIEW_CATEGORIES.includes(category.name)
+      )?.name || '';
 
-        const isReviewCategory = REVIEW_CATEGORIES.includes(primaryCategory);
+    const isReviewCategory = REVIEW_CATEGORIES.includes(primaryCategory);
 
-        // Get the appropriate query for the category
-        const postQuery = getPostQueryByCategory(primaryCategory);
+    // Get the appropriate query for the category
+    const postQuery = getPostQueryByCategory(primaryCategory);
 
-        // Fetch the full post data
-        const response = await fetch(GRAPHQL_ENDPOINT, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                query: postQuery,
-                variables: { slug }
-            }),
-            next: { revalidate: 3600 } // Cache for 1 hour (ISR)
-        });
+    // Fetch the full post data
+    const response = await fetch(GRAPHQL_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: postQuery,
+        variables: { slug },
+      }),
+      next: { revalidate: 3600 }, // Cache for 1 hour (ISR)
+    });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.json();
-
-        if (result.errors) {
-            throw new Error(result.errors[0].message);
-        }
-
-        const { data } = result;
-
-        if (!data || !data.post) {
-            throw new Error('Post not found');
-        }
-
-        // Ensure averageScore is either a finite number or null
-        const avg = calculateAverageScore(data.post);
-        const post = {
-            ...data.post,
-            averageScore: Number.isFinite(avg) ? avg : null
-        };
-
-        const hasImage = Boolean(post.featuredImage?.node?.sourceUrl);
-
-        return (
-            <div className={styles.pageContainer}>
-                <Navbar />
-                <article
-                    className={styles.post}
-                    data-theme={isLightTheme ? 'light' : 'dark'}
-                >
-                    <div className={styles.header}>
-                        <div className={styles.meta}>
-                            <div className={styles.categories}>
-                                {post.categories.nodes.map((primaryCategory, index) => (
-                                    <span key={index} className={styles.primaryCategory}>
-                                        {primaryCategory.name}
-                                    </span>
-                                ))}
-                                <span className={styles.primaryCategory}>
-                                    {/* Guard display of average score */}
-                                    Score: {Number.isFinite(post.averageScore) ? `${post.averageScore.toFixed(1)}/10` : 'N/A'}
-                                </span>
-                            </div>
-                        </div>
-                        <h1 className={styles.title}>{post.title}</h1>
-
-                        {!hasImage && (
-                            <div className={styles.headerMeta}>
-                                <span className={styles.score}>
-                                    {new Date(post.date).toLocaleDateString()}
-                                </span>
-                                <span className={styles.score}>
-                                    By {post.author?.node?.firstName} {post.author?.node?.lastName || 'Anonymous'}
-                                </span>
-                            </div>
-                        )}
-                    </div>
-
-                    {post.featuredImage?.node?.sourceUrl && (
-                        <div className={styles.imageContainer}>
-                            <img
-                                src={post.featuredImage.node.sourceUrl}
-                                alt={post.featuredImage.node.altText || post.title}
-                                className={styles.image}
-                            />
-                            <div className={styles.imageMeta}>
-                                <span className={styles.score}>
-                                    {new Date(post.date).toLocaleDateString()}
-                                </span>
-                                <span className={styles.score}>
-                                    By {post.author?.node?.firstName} {post.author?.node?.lastName || 'Anonymous'}
-                                </span>
-                            </div>
-                        </div>
-                    )}
-
-                    {isReviewCategory && post && (
-                        <div className={styles.scores}>
-                            <h2>Detailed Scores</h2>
-                            <div className={styles.scoreGrid}>
-                                {isPostInCategory(post, 'anime') && post.anime && (
-                                    <>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Story</span>
-                                            <span className={styles.scoreValue}>{post.anime.story}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Character Development</span>
-                                            <span className={styles.scoreValue}>{post.anime.characterDevelopment}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Script</span>
-                                            <span className={styles.scoreValue}>{post.anime.script}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Direction</span>
-                                            <span className={styles.scoreValue}>{post.anime.direction}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Sound</span>
-                                            <span className={styles.scoreValue}>{post.anime.sound}/10</span>
-                                        </div>
-                                        {post.anime.other && <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Other</span>
-                                            <span className={styles.scoreValue}>{post.anime.other}/10</span>
-                                        </div>}
-                                        {post.anime.ageRestricted && (
-                                            <div className={styles.scoreItem}>
-                                                <span className={styles.scoreLabel}>Age Restricted</span>
-                                                <span className={styles.scoreValue}>Yes</span>
-                                            </div>
-                                        )}
-                                    </>
-                                )}
-                                {isPostInCategory(post, 'manga') && post.mangacomics && (
-                                    <>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Art</span>
-                                            <span className={styles.scoreValue}>{post.mangacomics.art}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Character Development</span>
-                                            <span className={styles.scoreValue}>{post.mangacomics.characterDevelopment}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Script</span>
-                                            <span className={styles.scoreValue}>{post.mangacomics.script}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Emotional Impact</span>
-                                            <span className={styles.scoreValue}>{post.mangacomics.emotionalImpact}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Meaning</span>
-                                            <span className={styles.scoreValue}>{post.mangacomics.meaning}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Originality</span>
-                                            <span className={styles.scoreValue}>{post.mangacomics.originality}/10</span>
-                                        </div>
-                                        {post.mangacomics.other && <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Other</span>
-                                            <span className={styles.scoreValue}>{post.mangacomics.other}/10</span>
-                                        </div>}
-                                        {post.mangacomics.ageRestricted && (
-                                            <div className={styles.scoreItem}>
-                                                <span className={styles.scoreLabel}>Age Restricted</span>
-                                                <span className={styles.scoreValue}>Yes</span>
-                                            </div>
-                                        )}
-                                    </>
-                                )}
-
-                                {isPostInCategory(post, 'movies') && post.movies && (
-                                    <>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Story</span>
-                                            <span className={styles.scoreValue}>{post.movies.storyTelling}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Character Development</span>
-                                            <span className={styles.scoreValue}>{post.movies.characterDevelopment}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Script</span>
-                                            <span className={styles.scoreValue}>{post.movies.script}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Direction</span>
-                                            <span className={styles.scoreValue}>{post.movies.direction}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Sound</span>
-                                            <span className={styles.scoreValue}>{post.movies.sound}/10</span>
-                                        </div>
-                                        {post.movies.other && <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Other</span>
-                                            <span className={styles.scoreValue}>{post.movies.other}/10</span>
-                                        </div>}
-                                        {post.movies.ageRestricted && (
-                                            <div className={styles.scoreItem}>
-                                                <span className={styles.scoreLabel}>Age Restricted</span>
-                                                <span className={styles.scoreValue}>Yes</span>
-                                            </div>
-                                        )}
-                                    </>
-                                )}
-
-                                {isPostInCategory(post, 'tv-series') && post.tvseries && (
-                                    <>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Story</span>
-                                            <span className={styles.scoreValue}>{post.tvseries.story}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Character Development</span>
-                                            <span className={styles.scoreValue}>{post.tvseries.characterDevelopment}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Script</span>
-                                            <span className={styles.scoreValue}>{post.tvseries.script}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Direction</span>
-                                            <span className={styles.scoreValue}>{post.tvseries.direction}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Sound</span>
-                                            <span className={styles.scoreValue}>{post.tvseries.sound}/10</span>
-                                        </div>
-                                        {post.tvseries.other && <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Other</span>
-                                            <span className={styles.scoreValue}>{post.tvseries.other}/10</span>
-                                        </div>}
-                                        {post.tvseries.ageRestricted && (
-                                            <div className={styles.scoreItem}>
-                                                <span className={styles.scoreLabel}>Age Restricted</span>
-                                                <span className={styles.scoreValue}>Yes</span>
-                                            </div>
-                                        )}
-                                    </>
-                                )}
-
-                                {isPostInCategory(post, 'books-fiction') && post.booksfiction && (
-                                    <>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Story</span>
-                                            <span className={styles.scoreValue}>{post.booksfiction.story}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Character Development</span>
-                                            <span className={styles.scoreValue}>{post.booksfiction.characterDevelopment}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Writing</span>
-                                            <span className={styles.scoreValue}>{post.booksfiction.writing}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>World Building</span>
-                                            <span className={styles.scoreValue}>{post.booksfiction.worldBuilding}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Emotional Impact</span>
-                                            <span className={styles.scoreValue}>{post.booksfiction.emotionalImpact}/10</span>
-                                        </div>
-                                        {post.booksfiction.other && <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Other</span>
-                                            <span className={styles.scoreValue}>{post.booksfiction.other}/10</span>
-                                        </div>}
-                                    </>
-                                )}
-
-                                {isPostInCategory(post, 'books-non-fiction') && post.booksnonfiction && (
-                                    <>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Content Quality</span>
-                                            <span className={styles.scoreValue}>{post.booksnonfiction.contentQuality}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Research</span>
-                                            <span className={styles.scoreValue}>{post.booksnonfiction.research}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Writing</span>
-                                            <span className={styles.scoreValue}>{post.booksnonfiction.writing}/10</span>
-                                        </div>
-                                        <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Real World Impact</span>
-                                            <span className={styles.scoreValue}>{post.booksnonfiction.realWorldImpact}/10</span>
-                                        </div>
-                                        {post.booksnonfiction.other && <div className={styles.scoreItem}>
-                                            <span className={styles.scoreLabel}>Other</span>
-                                            <span className={styles.scoreValue}>{post.booksnonfiction.other}/10</span>
-                                        </div>}
-                                    </>
-                                )}
-                            </div>
-                        </div>
-                    )}
-
-                    {isReviewCategory && <RatingLegend className={styles.ratingLegend} />}
-
-                    <div
-                        className={styles.content}
-                        dangerouslySetInnerHTML={{ __html: post.content }}
-                    />
-                </article>
-            </div>
-        );
-    } catch (error) {
-        console.error('Error fetching post:', error);
-        return (
-            <div className={styles.pageContainer}>
-                <Navbar />
-                <div
-                    className={styles.error}
-                    data-theme={isLightTheme ? 'light' : 'dark'}
-                >
-                    {error.message}
-                </div>
-            </div>
-        );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    const result = await response.json();
+
+    if (result.errors) {
+      throw new Error(result.errors[0].message);
+    }
+
+    const { data } = result;
+
+    if (!data || !data.post) {
+      throw new Error('Post not found');
+    }
+
+    // Ensure averageScore is either a finite number or null
+    const avg = calculateAverageScore(data.post);
+    const post = {
+      ...data.post,
+      averageScore: Number.isFinite(avg) ? avg : null,
+    };
+
+    const hasImage = Boolean(post.featuredImage?.node?.sourceUrl);
+    const author = [post.author?.node?.firstName, post.author?.node?.lastName]
+      .filter(Boolean)
+      .join(' ') || 'Anonymous';
+
+    return (
+      <div className={styles.page}>
+        <header className={styles.hero}>
+          <div className="ef-wrap">
+            <div className={styles.eyebrowRow}>
+              {post.categories.nodes.map((category, index) => (
+                <span key={index} className={styles.chip}>
+                  {category.name}
+                </span>
+              ))}
+              {isReviewCategory && (
+                <span className={`${styles.chip} ${styles.chipScore}`}>
+                  Score{' '}
+                  {Number.isFinite(post.averageScore)
+                    ? post.averageScore.toFixed(1)
+                    : 'N/A'}
+                </span>
+              )}
+            </div>
+
+            <h1 className={styles.title}>{post.title}</h1>
+
+            <div className={styles.heroMeta}>
+              <span>
+                <span className={styles.metaLabel}>Published</span>
+                {new Date(post.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </span>
+              <span>
+                <span className={styles.metaLabel}>By</span>
+                {author}
+              </span>
+              {isReviewCategory && (
+                <span>
+                  <span className={styles.metaLabel}>Verdict</span>
+                  {Number.isFinite(post.averageScore)
+                    ? `${post.averageScore.toFixed(1)} / 10`
+                    : 'Not scored'}
+                </span>
+              )}
+            </div>
+          </div>
+        </header>
+
+        {hasImage && (
+          <figure className={styles.imageBand}>
+            <img
+              src={post.featuredImage.node.sourceUrl}
+              alt={post.featuredImage.node.altText || post.title}
+              className={styles.image}
+            />
+          </figure>
+        )}
+
+        <div className={`ef-wrap ${styles.body}`}>
+          <article className={styles.main}>
+            {isReviewCategory && Number.isFinite(post.averageScore) && (
+              <div className={styles.verdictBanner}>
+                <div className={styles.verdictScore}>
+                  {post.averageScore.toFixed(1)}
+                </div>
+                <div className={styles.verdictText}>
+                  <p className="ef-eyebrow">Average score</p>
+                  <p className={styles.verdictLine}>
+                    Graded against the same named criteria as every other review
+                    in this category.
+                  </p>
+                </div>
+                <Link href="/blog/ranked" className={styles.verdictLink}>
+                  See the leaderboard <PixelArrow size={15} />
+                </Link>
+              </div>
+            )}
+
+            <div
+              className={`ef-prose ${styles.prose}`}
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+
+            {isReviewCategory && <ScoreBreakdown post={post} />}
+          </article>
+
+          <aside className={styles.aside}>
+            <div className={styles.asideCard}>
+              <p className="ef-eyebrow">In this review</p>
+              <ul className={styles.asideList}>
+                <li>
+                  <span>Category</span>
+                  <strong>{primaryCategory || 'Uncategorised'}</strong>
+                </li>
+                <li>
+                  <span>Published</span>
+                  <strong>
+                    {new Date(post.date).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric',
+                    })}
+                  </strong>
+                </li>
+                <li>
+                  <span>Author</span>
+                  <strong>{author}</strong>
+                </li>
+                <li>
+                  <span>Score</span>
+                  <strong>
+                    {Number.isFinite(post.averageScore)
+                      ? `${post.averageScore.toFixed(1)} / 10`
+                      : 'N/A'}
+                  </strong>
+                </li>
+              </ul>
+              <Link href="/blog" className={styles.asideLink}>
+                ← All writing
+              </Link>
+            </div>
+
+            {isReviewCategory && (
+              <div className={styles.asideLegend}>
+                <RatingLegend theme="light" />
+              </div>
+            )}
+          </aside>
+        </div>
+      </div>
+    );
+  } catch (error) {
+    console.error('Error fetching post:', error);
+    return (
+      <div className={styles.errorPage}>
+        <p className="ef-eyebrow">Missing page</p>
+        <h1 className="ef-display ef-display--sm">This post could not load.</h1>
+        <p className={styles.errorText}>{error.message}</p>
+        <Link href="/blog" className="ef-btn ef-btn--primary">
+          Back to the blog <PixelArrow size={17} />
+        </Link>
+      </div>
+    );
+  }
 }

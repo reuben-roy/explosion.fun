@@ -139,7 +139,7 @@ function KnowledgeMap({ taxonomy, activeDomain, onSelect }) {
                       className={isDim ? styles.treemapDim : styles.treemapRect}
                       fill={domain.color}
                       fillOpacity={isActive ? 0.95 : 0.74}
-                      stroke={isActive ? '#f5f5f4' : 'rgba(255,255,255,0.1)'}
+                      stroke={isActive ? '#101013' : 'rgba(16,16,19,0.14)'}
                       strokeWidth={isActive ? 2 : 1}
                     />
                     <foreignObject x="14" y="14" width={Math.max(width - 28, 0)} height={Math.max(height - 28, 0)}>
@@ -262,7 +262,7 @@ function IntentCurve({ series, annotations, taxonomy, activeDomain, onSelect, wa
 
             {y.ticks(4).map((tick) => (
               <g key={tick} transform={`translate(0,${y(tick)})`}>
-                <line x2={innerWidth} stroke="rgba(255,255,255,0.08)" />
+                <line x2={innerWidth} stroke="rgba(16,16,19,0.12)" />
                 <text x="-10" dy="0.32em" textAnchor="end" className={styles.axisText}>
                   {tick}
                 </text>
@@ -273,7 +273,7 @@ function IntentCurve({ series, annotations, taxonomy, activeDomain, onSelect, wa
               const date = new Date(item.year, 0, 1);
               return (
                 <g key={item.year} transform={`translate(${x(date)},0)`}>
-                  <line y2={innerHeight} stroke="rgba(255,255,255,0.08)" />
+                  <line y2={innerHeight} stroke="rgba(16,16,19,0.12)" />
                   <text y={innerHeight + 24} textAnchor="middle" className={styles.axisText}>
                     {item.year}
                   </text>
@@ -287,7 +287,7 @@ function IntentCurve({ series, annotations, taxonomy, activeDomain, onSelect, wa
               const yPos = 18 + (note.domainId === activeDomain ? 0 : 12);
               return (
                 <g key={note.title} transform={`translate(${xPos},${yPos})`} opacity={!activeDomain || activeDomain === note.domainId ? 1 : 0.45}>
-                  <line y1="16" y2={innerHeight - 18} stroke="rgba(255,255,255,0.16)" strokeDasharray="4 6" />
+                  <line y1="16" y2={innerHeight - 18} stroke="rgba(16,16,19,0.2)" strokeDasharray="4 6" />
                   <circle r="4" fill={domainLookup(taxonomy)[note.domainId].color} />
                   <foreignObject x="10" y="-12" width="180" height="72">
                     <div className={styles.annotationCard}>
@@ -326,7 +326,7 @@ function IntentCurve({ series, annotations, taxonomy, activeDomain, onSelect, wa
 function LearningHeatmap({ heatmap }) {
   const [containerRef, size] = useChartSize(260);
   const [tooltip, setTooltip] = useState(null);
-  const color = d3.scaleLinear().domain([0, 1]).range(['#111827', '#67c1b8']);
+  const color = d3.scaleLinear().domain([0, 1]).range(['#ebe9e0', '#44ba82']);
 
   if (!size.width) {
     return <div ref={containerRef} className={styles.chartCard} />;
@@ -361,7 +361,7 @@ function LearningHeatmap({ heatmap }) {
                   height={y.bandwidth()}
                   rx="6"
                   fill={color(cell.intensity)}
-                  stroke={highlighted ? 'rgba(242,166,90,0.65)' : 'rgba(255,255,255,0.06)'}
+                  stroke={highlighted ? 'rgba(242,166,90,0.65)' : 'rgba(16,16,19,0.09)'}
                   strokeWidth={highlighted ? 1.2 : 1}
                   onMouseEnter={() => setTooltip(cell)}
                   onMouseLeave={() => setTooltip(null)}
@@ -434,7 +434,7 @@ function RabbitHoles({ rabbitHoles, domains, activeDomain, onSelect }) {
                   <text x="0" y={y - 8} className={styles.rabbitTitle}>{item.title}</text>
                   <text x="0" y={y + 12} className={styles.rabbitNote}>{item.spark}</text>
                   <line x1={x(item.searchCount)} x2={x(item.watchCount)} y1={y + 20} y2={y + 20} stroke={domain.color} strokeWidth="5" strokeLinecap="round" opacity="0.8" />
-                  <circle cx={x(item.searchCount)} cy={y + 20} r="8" fill="#0b0f14" stroke={domain.color} strokeWidth="2" />
+                  <circle cx={x(item.searchCount)} cy={y + 20} r="8" fill="#fbfbf8" stroke={domain.color} strokeWidth="2" />
                   <circle cx={x(item.watchCount)} cy={y + 20} r="10" fill={domain.color} />
                   <text x={x(item.searchCount)} y={y + 44} textAnchor="middle" className={styles.axisText}>search</text>
                   <text x={x(item.watchCount)} y={y + 44} textAnchor="middle" className={styles.axisText}>watch</text>
@@ -540,11 +540,11 @@ function ChannelWatchProxy({ data }) {
                       x2={x(item.count)}
                       y1={yPos + y.bandwidth() / 2}
                       y2={yPos + y.bandwidth() / 2}
-                      stroke={focused ? '#67c1b8' : 'rgba(255,255,255,0.22)'}
+                      stroke={focused ? '#44ba82' : 'rgba(16,16,19,0.3)'}
                       strokeWidth={focused ? 10 : 8}
                       strokeLinecap="round"
                     />
-                    <circle cx={x(item.count)} cy={yPos + y.bandwidth() / 2} r={focused ? 7 : 5} fill={focused ? '#f2a65a' : '#8f98a7'} />
+                    <circle cx={x(item.count)} cy={yPos + y.bandwidth() / 2} r={focused ? 7 : 5} fill={focused ? '#ff8204' : '#6b6b73'} />
                     <text x={x(item.count) + 14} y={yPos + y.bandwidth() / 2} dominantBaseline="middle" className={styles.axisText}>
                       {item.count}
                     </text>
@@ -755,14 +755,14 @@ function ChannelTrend({ trend }) {
       <g transform={`translate(${margin.left},${margin.top})`}>
         {y.ticks(3).map((tick) => (
           <g key={tick} transform={`translate(0,${y(tick)})`}>
-            <line x2={innerWidth} stroke="rgba(255,255,255,0.08)" />
+            <line x2={innerWidth} stroke="rgba(16,16,19,0.12)" />
             <text x={innerWidth + 6} dy="0.32em" className={styles.axisText}>{tick}</text>
           </g>
         ))}
-        <path d={line(trend)} fill="none" stroke="#67c1b8" strokeWidth="3" />
+        <path d={line(trend)} fill="none" stroke="#44ba82" strokeWidth="3" />
         {trend.map((item) => (
           <g key={item.period} transform={`translate(${x(item.period)},${y(item.count)})`}>
-            <circle r="4.5" fill="#f2a65a" />
+            <circle r="4.5" fill="#ff8204" />
             <text y={innerHeight - y(item.count) + 18} textAnchor="middle" className={styles.axisText}>
               {item.period.replace('20', "'")}
             </text>

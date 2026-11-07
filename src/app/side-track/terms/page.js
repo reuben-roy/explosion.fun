@@ -1,4 +1,4 @@
-import Navbar from '@/components/Navbar';
+import PageHero from '@/components/site/PageHero';
 import styles from '../legal.module.css';
 
 export const metadata = {
@@ -8,15 +8,17 @@ export const metadata = {
 
 export default function TermsOfServicePage() {
     return (
-        <div className={styles.page}>
-            <Navbar />
-            <main className={styles.main}>
-                <header className={styles.header}>
-                    <h1 className={styles.title}>Terms of Service</h1>
-                    <p className={styles.subtitle}>Side-Track App</p>
-                    <p className={styles.lastUpdated}>Last Updated: December 25, 2024</p>
-                </header>
+        <div className="ef-page-in">
+            <PageHero
+                eyebrow="Side-Track"
+                title="Terms of Service"
+                description="The terms and conditions that come with using the Side-Track app. Last updated December 25, 2024."
+                art="dots"
+                compact
+            />
 
+            <section className="ef-section">
+                <div className="ef-wrap">
                 <div className={styles.content}>
                     <section className={styles.section}>
                         <h2>1. Acceptance of Terms</h2>
@@ -116,7 +118,8 @@ export default function TermsOfServicePage() {
                         </p>
                     </section>
                 </div>
-            </main>
+                </div>
+            </section>
         </div>
     );
 }

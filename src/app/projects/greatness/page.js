@@ -28,19 +28,19 @@ const METRICS = [
     name: 'Self-Actualization Ratio',
     desc: 'What percentage of your browsing time goes toward your defined goals vs. distractions.',
     weight: '45%',
-    color: '#10b981',
+    color: '#44ba82',
   },
   {
     name: 'Deep Work Density',
     desc: 'How much of your goal time happens in sustained, uninterrupted 25+ minute blocks.',
     weight: '30%',
-    color: '#8b5cf6',
+    color: '#c4001d',
   },
   {
     name: 'Drift Friction',
     desc: 'How rarely you switch from a goal-oriented site to a distraction. Fewer drifts = higher friction.',
     weight: '25%',
-    color: '#3b82f6',
+    color: '#0082e6',
   },
 ];
 

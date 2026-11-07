@@ -109,23 +109,23 @@ export default function HabiticaCard() {
             </div>
             <div className={styles.stats}>
                 <div className={styles.statRow}>
-                    <span className={styles.statIcon} style={{ color: '#ff6b6b' }}>HP</span>
+                    <span className={styles.statIcon} style={{ color: 'var(--ef-red)' }}>HP</span>
                     <div className={styles.barContainer}>
-                        <div className={styles.barFill} style={{ width: `${healthPercent}%`, background: 'linear-gradient(90deg, #ff6b6b, #ff8e8e)' }} />
+                        <div className={styles.barFill} style={{ width: `${healthPercent}%`, background: 'linear-gradient(90deg, #e51300, #fa500f)' }} />
                     </div>
                     <span className={styles.statValue}>{habiticaData.health.current}</span>
                 </div>
                 <div className={styles.statRow}>
-                    <span className={styles.statIcon} style={{ color: '#ffd93d' }}>XP</span>
+                    <span className={styles.statIcon} style={{ color: 'var(--ef-yellow)' }}>XP</span>
                     <div className={styles.barContainer}>
-                        <div className={styles.barFill} style={{ width: `${expPercent}%`, background: 'linear-gradient(90deg, #ffd93d, #ffe066)' }} />
+                        <div className={styles.barFill} style={{ width: `${expPercent}%`, background: 'linear-gradient(90deg, #ffaf01, #ffdd73)' }} />
                     </div>
                     <span className={styles.statValue}>{habiticaData.experience.current}</span>
                 </div>
                 <div className={styles.statRow}>
-                    <span className={styles.statIcon} style={{ color: '#45b7d1' }}>MP</span>
+                    <span className={styles.statIcon} style={{ color: 'var(--ef-blue)' }}>MP</span>
                     <div className={styles.barContainer}>
-                        <div className={styles.barFill} style={{ width: `${manaPercent}%`, background: 'linear-gradient(90deg, #45b7d1, #67d1e8)' }} />
+                        <div className={styles.barFill} style={{ width: `${manaPercent}%`, background: 'linear-gradient(90deg, #0082e6, #55b3fb)' }} />
                     </div>
                     <span className={styles.statValue}>{habiticaData.mana.current}</span>
                 </div>

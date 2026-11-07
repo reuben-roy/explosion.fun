@@ -2,18 +2,7 @@ import Link from 'next/link';
 import styles from './BlogCard.module.css';
 import OptimizedImage from './OptimizedImage';
 import { calculateAverageScore } from '../utils/scores';
-
-// Function to strip HTML tags
-const stripHtml = (html) => {
-    if (!html) return '';
-    return html.replace(/<[^>]*>/g, '');
-};
-
-// Function to truncate text to a specific length
-const truncateText = (text, maxLength = 120) => {
-    if (!text || text.length <= maxLength) return text;
-    return text.substring(0, maxLength).replace(/\s+\S*$/, '') + '...';
-};
+import { stripHtml, truncateText } from '../utils/plainText';
 
 export default function BlogCard({ post }) {
     const averageScore = calculateAverageScore(post);

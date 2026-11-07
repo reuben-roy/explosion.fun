@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useAuth } from './AuthProvider';
 import styles from './GreatnessNav.module.css';
@@ -23,13 +22,8 @@ export default function GreatnessNav() {
   return (
     <nav className={styles.nav}>
       <div className={styles.inner}>
-        <Link href="/" className={styles.brand}>
-          <Image
-            src="/logo.png"
-            alt="Logo"
-            width={150}
-            height={40}
-          />
+        <Link href="/projects/greatness" className={styles.brand}>
+          Greatness
         </Link>
         <div className={styles.links}>
           {links.map(link => (

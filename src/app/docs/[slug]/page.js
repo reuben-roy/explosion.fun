@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Navbar from '@/components/Navbar';
 import { DOCS, getDocBySlug, readDoc, renderMarkdown } from '../docsContent';
 import styles from '../docs.module.css';
 
@@ -35,15 +34,22 @@ export default async function DocsDetailPage({ params }) {
   const markdown = readDoc(doc.file);
 
   return (
-    <div className={styles.page}>
-      <Navbar />
-      <main className={styles.main}>
-        <div className={styles.docsTopbar}>
-          <Link href="/docs">Docs</Link>
-          <span>/</span>
-          <span>{doc.title}</span>
+    <div className="ef-page-in">
+      <header className={styles.detailHead}>
+        <div className="ef-wrap">
+          <div className={styles.breadcrumb}>
+            <Link href="/docs">Docs</Link>
+            <span aria-hidden="true">/</span>
+            <span>{doc.title}</span>
+            <span aria-hidden="true">·</span>
+            <span>{doc.file}</span>
+          </div>
+          <h1 className={styles.detailTitle}>{doc.title}</h1>
+          <p className={styles.detailDescription}>{doc.description}</p>
         </div>
+      </header>
 
+      <div className="ef-wrap">
         <div className={styles.layout}>
           <aside className={styles.sidebar} aria-label="Documentation pages">
             {DOCS.map((item) => (
@@ -51,6 +57,7 @@ export default async function DocsDetailPage({ params }) {
                 key={item.slug}
                 href={`/docs/${item.slug}`}
                 className={item.slug === doc.slug ? styles.activeDocLink : undefined}
+                aria-current={item.slug === doc.slug ? 'page' : undefined}
               >
                 {item.title}
               </Link>
@@ -58,17 +65,12 @@ export default async function DocsDetailPage({ params }) {
           </aside>
 
           <article className={styles.content}>
-            <header className={styles.sectionHeader}>
-              <span>{doc.file}</span>
-              <h1>{doc.title}</h1>
-              <p>{doc.description}</p>
-            </header>
             <div className={styles.markdown}>
               {renderMarkdown(markdown, doc.slug, styles)}
             </div>
           </article>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

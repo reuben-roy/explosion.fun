@@ -1,142 +1,89 @@
-.page {
-  min-height: 100vh;
-  background-color: #030303;
-  color: #ffffff;
-  font-family: var(--font-geist-sans);
-  padding-top: 6rem;
-  padding-bottom: 4rem;
-}
-
-.main {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.header {
-  margin-bottom: 3rem;
-  width: 100%;
-  text-align: center;
-}
-
-.title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-  background: linear-gradient(to bottom right, #ffffff 30%, #a1a1aa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.subtitle {
-  font-size: 1.25rem;
-  color: #a1a1aa;
-  margin-bottom: 1rem;
-}
-
-.description {
-  font-size: 1rem;
-  color: #71717a;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
 .linksGrid {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  border-top: 1px solid var(--ef-line);
 }
 
 .linkCard {
-  display: flex;
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1.25rem 1.5rem;
-  background-color: #0a0a0a;
-  border: 1px solid #27272a;
-  border-radius: 0.75rem;
+  gap: clamp(1rem, 3vw, 2rem);
+  padding: clamp(1.25rem, 3vw, 1.8rem) 0.5rem;
+  border-bottom: 1px solid var(--ef-line);
+  color: var(--ef-ink);
   text-decoration: none;
-  color: inherit;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, padding 0.2s ease;
 }
 
 .linkCard:hover {
-  background-color: #111111;
-  border-color: #3f3f46;
-  transform: translateX(4px);
+  background: var(--ef-cream);
+}
+
+.linkIndex {
+  font-family: var(--ef-font-mono);
+  font-size: 0.68rem;
+  color: var(--ef-muted);
+  letter-spacing: 0.08em;
 }
 
 .linkContent {
-  flex: 1;
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
 }
 
 .linkTitle {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 0.25rem;
+  font-family: var(--ef-font-display);
+  font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 
 .linkDescription {
-  font-size: 0.875rem;
-  color: #a1a1aa;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ef-muted);
+  max-width: 58ch;
 }
 
 .arrow {
-  font-size: 1.25rem;
-  color: #71717a;
-  transition: transform 0.2s ease;
+  display: inline-flex;
+  color: var(--ef-ink);
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .linkCard:hover .arrow {
-  transform: translateX(4px);
-  color: #a1a1aa;
+  transform: translate(3px, -3px);
+  color: var(--ef-orange);
 }
 
 .footer {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid #27272a;
-  width: 100%;
-  text-align: center;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ef-line);
 }
 
 .footer p {
-  font-size: 0.875rem;
-  color: #71717a;
+  margin: 0;
+  font-family: var(--ef-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--ef-muted);
 }
 
 .footer a {
-  color: #60a5fa;
-  text-decoration: none;
-  transition: color 0.2s ease;
+  color: var(--ef-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--ef-line-strong);
+  text-underline-offset: 0.2em;
 }
 
 .footer a:hover {
-  color: #93c5fd;
-  text-decoration: underline;
+  color: var(--ef-orange);
 }
 
-@media (max-width: 640px) {
-  .page {
-    padding-top: 5rem;
-  }
-
+@media (max-width: 560px) {
   .linkCard {
-    padding: 1rem 1.25rem;
-  }
-
-  .linkIcon {
-    font-size: 1.25rem;
-  }
-
-  .linkTitle {
-    font-size: 1rem;
+    grid-template-columns: 2rem minmax(0, 1fr) auto;
   }
 }

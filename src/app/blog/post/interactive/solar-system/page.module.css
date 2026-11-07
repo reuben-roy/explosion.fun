@@ -1,21 +1,15 @@
-/* Dark theme page wrapper */
 .page {
-  background: #030303;
-  color: #ffffff;
+  background: var(--ef-paper);
+  color: var(--ef-ink);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding-top: 4rem;
 }
 
-/* Section holding solar system */
 .solarSection {
-  padding: 48px 24px 28px;
+  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2rem) 1.5rem;
   display: flex;
   justify-content: center;
 }
 
-/* Centered bounded box for the solar system */
 .solarBox {
   width: 100%;
   max-width: 1100px;
@@ -23,90 +17,168 @@
   position: relative;
 }
 
-/* Adjust container: fixed-height adaptive card */
 .container {
   position: relative;
   width: 100%;
-  height: clamp(420px, 60vh, 640px);
-  background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
-  color: #ffffff;
+  height: clamp(420px, 62vh, 660px);
+  background: radial-gradient(circle at 50% 45%, #1a1a1e 0%, #08080a 72%);
+  color: #f7f6f2;
   overflow: hidden;
-  font-family: var(--font-geist-sans);
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  font-family: var(--ef-font-body);
+  border: 1px solid var(--ef-ink);
 }
 
-/* Dark theme info panel */
+.webglHost {
+  position: absolute;
+  inset: 0;
+}
+
+.webglHost :global(canvas) {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 6;
+  padding: 0.5rem 0.65rem;
+  background: rgba(16, 16, 19, 0.92);
+  border: 1px solid rgba(247, 246, 242, 0.18);
+  color: #f7f6f2;
+  font-family: var(--ef-font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.03em;
+  pointer-events: none;
+  opacity: 0;
+}
+
 .infoPanel {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(10, 10, 12, 0.82);
+  border: 1px solid rgba(247, 246, 242, 0.16);
   padding: 12px 14px;
-  border-radius: 8px;
-  max-width: 220px;
+  max-width: 250px;
   backdrop-filter: blur(8px);
-  color: #ffffff;
+  color: #f7f6f2;
   z-index: 10;
 }
 
-.infoPanel h2 {
-  margin: 0 0 4px;
-  font-size: 1rem;
-  color: #ffffff;
+.infoPanel h3 {
+  margin: 0 0 5px;
+  font-family: var(--ef-font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #f7f6f2;
 }
 
-.infoPanel p {
+.infoPanel pre {
   margin: 0;
-  font-size: 0.85rem;
-  color: #a1a1aa;
+  white-space: pre-wrap;
+  font-family: var(--ef-font-body);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: rgba(247, 246, 242, 0.72);
 }
 
-/* Controls */
-.controls {
+.zoomControls {
   position: absolute;
   bottom: 12px;
-  left: 12px;
+  right: 12px;
   display: flex;
-  gap: 8px;
+  gap: 6px;
   z-index: 10;
 }
 
-.controlButton {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  padding: 6px 12px;
-  border-radius: 6px;
+.zoomControls button {
+  min-width: 34px;
+  height: 34px;
+  background: rgba(247, 246, 242, 0.08);
+  border: 1px solid rgba(247, 246, 242, 0.18);
+  color: #f7f6f2;
+  font-family: var(--ef-font-mono);
   font-size: 0.85rem;
   cursor: pointer;
-  backdrop-filter: blur(4px);
-  transition: all 0.2s;
+  transition: background 0.18s ease, color 0.18s ease;
 }
 
-.controlButton:hover {
-  background: rgba(255, 255, 255, 0.2);
+.zoomControls button:hover {
+  background: var(--ef-orange);
+  border-color: var(--ef-orange);
 }
 
-/* Content below */
-.contentSection {
-  max-width: 800px;
+.zoomHint {
+  margin-top: 10px;
+  font-family: var(--ef-font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.05em;
+  color: rgba(247, 246, 242, 0.45);
+}
+
+.footerHint {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  font-family: var(--ef-font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(247, 246, 242, 0.4);
+}
+
+.extraContent {
+  max-width: 52rem;
   margin: 0 auto;
-  padding: 0 24px 48px;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.25rem, 3vw, 1.5rem)
+    clamp(3rem, 6vw, 5rem);
 }
 
-.contentSection h1 {
-  font-size: 2.5rem;
+.extraContent h2 {
+  margin: 2.2rem 0 0.8rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--ef-line);
+  font-family: var(--ef-font-display);
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
   font-weight: 700;
-  margin-bottom: 1rem;
-  color: #ffffff;
+  letter-spacing: -0.03em;
 }
 
-.contentSection p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #a1a1aa;
-  margin-bottom: 1.5rem;
+.extraContent h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.extraContent p {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ef-ink-3);
+}
+
+.extraContent code {
+  padding: 0.1rem 0.32rem;
+  border: 1px solid var(--ef-line);
+  background: var(--ef-cream);
+  font-family: var(--ef-font-mono);
+  font-size: 0.86em;
+  color: var(--ef-ink);
+}
+
+@media (max-width: 640px) {
+  .infoPanel {
+    max-width: 190px;
+    padding: 9px 10px;
+  }
+
+  .infoPanel pre {
+    font-size: 0.7rem;
+  }
+
+  .footerHint {
+    display: none;
+  }
 }

@@ -1,6 +1,5 @@
 import fs from 'fs/promises';
 import path from 'path';
-import Navbar from '@/components/Navbar';
 import EmploymentBySexExperience from '@/components/employment-by-sex/EmploymentBySexExperience';
 import styles from './page.module.css';
 
@@ -53,7 +52,6 @@ export default async function EmploymentBySexPage() {
 
   return (
     <div className={styles.page}>
-      <Navbar />
       <EmploymentBySexExperience data={data} />
       <script
         type="application/ld+json"

@@ -1,6 +1,5 @@
 import fs from 'fs/promises';
 import path from 'path';
-import Navbar from '@/components/Navbar';
 import CuriosityVelocityExperience from '@/components/youtube-scholar/CuriosityVelocityExperience';
 import styles from '../page.module.css';
 
@@ -20,7 +19,6 @@ export default async function CuriosityVelocityPage() {
 
   return (
     <div className={styles.page}>
-      <Navbar />
       <CuriosityVelocityExperience data={data} />
     </div>
   );
