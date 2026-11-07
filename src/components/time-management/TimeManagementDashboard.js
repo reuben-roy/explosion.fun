@@ -5,13 +5,13 @@ import * as d3 from 'd3';
 import styles from './TimeManagementDashboard.module.css';
 
 const COLORS = {
-  Productive: '#4f46e5',
-  Education: '#3b82f6',
-  Entertainment: '#ef4444',
-  Social: '#f59e0b',
-  Life: '#10b981',
-  Sleep: '#8b5cf6',
-  Neutral: '#475569',
+  Productive: '#fa500f',
+  Education: '#0082e6',
+  Entertainment: '#e51300',
+  Social: '#ffaf01',
+  Life: '#44ba82',
+  Sleep: '#c4001d',
+  Neutral: '#6b6b73',
 };
 
 const ACTIVITY_ORDER = ['Productive', 'Education', 'Entertainment', 'Social', 'Life', 'Sleep', 'Neutral'];
@@ -41,9 +41,9 @@ function getContainerWidth(ref) {
 }
 
 function styleAxes(svg) {
-  svg.selectAll('.domain').attr('stroke', 'rgba(255, 255, 255, 0.08)');
-  svg.selectAll('.tick line').attr('stroke', 'rgba(255, 255, 255, 0.08)');
-  svg.selectAll('.tick text').attr('fill', '#8f98a7').style('font-size', '11px');
+  svg.selectAll('.domain').attr('stroke', 'rgba(16, 16, 19, 0.12)');
+  svg.selectAll('.tick line').attr('stroke', 'rgba(16, 16, 19, 0.12)');
+  svg.selectAll('.tick text').attr('fill', '#6b6b73').style('font-size', '11px');
 }
 
 export default function TimeManagementDashboard({ data }) {
@@ -174,7 +174,7 @@ export default function TimeManagementDashboard({ data }) {
         .join('path')
         .attr('d', arc)
         .attr('fill', d => COLORS[d.data.type])
-        .attr('stroke', 'rgba(8, 10, 14, 0.98)')
+        .attr('stroke', '#fbfbf8')
         .attr('stroke-width', 2)
         .on('mouseover', function (event, d) {
           d3.select(this).transition().duration(150).attr('transform', 'scale(1.04)');
@@ -191,7 +191,7 @@ export default function TimeManagementDashboard({ data }) {
       g.append('text')
         .attr('text-anchor', 'middle')
         .attr('dy', '-0.3em')
-        .attr('fill', '#e2e8f0')
+        .attr('fill', '#101013')
         .style('font-size', '22px')
         .style('font-weight', '700')
         .text(`${(total / 3600).toFixed(0)}h`);
@@ -199,7 +199,7 @@ export default function TimeManagementDashboard({ data }) {
       g.append('text')
         .attr('text-anchor', 'middle')
         .attr('dy', '1.2em')
-        .attr('fill', '#8f98a7')
+        .attr('fill', '#6b6b73')
         .style('font-size', '12px')
         .text('Active Time');
     }
@@ -309,7 +309,7 @@ export default function TimeManagementDashboard({ data }) {
       [{ label: 'Productive %', color: COLORS.Productive }, { label: 'Entertainment %', color: COLORS.Entertainment }]
         .forEach((item, i) => {
           legend.append('rect').attr('x', 0).attr('y', i * 20).attr('width', 14).attr('height', 14).attr('rx', 3).attr('fill', item.color);
-          legend.append('text').attr('x', 20).attr('y', i * 20 + 11).attr('fill', '#8f98a7').style('font-size', '12px').text(item.label);
+          legend.append('text').attr('x', 20).attr('y', i * 20 + 11).attr('fill', '#6b6b73').style('font-size', '12px').text(item.label);
         });
 
       styleAxes(svg);
@@ -387,7 +387,7 @@ export default function TimeManagementDashboard({ data }) {
       const legend = g.append('g').attr('transform', `translate(${width - 260}, -5)`);
       types.forEach((t, i) => {
         legend.append('rect').attr('x', i * 100).attr('y', 0).attr('width', 12).attr('height', 12).attr('rx', 2).attr('fill', typeColors[t]);
-        legend.append('text').attr('x', i * 100 + 16).attr('y', 10).attr('fill', '#8f98a7').style('font-size', '11px').text(typeLabels[t]);
+        legend.append('text').attr('x', i * 100 + 16).attr('y', 10).attr('fill', '#6b6b73').style('font-size', '11px').text(typeLabels[t]);
       });
 
       styleAxes(svg);
@@ -470,7 +470,7 @@ export default function TimeManagementDashboard({ data }) {
       const legend = g.append('g').attr('transform', `translate(0, -5)`);
       keys.forEach((k, i) => {
         legend.append('rect').attr('x', i * 95).attr('y', 0).attr('width', 12).attr('height', 12).attr('rx', 2).attr('fill', keyColors[k]);
-        legend.append('text').attr('x', i * 95 + 16).attr('y', 10).attr('fill', '#8f98a7').style('font-size', '11px').text(keyLabels[k]);
+        legend.append('text').attr('x', i * 95 + 16).attr('y', 10).attr('fill', '#6b6b73').style('font-size', '11px').text(keyLabels[k]);
       });
 
       styleAxes(svg);
@@ -523,7 +523,7 @@ export default function TimeManagementDashboard({ data }) {
           .attr('y', y(name) + y.bandwidth() / 2)
           .attr('dy', '0.35em')
           .attr('text-anchor', 'end')
-          .attr('fill', '#e2e8f0')
+          .attr('fill', '#101013')
           .style('font-size', '12px')
           .text(name);
 
@@ -531,7 +531,7 @@ export default function TimeManagementDashboard({ data }) {
           .attr('x', x(val) + 6)
           .attr('y', y(name) + y.bandwidth() / 2)
           .attr('dy', '0.35em')
-          .attr('fill', '#8f98a7')
+          .attr('fill', '#6b6b73')
           .style('font-size', '11px')
           .text(`${val}%`);
       });
@@ -561,7 +561,7 @@ export default function TimeManagementDashboard({ data }) {
       const x = d3.scaleLinear().domain([0, maxVal]).range([0, width]);
       const y = d3.scaleBand().domain(entries.map(e => e[0])).range([0, height]).padding(0.25);
 
-      const barColors = ['#67c1b8', '#f2a65a', '#8b5cf6', '#3b82f6', '#10b981', '#818cf8', '#f59e0b', '#06b6d4'];
+      const barColors = ['#44ba82', '#ff8204', '#c4001d', '#0082e6', '#44ba82', '#fa500f', '#ffaf01', '#0082e6'];
 
       entries.forEach(([name, val], i) => {
         const label = name.length > 20 ? name.slice(0, 20) + '…' : name;
@@ -591,7 +591,7 @@ export default function TimeManagementDashboard({ data }) {
           .attr('y', y(name) + y.bandwidth() / 2)
           .attr('dy', '0.35em')
           .attr('text-anchor', 'end')
-          .attr('fill', '#e2e8f0')
+          .attr('fill', '#101013')
           .style('font-size', '12px')
           .text(label);
 
@@ -599,7 +599,7 @@ export default function TimeManagementDashboard({ data }) {
           .attr('x', x(val) + 6)
           .attr('y', y(name) + y.bandwidth() / 2)
           .attr('dy', '0.35em')
-          .attr('fill', '#8f98a7')
+          .attr('fill', '#6b6b73')
           .style('font-size', '11px')
           .text(`${fmtHours(val)}h`);
       });
@@ -626,7 +626,7 @@ export default function TimeManagementDashboard({ data }) {
 
       const color = d3.scaleOrdinal()
         .domain(entries.map(d => d.topic))
-        .range(['#ef4444', '#f59e0b', '#3b82f6', '#10b981', '#8b5cf6', '#ec4899', '#06b6d4', '#f97316']);
+        .range(['#e51300', '#ffaf01', '#0082e6', '#44ba82', '#c4001d', '#e51300', '#0082e6', '#ff8204']);
 
       const pie = d3.pie().value(d => d.hours).sort(null).padAngle(0.02);
       const arc = d3.arc().innerRadius(innerRadius).outerRadius(radius - 8);
@@ -636,7 +636,7 @@ export default function TimeManagementDashboard({ data }) {
         .join('path')
         .attr('d', arc)
         .attr('fill', d => color(d.data.topic))
-        .attr('stroke', 'rgba(8, 10, 14, 0.98)')
+        .attr('stroke', '#fbfbf8')
         .attr('stroke-width', 2)
         .on('mouseover', function (event, d) {
           d3.select(this).transition().duration(150).attr('transform', 'scale(1.04)');
@@ -653,7 +653,7 @@ export default function TimeManagementDashboard({ data }) {
       g.append('text')
         .attr('text-anchor', 'middle')
         .attr('dy', '-0.3em')
-        .attr('fill', '#e2e8f0')
+        .attr('fill', '#101013')
         .style('font-size', '20px')
         .style('font-weight', '700')
         .text(`${total.toFixed(0)}h`);
@@ -661,7 +661,7 @@ export default function TimeManagementDashboard({ data }) {
       g.append('text')
         .attr('text-anchor', 'middle')
         .attr('dy', '1.2em')
-        .attr('fill', '#8f98a7')
+        .attr('fill', '#6b6b73')
         .style('font-size', '11px')
         .text('YouTube');
     }
@@ -691,7 +691,7 @@ export default function TimeManagementDashboard({ data }) {
       const x = d3.scaleLinear().domain([0, maxVal]).range([0, width]);
       const y = d3.scaleBand().domain(entries.map(e => e.name)).range([0, height]).padding(0.25);
 
-      const animeColors = ['#67c1b8', '#f2a65a', '#8b5cf6', '#3b82f6', '#10b981', '#818cf8', '#f59e0b', '#06b6d4'];
+      const animeColors = ['#44ba82', '#ff8204', '#c4001d', '#0082e6', '#44ba82', '#fa500f', '#ffaf01', '#0082e6'];
 
       entries.forEach((entry, i) => {
         const label = entry.name.length > 24 ? entry.name.slice(0, 24) + '…' : entry.name;
@@ -721,7 +721,7 @@ export default function TimeManagementDashboard({ data }) {
           .attr('y', y(entry.name) + y.bandwidth() / 2)
           .attr('dy', '0.35em')
           .attr('text-anchor', 'end')
-          .attr('fill', '#e2e8f0')
+          .attr('fill', '#101013')
           .style('font-size', '12px')
           .text(label);
 
@@ -729,7 +729,7 @@ export default function TimeManagementDashboard({ data }) {
           .attr('x', x(entry.hours) + 6)
           .attr('y', y(entry.name) + y.bandwidth() / 2)
           .attr('dy', '0.35em')
-          .attr('fill', '#8f98a7')
+          .attr('fill', '#6b6b73')
           .style('font-size', '11px')
           .text(`${entry.hours}h`);
       });
@@ -762,7 +762,7 @@ export default function TimeManagementDashboard({ data }) {
         .join('path')
         .attr('d', arc)
         .attr('fill', d => COLORS[d.data.type])
-        .attr('stroke', 'rgba(8, 10, 14, 0.98)')
+        .attr('stroke', '#fbfbf8')
         .attr('stroke-width', 2)
         .on('mouseover', function (event, d) {
           d3.select(this).transition().duration(150).attr('transform', 'scale(1.04)');
@@ -779,7 +779,7 @@ export default function TimeManagementDashboard({ data }) {
       g.append('text')
         .attr('text-anchor', 'middle')
         .attr('dy', '-0.3em')
-        .attr('fill', '#e2e8f0')
+        .attr('fill', '#101013')
         .style('font-size', '20px')
         .style('font-weight', '700')
         .text(`${total.toFixed(0)}h`);
@@ -787,7 +787,7 @@ export default function TimeManagementDashboard({ data }) {
       g.append('text')
         .attr('text-anchor', 'middle')
         .attr('dy', '1.2em')
-        .attr('fill', '#8f98a7')
+        .attr('fill', '#6b6b73')
         .style('font-size', '11px')
         .text('Late Night');
     }
@@ -850,7 +850,7 @@ export default function TimeManagementDashboard({ data }) {
           .attr('x', x(b.label) + x.bandwidth() / 2)
           .attr('y', y(b.value) - 6)
           .attr('text-anchor', 'middle')
-          .attr('fill', '#e2e8f0')
+          .attr('fill', '#101013')
           .style('font-size', '13px')
           .style('font-weight', '600')
           .text(`${b.value}%`);
@@ -911,12 +911,12 @@ export default function TimeManagementDashboard({ data }) {
           <div className={styles.kpiSub}>{(data.activity_type_breakdown.Entertainment / 3600 / data.total_days).toFixed(1)}h/day avg</div>
         </div>
         <div className={styles.kpiCard}>
-          <div className={styles.kpiValue} style={{ color: '#22d3ee' }}>{focusScore}%</div>
+          <div className={styles.kpiValue} style={{ color: '#0082e6' }}>{focusScore}%</div>
           <div className={styles.kpiLabel}>Focus Score</div>
           <div className={styles.kpiSub}>Productive / active time</div>
         </div>
         <div className={styles.kpiCard}>
-          <div className={styles.kpiValue} style={{ color: '#a78bfa' }}>{data.flow_sessions.count}</div>
+          <div className={styles.kpiValue} style={{ color: '#c4001d' }}>{data.flow_sessions.count}</div>
           <div className={styles.kpiLabel}>Deep Work Sessions</div>
           <div className={styles.kpiSub}>{data.flow_sessions.total_hours}h total flow</div>
         </div>
@@ -926,7 +926,7 @@ export default function TimeManagementDashboard({ data }) {
           <div className={styles.kpiSub}>σ = {data.sleep_consistency.std_h}h</div>
         </div>
         <div className={styles.kpiCard}>
-          <div className={styles.kpiValue} style={{ color: '#f59e0b' }}>{fragIndex}</div>
+          <div className={styles.kpiValue} style={{ color: '#ffaf01' }}>{fragIndex}</div>
           <div className={styles.kpiLabel}>Fragmentation Index</div>
           <div className={styles.kpiSub}>Context switches/hr</div>
         </div>
@@ -1117,7 +1117,7 @@ export default function TimeManagementDashboard({ data }) {
                       const val = data.transition_matrix_pct[from][to];
                       const bg = val === 0
                         ? 'transparent'
-                        : `rgba(79, 70, 229, ${Math.min(val / 70, 1)})`;
+                        : `rgba(250, 80, 15, ${Math.min(val / 70, 1)})`;
                       return (
                         <td key={to} style={{ background: bg, textAlign: 'center' }}>
                           {val > 0 ? fmtPct(val) : '—'}
@@ -1199,7 +1199,7 @@ export default function TimeManagementDashboard({ data }) {
               <div className={styles.legendRow}>
                 {Object.keys(data.youtube_topics).map((t, i) => (
                   <span key={t} className={styles.legendItem}>
-                    <span className={styles.legendDot} style={{ background: ['#ef4444', '#f59e0b', '#3b82f6', '#10b981', '#8b5cf6', '#ec4899', '#06b6d4', '#f97316'][i] }} />
+                    <span className={styles.legendDot} style={{ background: ['#e51300', '#ffaf01', '#0082e6', '#44ba82', '#c4001d', '#e51300', '#0082e6', '#ff8204'][i] }} />
                     {t}
                   </span>
                 ))}

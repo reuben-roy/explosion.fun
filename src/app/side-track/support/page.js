@@ -1,4 +1,4 @@
-import Navbar from '@/components/Navbar';
+import PageHero from '@/components/site/PageHero';
 import styles from '../legal.module.css';
 
 export const metadata = {
@@ -8,14 +8,22 @@ export const metadata = {
 
 export default function SupportPage() {
     return (
-        <div className={styles.page}>
-            <Navbar />
-            <main className={styles.main}>
-                <header className={styles.header}>
-                    <h1 className={styles.title}>Support</h1>
-                    <p className={styles.subtitle}>Side-Track App</p>
-                </header>
+        <div className="ef-page-in">
+            <PageHero
+                eyebrow="Side-Track"
+                title="Support"
+                description="Need help with the app, found a bug, or want a feature? There is a human at the other end of this address."
+                art="dots"
+                compact
+                actions={
+                    <a href="mailto:contact@cms.explosion.fun" className="ef-btn ef-btn--primary">
+                        contact@cms.explosion.fun
+                    </a>
+                }
+            />
 
+            <section className="ef-section">
+                <div className="ef-wrap">
                 <div className={styles.content}>
                     <section className={styles.section}>
                         <h2>Need Help?</h2>
@@ -96,7 +104,8 @@ export default function SupportPage() {
                         </p>
                     </section>
                 </div>
-            </main>
+                </div>
+            </section>
         </div>
     );
 }

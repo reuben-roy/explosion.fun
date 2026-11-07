@@ -1,6 +1,5 @@
 import fs from 'fs/promises';
 import path from 'path';
-import Navbar from '@/components/Navbar';
 import StarGrowthCharts from '@/components/agent-star-growth/StarGrowthCharts';
 import styles from './page.module.css';
 
@@ -51,7 +50,6 @@ export default async function AgentStarGrowthPage() {
 
   return (
     <div className={styles.page}>
-      <Navbar />
       <main>
         <StarGrowthCharts data={data} />
       </main>

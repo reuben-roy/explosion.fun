@@ -4,10 +4,10 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import styles from './EmploymentBySexExperience.module.css';
 
-const WOMEN = '#ff6b8a';
-const MEN = '#5ec7e8';
-const GAIN = '#d9c65c';
-const LOSS = '#75648c';
+const WOMEN = '#e51300';
+const MEN = '#0082e6';
+const GAIN = '#ff8204';
+const LOSS = '#c4001d';
 
 const RANGES = [
   { id: 'decade', label: 'Full decade', start: '2016-09-01' },
@@ -88,9 +88,9 @@ function filterRange(data, range) {
 }
 
 function styleAxes(svg) {
-  svg.selectAll(`.${styles.axis} .domain`).attr('stroke', 'rgba(232, 228, 216, .18)');
-  svg.selectAll(`.${styles.axis} .tick line`).attr('stroke', 'rgba(232, 228, 216, .18)');
-  svg.selectAll(`.${styles.axis} .tick text`).attr('fill', '#9da4aa');
+  svg.selectAll(`.${styles.axis} .domain`).attr('stroke', 'rgba(16, 16, 19, .18)');
+  svg.selectAll(`.${styles.axis} .tick line`).attr('stroke', 'rgba(16, 16, 19, .18)');
+  svg.selectAll(`.${styles.axis} .tick text`).attr('fill', '#6b6b73');
 }
 
 function RangeControl({ range, onChange }) {

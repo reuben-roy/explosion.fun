@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import styles from './page.module.css';
-import Navbar from '@/components/Navbar'; // NEW (ensure this path matches your project)
 
 export default function SolarSystemClient() {
     const containerRef = useRef(null);
@@ -291,7 +290,6 @@ export default function SolarSystemClient() {
 
     return (
         <div className={styles.page}>
-            <Navbar /> {/* NEW */}
             <section className={styles.solarSection}>
                 <div className={styles.solarBox}>
                     <div ref={containerRef} className={styles.container}>

@@ -1,9 +1,9 @@
 .page {
   min-height: 100vh;
-  background-color: #030303;
-  color: #f3f2ef;
-  font-family: var(--font-geist-sans);
-  padding: 5.5rem 1.5rem 4rem;
+  background: var(--ef-paper);
+  color: #101013;
+  font-family: var(--ef-font-body);
+  padding: 2.5rem 1.5rem 4rem;
 }
 
 .container {
@@ -14,7 +14,7 @@
 .loader {
   text-align: center;
   padding: 4rem;
-  color: #8f98a7;
+  color: #6b6b73;
   font-size: 1.1rem;
 }
 
@@ -35,42 +35,43 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.12);
+  border: 2px solid rgba(16,16,19,0.16);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.85rem;
   font-weight: 700;
-  color: #8f98a7;
+  color: #6b6b73;
   transition: all 200ms ease;
 }
 
 .stepActive {
-  border-color: #3b82f6;
+  border-color: var(--ef-orange);
   background: rgba(59, 130, 246, 0.12);
-  color: #3b82f6;
+  color: var(--ef-orange);
 }
 
 .stepLine {
   width: 60px;
   height: 2px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--ef-line-soft);
 }
 
 .title {
+  font-family: var(--ef-font-display);
   font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   margin: 0 0 0.75rem;
-  background: linear-gradient(to bottom right, #ffffff 30%, #a1a1aa 100%);
+  background: linear-gradient(to bottom right, #fbfbf8 30%, #6b6b73 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: currentColor;
   background-clip: text;
 }
 
 .subtitle {
   font-size: 1.05rem;
-  color: #8f98a7;
+  color: #6b6b73;
   line-height: 1.6;
   max-width: 50ch;
   margin: 0 auto;
@@ -85,9 +86,9 @@
 .categoryCard {
   position: relative;
   padding: 1.25rem 1rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0;
+  border: 1px solid rgba(16,16,19,0.12);
+  background: var(--ef-cream);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -95,17 +96,17 @@
   gap: 0.6rem;
   transition: all 150ms ease;
   font-family: inherit;
-  color: #e2e8f0;
+  color: #101013;
 }
 
 .categoryCard:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--ef-ink);
+  background: var(--ef-line-soft);
   transform: translateY(-2px);
 }
 
 .categorySelected {
-  border-color: #3b82f6;
+  border-color: var(--ef-orange);
   background: rgba(59, 130, 246, 0.08);
   box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.3);
 }
@@ -124,7 +125,7 @@
   position: absolute;
   top: 8px;
   right: 10px;
-  color: #f59e0b;
+  color: #ffaf01;
   font-weight: 700;
   font-size: 1.1rem;
 }
@@ -136,9 +137,9 @@
 }
 
 .customForm {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.14);
+  border-radius: 0;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -154,17 +155,17 @@
 .fieldLabel {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #8f98a7;
+  color: #6b6b73;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
 .input {
   padding: 0.65rem 0.85rem;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
-  color: #f3f2ef;
+  border-radius: 0;
+  border: 1px solid rgba(16,16,19,0.14);
+  background: var(--ef-cream);
+  color: #101013;
   font-size: 0.95rem;
   font-family: inherit;
   outline: none;
@@ -176,16 +177,16 @@
 }
 
 .input:focus {
-  border-color: #3b82f6;
+  border-color: var(--ef-orange);
 }
 
 .addBtn {
   align-self: flex-start;
   padding: 0.5rem 1rem;
-  border-radius: 10px;
+  border-radius: 0;
   border: 1px dashed rgba(59, 130, 246, 0.4);
   background: rgba(59, 130, 246, 0.06);
-  color: #3b82f6;
+  color: var(--ef-orange);
   font-size: 0.9rem;
   font-weight: 600;
   font-family: inherit;
@@ -213,20 +214,20 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1.25rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0;
+  border: 1px solid rgba(16,16,19,0.12);
+  background: var(--ef-cream);
 }
 
 .customItem strong {
-  color: #f3f2ef;
+  color: #101013;
   font-size: 0.95rem;
 }
 
 .customMeta {
   display: block;
   font-size: 0.8rem;
-  color: #8f98a7;
+  color: #6b6b73;
   margin-top: 0.2rem;
 }
 
@@ -236,7 +237,7 @@
   border-radius: 50%;
   border: 1px solid rgba(239, 68, 68, 0.3);
   background: rgba(239, 68, 68, 0.08);
-  color: #ef4444;
+  color: #e51300;
   font-size: 1.1rem;
   cursor: pointer;
   display: flex;
@@ -257,7 +258,7 @@
 .reviewTitle {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #f3f2ef;
+  color: #101013;
   margin: 0 0 1.5rem;
 }
 
@@ -277,7 +278,7 @@
   border-radius: 999px;
   border: 1px solid rgba(59, 130, 246, 0.3);
   background: rgba(59, 130, 246, 0.06);
-  color: #f3f2ef;
+  color: #101013;
   font-size: 0.9rem;
   font-weight: 500;
 }
@@ -287,13 +288,13 @@
 }
 
 .emptyState {
-  color: #8f98a7;
+  color: #6b6b73;
   font-size: 0.95rem;
   padding: 2rem;
 }
 
 .reviewNote {
-  color: #8f98a7;
+  color: #6b6b73;
   font-size: 0.9rem;
   line-height: 1.6;
   max-width: 48ch;
@@ -302,7 +303,7 @@
 
 .error {
   padding: 0.7rem 0.9rem;
-  border-radius: 10px;
+  border-radius: 0;
   background: rgba(239, 68, 68, 0.1);
   border: 1px solid rgba(239, 68, 68, 0.2);
   color: #f87171;
@@ -316,7 +317,7 @@
   align-items: center;
   margin-top: 2.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(16,16,19,0.09);
 }
 
 .spacer {
@@ -325,10 +326,10 @@
 
 .backBtn {
   padding: 0.6rem 1.2rem;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0;
+  border: 1px solid rgba(16,16,19,0.14);
   background: transparent;
-  color: #8f98a7;
+  color: #6b6b73;
   font-size: 0.9rem;
   font-family: inherit;
   cursor: pointer;
@@ -336,17 +337,17 @@
 }
 
 .backBtn:hover {
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #e2e8f0;
+  border-color: rgba(16,16,19,0.24);
+  color: #101013;
 }
 
 .nextBtn,
 .saveBtn {
   padding: 0.65rem 1.5rem;
-  border-radius: 10px;
+  border-radius: 0;
   border: none;
-  background: #3b82f6;
-  color: #fff;
+  background: var(--ef-ink);
+  color: var(--ef-paper);
   font-size: 0.95rem;
   font-weight: 600;
   font-family: inherit;

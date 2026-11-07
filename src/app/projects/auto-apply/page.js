@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Navbar from '@/components/Navbar';
 import styles from './auto-apply.module.css';
 
 export const metadata = {
@@ -196,7 +195,6 @@ export default function AutoApplyPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
       />
-      <Navbar />
       <main className={styles.main}>
         <header className={styles.header}>
           <p className={styles.eyebrow}>Project · Agentic systems</p>

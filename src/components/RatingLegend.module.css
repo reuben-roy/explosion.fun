@@ -1,160 +1,108 @@
 .legend {
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-}
-
-.legend.whiteTheme {
-  color: #111827;
-  border-color: #e5e7eb;
-  background: #ffffff;
+  border: 1px solid var(--ef-line);
+  background: var(--ef-cream);
+  padding: clamp(1.1rem, 2.4vw, 1.6rem);
 }
 
 .header {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
-  width: 100%;
-  padding: 0 1rem 0.2rem 0;
-}
-
-.whiteTheme .header {
-  background: #f9fafb;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .title {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: inherit;
+  font-family: var(--ef-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ef-muted);
 }
 
 .content {
-  padding: 0.5rem 0 0 0;
+  display: grid;
+  gap: 0.7rem;
 }
 
 .scaleBar {
-  display: flex;
-  gap: 0.25rem;
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 2px;
 }
 
 .scoreItem {
   position: relative;
-  flex: 1;
+  display: grid;
+  place-items: center;
+  height: 2.6rem;
+  background: color-mix(in srgb, var(--ef-tone) 16%, transparent);
+  border-bottom: 2px solid var(--ef-tone);
+  font-family: var(--ef-font-mono);
+  font-size: 0.74rem;
+  color: var(--ef-ink);
+  cursor: default;
+  transition: background 0.18s ease;
+}
+
+.scoreItem:hover,
+.scoreItem.active {
+  background: color-mix(in srgb, var(--ef-tone) 34%, transparent);
 }
 
 .score {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Active state for mobile tap */
-.scoreItem.active .score {
-  background: #ffffff;
-  color: #000000;
-  transform: translateY(-2px);
-}
-
-.whiteTheme .scoreItem.active .score {
-  background: #111827;
-  color: #ffffff;
-}
-
-.whiteTheme .score {
-  background: #f3f4f6;
-  color: #374151;
-}
-
-.scoreItem:hover .score {
-  background: #ffffff;
-  color: #000000;
-  transform: translateY(-2px);
-}
-
-.whiteTheme .scoreItem:hover .score {
-  background: #111827;
-  color: #ffffff;
+  font-variant-numeric: tabular-nums;
 }
 
 .tooltip {
   position: absolute;
-  bottom: calc(100% + 8px);
+  bottom: calc(100% + 0.55rem);
   left: 50%;
   transform: translateX(-50%);
-  padding: 0.5rem 0.75rem;
-  background: #000000;
-  color: #ffffff;
-  font-size: 0.75rem;
-  width: 200px;
-  text-align: center;
-  border-radius: 6px;
-  z-index: 10;
-  pointer-events: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  z-index: 20;
+  display: grid;
+  gap: 0.3rem;
+  width: min(240px, 70vw);
+  padding: 0.7rem 0.8rem;
+  background: var(--ef-ink);
+  color: var(--ef-paper);
+  font-family: var(--ef-font-body);
+  font-size: 0.74rem;
+  line-height: 1.45;
+  text-align: left;
+  box-shadow: 0 12px 30px rgba(16, 16, 19, 0.24);
 }
 
 .tooltip strong {
-  font-weight: 600;
-  font-size: 0.8rem;
-}
-
-.tooltip span {
-  color: #d1d5db;
-  line-height: 1.4;
-}
-
-.whiteTheme .tooltip {
-  background: #1f2937;
-}
-
-.tooltip::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 5px solid transparent;
-  border-top-color: #000000;
-}
-
-.whiteTheme .tooltip::after {
-  border-top-color: #1f2937;
+  font-family: var(--ef-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ef-yellow);
 }
 
 .labels {
   display: flex;
   justify-content: space-between;
-  margin-top: 0.5rem;
-  font-size: 0.7rem;
-  color: #71717a;
+  gap: 1rem;
+  font-family: var(--ef-font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ef-muted);
 }
 
-.whiteTheme .labels {
-  color: #9ca3af;
-}
-
-@media (max-width: 480px) {
-  .score {
-    font-size: 0.7rem;
-    height: 28px;
+@media (max-width: 640px) {
+  .scoreItem {
+    height: 2.2rem;
+    font-size: 0.66rem;
   }
-  
+
   .labels {
-    font-size: 0.65rem;
+    font-size: 0.54rem;
   }
-  
-  .tooltip {
-    width: 160px;
-    font-size: 0.7rem;
+
+  .labels span:nth-child(2) {
+    display: none;
   }
 }

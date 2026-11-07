@@ -230,11 +230,11 @@ export default function UploadPage() {
                 <span className={styles.statLabel}>Total Entries</span>
               </div>
               <div className={styles.statItem}>
-                <span className={styles.statValue} style={{ color: '#10b981' }}>{result.goalAligned.toLocaleString()}</span>
+                <span className={styles.statValue} style={{ color: '#44ba82' }}>{result.goalAligned.toLocaleString()}</span>
                 <span className={styles.statLabel}>Goal-Aligned</span>
               </div>
               <div className={styles.statItem}>
-                <span className={styles.statValue} style={{ color: '#ef4444' }}>{result.distractions.toLocaleString()}</span>
+                <span className={styles.statValue} style={{ color: '#e51300' }}>{result.distractions.toLocaleString()}</span>
                 <span className={styles.statLabel}>Distractions</span>
               </div>
               <div className={styles.statItem}>
@@ -242,7 +242,7 @@ export default function UploadPage() {
                 <span className={styles.statLabel}>Days</span>
               </div>
               <div className={styles.statItem}>
-                <span className={styles.statValue} style={{ color: '#f59e0b' }}>{result.avgScore}</span>
+                <span className={styles.statValue} style={{ color: '#ffaf01' }}>{result.avgScore}</span>
                 <span className={styles.statLabel}>Avg Score</span>
               </div>
             </div>

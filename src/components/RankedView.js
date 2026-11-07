@@ -5,8 +5,9 @@ import Link from 'next/link';
 import styles from './RankedView.module.css';
 import { calculateAverageScore } from '../utils/scores';
 import { REVIEW_CATEGORIES } from '../utils/reviewCategories';
+import { stripHtml } from '../utils/plainText';
 
-export default function RankedView({ posts }) {
+export default function RankedView({ posts, limit }) {
     const [selectedCategory, setSelectedCategory] = useState(REVIEW_CATEGORIES[0]);
 
     // Filter posts that have a score and sort by score
@@ -22,11 +23,7 @@ export default function RankedView({ posts }) {
         .filter(post => post.reviewCategory === selectedCategory)
         .sort((a, b) => b.score - a.score);
 
-    // Helper to strip HTML tags from excerpt
-    const stripHtml = (html) => {
-        if (!html) return '';
-        return html.replace(/<[^>]*>/g, '').trim();
-    };
+    const visiblePosts = limit ? rankedPosts.slice(0, limit) : rankedPosts;
 
     // Get count per category for display
     const getCategoryCount = (category) => {
@@ -72,7 +69,7 @@ export default function RankedView({ posts }) {
                         <div className={styles.empty}>No reviews in this category yet</div>
                     ) : (
                         <div className={styles.list}>
-                            {rankedPosts.map((post, index) => (
+                            {visiblePosts.map((post, index) => (
                                 <Link href={`/blog/post/${post.slug}`} key={post.slug} className={styles.card}>
                                     <div className={styles.rank}>#{index + 1}</div>
                                     <div className={styles.cardContent}>

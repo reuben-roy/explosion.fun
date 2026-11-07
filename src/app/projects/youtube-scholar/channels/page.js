@@ -1,7 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { Suspense } from 'react';
-import Navbar from '@/components/Navbar';
 import { YoutubeScholarChannelsExplorer } from '@/components/youtube-scholar/YoutubeScholarExperience';
 import styles from '../page.module.css';
 
@@ -21,8 +20,7 @@ export default async function YoutubeScholarChannelsPage() {
 
   return (
     <div className={styles.page}>
-      <Navbar />
-      <main style={{ maxWidth: 1280, margin: '0 auto', padding: '8rem 1.5rem 5rem' }}>
+      <main style={{ maxWidth: 1280, margin: '0 auto', padding: '2.5rem 1.5rem 4rem' }}>
         <Suspense fallback={<div>Loading channels explorer...</div>}>
           <YoutubeScholarChannelsExplorer data={data.channelWatchProxy.all} />
         </Suspense>

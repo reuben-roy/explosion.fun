@@ -1,9 +1,9 @@
 .page {
   min-height: 100vh;
-  background-color: #030303;
-  color: #f3f2ef;
-  font-family: var(--font-geist-sans);
-  padding: 5.5rem 1.5rem 4rem;
+  background: var(--ef-paper);
+  color: #101013;
+  font-family: var(--ef-font-body);
+  padding: 2.5rem 1.5rem 4rem;
 }
 
 .container {
@@ -14,7 +14,7 @@
 .loader {
   text-align: center;
   padding: 4rem;
-  color: #8f98a7;
+  color: #6b6b73;
 }
 
 .header {
@@ -23,35 +23,36 @@
 }
 
 .title {
+  font-family: var(--ef-font-display);
   font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   margin: 0 0 0.75rem;
-  background: linear-gradient(to bottom right, #ffffff 30%, #a1a1aa 100%);
+  background: linear-gradient(to bottom right, #fbfbf8 30%, #6b6b73 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: currentColor;
   background-clip: text;
 }
 
 .subtitle {
   font-size: 1.05rem;
-  color: #8f98a7;
+  color: #6b6b73;
   line-height: 1.6;
 }
 
 .dropzone {
-  border: 2px dashed rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
+  border: 2px dashed rgba(16,16,19,0.16);
+  border-radius: 0;
   padding: 3rem 2rem;
   text-align: center;
   cursor: pointer;
   transition: all 200ms ease;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--ef-cream);
 }
 
 .dropzone:hover,
 .dropzoneActive {
-  border-color: #3b82f6;
+  border-color: var(--ef-orange);
   background: rgba(59, 130, 246, 0.04);
 }
 
@@ -65,30 +66,31 @@
 }
 
 .dropTitle {
+  font-family: var(--ef-font-display);
   font-size: 1.2rem;
   font-weight: 700;
-  color: #f3f2ef;
+  color: #101013;
   margin: 0 0 0.5rem;
 }
 
 .dropText {
   font-size: 0.9rem;
-  color: #8f98a7;
+  color: #6b6b73;
   margin: 0;
 }
 
 .helpSection {
   margin-top: 2.5rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.14);
+  border-radius: 0;
   padding: 1.5rem 2rem;
 }
 
 .helpTitle {
   font-size: 1rem;
   font-weight: 700;
-  color: #f3f2ef;
+  color: #101013;
   margin: 0 0 1rem;
 }
 
@@ -103,20 +105,20 @@
 .helpSteps code {
   background: rgba(59, 130, 246, 0.1);
   padding: 0.15rem 0.4rem;
-  border-radius: 4px;
+  border-radius: 0;
   font-size: 0.85em;
-  color: #3b82f6;
+  color: var(--ef-orange);
 }
 
 .helpLink {
-  color: #3b82f6;
+  color: var(--ef-orange);
   text-decoration: underline;
 }
 
 .processingCard {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.14);
+  border-radius: 0;
   padding: 2.5rem;
   text-align: center;
 }
@@ -124,7 +126,7 @@
 .progressBarOuter {
   width: 100%;
   height: 8px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--ef-line-soft);
   border-radius: 999px;
   overflow: hidden;
   margin-bottom: 1.5rem;
@@ -132,7 +134,7 @@
 
 .progressBarInner {
   height: 100%;
-  background: #3b82f6;
+  background: var(--ef-ink);
   border-radius: 999px;
   transition: width 300ms ease;
 }
@@ -148,24 +150,24 @@
 .progressStep {
   font-size: 1rem;
   font-weight: 600;
-  color: #f3f2ef;
+  color: #101013;
 }
 
 .progressDetail {
   font-size: 0.85rem;
-  color: #8f98a7;
+  color: #6b6b73;
 }
 
 .processingNote {
   font-size: 0.85rem;
-  color: #8f98a7;
+  color: #6b6b73;
   margin: 0;
 }
 
 .resultCard {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.14);
+  border-radius: 0;
   padding: 2.5rem;
   text-align: center;
 }
@@ -175,19 +177,19 @@
   height: 56px;
   border-radius: 50%;
   background: rgba(16, 185, 129, 0.12);
-  border: 2px solid #10b981;
+  border: 2px solid #44ba82;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  color: #10b981;
+  color: #44ba82;
   margin: 0 auto 1.25rem;
 }
 
 .resultTitle {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #f3f2ef;
+  color: #101013;
   margin: 0 0 1.5rem;
 }
 
@@ -209,29 +211,29 @@
 .statValue {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #f3f2ef;
+  color: #101013;
 }
 
 .statLabel {
   font-size: 0.75rem;
-  color: #8f98a7;
+  color: #6b6b73;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
 .resultRange {
   font-size: 0.85rem;
-  color: #8f98a7;
+  color: #6b6b73;
   margin: 0 0 1.5rem;
 }
 
 .primaryBtn {
   display: inline-block;
   padding: 0.7rem 1.5rem;
-  border-radius: 10px;
+  border-radius: 0;
   border: none;
-  background: #3b82f6;
-  color: #fff;
+  background: var(--ef-ink);
+  color: var(--ef-paper);
   font-size: 0.95rem;
   font-weight: 600;
   font-family: inherit;
@@ -247,27 +249,27 @@
 .emptyCard {
   text-align: center;
   padding: 3rem 2rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.14);
+  border-radius: 0;
 }
 
 .emptyCard h2 {
   font-size: 1.4rem;
   margin: 0 0 0.75rem;
-  color: #f3f2ef;
+  color: #101013;
 }
 
 .emptyCard p {
   font-size: 0.95rem;
-  color: #8f98a7;
+  color: #6b6b73;
   margin: 0 0 1.5rem;
   line-height: 1.6;
 }
 
 .error {
   padding: 0.7rem 0.9rem;
-  border-radius: 10px;
+  border-radius: 0;
   background: rgba(239, 68, 68, 0.1);
   border: 1px solid rgba(239, 68, 68, 0.2);
   color: #f87171;

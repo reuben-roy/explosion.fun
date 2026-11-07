@@ -147,7 +147,7 @@ function RibbonTimeline({ topics, windows, phaseMeta }) {
 
             {y.ticks(4).map((tick) => (
               <g key={tick} transform={`translate(0,${y(tick)})`}>
-                <line x2={innerWidth} stroke="rgba(255,255,255,0.08)" />
+                <line x2={innerWidth} stroke="rgba(16,16,19,0.12)" />
                 <text x="-10" dy="0.32em" textAnchor="end" className={styles.axisText}>
                   {Math.round(tick * 100)}%
                 </text>
@@ -156,7 +156,7 @@ function RibbonTimeline({ topics, windows, phaseMeta }) {
 
             {x.ticks(size.width > 820 ? 8 : 5).map((tick) => (
               <g key={tick.toISOString()} transform={`translate(${x(tick)},0)`}>
-                <line y2={innerHeight} stroke="rgba(255,255,255,0.06)" />
+                <line y2={innerHeight} stroke="rgba(16,16,19,0.09)" />
                 <text y={innerHeight + 38} textAnchor="middle" className={styles.axisText}>
                   {d3.timeFormat('%b %Y')(tick)}
                 </text>
@@ -259,16 +259,16 @@ function PhaseMap({ topics, windows }) {
           <g transform={`translate(${margin.left},${margin.top})`}>
             {[0.25, 0.5, 0.75].map((tick) => (
               <g key={`x-${tick}`} transform={`translate(${x(tick)},0)`}>
-                <line y2={innerHeight} stroke="rgba(255,255,255,0.08)" />
+                <line y2={innerHeight} stroke="rgba(16,16,19,0.12)" />
               </g>
             ))}
             {[0.25, 0.5, 0.75].map((tick) => (
               <g key={`y-${tick}`} transform={`translate(0,${y(tick)})`}>
-                <line x2={innerWidth} stroke="rgba(255,255,255,0.08)" />
+                <line x2={innerWidth} stroke="rgba(16,16,19,0.12)" />
               </g>
             ))}
 
-            <path d={line(windows)} fill="none" stroke="rgba(255,255,255,0.24)" strokeWidth="2.4" />
+            <path d={line(windows)} fill="none" stroke="rgba(16,16,19,0.32)" strokeWidth="2.4" />
 
             {windows.map((window) => {
               const topic = lookup[window.dominantTopic] || lookup.unclassified;
@@ -280,7 +280,7 @@ function PhaseMap({ topics, windows }) {
                   r={4 + window.focusShare * 10}
                   fill={topic.color}
                   opacity="0.86"
-                  stroke="rgba(7,11,15,0.8)"
+                  stroke="#fbfbf8"
                   strokeWidth="1.5"
                   onMouseEnter={() => setHovered(window)}
                   onMouseLeave={() => setHovered(null)}

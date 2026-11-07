@@ -1,11 +1,11 @@
 .main {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 8rem 1.5rem 5rem;
+  padding: 2.5rem 1.5rem 4rem;
   display: grid;
   gap: 1.75rem;
-  color: #f3f2ef;
-  font-family: var(--font-geist-sans);
+  color: var(--ef-ink);
+  font-family: var(--ef-font-body);
 }
 
 .hero,
@@ -26,6 +26,7 @@
 }
 
 .heroCopy h1 {
+  font-family: var(--ef-font-display);
   font-size: clamp(3rem, 7vw, 5.3rem);
   line-height: 0.94;
   letter-spacing: -0.05em;
@@ -38,7 +39,7 @@
 .sectionHeader p,
 .metricDetail,
 .episodeSummary {
-  color: #c8ced7;
+  color: #4a4a52;
   line-height: 1.7;
 }
 
@@ -49,7 +50,7 @@
   font-size: 0.78rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #8fb8de;
+  color: #fa500f;
   margin-bottom: 0.75rem;
 }
 
@@ -67,12 +68,10 @@
 .metricCard,
 .episodeCard {
   position: relative;
-  background:
-    radial-gradient(circle at top left, rgba(143, 184, 222, 0.14), transparent 36%),
-    linear-gradient(180deg, rgba(17, 22, 29, 0.96), rgba(8, 10, 14, 0.98));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.12);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .chartCard,
@@ -107,7 +106,7 @@
 
 .metricLabel {
   margin-top: 0.4rem;
-  color: #eef2f7;
+  color: #101013;
 }
 
 .metricDetail {
@@ -152,8 +151,8 @@
   gap: 0.55rem;
   padding: 0.55rem 0.8rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.12);
 }
 
 .legendSwatch,
@@ -171,20 +170,18 @@
 .chartPlaceholder {
   position: relative;
   min-height: 260px;
-  border-radius: 20px;
+  border-radius: 0;
   overflow: hidden;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
-    rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.09);
 }
 
 .chartPlaceholderGrid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(16, 16, 19, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 16, 19, 0.05) 1px, transparent 1px);
   background-size: 100% 56px, 72px 100%;
   opacity: 0.55;
 }
@@ -194,7 +191,7 @@
   inset: auto 10% 18% 8%;
   height: 34%;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(103, 193, 184, 0.28), rgba(242, 166, 90, 0.22));
+  background: linear-gradient(90deg, rgba(68, 186, 130, 0.3), rgba(255, 130, 4, 0.22));
   filter: blur(34px);
   opacity: 0.8;
 }
@@ -206,8 +203,8 @@
 }
 
 .axisText {
-  fill: #8f98a7;
-  color: #8f98a7;
+  fill: #6b6b73;
+  color: #6b6b73;
   font-size: 0.8rem;
 }
 
@@ -217,10 +214,10 @@
   z-index: 2;
   width: min(320px, calc(100% - 2rem));
   padding: 0.8rem 0.95rem;
-  border-radius: 16px;
-  background: rgba(6, 10, 14, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.28);
+  border-radius: 0;
+  background: #101013;
+  border: 1px solid var(--ef-ink);
+  box-shadow: 0 12px 30px rgba(16,16,19,.2);
   pointer-events: none;
 }
 
@@ -238,12 +235,13 @@
 .tooltipStatic strong {
   display: block;
   margin-bottom: 0.35rem;
+  color: var(--ef-paper);
 }
 
 .tooltip span,
 .tooltipStatic span {
   display: block;
-  color: #c8ced7;
+  color: var(--ef-line-strong);
   font-size: 0.9rem;
   line-height: 1.5;
 }
@@ -278,7 +276,7 @@
 
 .episodeDates,
 .highlightLabel {
-  color: #9ea8b6;
+  color: #6b6b73;
   font-size: 0.86rem;
 }
 
@@ -291,7 +289,7 @@
 .episodeMeta {
   margin-top: 0.9rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  color: #9ea8b6;
+  color: #6b6b73;
   font-size: 0.82rem;
 }
 
@@ -306,16 +304,16 @@
   width: fit-content;
   padding: 0.8rem 1rem;
   border-radius: 999px;
-  border: 1px solid rgba(103, 193, 184, 0.28);
-  background: rgba(103, 193, 184, 0.12);
+  border: 1px solid rgba(68, 186, 130, 0.3);
+  background: rgba(68, 186, 130, 0.14);
   color: #dff8f5;
   transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
 }
 
 .expandButton:hover {
   transform: translateY(-1px);
-  border-color: rgba(103, 193, 184, 0.45);
-  background: rgba(103, 193, 184, 0.16);
+  border-color: rgba(68, 186, 130, 0.5);
+  background: rgba(68, 186, 130, 0.2);
 }
 
 @media (max-width: 1100px) {
@@ -333,7 +331,7 @@
 
 @media (max-width: 720px) {
   .main {
-    padding: 7rem 1rem 4rem;
+    padding: 2rem 1rem 3rem;
     gap: 1.25rem;
   }
 
@@ -341,7 +339,7 @@
   .sideCard,
   .noteCard {
     padding: 1.15rem;
-    border-radius: 20px;
+    border-radius: 0;
   }
 
   .metricGrid {

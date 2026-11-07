@@ -1,64 +1,98 @@
-import Navbar from '@/components/Navbar';
-import styles from './side-track.module.css';
 import Link from 'next/link';
+import PageHero from '@/components/site/PageHero';
+import { PixelArrow } from '@/components/site/PixelMark';
+import styles from './side-track.module.css';
 
 export const metadata = {
-    title: 'Side-Track | explosion.fun',
-    description: 'Side-Track - Your workout tracking companion. Track exercises, set personal records, and compete on leaderboards.',
+  title: 'Side-Track | explosion.fun',
+  description:
+    'Side-Track — your workout tracking companion. Track exercises, set personal records, and compete on leaderboards.',
 };
 
 const links = [
-    {
-        title: 'Changelog',
-        description: 'View release notes and app updates',
-        href: '/side-track/changelog',
-    },
-    {
-        title: 'Support',
-        description: 'Get help and contact us',
-        href: '/side-track/support',
-    },
-    {
-        title: 'Privacy Policy',
-        description: 'How we handle your data',
-        href: '/side-track/privacy',
-    },
-    {
-        title: 'Terms of Service',
-        description: 'Terms and conditions of use',
-        href: '/side-track/terms',
-    },
+  {
+    title: 'Changelog',
+    description: 'Release notes and everything that changed, version by version.',
+    href: '/side-track/changelog',
+  },
+  {
+    title: 'Support',
+    description: 'Get help, report a bug, or ask for a feature.',
+    href: '/side-track/support',
+  },
+  {
+    title: 'Privacy Policy',
+    description: 'What the app stores, where it lives, and what never leaves your device.',
+    href: '/side-track/privacy',
+  },
+  {
+    title: 'Terms of Service',
+    description: 'The terms and conditions that come with using the app.',
+    href: '/side-track/terms',
+  },
 ];
 
 export default function SideTrackPage() {
-    return (
-        <div className={styles.page}>
-            <Navbar />
-            <main className={styles.main}>
-                <header className={styles.header}>
-                    <h1 className={styles.title}>Side-Track</h1>
-                    <p className={styles.subtitle}>Your Workout Tracking Companion</p>
-                    <p className={styles.description}>
-                        Track your exercises, set personal records, and compete on global leaderboards.
-                    </p>
-                </header>
+  return (
+    <div className="ef-page-in">
+      <PageHero
+        eyebrow="Side-Track"
+        title={
+          <>
+            Keep the streak.
+            <br />
+            Skip the spreadsheet.
+          </>
+        }
+        description="A workout tracking companion for exercises, personal records, and friendly leaderboards. Local-first by default: your training data stays on your device."
+        art="bars"
+        meta={
+          <>
+            <span>
+              <strong>Local-first</strong> data
+            </span>
+            <span>
+              <strong>iOS</strong> · Android
+            </span>
+            <span>
+              Built by <strong>Reuben Roy</strong>
+            </span>
+          </>
+        }
+        actions={
+          <a href="mailto:contact@cms.explosion.fun" className="ef-btn ef-btn--primary">
+            Contact support <PixelArrow size={17} />
+          </a>
+        }
+      />
 
-                <nav className={styles.linksGrid}>
-                    {links.map((link) => (
-                        <Link key={link.href} href={link.href} className={styles.linkCard}>
-                            <div className={styles.linkContent}>
-                                <h2 className={styles.linkTitle}>{link.title}</h2>
-                                <p className={styles.linkDescription}>{link.description}</p>
-                            </div>
-                            <span className={styles.arrow}>→</span>
-                        </Link>
-                    ))}
-                </nav>
+      <section className="ef-section">
+        <div className="ef-wrap">
+          <div className={styles.linksGrid}>
+            {links.map((link, index) => (
+              <Link key={link.href} href={link.href} className={styles.linkCard}>
+                <span className={styles.linkIndex}>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <span className={styles.linkContent}>
+                  <span className={styles.linkTitle}>{link.title}</span>
+                  <span className={styles.linkDescription}>{link.description}</span>
+                </span>
+                <span className={styles.arrow} aria-hidden="true">
+                  <PixelArrow size={20} />
+                </span>
+              </Link>
+            ))}
+          </div>
 
-                <footer className={styles.footer}>
-                    <p>Questions? Contact us at <a href="mailto:contact@cms.explosion.fun">contact@cms.explosion.fun</a></p>
-                </footer>
-            </main>
+          <footer className={styles.footer}>
+            <p>
+              Questions?{' '}
+              <a href="mailto:contact@cms.explosion.fun">contact@cms.explosion.fun</a>
+            </p>
+          </footer>
         </div>
-    );
+      </section>
+    </div>
+  );
 }

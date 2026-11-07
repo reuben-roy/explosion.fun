@@ -1,4 +1,4 @@
-import Navbar from '@/components/Navbar';
+import PageHero from '@/components/site/PageHero';
 import styles from '../legal.module.css';
 
 export const metadata = {
@@ -8,15 +8,17 @@ export const metadata = {
 
 export default function PrivacyPolicyPage() {
     return (
-        <div className={styles.page}>
-            <Navbar />
-            <main className={styles.main}>
-                <header className={styles.header}>
-                    <h1 className={styles.title}>Privacy Policy</h1>
-                    <p className={styles.subtitle}>Side-Track App</p>
-                    <p className={styles.lastUpdated}>Last Updated: December 25, 2025</p>
-                </header>
+        <div className="ef-page-in">
+            <PageHero
+                eyebrow="Side-Track"
+                title="Privacy Policy"
+                description="What the app collects, where it lives, and what stays on your device. Last updated December 25, 2025."
+                art="dots"
+                compact
+            />
 
+            <section className="ef-section">
+                <div className="ef-wrap">
                 <div className={styles.content}>
                     <section className={styles.section}>
                         <h2>Introduction</h2>
@@ -238,7 +240,8 @@ export default function PrivacyPolicyPage() {
                         <p>To exercise these rights, contact us using the information above.</p>
                     </section>
                 </div>
-            </main>
+                </div>
+            </section>
         </div>
     );
 }

@@ -22,6 +22,20 @@ export default function RatingLegend({ className = '', theme = 'dark' }) {
 
     const isWhiteTheme = theme === 'white';
 
+    // Score ramp stays inside the site palette: red → orange → yellow → green.
+    const tones = {
+        1: 'var(--ef-red)',
+        2: 'var(--ef-red)',
+        3: 'var(--ef-orange)',
+        4: 'var(--ef-orange)',
+        5: 'var(--ef-tangerine)',
+        6: 'var(--ef-tangerine)',
+        7: 'var(--ef-yellow)',
+        8: 'var(--ef-yellow)',
+        9: 'var(--ef-green)',
+        10: 'var(--ef-green)'
+    };
+
     // Handle click outside to close tooltip on mobile
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -66,6 +80,7 @@ export default function RatingLegend({ className = '', theme = 'dark' }) {
                         <div
                             key={score}
                             className={`${styles.scoreItem} ${activeScore === score ? styles.active : ''}`}
+                            style={{ '--ef-tone': tones[score] }}
                             onMouseEnter={() => handleMouseEnter(score)}
                             onMouseLeave={handleMouseLeave}
                             onClick={(e) => handleScoreInteraction(score, e)}

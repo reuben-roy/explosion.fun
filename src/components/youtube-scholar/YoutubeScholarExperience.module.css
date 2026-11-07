@@ -1,11 +1,11 @@
 .main {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 8rem 1.5rem 5rem;
+  padding: 2.5rem 1.5rem 4rem;
   display: grid;
   gap: 2rem;
-  color: #f3f2ef;
-  font-family: var(--font-geist-sans);
+  color: var(--ef-ink);
+  font-family: var(--ef-font-body);
 }
 
 .hero {
@@ -16,6 +16,7 @@
 }
 
 .heroCopy h1 {
+  font-family: var(--ef-font-display);
   font-size: clamp(3rem, 7vw, 5.8rem);
   line-height: 0.94;
   letter-spacing: -0.05em;
@@ -27,12 +28,12 @@
   max-width: 62ch;
   font-size: 1.1rem;
   line-height: 1.7;
-  color: #d0d6de;
+  color: #3a3a40;
 }
 
 .heroWitty {
   margin-top: 1rem;
-  color: #f2a65a;
+  color: #ff8204;
   font-size: 0.95rem;
 }
 
@@ -43,7 +44,7 @@
   font-size: 0.78rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #8fb8de;
+  color: #fa500f;
   margin-bottom: 0.75rem;
 }
 
@@ -86,16 +87,10 @@
 .sideCard,
 .kpiCard {
   position: relative;
-  background:
-    radial-gradient(
-      circle at top left,
-      rgba(143, 184, 222, 0.14),
-      transparent 36%
-    ),
-    linear-gradient(180deg, rgba(17, 22, 29, 0.96), rgba(8, 10, 14, 0.98));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.12);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .chartCard,
@@ -113,7 +108,7 @@
 .detailLead,
 .bodyCopy,
 .sectionHeader p {
-  color: #c8ced7;
+  color: #4a4a52;
   line-height: 1.7;
 }
 
@@ -138,15 +133,15 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #eef2f7;
+  color: #101013;
   font-size: 0.95rem;
 }
 
 .kpiMeta {
   padding: 0.12rem 0.42rem;
   border-radius: 999px;
-  background: rgba(242, 166, 90, 0.14);
-  color: #f2a65a;
+  background: rgba(255, 130, 4, 0.12);
+  color: #ff8204;
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -156,7 +151,7 @@
 .footnote,
 .axisText,
 .rabbitNote {
-  color: #8f98a7;
+  color: #6b6b73;
 }
 
 .kpiDetail,
@@ -195,10 +190,10 @@
   z-index: 2;
   width: min(280px, calc(100% - 2rem));
   padding: 0.8rem 0.95rem;
-  border-radius: 16px;
-  background: rgba(6, 10, 14, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.28);
+  border-radius: 0;
+  background: #101013;
+  border: 1px solid var(--ef-ink);
+  box-shadow: 0 12px 30px rgba(16,16,19,.2);
   pointer-events: none;
 }
 
@@ -215,13 +210,13 @@
 .tooltipStatic strong {
   display: block;
   margin-bottom: 0.35rem;
-  color: #f3f2ef;
+  color: var(--ef-paper);
 }
 
 .tooltip span,
 .tooltipStatic span {
   display: block;
-  color: #c8ced7;
+  color: var(--ef-line-strong);
   font-size: 0.9rem;
   line-height: 1.5;
 }
@@ -242,7 +237,7 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 0.6rem;
-  color: #081018;
+  color: #101013;
   font-size: 0.9rem;
   line-height: 1.45;
 }
@@ -279,9 +274,9 @@
 .signalPill,
 .rabbitBadge,
 .resumeBullet {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 14px;
+  border: 1px solid rgba(16,16,19,0.12);
+  background: var(--ef-cream);
+  border-radius: 0;
   padding: 0.85rem 0.95rem;
 }
 
@@ -297,8 +292,8 @@
 .exampleRow,
 .toneRow {
   padding: 0.75rem 0.9rem;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0;
+  background: var(--ef-cream);
 }
 
 .legendRow {
@@ -334,8 +329,8 @@
 .loyaltyRow,
 .toggleButton,
 .periodChip {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(16,16,19,0.12);
+  background: var(--ef-cream);
   color: inherit;
 }
 
@@ -353,7 +348,7 @@
 }
 
 .legendActive {
-  border-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(16,16,19,0.24);
 }
 
 .legendMuted {
@@ -375,9 +370,9 @@
   width: fit-content;
   padding: 0.8rem 1rem;
   border-radius: 999px;
-  border: 1px solid rgba(103, 193, 184, 0.28);
-  background: rgba(103, 193, 184, 0.12);
-  color: #dff8f5;
+  border: 1px solid rgba(68, 186, 130, 0.3);
+  background: rgba(68, 186, 130, 0.14);
+  color: #101013;
   margin-bottom: 1rem;
   transition:
     transform 160ms ease,
@@ -387,14 +382,14 @@
 
 .expandButton:hover {
   transform: translateY(-1px);
-  border-color: rgba(103, 193, 184, 0.45);
-  background: rgba(103, 193, 184, 0.16);
+  border-color: rgba(68, 186, 130, 0.5);
+  background: rgba(68, 186, 130, 0.2);
 }
 
 .toggleActive,
 .periodChipActive {
-  border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(103, 193, 184, 0.12);
+  border-color: rgba(16,16,19,0.26);
+  background: rgba(68, 186, 130, 0.14);
 }
 
 .legendSwatch {
@@ -410,10 +405,10 @@
   font-size: 0.77rem;
   line-height: 1.45;
   padding: 0.55rem 0.7rem;
-  border-radius: 14px;
-  background: rgba(7, 11, 15, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #cfd6df;
+  border-radius: 0;
+  background: var(--ef-ink);
+  border: 1px solid var(--ef-ink);
+  color: var(--ef-line-strong);
 }
 
 .contextBand {
@@ -422,7 +417,7 @@
   justify-content: space-between;
   gap: 1rem;
   align-items: flex-end;
-  color: #c8ced7;
+  color: #4a4a52;
 }
 
 .sparklineRow {
@@ -437,35 +432,35 @@
   gap: 0.35rem;
   justify-items: center;
   font-size: 0.74rem;
-  color: #8f98a7;
+  color: #6b6b73;
 }
 
 .sparkBar {
   width: 0.9rem;
   min-height: 10%;
   border-radius: 999px;
-  background: linear-gradient(180deg, #67c1b8, #2b6f71);
+  background: linear-gradient(180deg, #44ba82, #2f8f63);
 }
 
 .rabbitTitle {
-  fill: #f3f2ef;
+  fill: #101013;
   font-size: 1rem;
   font-weight: 600;
 }
 
 .channelLabel {
-  fill: #eef2f7;
+  fill: #101013;
   font-size: 1rem;
   font-weight: 500;
 }
 
 .rabbitNote {
-  fill: #94a0ad;
+  fill: #6b6b73;
   font-size: 0.82rem;
 }
 
 .rabbitBadge {
-  color: #f3f2ef;
+  color: #101013;
   font-size: 0.86rem;
 }
 
@@ -474,7 +469,7 @@
 }
 
 .loyaltyRow {
-  border-radius: 16px;
+  border-radius: 0;
   padding: 0.9rem;
   cursor: pointer;
   text-align: left;
@@ -488,7 +483,7 @@
   margin-top: 0.65rem;
   height: 0.55rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(16,16,19,0.12);
   overflow: hidden;
 }
 
@@ -501,7 +496,7 @@
 .legendItem:hover,
 .loyaltyRow:hover {
   transform: translateY(-1px);
-  border-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(16,16,19,0.24);
 }
 
 .dimmedRow {
@@ -515,7 +510,7 @@
   border-radius: 999px;
   overflow: hidden;
   margin: 1rem 0;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(16,16,19,0.09);
 }
 
 .periodMetric {
@@ -524,26 +519,26 @@
   gap: 1rem;
   align-items: center;
   padding: 0.8rem 0.95rem;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0;
+  background: var(--ef-cream);
   margin-bottom: 1rem;
 }
 
 .trendCard {
   margin-bottom: 1rem;
   padding: 0.75rem;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0;
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.09);
 }
 
 .searchInput {
   width: 100%;
   padding: 0.9rem 1rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
-  color: #f3f2ef;
+  border-radius: 0;
+  border: 1px solid rgba(16,16,19,0.14);
+  background: var(--ef-cream);
+  color: #101013;
   font: inherit;
 }
 
@@ -561,22 +556,22 @@
   gap: 0.85rem;
   align-items: center;
   padding: 0.85rem 0.95rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0;
+  border: 1px solid rgba(16,16,19,0.12);
+  background: var(--ef-cream);
   color: inherit;
   cursor: pointer;
   text-align: left;
 }
 
 .channelRowActive {
-  border-color: rgba(103, 193, 184, 0.3);
-  background: rgba(103, 193, 184, 0.08);
+  border-color: rgba(68, 186, 130, 0.35);
+  background: rgba(68, 186, 130, 0.1);
 }
 
 .channelRank,
 .channelCount {
-  color: #9ea8b6;
+  color: #6b6b73;
   font-size: 0.92rem;
 }
 
@@ -588,14 +583,14 @@
 .channelBarTrack {
   height: 0.7rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(16,16,19,0.12);
   overflow: hidden;
 }
 
 .channelBarFill {
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, #67c1b8, #f2a65a);
+  background: linear-gradient(90deg, #44ba82, #ff8204);
 }
 
 .stackSegment {
@@ -622,7 +617,7 @@
 
 @media (max-width: 720px) {
   .main {
-    padding: 7rem 1rem 4rem;
+    padding: 2rem 1rem 3rem;
     gap: 1.25rem;
   }
 
@@ -635,7 +630,7 @@
   .noteCard,
   .sideCard {
     padding: 1.15rem;
-    border-radius: 20px;
+    border-radius: 0;
   }
 
   .heroCopy h1 {

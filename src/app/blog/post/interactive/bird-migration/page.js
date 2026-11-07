@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import Navbar from '@/components/Navbar';
 import MigrationMap from '@/components/bird-migration/MigrationMap';
 import TimelineControl from '@/components/bird-migration/TimelineControl';
 import BirdCard from '@/components/bird-migration/BirdCard';
@@ -115,8 +114,7 @@ export default function BirdMigrationPage() {
     if (isLoading) {
         return (
             <div className={styles.page}>
-                <Navbar />
-                <main className={styles.main}>
+                    <main className={styles.main}>
                     <header className={styles.header}>
                         <h1 className={styles.title}>Flight of the Storks</h1>
                         <p className={styles.subtitle}>
@@ -136,8 +134,7 @@ export default function BirdMigrationPage() {
     if (error) {
         return (
             <div className={styles.page}>
-                <Navbar />
-                <main className={styles.main}>
+                    <main className={styles.main}>
                     <header className={styles.header}>
                         <h1 className={styles.title}>Flight of the Storks</h1>
                     </header>
@@ -151,7 +148,6 @@ export default function BirdMigrationPage() {
 
     return (
         <div className={styles.page}>
-            <Navbar />
             <main className={styles.main}>
                 {/* Header */}
                 <header className={styles.header}>

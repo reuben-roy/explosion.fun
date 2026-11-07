@@ -1,9 +1,9 @@
 .page {
   min-height: 100vh;
-  background-color: #030303;
-  color: #f3f2ef;
-  font-family: var(--font-geist-sans);
-  padding: 5.5rem 1.5rem 4rem;
+  background: var(--ef-paper);
+  color: #101013;
+  font-family: var(--ef-font-body);
+  padding: 2.5rem 1.5rem 4rem;
 }
 
 .container {
@@ -17,19 +17,20 @@
 }
 
 .title {
+  font-family: var(--ef-font-display);
   font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   margin: 0 0 0.75rem;
-  background: linear-gradient(to bottom right, #ffffff 30%, #a1a1aa 100%);
+  background: linear-gradient(to bottom right, #fbfbf8 30%, #6b6b73 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: currentColor;
   background-clip: text;
 }
 
 .subtitle {
   font-size: 1.05rem;
-  color: #8f98a7;
+  color: #6b6b73;
   line-height: 1.6;
 }
 
@@ -37,9 +38,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.14);
+  border-radius: 0;
   padding: 1.25rem 1.5rem;
   margin-bottom: 2rem;
 }
@@ -52,7 +53,7 @@
 
 .yourRankLabel {
   font-size: 0.8rem;
-  color: #8f98a7;
+  color: #6b6b73;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   font-weight: 600;
@@ -61,7 +62,7 @@
 .yourRankValue {
   font-size: 1.6rem;
   font-weight: 800;
-  color: #3b82f6;
+  color: var(--ef-orange);
 }
 
 .yourRankScore {
@@ -71,10 +72,10 @@
 
 .visibilityBtn {
   padding: 0.4rem 0.9rem;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  color: #e2e8f0;
+  border-radius: 0;
+  border: 1px solid rgba(16,16,19,0.16);
+  background: var(--ef-cream);
+  color: #101013;
   font-size: 0.85rem;
   font-family: inherit;
   cursor: pointer;
@@ -82,51 +83,51 @@
 }
 
 .visibilityBtn:hover {
-  border-color: rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--ef-ink);
+  background: var(--ef-line-soft);
 }
 
 .noDataMsg {
   font-size: 0.95rem;
-  color: #8f98a7;
+  color: #6b6b73;
   margin: 0;
 }
 
 .inlineLink {
-  color: #3b82f6;
+  color: var(--ef-orange);
   text-decoration: underline;
 }
 
 .loader {
   text-align: center;
   padding: 3rem;
-  color: #8f98a7;
+  color: #6b6b73;
 }
 
 .emptyState {
   text-align: center;
   padding: 4rem 2rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.14);
+  border-radius: 0;
 }
 
 .emptyState h2 {
   font-size: 1.4rem;
   margin: 0 0 0.5rem;
-  color: #f3f2ef;
+  color: #101013;
 }
 
 .emptyState p {
   font-size: 0.95rem;
-  color: #8f98a7;
+  color: #6b6b73;
   margin: 0;
 }
 
 .tableWrapper {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.14);
+  border-radius: 0;
   overflow: hidden;
 }
 
@@ -138,17 +139,17 @@
 .table th {
   text-align: left;
   padding: 0.9rem 1rem;
-  color: #8f98a7;
+  color: #6b6b73;
   font-weight: 600;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(16,16,19,0.12);
 }
 
 .table td {
   padding: 0.85rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--ef-cream);
 }
 
 .table tbody tr {
@@ -156,7 +157,7 @@
 }
 
 .table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--ef-cream);
 }
 
 .table tbody tr:last-child td {
@@ -195,7 +196,7 @@
 .rankNum {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #8f98a7;
+  color: #6b6b73;
 }
 
 .userCell {
@@ -207,21 +208,21 @@
 .avatar {
   width: 36px;
   height: 36px;
-  border-radius: 10px;
+  border-radius: 0;
   background: rgba(59, 130, 246, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   font-size: 0.9rem;
-  color: #3b82f6;
+  color: var(--ef-orange);
   flex-shrink: 0;
 }
 
 .displayName {
   font-size: 0.95rem;
   font-weight: 500;
-  color: #f3f2ef;
+  color: #101013;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -233,7 +234,7 @@
   text-transform: uppercase;
   letter-spacing: 0.04em;
   background: rgba(59, 130, 246, 0.15);
-  color: #3b82f6;
+  color: var(--ef-orange);
   padding: 0.15rem 0.5rem;
   border-radius: 999px;
 }
@@ -245,13 +246,13 @@
 
 .daysValue {
   font-size: 0.9rem;
-  color: #8f98a7;
+  color: #6b6b73;
 }
 
 .progressBar {
   width: 100%;
   height: 6px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--ef-line-soft);
   border-radius: 999px;
   overflow: hidden;
 }

@@ -1,16 +1,15 @@
 .page {
   min-height: 100vh;
-  background-color: #030303;
-  color: #f3f2ef;
-  font-family: var(--font-geist-sans);
-  padding-top: 60px;
+  background: var(--ef-paper);
+  color: #101013;
+  font-family: var(--ef-font-body);
+  padding-top: 0;
 }
 
 /* Hero */
 .hero {
-  text-align: center;
-  padding: 6rem 1.5rem 5rem;
-  max-width: 800px;
+  padding: clamp(3rem, 6vw, 4.5rem) 1.5rem clamp(2.5rem, 5vw, 3.5rem);
+  max-width: 960px;
   margin: 0 auto;
 }
 
@@ -22,34 +21,35 @@
   letter-spacing: 0.1em;
   padding: 0.35rem 0.9rem;
   border-radius: 999px;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  background: rgba(59, 130, 246, 0.06);
-  color: #3b82f6;
+  border: 1px solid var(--ef-line);
+  background: var(--ef-cream);
+  color: var(--ef-orange);
   margin-bottom: 2rem;
 }
 
 .heroTitle {
+  font-family: var(--ef-font-display);
   font-size: clamp(3rem, 7vw, 5.5rem);
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1;
   letter-spacing: -0.05em;
   margin: 0 0 1.5rem;
-  background: linear-gradient(to bottom right, #ffffff 30%, #a1a1aa 100%);
+  background: none;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: currentColor;
   background-clip: text;
 }
 
 .heroAccent {
-  color: transparent;
+  color: var(--ef-orange);
 }
 
 .heroSubtitle {
-  font-size: 1.2rem;
+  font-size: 1.08rem;
   line-height: 1.7;
-  color: #8f98a7;
-  max-width: 55ch;
-  margin: 0 auto 2.5rem;
+  color: var(--ef-ink-3);
+  max-width: 62ch;
+  margin: 0 0 2rem;
 }
 
 .heroCta {
@@ -62,9 +62,9 @@
 .primaryBtn {
   display: inline-block;
   padding: 0.8rem 1.8rem;
-  border-radius: 12px;
-  background: #3b82f6;
-  color: #fff;
+  border-radius: 0;
+  background: var(--ef-ink);
+  color: var(--ef-paper);
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
@@ -75,16 +75,16 @@
 }
 
 .primaryBtn:hover {
-  opacity: 0.9;
+  background: var(--ef-orange);
 }
 
 .secondaryBtn {
   display: inline-block;
   padding: 0.8rem 1.8rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0;
+  border: 1px solid rgba(16,16,19,0.16);
   background: transparent;
-  color: #e2e8f0;
+  color: #101013;
   font-size: 1rem;
   font-weight: 500;
   text-decoration: none;
@@ -94,8 +94,8 @@
 }
 
 .secondaryBtn:hover {
-  border-color: rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--ef-ink);
+  background: var(--ef-cream);
 }
 
 /* Sections */
@@ -106,21 +106,20 @@
 }
 
 .sectionTitle {
+  font-family: var(--ef-font-display);
   font-size: clamp(1.8rem, 3vw, 2.5rem);
   font-weight: 800;
   letter-spacing: -0.04em;
-  text-align: center;
   margin: 0 0 1rem;
-  color: #f3f2ef;
+  color: #101013;
 }
 
 .sectionSubtitle {
   font-size: 1.05rem;
-  color: #8f98a7;
+  color: #6b6b73;
   line-height: 1.6;
-  text-align: center;
-  max-width: 55ch;
-  margin: 0 auto 2.5rem;
+  max-width: 62ch;
+  margin: 0 0 2.5rem;
 }
 
 /* Features */
@@ -132,16 +131,16 @@
 }
 
 .featureCard {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.14);
+  border-radius: 0;
   padding: 1.75rem 1.5rem;
   transition: all 0.2s ease;
 }
 
 .featureCard:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--ef-line-soft);
+  border-color: rgba(16,16,19,0.24);
   transform: translateY(-2px);
 }
 
@@ -152,15 +151,16 @@
 }
 
 .featureName {
+  font-family: var(--ef-font-display);
   font-size: 1.1rem;
   font-weight: 700;
-  color: #f3f2ef;
+  color: #101013;
   margin: 0 0 0.5rem;
 }
 
 .featureDesc {
   font-size: 0.9rem;
-  color: #8f98a7;
+  color: #6b6b73;
   line-height: 1.6;
   margin: 0;
 }
@@ -175,9 +175,9 @@
 }
 
 .metricRow {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.14);
+  border-radius: 0;
   padding: 1.25rem 1.5rem;
 }
 
@@ -198,9 +198,10 @@
 }
 
 .metricName {
+  font-family: var(--ef-font-display);
   font-size: 1rem;
   font-weight: 700;
-  color: #f3f2ef;
+  color: #101013;
   margin: 0;
   flex: 1;
 }
@@ -208,15 +209,15 @@
 .metricWeight {
   font-size: 0.8rem;
   font-weight: 700;
-  color: #8f98a7;
-  background: rgba(255, 255, 255, 0.06);
+  color: #6b6b73;
+  background: var(--ef-line-soft);
   padding: 0.2rem 0.6rem;
   border-radius: 999px;
 }
 
 .metricDesc {
   font-size: 0.9rem;
-  color: #8f98a7;
+  color: #6b6b73;
   line-height: 1.6;
   margin: 0;
   padding-left: 1.6rem;
@@ -224,23 +225,23 @@
 
 /* CTA Section */
 .ctaSection {
-  text-align: center;
-  padding: 5rem 1.5rem;
-  background:
-    radial-gradient(circle at center, rgba(245, 158, 11, 0.04), transparent 60%);
+  padding: clamp(3rem, 6vw, 5rem) 1.5rem;
+  background: var(--ef-cream);
+  border-top: 1px solid var(--ef-line);
 }
 
 .ctaTitle {
+  font-family: var(--ef-font-display);
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   margin: 0 0 0.75rem;
-  color: #f3f2ef;
+  color: #101013;
 }
 
 .ctaSubtitle {
   font-size: 1.05rem;
-  color: #8f98a7;
+  color: #6b6b73;
   margin: 0 0 2rem;
   line-height: 1.6;
 }

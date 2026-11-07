@@ -79,9 +79,9 @@ export default function LeaderboardPage() {
   }
 
   function getScoreColor(score) {
-    if (score >= 70) return '#10b981';
-    if (score >= 40) return '#f59e0b';
-    return '#ef4444';
+    if (score >= 70) return '#44ba82';
+    if (score >= 40) return '#ffaf01';
+    return '#e51300';
   }
 
   return (

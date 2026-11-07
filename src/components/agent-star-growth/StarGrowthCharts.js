@@ -4,13 +4,13 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import styles from './StarGrowthCharts.module.css';
 
-const palette = ['#f5c542', '#f27ca5', '#72a7ff', '#64d6c5', '#c59bff', '#ff916b', '#9fce65', '#e58acb', '#67b4da', '#f0a84f', '#a9b4c0', '#e06b75', '#82c1a8', '#aaa0ff', '#d3c26f'];
+const palette = ['#ff8204', '#e51300', '#fa500f', '#ffaf01', '#44ba82', '#0082e6', '#c4001d', '#d9a441', '#5b8fa8', '#8a7f6d', '#6e9c82', '#b45f4d', '#7a6ea8', '#a8a29a', '#4f7b8a'];
 
 function seriesColor(item, series) {
   if (item.color) return item.color;
-  if (item.name === 'OpenClaw') return '#f5c542';
-  if (item.name === 'Hermes Agent') return '#f27ca5';
-  if (item.name === 'DeepSeek Harness') return '#72a7ff';
+  if (item.name === 'OpenClaw') return '#ff8204';
+  if (item.name === 'Hermes Agent') return '#e51300';
+  if (item.name === 'DeepSeek Harness') return '#fa500f';
   return palette[series.findIndex((candidate) => candidate.name === item.name) % palette.length];
 }
 
@@ -176,7 +176,7 @@ function StarChart({ title, description, series, chartId, initialNames, selectio
                 <g pointerEvents="none">
                   <line className={styles.cursorLine} x1={chart.x(chart.cursorDate)} x2={chart.x(chart.cursorDate)} y1="0" y2={chart.innerHeight} />
                   {chart.valueRows.map((row) => (
-                  <circle key={row.name} cx={chart.x(chart.cursorDate)} cy={chart.y(row.value)} r="5" fill={seriesColor(series.find((item) => item.name === row.name), series)} stroke="#080b10" strokeWidth="2" />
+                  <circle key={row.name} cx={chart.x(chart.cursorDate)} cy={chart.y(row.value)} r="5" fill={seriesColor(series.find((item) => item.name === row.name), series)} stroke="var(--ef-paper)" strokeWidth="2" />
                   ))}
                 </g>
               )}
@@ -361,9 +361,9 @@ function ProjectionChart({ data }) {
 
   if (!deepSeek) return null;
   const scenarios = [
-    { key: 'slow', label: 'Slower · gains halve every 30 days', color: '#64d6c5' },
-    { key: 'steady', label: 'Steady · current daily rate', color: '#72a7ff' },
-    { key: 'fast', label: 'Faster · 1.5× current daily rate', color: '#f5c542' },
+    { key: 'slow', label: 'Slower · gains halve every 30 days', color: '#44ba82' },
+    { key: 'steady', label: 'Steady · current daily rate', color: '#fa500f' },
+    { key: 'fast', label: 'Faster · 1.5× current daily rate', color: '#ff8204' },
   ];
   const dateFormatLong = d3.utcFormat('%b %-d, %Y');
   const onKeyDown = (event) => {
@@ -404,10 +404,10 @@ function ProjectionChart({ data }) {
           <g transform={`translate(${projection.margin.left},${projection.margin.top})`}>
             {projection.y.ticks(5).map((tick) => <g className={styles.yTick} key={tick} transform={`translate(0,${projection.y(tick)})`}><line x2={projection.innerWidth} /><text x={-12} dy="0.32em">{d3.format('~s')(tick)}</text></g>)}
             {projection.x.ticks(Math.max(3, Math.floor(projection.innerWidth / 110))).map((tick) => <g className={styles.xTick} key={+tick} transform={`translate(${projection.x(tick)},${projection.innerHeight})`}><line y2="6" /><text y="23" textAnchor="middle">{d3.utcFormat('%b %Y')(tick)}</text></g>)}
-            <path className={styles.line} d={projection.historyLine(projection.historical)} stroke="#72a7ff" />
+            <path className={styles.line} d={projection.historyLine(projection.historical)} stroke="#fa500f" />
             {scenarios.map((scenario) => <path key={scenario.key} className={`${styles.line} ${styles.projectionLine}`} d={projection.scenarioLine(scenario.key)(projection.projection)} stroke={scenario.color} />)}
             <g pointerEvents="none"><line className={styles.snapshotLine} x1={projection.x(projection.baseDate)} x2={projection.x(projection.baseDate)} y1="0" y2={projection.innerHeight} /><text className={styles.snapshotLabel} x={projection.x(projection.baseDate) + 5} y="12">Snapshot</text></g>
-            {projection.cursor && <g pointerEvents="none"><line className={styles.cursorLine} x1={projection.x(projection.cursor.date)} x2={projection.x(projection.cursor.date)} y1="0" y2={projection.innerHeight} />{scenarios.map((scenario) => <circle key={scenario.key} cx={projection.x(projection.cursor.date)} cy={projection.y(projection.cursor[scenario.key])} r="4.5" fill={scenario.color} stroke="#080b10" strokeWidth="2" />)}</g>}
+            {projection.cursor && <g pointerEvents="none"><line className={styles.cursorLine} x1={projection.x(projection.cursor.date)} x2={projection.x(projection.cursor.date)} y1="0" y2={projection.innerHeight} />{scenarios.map((scenario) => <circle key={scenario.key} cx={projection.x(projection.cursor.date)} cy={projection.y(projection.cursor[scenario.key])} r="4.5" fill={scenario.color} stroke="var(--ef-paper)" strokeWidth="2" />)}</g>}
             <rect className={styles.interactionSurface} x={projection.x(projection.baseDate)} y="0" width={projection.innerWidth - projection.x(projection.baseDate)} height={projection.innerHeight} tabIndex="0" role="slider" aria-label="Projection date selector" aria-valuemin="0" aria-valuemax={horizon} aria-valuenow={projection.cursor?.day ?? 0} aria-valuetext={projection.cursor ? dateFormatLong(projection.cursor.date) : 'Current count'} onPointerMove={(event) => { setActive(true); updatePointer(event); }} onPointerLeave={() => setActive(false)} onFocus={() => { setActive(true); setSelectedDay((value) => value ?? 0); }} onBlur={() => setActive(false)} onKeyDown={onKeyDown} onClick={updatePointer} />
           </g>
           <text className={styles.xLabel} x={projection.margin.left + projection.innerWidth / 2} y={projection.height - 5}>Date (UTC)</text>

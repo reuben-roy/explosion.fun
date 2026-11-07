@@ -1,23 +1,21 @@
 .terminal {
   width: 100%;
-  max-width: 640px;
-  background: rgba(10, 12, 16, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
+  background: #101013;
+  border: 1px solid #31313a;
+  border-radius: var(--ef-radius);
   overflow: hidden;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-family: var(--ef-font-mono);
   cursor: text;
+  box-shadow: 0 30px 70px -40px rgba(0, 0, 0, 0.8);
 }
 
 .titleBar {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.6rem 0.9rem;
-  background: rgba(255, 255, 255, 0.04);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.7rem 0.95rem;
+  background: #1a1a1e;
+  border-bottom: 1px solid #31313a;
 }
 
 .dots {
@@ -26,74 +24,68 @@
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+  width: 9px;
+  height: 9px;
   display: inline-block;
 }
 
-.red {
-  background: #ff5f56;
-}
-.yellow {
-  background: #ffbd2e;
-}
-.green {
-  background: #27c93f;
-}
+.red { background: #e51300; }
+.yellow { background: #ffaf01; }
+.green { background: #44ba82; }
 
 .titleText {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.5);
-  letter-spacing: 0.02em;
+  font-size: 0.7rem;
+  color: #a1a1aa;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .body {
-  padding: 1rem 1.1rem 1.2rem;
+  padding: 1.1rem 1.1rem 1.25rem;
   height: 340px;
   overflow-y: auto;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: #c8d3c5;
+  font-size: 0.83rem;
+  line-height: 1.7;
+  color: #e4e3de;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+  scrollbar-color: #31313a transparent;
 }
 
 .body::-webkit-scrollbar {
   width: 8px;
 }
+
 .body::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
+  background: #31313a;
 }
 
 .line {
   white-space: pre-wrap;
   word-break: break-word;
+  margin-bottom: 0.15rem;
 }
 
 .commandLine {
-  color: #ffffff;
+  color: #fbfbf8;
 }
 
 .errorLine {
-  color: #ff7b72;
+  color: #ff6660;
 }
 
 .inputLine {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-top: 0.15rem;
+  margin-top: 0.2rem;
   min-width: 0;
 }
 
 .promptLabel {
-  color: #4ade80;
+  color: #6cd2a7;
   flex-shrink: 0;
 }
 
-/* Wrapper holds the visible text mirror + block cursor + the hidden real input */
 .inputWrapper {
   position: relative;
   display: flex;
@@ -103,25 +95,22 @@
   min-height: 1.2em;
 }
 
-/* Mirrors the value of the hidden input so the block caret tracks correctly */
 .inputText {
-  white-space: pre;   /* preserve spaces */
-  color: #ffffff;
+  white-space: pre;
+  color: #fbfbf8;
   pointer-events: none;
   user-select: none;
 }
 
-/* Block cursor — positioned immediately after the mirrored text */
 .caret {
   width: 0.55em;
   height: 1.1em;
-  background: #4ade80;
+  background: #ffaf01;
   display: inline-block;
   flex-shrink: 0;
-  animation: blink 1s step-end infinite;
+  animation: ef-blink 1s step-end infinite;
 }
 
-/* Real input: covers the wrapper, fully transparent — captures keystrokes only */
 .hiddenInput {
   position: absolute;
   inset: 0;
@@ -142,29 +131,13 @@
   cursor: default;
 }
 
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-@media (max-width: 1024px) {
-  .terminal {
-    max-width: 100%;
-  }
-}
-
 @media (max-width: 768px) {
   .body {
     height: 280px;
-    font-size: 0.82rem;
+    font-size: 0.76rem;
   }
 
   .titleText {
-    font-size: 0.7rem;
+    font-size: 0.62rem;
   }
 }

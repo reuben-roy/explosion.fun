@@ -1,64 +1,65 @@
 .page {
   min-height: 100vh;
-  background-color: #030303;
+  background: var(--ef-paper);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5rem 1.5rem 2rem;
-  font-family: var(--font-geist-sans);
+  padding: 3rem 1.5rem 3rem;
+  font-family: var(--ef-font-body);
 }
 
 .card {
   width: 100%;
   max-width: 420px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: var(--ef-cream);
+  border: 1px solid rgba(16,16,19,0.14);
+  border-radius: 0;
   padding: 2.5rem;
 }
 
 .backLink {
   display: inline-block;
   font-size: 0.85rem;
-  color: #8f98a7;
+  color: #6b6b73;
   text-decoration: none;
   margin-bottom: 1.5rem;
   transition: color 150ms ease;
 }
 
 .backLink:hover {
-  color: #3b82f6;
+  color: var(--ef-orange);
 }
 
 .brandMark {
   width: 48px;
   height: 48px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  border-radius: 0;
+  background: linear-gradient(135deg, #ffaf01, #e51300);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
   font-size: 1.4rem;
-  color: #fff;
+  color: var(--ef-paper);
   margin-bottom: 1.5rem;
 }
 
 .title {
+  font-family: var(--ef-font-display);
   font-size: 1.6rem;
   font-weight: 700;
-  color: #f3f2ef;
+  color: #101013;
   margin: 0 0 0.5rem;
   letter-spacing: -0.03em;
-  background: linear-gradient(to bottom right, #ffffff 30%, #a1a1aa 100%);
+  background: linear-gradient(to bottom right, #fbfbf8 30%, #6b6b73 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: currentColor;
   background-clip: text;
 }
 
 .subtitle {
   font-size: 0.95rem;
-  color: #8f98a7;
+  color: #6b6b73;
   margin: 0 0 2rem;
   line-height: 1.5;
 }
@@ -78,7 +79,7 @@
 .label {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #8f98a7;
+  color: #6b6b73;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -86,10 +87,10 @@
 .input {
   width: 100%;
   padding: 0.7rem 0.9rem;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
-  color: #f3f2ef;
+  border-radius: 0;
+  border: 1px solid rgba(16,16,19,0.14);
+  background: var(--ef-cream);
+  color: #101013;
   font-size: 0.95rem;
   font-family: inherit;
   outline: none;
@@ -101,12 +102,12 @@
 }
 
 .input:focus {
-  border-color: #3b82f6;
+  border-color: var(--ef-orange);
 }
 
 .error {
   padding: 0.7rem 0.9rem;
-  border-radius: 10px;
+  border-radius: 0;
   background: rgba(239, 68, 68, 0.1);
   border: 1px solid rgba(239, 68, 68, 0.2);
   color: #f87171;
@@ -116,10 +117,10 @@
 .submitBtn {
   width: 100%;
   padding: 0.75rem;
-  border-radius: 10px;
+  border-radius: 0;
   border: none;
-  background: #3b82f6;
-  color: #fff;
+  background: var(--ef-ink);
+  color: var(--ef-paper);
   font-size: 0.95rem;
   font-weight: 600;
   font-family: inherit;
@@ -141,13 +142,13 @@
   text-align: center;
   margin-top: 1.5rem;
   font-size: 0.9rem;
-  color: #8f98a7;
+  color: #6b6b73;
 }
 
 .toggleBtn {
   background: none;
   border: none;
-  color: #3b82f6;
+  color: var(--ef-orange);
   font-size: 0.9rem;
   font-family: inherit;
   cursor: pointer;
@@ -163,11 +164,11 @@
   height: 56px;
   border-radius: 50%;
   background: rgba(16, 185, 129, 0.12);
-  border: 2px solid #10b981;
+  border: 2px solid #44ba82;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  color: #10b981;
+  color: #44ba82;
   margin-bottom: 1.5rem;
 }

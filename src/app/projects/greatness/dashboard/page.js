@@ -8,11 +8,11 @@ import { getSupabase } from '@/config/supabase';
 import { computeOverallScore } from '@/utils/greatnessScore';
 import styles from './page.module.css';
 
-const ACCENT = '#f59e0b';
-const GOAL_COLOR = '#10b981';
-const DISTRACTION_COLOR = '#ef4444';
-const DEEP_WORK_COLOR = '#8b5cf6';
-const DRIFT_COLOR = '#3b82f6';
+const ACCENT = '#ffaf01';
+const GOAL_COLOR = '#44ba82';
+const DISTRACTION_COLOR = '#e51300';
+const DEEP_WORK_COLOR = '#c4001d';
+const DRIFT_COLOR = '#0082e6';
 
 function clearSvg(ref) {
   if (ref.current) d3.select(ref.current).selectAll('*').remove();
@@ -26,9 +26,9 @@ function createTooltip(container) {
 }
 
 function styleAxes(svg) {
-  svg.selectAll('.domain').attr('stroke', 'rgba(255, 255, 255, 0.08)');
-  svg.selectAll('.tick line').attr('stroke', 'rgba(255, 255, 255, 0.08)');
-  svg.selectAll('.tick text').attr('fill', '#8f98a7').style('font-size', '11px');
+  svg.selectAll('.domain').attr('stroke', 'rgba(16,16,19,0.12)');
+  svg.selectAll('.tick line').attr('stroke', 'rgba(16,16,19,0.12)');
+  svg.selectAll('.tick text').attr('fill', '#6b6b73').style('font-size', '11px');
 }
 
 export default function DashboardPage() {
@@ -196,7 +196,7 @@ export default function DashboardPage() {
       .join('path')
       .attr('d', arc)
       .attr('fill', d => d.data.color)
-      .attr('stroke', 'rgba(8, 10, 14, 0.98)')
+      .attr('stroke', '#fbfbf8')
       .attr('stroke-width', 2)
       .on('mouseover', function (event, d) {
         d3.select(this).transition().duration(150).attr('transform', 'scale(1.04)');
@@ -215,7 +215,7 @@ export default function DashboardPage() {
     g.append('text')
       .attr('text-anchor', 'middle')
       .attr('dy', '-0.3em')
-      .attr('fill', '#e2e8f0')
+      .attr('fill', '#101013')
       .style('font-size', '22px')
       .style('font-weight', '700')
       .text(`${overall?.avgSelfActualization || 0}%`);
@@ -223,7 +223,7 @@ export default function DashboardPage() {
     g.append('text')
       .attr('text-anchor', 'middle')
       .attr('dy', '1.2em')
-      .attr('fill', '#8f98a7')
+      .attr('fill', '#6b6b73')
       .style('font-size', '12px')
       .text('Self-Actualization');
   }
@@ -316,7 +316,7 @@ export default function DashboardPage() {
 
     const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
-    const goalColors = ['#10b981', '#f59e0b', '#8b5cf6', '#3b82f6', '#ec4899', '#06b6d4', '#ef4444', '#22d3ee'];
+    const goalColors = ['#44ba82', '#ffaf01', '#c4001d', '#0082e6', '#e51300', '#0082e6', '#e51300', '#0082e6'];
 
     const x = d3.scaleLinear().domain([0, 100]).range([0, width]);
     const y = d3.scaleBand().domain(goals.map(g => g.label)).range([0, height]).padding(0.3);
@@ -340,7 +340,7 @@ export default function DashboardPage() {
         .attr('y', y(goal.label) + y.bandwidth() / 2)
         .attr('dy', '0.35em')
         .attr('text-anchor', 'end')
-        .attr('fill', '#e2e8f0')
+        .attr('fill', '#101013')
         .style('font-size', '12px')
         .text(label);
     });
@@ -371,7 +371,7 @@ export default function DashboardPage() {
   }
 
   const trendIcon = overall.trend > 0 ? '↑' : overall.trend < 0 ? '↓' : '→';
-  const trendColor = overall.trend > 0 ? GOAL_COLOR : overall.trend < 0 ? DISTRACTION_COLOR : '#8f98a7';
+  const trendColor = overall.trend > 0 ? GOAL_COLOR : overall.trend < 0 ? DISTRACTION_COLOR : '#6b6b73';
 
   return (
     <div className={styles.page}>

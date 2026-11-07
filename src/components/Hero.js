@@ -1,99 +1,89 @@
-'use client';
-
-import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import PixelCanvas from './site/PixelCanvas';
+import { PixelArrow, PixelMark } from './site/PixelMark';
 import styles from './Hero.module.css';
-import Terminal from '@/components/Terminal';
-import LinkedInCard from '@/components/LinkedInCard';
-import GitHubCard from '@/components/GitHubCard';
-import HabiticaCard from '@/components/HabiticaCard';
-import { FEATURES } from '@/config/features';
+
+const SIGNALS = [
+  'Essays',
+  'Ranked reviews',
+  'Agentic AI',
+  'Data visualisation',
+  'Three.js',
+  'Native apps',
+  'Build notes',
+  'Open source',
+];
 
 export default function Hero() {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 300);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <section className={styles.hero}>
-      <div className={styles.heroContent}>
-        <div className={`${styles.heroLeft} ${isLoaded ? styles.loaded : ''}`}>
-          <h1 className={styles.title}>
-            <span className={styles.name}>explosion.fun</span>
-          </h1>
-          <p className={styles.description}>
-            A playground of experiments, data toys &amp; ranked reviews. Poke
-            around with the terminal, or just tap a card.
-          </p>
-          <Terminal />
+      <div className={`ef-container ${styles.inner}`}>
+        <div className={styles.top}>
+          <span className="ef-eyebrow">Reuben Roy · Independent engineer</span>
+          <span className={`ef-mono ${styles.status}`}>
+            <span className="ef-dot ef-dot--live" /> Est. 2021 / still shipping
+          </span>
         </div>
 
-        <div className={`${styles.heroRight} ${isLoaded ? styles.loaded : ''}`}>
-          <LinkedInCard />
-          <GitHubCard />
-          <HabiticaCard />
-          <div className={styles.spotifyWrapper}>
-            <div className={styles.spotifyHeader}>
-              <div className={styles.spotifyIcon}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
-                </svg>
-              </div>
-              <span className={styles.spotifyTitle}>Now Playing</span>
-            </div>
-            <iframe
-              src="https://open.spotify.com/embed/playlist/7argnm9cuFJWo9txW9OzlD?utm_source=generator&theme=0"
-              width="100%"
-              height="80"
-              frameBorder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"
-              className={styles.spotifyEmbed}
-            />
+        <div className={styles.center}>
+          <div className={styles.mark} aria-hidden="true">
+            <PixelMark size={40} />
+            <span className="ef-mono">explosion.fun</span>
+          </div>
+
+          <h1 className={`ef-display ${styles.title}`}>
+            A lab for things
+            <br />
+            <span className={styles.titleAccent}>worth making.</span>
+          </h1>
+
+          <p className={`ef-lede ${styles.lede}`}>
+            Essays, ranked reviews, data toys, and small software with strong opinions.
+            One person, a lot of curiosity, no feed to scroll.
+          </p>
+
+          <div className={`ef-row ${styles.actions}`}>
+            <Link href="/projects" className="ef-btn ef-btn--primary ef-btn--lg">
+              Explore the projects <PixelArrow size={18} />
+            </Link>
+            <Link href="/blog" className="ef-btn ef-btn--lg">
+              Read the blog <PixelArrow size={18} />
+            </Link>
+          </div>
+
+          <div className={styles.meta}>
+            <span className="ef-mono">12 projects</span>
+            <span className={styles.metaSep} />
+            <span className="ef-mono">Ranked reviews since 2020</span>
+            <span className={styles.metaSep} />
+            <span className="ef-mono">Built in public</span>
+          </div>
+        </div>
+
+        <div className={styles.band}>
+          <PixelCanvas variant="burst" cell={16} />
+          <div className={styles.bandGrad} aria-hidden="true" />
+          <div className={`${styles.bandLabel} ${styles.bandLabelLeft}`}>
+            <span className="ef-mono">01 / experiments</span>
+          </div>
+          <div className={`${styles.bandLabel} ${styles.bandLabelRight}`}>
+            <span className="ef-mono">click the pixels →</span>
           </div>
         </div>
       </div>
 
-      <div className={`${styles.features} ${isLoaded ? styles.loaded : ''}`}>
-        <div className={styles.featuresHeader}>
-          <span className={styles.featuresPrompt}>~/explore</span>
-          <h2 className={styles.featuresTitle}>Explore the site</h2>
-        </div>
-        <div className={styles.featureGrid}>
-          {FEATURES.map((feature) => (
-            <Link key={feature.command} href={feature.path} className={styles.featureCard}>
-              <div className={styles.featureCardTop}>
-                <span className={styles.featureCommand}>{feature.command}</span>
-                <svg
-                  className={styles.featureArrow}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
-              <h3 className={styles.featureName}>{feature.title}</h3>
-              <p className={styles.featureDescription}>{feature.description}</p>
-            </Link>
+      <div className={`ef-marquee ${styles.marquee}`} aria-label="What lives here">
+        <div className="ef-marquee__track" style={{ animationDuration: '44s' }}>
+          {[...SIGNALS, ...SIGNALS].map((signal, index) => (
+            <span
+              key={`${signal}-${index}`}
+              className="ef-marquee__item"
+              aria-hidden={index >= SIGNALS.length}
+            >
+              {signal}
+            </span>
           ))}
         </div>
-      </div>
-
-      <div className={styles.heroBackground}>
-        <div className={styles.grid}></div>
-        <div className={styles.gradient1}></div>
-        <div className={styles.gradient2}></div>
       </div>
     </section>
   );

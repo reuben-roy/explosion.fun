@@ -1,6 +1,5 @@
 import fs from 'fs/promises';
 import path from 'path';
-import Navbar from '@/components/Navbar';
 import TimeManagementDashboard from '@/components/time-management/TimeManagementDashboard';
 import styles from './page.module.css';
 
@@ -20,8 +19,7 @@ export default async function TimeManagementPage() {
 
     return (
         <div className={styles.page}>
-            <Navbar />
-            <TimeManagementDashboard data={data} />
+                  <TimeManagementDashboard data={data} />
         </div>
     );
 }

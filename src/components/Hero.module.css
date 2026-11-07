@@ -1,351 +1,189 @@
-/* Hero Section */
 .hero {
   position: relative;
-  min-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4rem;
-  padding: 8rem 1.5rem 4rem;
-  overflow: hidden;
 }
 
-.heroContent {
-  width: 100%;
-  max-width: 1400px;
+.inner {
+  display: flex;
+  flex-direction: column;
+  min-height: min(880px, calc(100svh - var(--ef-header)));
+  padding-top: clamp(1.5rem, 4vh, 2.75rem);
   position: relative;
-  z-index: 10;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 3rem;
-  align-items: flex-start;
-  padding: 0 2rem;
 }
 
-.heroLeft {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 1.25rem;
-  min-width: 0; /* allow grid item to shrink below content width */
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.heroRight {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  min-width: 0; /* allow grid item to shrink below content width */
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s;
-  max-height: 85vh;
-  overflow-y: auto;
-  padding-right: 0.5rem;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.heroRight::-webkit-scrollbar {
-  display: none;
-}
-
-.heroLeft.loaded,
-.heroRight.loaded {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Typography */
-.title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-}
-
-.name {
-  color: #ffffff; /* Fallback */
-  background: linear-gradient(to right, #60a5fa, #a78bfa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-}
-
-.description {
-  font-size: 1.0625rem;
-  line-height: 1.7;
-  color: #a1a1aa;
-  max-width: 560px;
-  margin: 0;
-}
-
-/* Feature grid */
-.features {
-  width: 100%;
-  max-width: 1100px;
-  position: relative;
-  z-index: 10;
-  padding: 0 2rem;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease-out 0.35s, transform 0.8s ease-out 0.35s;
-}
-
-.features.loaded {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.featuresHeader {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.featuresPrompt {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.85rem;
-  color: #4ade80;
-}
-
-.featuresTitle {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-.featureGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1rem;
-}
-
-.featureCard {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  padding: 1.25rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-}
-
-.featureCard:hover {
-  transform: translateY(-3px);
-  border-color: rgba(96, 165, 250, 0.5);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.featureCardTop {
+.top {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: clamp(1.5rem, 4vh, 3rem);
+  border-bottom: 1px solid var(--ef-line);
 }
 
-.featureCommand {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.8rem;
-  color: #4ade80;
-}
-
-.featureArrow {
-  width: 16px;
-  height: 16px;
-  color: #71717a;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.featureCard:hover .featureArrow {
-  transform: translateX(3px);
-  color: #ffffff;
-}
-
-.featureName {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-.featureDescription {
-  font-size: 0.9rem;
-  line-height: 1.55;
-  color: #a1a1aa;
-}
-
-/* Background Effects */
-.heroBackground {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.grid {
-  position: absolute;
-  inset: 0;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-}
-
-.gradient1 {
-  position: absolute;
-  top: -20%;
-  left: -10%;
-  width: 50%;
-  height: 50%;
-  background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 70%);
-  filter: blur(60px);
-}
-
-.gradient2 {
-  position: absolute;
-  bottom: -20%;
-  right: -10%;
-  width: 50%;
-  height: 50%;
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.15) 0%, transparent 70%);
-  filter: blur(60px);
-}
-
-/* Spotify Card Wrapper - compact style */
-.spotifyWrapper {
-  width: 100%;
-  background: rgba(30, 30, 30, 0.6);
-  border-radius: 10px;
-  padding: 0.75rem;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(30, 215, 96, 0.15);
-  transition: all 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.spotifyWrapper:hover {
-  border-color: rgba(30, 215, 96, 0.3);
-  background: rgba(35, 35, 35, 0.7);
-}
-
-.spotifyEmbed {
-  border-radius: 6px;
-  border: none;
-}
-
-.spotifyHeader {
-  display: flex;
+.status {
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  color: var(--ef-muted);
 }
 
-.spotifyIcon {
-  width: 24px;
-  height: 24px;
-  background: #1db954;
-  color: white;
-  border-radius: 5px;
+.center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-block: clamp(2.5rem, 7vh, 5rem);
+  gap: 1.25rem;
+  position: relative;
+  z-index: 2;
+}
+
+.mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--ef-line);
+  border-radius: 999px;
+  background: var(--ef-bg-2);
+  animation: ef-page-in 0.7s var(--ef-ease-out) both;
+}
+
+.mark span {
+  font-size: 0.625rem;
+  color: var(--ef-muted);
+}
+
+.title {
+  font-size: clamp(2.85rem, 7.4vw, 6.6rem);
+  animation: ef-page-in 0.8s 0.05s var(--ef-ease-out) both;
+}
+
+.titleAccent {
+  color: var(--ef-orange);
+}
+
+.lede {
+  max-width: 54ch;
+  animation: ef-page-in 0.8s 0.12s var(--ef-ease-out) both;
+}
+
+.actions {
+  justify-content: center;
+  margin-top: 0.75rem;
+  animation: ef-page-in 0.8s 0.18s var(--ef-ease-out) both;
+}
+
+.meta {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  animation: ef-page-in 0.8s 0.24s var(--ef-ease-out) both;
 }
 
-.spotifyTitle {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.6);
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
+.meta span {
+  color: var(--ef-faint);
+  font-size: 0.625rem;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .heroContent {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    padding: 0 1rem;
-  }
-
-  .heroLeft {
-    align-items: stretch;
-  }
-
-  .heroRight {
-    flex-direction: row;
-    flex-wrap: wrap;
-    overflow-x: visible;
-    overflow-y: visible;
-    max-height: none;
-    padding-bottom: 1rem;
-    padding-right: 0;
-    width: 100%;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .features {
-    padding: 0 1rem;
-  }
-
-  .spotifyWrapper {
-    min-width: 260px;
-    max-width: 300px;
-  }
+.metaSep {
+  width: 4px !important;
+  height: 4px;
+  background: var(--ef-line-strong);
+  display: inline-block;
 }
 
-@media (max-width: 768px) {
-  .hero {
+.band {
+  position: relative;
+  height: clamp(150px, 21vh, 230px);
+  border-top: 1px solid var(--ef-line);
+  margin-inline: calc(var(--ef-gutter) * -1);
+  overflow: hidden;
+}
+
+.bandGrad {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, var(--ef-bg) 92%);
+  pointer-events: none;
+}
+
+.bandLabel {
+  position: absolute;
+  bottom: 0.75rem;
+  z-index: 2;
+  padding: 0.25rem 0.4rem;
+  background: var(--ef-bg);
+  border: 1px solid var(--ef-line);
+}
+
+.bandLabel span {
+  font-size: 0.5625rem;
+  color: var(--ef-muted);
+}
+
+.bandLabelLeft {
+  left: var(--ef-gutter);
+}
+
+.bandLabelRight {
+  right: var(--ef-gutter);
+}
+
+.marquee {
+  border-top: 1px solid var(--ef-line);
+}
+
+@media (max-width: 860px) {
+  .inner {
     min-height: auto;
-    padding-top: 6.5rem;
-    padding-bottom: 2rem;
-    gap: 2.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .top {
+    padding-bottom: 1.25rem;
+  }
+
+  .center {
+    padding-block: 2.75rem 3rem;
+  }
+
+  .band {
+    height: 150px;
+  }
+
+  .bandLabelRight {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .mark span {
+    display: none;
   }
 
   .title {
-    font-size: 2rem;
+    font-size: clamp(2.4rem, 11vw, 3.2rem);
   }
 
-  .description {
-    font-size: 0.95rem;
-    line-height: 1.6;
+  .actions {
+    width: 100%;
+    flex-direction: column;
   }
 
-  .heroRight {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 1rem;
-    justify-content: flex-start;
-    gap: 0.75rem;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+  .actions > * {
+    width: 100%;
   }
 
-  .heroRight > * {
-    scroll-snap-align: start;
-    flex-shrink: 0;
+  .meta {
+    display: none;
   }
 
-  .heroContent {
-    gap: 1.5rem;
-  }
-
-  .featureGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .spotifyWrapper {
-    min-width: 240px;
-    max-width: 260px;
+  .status {
+    font-size: 0.5625rem;
   }
 }
