@@ -1,0 +1,294 @@
+.bands {
+  --texture-ink: rgba(16, 16, 19, 0.45);
+  --texture-light: rgba(251, 251, 248, 0.24);
+  --sheen: rgba(255, 249, 232, 0.32);
+  --sheen-dur: 9s;
+  --sheen-delay: 0s;
+
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--band-a);
+}
+
+.bands[data-variant='ember'] {
+  --band-a: #f5d78e;
+  --band-b: #eb9d2e;
+  --band-c: #c9541c;
+  --band-d: #5f1b17;
+  --sheen: rgba(255, 243, 210, 0.36);
+}
+
+.bands[data-variant='signal'] {
+  --band-a: #d6ef62;
+  --band-b: #43c6a5;
+  --band-c: #0d827f;
+  --band-d: #121418;
+  --sheen: rgba(255, 255, 255, 0.38);
+}
+
+.bands[data-variant='dusk'] {
+  --band-a: #ffd6a1;
+  --band-b: #ff8b7b;
+  --band-c: #b857cf;
+  --band-d: #381d5f;
+  --sheen: rgba(255, 235, 230, 0.38);
+}
+
+.bands[data-variant='mono'] {
+  --band-a: #e8e5da;
+  --band-b: #b8b5aa;
+  --band-c: #5f5f68;
+  --band-d: #111116;
+  --sheen: rgba(250, 80, 15, 0.42);
+}
+
+.stripes {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.stripe {
+  position: relative;
+  display: block;
+  flex-basis: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.stripe::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.55;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: background-position;
+}
+
+.stripe::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 20%, var(--sheen) 48%, transparent 76%);
+  transform: translateX(-130%);
+  animation: band-sheen var(--sheen-dur) ease-in-out infinite;
+  animation-delay: var(--sheen-delay);
+  pointer-events: none;
+}
+
+.stripe:nth-child(1) {
+  flex-grow: 26;
+  background: var(--band-a);
+  --sheen-dur: 9.5s;
+  --sheen-delay: -1s;
+}
+
+.stripe:nth-child(1)::before {
+  background-image: repeating-linear-gradient(
+    115deg,
+    var(--texture-ink) 0 1px,
+    transparent 1px 14px
+  );
+  background-size: 28px 28px;
+  animation-name: tex-scroll-x;
+  animation-duration: 11s;
+}
+
+.stripe:nth-child(2) {
+  flex-grow: 18;
+  background: var(--band-b);
+  --sheen-dur: 13s;
+  --sheen-delay: -6s;
+}
+
+.stripe:nth-child(2)::before {
+  background-image: radial-gradient(circle, var(--texture-ink) 1px, transparent 1.6px);
+  background-size: 14px 14px;
+  animation-name: tex-scroll-diag;
+  animation-duration: 19s;
+}
+
+.stripe:nth-child(3) {
+  flex-grow: 32;
+  background: var(--band-c);
+  --sheen-dur: 8s;
+  --sheen-delay: -3.4s;
+}
+
+.stripe:nth-child(3)::before {
+  background-image:
+    linear-gradient(
+      45deg,
+      var(--texture-light) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--texture-light) 75%
+    ),
+    linear-gradient(
+      45deg,
+      var(--texture-light) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--texture-light) 75%
+    );
+  background-size: 22px 22px;
+  background-position: 0 0, 11px 11px;
+  animation-name: tex-checker;
+  animation-duration: 15s;
+  opacity: 0.34;
+}
+
+.stripe:nth-child(4) {
+  flex-grow: 24;
+  background: var(--band-d);
+  --sheen-dur: 11s;
+  --sheen-delay: -8s;
+}
+
+.stripe:nth-child(4)::before {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--texture-light) 0 1px,
+    transparent 1px 10px
+  );
+  background-size: 10px 100%;
+  animation-name: tex-scroll-lines;
+  animation-duration: 7s;
+}
+
+.picker {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  z-index: 4;
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid rgba(251, 251, 248, 0.22);
+  border-radius: 999px;
+  background: rgba(16, 16, 19, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.pickerButton {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-family: var(--ef-font-mono);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(251, 251, 248, 0.66);
+  transition: background 0.2s var(--ef-ease), color 0.2s var(--ef-ease);
+}
+
+.pickerButton:hover {
+  color: #fbfbf8;
+}
+
+.pickerButton[data-active='true'] {
+  background: #fbfbf8;
+  color: #101013;
+}
+
+.pickerLabel {
+  display: inline;
+}
+
+.swatch {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(16, 16, 19, 0.16);
+}
+
+.pickerButton[data-variant='ember'] .swatch {
+  background: linear-gradient(180deg, #f3c14d 0 33%, #e97c1f 33% 66%, #c8471c 66% 100%);
+}
+
+.pickerButton[data-variant='signal'] .swatch {
+  background: linear-gradient(180deg, #d6ef62 0 33%, #43c6a5 33% 66%, #0d827f 66% 100%);
+}
+
+.pickerButton[data-variant='dusk'] .swatch {
+  background: linear-gradient(180deg, #ffd6a1 0 33%, #ff8b7b 33% 66%, #b857cf 66% 100%);
+}
+
+.pickerButton[data-variant='mono'] .swatch {
+  background: linear-gradient(180deg, #e8e5da 0 33%, #b8b5aa 33% 66%, #5f5f68 66% 100%);
+}
+
+@keyframes tex-scroll-x {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 56px 0;
+  }
+}
+
+@keyframes tex-scroll-diag {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 56px 56px;
+  }
+}
+
+@keyframes tex-checker {
+  from {
+    background-position: 0 0, 11px 11px;
+  }
+  to {
+    background-position: 44px 0, 55px 11px;
+  }
+}
+
+@keyframes tex-scroll-lines {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -40px 0;
+  }
+}
+
+@keyframes band-sheen {
+  0% {
+    transform: translateX(-130%);
+  }
+  55%,
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+@media (max-width: 640px) {
+  .picker {
+    top: 7px;
+    right: 8px;
+    gap: 2px;
+  }
+
+  .pickerButton {
+    padding: 5px;
+    font-size: 8px;
+  }
+
+  .pickerLabel {
+    display: none;
+  }
+
+  .swatch {
+    width: 9px;
+    height: 9px;
+  }
+}

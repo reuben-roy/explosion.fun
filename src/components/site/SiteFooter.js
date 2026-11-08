@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import FooterBands from './FooterBands';
 import { PixelArrow, PixelMark } from './PixelMark';
 import { GitHubIcon, LinkedInIcon, YouTubeIcon } from './Icons';
 import { FOOTER_COLUMNS } from '@/config/navigation';
@@ -109,21 +110,7 @@ export default function SiteFooter() {
         </span>
       </div>
 
-      <div className="ef-bands" aria-hidden="true">
-        <svg className="ef-bands__sprite" viewBox="0 0 9 9" shapeRendering="crispEdges" width="42" height="42" aria-hidden="true">
-          <rect width="9" height="9" fill="#fbfbf8" />
-          <g fill="#fa500f">
-            <rect x="4" y="0" width="1" height="1" />
-            <rect x="3" y="1" width="3" height="1" />
-            <rect x="2" y="2" width="5" height="1" />
-            <rect x="3" y="3" width="3" height="1" />
-            <rect x="1" y="4" width="7" height="1" />
-            <rect x="2" y="5" width="5" height="1" />
-            <rect x="3" y="6" width="3" height="1" />
-          </g>
-          <rect x="4" y="3" width="1" height="1" fill="#ffaf01" />
-        </svg>
-      </div>
+      <FooterBands />
     </footer>
   );
 }
