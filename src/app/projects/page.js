@@ -44,6 +44,22 @@ const FEATURED = [
 
 const PROJECTS = [
   {
+    title: 'Auto-Explosion',
+    description:
+      'A personal portfolio and interactive tools hub for data-driven storytelling, with D3 and Three.js visualisations.',
+    href: 'https://auto.explosion.fun',
+    tag: 'Interactive site',
+    external: true,
+  },
+  {
+    title: 'blistering-barnacles',
+    description:
+      'A real-estate CRM demo with hybrid AI onboarding, FullCalendar scheduling, and a full Learning Hub.',
+    href: 'https://lofty.explosion.fun/',
+    tag: 'AI CRM',
+    external: true,
+  },
+  {
     title: 'Who Got the Jobs?',
     description:
       'A decade of BLS employment data by sex, unpacking the claim that women accounted for 97.53% of the August 2026 net payroll gain.',
@@ -168,7 +184,7 @@ export default function ProjectsPage() {
         description="Small, sharp software and data toys. Some have a business case. Most have a question they were built to answer."
         meta={
           <>
-            <span className="ef-tag">14 projects</span>
+            <span className="ef-tag">16 projects</span>
             <span className="ef-tag">Agents · data · native apps</span>
             <span className="ef-tag">All source on GitHub</span>
           </>
