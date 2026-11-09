@@ -146,20 +146,17 @@ function ScoreBreakdown({ post }) {
                       }}
                     />
                   </span>
-                  <span className={styles.scoreNumber}>{data[field]}</span>
+                  <span className={styles.scoreNumber}>
+                    {data[field]}
+                    <span className={styles.scoreOutOf}>/10</span>
+                  </span>
                 </div>
               );
             })}
             {set.ageRestricted && data.ageRestricted && (
-              <div className={styles.scoreRow}>
-                <span className={styles.scoreLabel}>Age Restricted</span>
-                <span className={styles.scoreTrack} aria-hidden="true">
-                  <span
-                    className={styles.scoreFill}
-                    style={{ width: '100%', background: 'var(--ef-red)' }}
-                  />
-                </span>
-                <span className={styles.scoreNumber}>Yes</span>
+              <div className={styles.ageFlag}>
+                <span className={styles.ageBadge}>Age restricted</span>
+                <span className={styles.ageNote}>Contains mature content</span>
               </div>
             )}
           </div>
