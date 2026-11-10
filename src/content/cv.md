@@ -49,7 +49,7 @@ Software engineer and generalist who builds autonomous, agentic systems on top o
 - Supported a graduate software engineering course, reviewing student submissions and explaining design and testing feedback in office hours.
 - Skills: Python, Structured Output, REST APIs, Ollama, Local LLMs, Privacy Engineering, Code Review
 
-### Software Engineer, RCKR Software (Trubridge / CPSI client project)
+### Software Engineer, Trubridge
 
 - Developed secure backend services for the Unify interoperability product, following the FHIR specification so hospitals across the US could exchange patient records directly, reducing the cost of patient care.
 - Engineered asynchronous C#/.NET services and custom SQL ETL pipelines to migrate 64+ TB of hospital data while supporting secure, HIPAA-compliant FHIR integrations.
@@ -57,7 +57,7 @@ Software engineer and generalist who builds autonomous, agentic systems on top o
 - Introduced Redis caching and asynchronous processing to keep large record-exchange jobs responsive under production load; secured service-to-service access with OAuth and JWT and gated the codebase on SonarQube checks in Bitbucket Pipelines.
 - Skills: .NET, C#, Entity Framework, REST APIs, Microservices, FHIR, HL7, OAuth, JWT, PostgreSQL, Redis, SQL, Azure, Docker, CI/CD, SonarQube, Agile/Scrum
 
-### Full-Stack Developer, Tata Consultancy Services (IKEA client project)
+### Full-Stack Developer, IKEA
 
 - Built the Java Spring Boot microservices powering the IKEA websites on GCP, on a platform processing millions of transactions annually.
 - Primary focus on the Quotation Management initiative: services to generate quotes, manage revisions and approvals, and automatically notify customers and internal stakeholders about order status updates.

@@ -10,10 +10,10 @@ Software engineer building reliable AI workflows, native applications, and backe
 ### Graduate Teaching Assistant / AI Engineer | Arizona State University
 - Built an AI auto-grader integrated with Canvas, structured rubrics, and PDF lab-result processing; supported self-hosted grading to keep coursework on university infrastructure.
 - Reviewed software engineering submissions and explained design and testing feedback.
-### Software Engineer | RCKR Software - Trubridge / CPSI
+### Software Engineer | Trubridge
 - Developed C#/.NET backend services and SQL ETL pipelines for hospital data migration and FHIR interoperability.
 - Optimized PostgreSQL access with Entity Framework; used Redis and asynchronous processing for large record-exchange workloads, with OAuth/JWT service authentication.
-### Full-Stack Developer | Tata Consultancy Services - IKEA
+### Full-Stack Developer | IKEA
 - Built Java/Spring Boot microservices on GCP for quotation generation, revisions, approvals, and order-status notifications.
 - Optimized API latency with caching and SQL indexes; built concurrent workers and scheduled jobs, and contributed React checkout and 3D room-planner features.
 - Maintained automated unit testing with JUnit and Mockito in CI/CD pipelines.
